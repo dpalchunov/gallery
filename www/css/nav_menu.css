@@ -1,0 +1,175 @@
+/*Navigation menu*/
+#nav_menu {
+	position: absolute;
+	height: 37px;
+	width: 343px;
+	left:843px;
+	top:81px;
+}
+
+	/*Navigation menu -about*/
+	#nav_about {
+		position: absolute;
+		height: 37px;
+		width: 81px;
+		left:0px;
+		top:0px;
+		background-image: url(../images/nav_menu/about.png);
+		background-repeat: no-repeat;
+	}
+	#nav_about.active {
+		position: absolute;
+		height: 37px;
+		width: 81px;
+		left:0px;
+		top:0px;
+		background-image: url(../images/nav_menu/about_active.png);
+		background-repeat: no-repeat;
+	}
+	#nav_about a{
+		display: block;
+		height: 100%
+	}
+	#nav_about:hover {
+		position: absolute;
+		height: 37px;
+		width: 81px;
+		left:0px;
+		top:0px;
+		background-image: url(../images/nav_menu/about_hover.png);
+		background-repeat: no-repeat;
+	}
+	#nav_about.active:hover {
+		position: absolute;
+		height: 37px;
+		width: 81px;
+		left:0px;
+		top:0px;
+		background-image: url(../images/nav_menu/about_active.png);
+		background-repeat: no-repeat;
+	}
+	/*Navigation menu -contacts*/
+	#nav_contacts {
+		position: absolute;
+		height: 37px;
+		width: 96px;
+		left:81px;
+		top:0px;
+		background-image: url(../images/nav_menu/contacts.png);
+		background-repeat: no-repeat;
+	}
+	#nav_contacts.active {
+		position: absolute;
+		height: 37px;
+		width: 96px;
+		left:81px;
+		top:0px;
+		background-image: url(../images/nav_menu/contacts_active.png);
+		background-repeat: no-repeat;
+	}	
+	#nav_contacts a{
+		display: block;
+		height: 100%
+	}
+	#nav_contacts:hover {
+		position: absolute;
+		height: 37px;
+		width: 96px;
+		left:81px;
+		top:0px;
+		background-image: url(../images/nav_menu/contacts_hover.png);
+		background-repeat: no-repeat;
+	}
+	#nav_contacts.active:hover {
+		position: absolute;
+		height: 37px;
+		width: 96px;
+		left:81px;
+		top:0px;
+		background-image: url(../images/nav_menu/contacts_active.png);
+		background-repeat: no-repeat;
+	}	
+	/*Navigation menu -galary*/	
+	#nav_gallary {
+		position: absolute;
+		height: 37px;
+		width: 82px;
+		left:177px;
+		top:0px;
+		background-image: url(../images/nav_menu/gallary.png);
+		background-repeat: no-repeat;
+	}
+	#nav_gallary.active {
+		position: absolute;
+		height: 37px;
+		width: 82px;
+		left:177px;
+		top:0px;
+		background-image: url(../images/nav_menu/gallary_active.png);
+		background-repeat: no-repeat;
+	}	
+	#nav_gallary a{
+		display: block;
+		height: 100%
+	}
+	#nav_gallary.active:hover {
+		position: absolute;
+		height: 37px;
+		width: 82px;
+		left:177px;
+		top:0px;
+		background-image: url(../images/nav_menu/gallary_active.png);
+		background-repeat: no-repeat;
+	}
+	#nav_gallary:hover {
+		position: absolute;
+		height: 37px;
+		width: 82px;
+		left:177px;
+		top:0px;
+		background-image: url(../images/nav_menu/gallary_hover.png);
+		background-repeat: no-repeat;
+	}	
+	/*Navigation menu -order*/		
+	#nav_order {
+		position: absolute;
+		height: 37px;
+		width: 85px;
+		left:259px;
+		top:0px;
+		background-image: url(../images/nav_menu/order.png);
+		background-repeat: no-repeat;
+	}
+	#nav_order.active {
+		position: absolute;
+		height: 37px;
+		width: 85px;
+		left:259px;
+		top:0px;
+		background-image: url(../images/nav_menu/order_active.png);
+		background-repeat: no-repeat;
+	}	
+	#nav_order a{
+		display: block;
+		height: 100%
+	}
+	#nav_order.active:hover {
+		position: absolute;
+		height: 37px;
+		width: 85px;
+		left:259px;
+		top:0px;
+		background-image: url(../images/nav_menu/order_active.png);
+		background-repeat: no-repeat;
+	}
+	#nav_order:hover {
+		position: absolute;
+		height: 37px;
+		width: 85px;
+		left:259px;
+		top:0px;
+		background-image: url(../images/nav_menu/order_hover.png);
+		background-repeat: no-repeat;
+	}		
+
+/*end of Navigation menu*/

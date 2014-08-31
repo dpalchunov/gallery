@@ -1,0 +1,2 @@
+<div class="classificator_header" classificator_id="{{{$classificatorID}}}"><div class="classificator_header_text">{{{$classificatorName}}}</div><div class="clear_btn"></div></div>
+<div class="classificator_body" classificator_id="{{{$classificatorID}}}">{{{$classificatorBody}}}</div>

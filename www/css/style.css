@@ -1,0 +1,315 @@
+@import url('reset.css');
+
+/*Основнй стиль сайта Strunkova.ru*/
+
+/*General Styles*/
+html {
+	height: 100%;
+}
+
+body {
+	background: #FFFFFF;
+	font-family: Times New Roman, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #ffffff;
+	min-height: 100%;
+	padding-top: 5px;
+	background-color: #eee;
+	/*background-image: url(../images/main_bg.jpg);
+	background-repeat: repeat-x;*/
+	
+}
+
+p {
+	font-size: 14px;
+	color: b9b9b9; 
+}
+
+a {
+	text-decoration: none;
+	outline: none;
+	color: #ffffff;
+	font-size: 14px;
+}
+
+a:hover {
+	text-decoration: underline;
+	outline: none;
+	color: #FFFFFF;
+	font-size: 14px;
+}
+
+code {
+	font-family: "Courier New", Courier, monospace;
+	color:#000;
+}
+
+blockquote {
+	font-style: italic;
+	background: #ccc;
+	margin-left: 20px;
+}
+
+#wrap {
+	width: 1200px;
+	height: 1200px;
+/*	background-image: url(../images/main_bg.gif);
+	background-repeat: repeat-y round;*/
+	background: #d2dfe3;
+	margin: 0 auto;
+	position: relative;
+}
+
+/*Header*/
+
+#header {
+	position: relative;
+	height: 165px;
+	background: #303030;
+	background-image: url(../images/header_bg_01.png);
+	background-repeat: repeat-x;	
+	
+}
+
+#header_name {
+	height: 55px;
+	width: 363px;
+	color: #0b0b0b;
+	position: absolute;
+	left: 82px;
+	top: 63px;
+	background-image: url(../images/header_name_transparent.png);
+	background-repeat: no-repeat;
+
+}
+
+
+#header_underline {
+	height: 1px;
+	background: #727272;
+	position: relative;
+	left: 85px;
+	top: 75px;
+	width: 875px;
+}
+
+#header_shaddow {
+	height: 58px;
+	width: 1200px;
+	background-image: url(../images/header_shaddow.png);
+	background-repeat: no-repeat;
+
+}
+
+
+
+/*Main content*/
+
+#main_content { 
+	height: 975px;
+	width: 100%;
+	position: absolute;
+	top: 165px;
+	background-color: #d2dfe3;
+  
+    /* Для WebKit (Safari, Google Chrome и т.д.) */  
+    background: -webkit-gradient(radial, 50% 40%, 50, 50% 40%, 350, from(#F6F8F9), to(#d2dfe3));   
+    /* Для Mozilla/Gecko (Firefox и т.д.) */  
+    background: -moz-radial-gradient(40% 40%, farthest-side, #d2dfe3, #d2dfe3);  
+    /* Для Internet Explorer */  
+    /* Если бы :( ... */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F6F8F9', endColorstr='#d2dfe3');			
+}
+
+#main_ie_gradient {
+    background: #d2dfe3; /* The color you want for the radial gradient */
+    width:1200px; 
+    height:975px;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0, finishopacity=100, style=2);
+}
+
+
+
+	#slider {
+		height: 365px;
+		width: 720px;
+		position: absolute;
+		top:70px;
+		left:80px;
+	
+	}
+
+		#left_ar {
+			width: 60px;
+			height: 97px;
+			position: absolute;
+			top:104px;
+			left:0px;
+			background-image: url(../images/slider/left_ar.png);
+			background-repeat: no-repeat;	
+		}
+
+		#left_ar a{
+			display: block;
+			height: 100%
+		}
+
+		#right_ar {
+			width: 59px;
+			height: 97px;
+			position: absolute;
+			top:104px;
+			left:661px;
+			background-image: url(../images/slider/right_ar.png);
+			background-repeat: no-repeat;	
+		}
+
+		#right_ar a{
+			display: block;
+			height: 100%
+		}
+
+
+		#left_ar:hover {
+			width: 60px;
+			height: 97px;
+			position: absolute;
+			top:104px;
+			left:0px;
+			background-image: url(../images/slider/left_ar_hover.png);
+			background-repeat: no-repeat;	
+		}
+
+		#right_ar:hover {
+			width: 59px;
+			height: 97px;
+			position: absolute;
+			top:104px;
+			left:661px;
+			background-image: url(../images/slider/right_ar_hover.png);
+			background-repeat: no-repeat;	
+		}
+		#ava {
+			width: 575px;
+			height: 301px;
+			position: absolute;
+			top:0px;
+			right:75px;
+			background-image: url("../images/slider/ava1.jpg");
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		#shaddow {
+			width: 575px;
+			height: 85px;
+			position: absolute;
+			top:301px;
+			right:75px;
+			background-image: url(../images/slider/shaddow.png);
+			background-repeat: no-repeat;	
+		}		
+
+
+	
+	#main_text {
+		height: 282px;
+		width: 859px;
+		position: absolute;
+		top: 450px;
+		left: 150px;
+		/*background-image: url(../images/main_text.png);*/
+		background-repeat: no-repeat;
+
+	}
+	
+	@font-face {
+	 font-family: Garamond; /* Гарнитура шрифта */
+	 src: url("../fonts/GaramondPremrPro-It.otf");/* Путь к файлу со шрифтом */
+	}	
+	#main_text pre {
+	
+		font-family: Garamond, 'Garamond Premier Pro';
+		color: black;
+		font-size: 17pt;
+	}
+
+
+#main_text_part1 {
+	height: 200px;
+	width: 1000px;
+	position: absolute;
+	top: 240px;
+	left: 155px;
+}
+
+#main_text_part2 {
+	height: 396px;
+	width: 800px;
+	position: absolute;
+	top: 460px;
+	left: 155px;
+}
+
+#photo_area {
+	height: 396px;
+	width: 314px;
+	position: absolute;
+	top: 15px;
+	left: 630px;
+	background-image: url(../images/avatar.png);
+	background-repeat: no-repeat;	
+}
+
+/*Footer*/
+#footer {
+	position: absolute;
+	top: 1120px;
+	left:0px;
+	height: 80px;
+	width: 100%;
+	color: #FFFFFF;
+	background-color: #000000;
+}
+
+#footer_phrase_name {
+	height: 15px;
+	width: 241px;
+	position: absolute;
+	left: 200px;
+	top: 55px;
+	background-image: url(../images/footer_phrase_name.png);
+	background-repeat: no-repeat;
+}
+
+#greeting {
+	background-color: #EEE;
+	position: absolute;
+	left:0;
+	top:0;
+	height: 1300px;
+	width:1300px;
+	z-index: 9999;
+	text-align: center;	
+}
+
+.display_none {
+	display:none;
+}
+
+#greeting img{
+  position: relative;
+  top: 10px;
+  margin: 0 auto;
+}
+
+#greeting img:hover{
+  cursor: pointer;
+  position: relative;
+  top: 10px;
+  margin: auto;
+}
+
+
+
+
+

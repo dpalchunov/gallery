@@ -1,0 +1,6 @@
+		td {
+			width: 414px;
+			height: 262px;
+			box-shadow: 10px 10px 10px #000;
+			behavior: url(ie-css3.htc);
+		}

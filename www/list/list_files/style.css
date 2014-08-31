@@ -1,0 +1,68 @@
+html, body, #wrap {
+	height: 100%; 
+	margin: 0px;
+	background: #fff url(template-example-bg.gif);
+}
+body > #wrap {
+	height: auto; 
+	min-height: 100%;
+}
+
+#headline {
+	width: 100%;
+	color: #eaeaea;
+	text-align: center;
+	padding: 10px 0px 10px 0px;
+	border-bottom: 3px solid #ccc;
+	background: #000 url(template-example-headline-bg.gif);
+	font: 250% Georgia, Arial, Helvetica, sans-serif;
+}
+#headline a {
+	color: #eaeaea;
+	text-decoration: none;
+	
+}
+#headline a:hover {
+	color: #8b8b8b;
+}
+#content {
+	padding-bottom: 40px;
+}
+#footer {
+	clear: both;
+	height: 40px;
+	color: #eaeaea;
+	margin-top: -53px;
+	text-align: right;
+	position: relative;
+	padding: 10px 50px 0px 0px;
+	border-top: 3px solid #ccc;
+	font: 150% Georgia, Arial, Helvetica, sans-serif;
+	background: #000 url(template-example-headline-bg.gif);
+} 
+#footer a {
+	color: #eaeaea;
+	text-decoration: none;
+	
+}
+#footer a:hover {
+	color: #8b8b8b;
+}
+.clearfix:after {
+	height: 0;
+	clear: both;
+	content: ".";
+	display: block;
+	visibility: hidden;
+}
+.clearfix {
+	display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html .clearfix { 
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}
+/* End hide from IE-mac */

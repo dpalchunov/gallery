@@ -1,0 +1,1 @@
+<div class="classificator_header" classificator_id="{{{$classificatorID}}}">{{{$classificatorText}}}</div>

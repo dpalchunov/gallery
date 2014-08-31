@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://rmcreative.ru/playground/fluid-fixed-fluid/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Fluid-Fixed-Fluid layout</title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fixed {
+            width: 500px;
+            float: left;
+        }
+
+       .fluid-left-wrapper {
+           margin-right: -250px;
+           width: 50%;
+           float: left;
+           background-color: #000;
+           height: 2000px;
+       }
+
+        .fluid-left {
+            margin-right: 400px;
+            min-width: 100px;
+        }
+
+       .fluid-right-wrapper {
+           width: 50%;
+           float: left;
+           margin-left: -250px;
+           background-color: #444;
+           height: 2000px;               
+       }
+
+       * html .fluid-right-wrapper {
+           width: 49.999%;
+       
+       }
+
+       .fluid-right {
+           margin-left: 250px;
+       }
+
+
+        /* colors and some insignificant styling */
+        body {
+            font-family: Georgia, serif;
+            line-height: 140%;
+        }
+
+        .fixed p , .fluid-left p, .fluid-right p {
+            padding: 1em;
+        }
+
+        .fixed {
+            background: #fcac00;
+        }
+
+        .fluid-left {
+            background: #bae5f9;
+        }
+
+        .fluid-right {
+            background: #dedede;
+        }
+    </style>
+<style type="text/css"></style><style id="wrc-middle-css" type="text/css">.wrc_whole_window{	display: none;	position: fixed; 	z-index: 2147483647;	background-color: rgba(40, 40, 40, 0.9);	word-spacing: normal !important;	margin: 0px !important;	padding: 0px !important;	border: 0px !important;	left: 0px;	top: 0px;	width: 100%;	height: 100%;	line-height: normal !important;	letter-spacing: normal !important;	overflow: hidden;}.wrc_bar_window{	display: none;	position: fixed; 	z-index: 2147483647;	background-color: rgba(60, 60, 60, 1.0);	word-spacing: normal !important;	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;	margin: 0px !important;	padding: 0px !important;	border: 0px !important;	left: 0px;	top: 0px;	width: 100%;	height: 40px;	line-height: normal !important;	letter-spacing: normal !important;	color: white !important;	font-size: 13px !important;}.wrc_middle {	display: table-cell;	vertical-align: middle;	width: 100%;}.wrc_middle_main {	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;	font-size: 14px;	width: 600px;	height: auto;    background: url(chrome-extension://icmlaeflemplmjndnaapfdbbnpncnbda/skin/images/background-body.jpg) repeat-x left top;	background-color: rgb(39, 53, 62);	position: relative;	margin-left: auto;	margin-right: auto;	text-align: left;}.wrc_middle_tq_main {	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;	font-size: 16px;	width: 615px;	height: 460px;    background: url(chrome-extension://icmlaeflemplmjndnaapfdbbnpncnbda/skin/images/background-sitecorrect.png) no-repeat;	background-color: white;	color: black !important;	position: relative;	margin-left: auto;	margin-right: auto;	text-align: center;}.wrc_middle_logo {    background: url(chrome-extension://icmlaeflemplmjndnaapfdbbnpncnbda/skin/images/logo.jpg) no-repeat left bottom;    width: 140px;    height: 42px;    color: orange;    display: table-cell;    text-align: right;    vertical-align: middle;}.wrc_icon_warning {	margin: 20px 10px 20px 15px;	float: left;	background-color: transparent;}.wrc_middle_title {    color: #b6bec7;	height: auto;    margin: 0px auto;	font-size: 2.2em;	white-space: nowrap;	text-align: center;}.wrc_middle_hline {    height: 2px;	width: 100%;    display: block;}.wrc_middle_description {	text-align: center;	margin: 15px;	font-size: 1.4em;	padding: 20px;	height: auto;	color: white;	min-height: 3.5em;}.wrc_middle_actions_main_div {	margin-bottom: 15px;	text-align: center;}.wrc_middle_actions_blue_button div {	display: inline-block;	width: auto;	cursor: Pointer;	margin: 3px 10px 3px 10px;	color: white;	font-size: 1.2em;	font-weight: bold;}.wrc_middle_actions_blue_button {	-moz-appearance: none;	border-radius: 7px;	-moz-border-radius: 7px/7px;	border-radius: 7px/7px;	background-color: rgb(0, 173, 223) !important;	display: inline-block;	width: auto;	cursor: Pointer;	border: 2px solid #00dddd;	padding: 0px 20px 0px 20px;}.wrc_middle_actions_blue_button:hover {	background-color: rgb(0, 159, 212) !important;}.wrc_middle_actions_blue_button:active {	background-color: rgb(0, 146, 200) !important;	border: 2px solid #00aaaa;}.wrc_middle_actions_grey_button div {	display: inline-block;	width: auto;	cursor: Pointer;	margin: 3px 10px 3px 10px;	color: white !important;	font-size: 15px;	font-weight: bold;}.wrc_middle_actions_grey_button {	-moz-appearance: none;	border-radius: 7px;	-moz-border-radius: 7px/7px;	border-radius: 7px/7px;	background-color: rgb(100, 100, 100) !important;	display: inline-block;	width: auto;	cursor: Pointer;	border: 2px solid #aaaaaa;	text-decoration: none;	padding: 0px 20px 0px 20px;}.wrc_middle_actions_grey_button:hover {	background-color: rgb(120, 120, 120) !important;}.wrc_middle_actions_grey_button:active {	background-color: rgb(130, 130, 130) !important;	border: 2px solid #00aaaa;}.wrc_middle_action_low {	font-size: 0.9em;	white-space: nowrap;	cursor: Pointer;	color: grey !important;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action_low:hover {	color: #aa4400 !important;}.wrc_middle_actions_rest_div {	padding-top: 5px;	white-space: nowrap;	text-align: center;}.wrc_middle_action {	white-space: nowrap;	cursor: Pointer;	color: red !important;	font-size: 1.2em;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action:hover {	color: #aa4400 !important;}</style><script id="wrc-script-middle_window" type="text/javascript" language="JavaScript">var g_inputsCnt = 0;var g_InputThis = new Array(null, null, null, null);var g_alerted = false;/* we test the input if it includes 4 digits   (input is a part of 4 inputs for filling the credit-card number)*/function is4DigitsCardNumber(val){	var regExp = new RegExp('[0-9]{4}');	return (val.length == 4 && val.search(regExp) == 0);}/* testing the whole credit-card number 19 digits devided by three '-' symbols or   exactly 16 digits without any dividers*/function isCreditCardNumber(val){	if(val.length == 19)	{		var regExp = new RegExp('[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}');		return (val.search(regExp) == 0);	}	else if(val.length == 16)	{		var regExp = new RegExp('[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}');		return (val.search(regExp) == 0);	}	return false;}function CheckInputOnCreditNumber(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'text')	{		if(is4DigitsCardNumber(value))		{			var cont = true;			for(i = 0; i < g_inputsCnt; i++)				if(g_InputThis[i] == self)					cont = false;			if(cont && g_inputsCnt < 4)			{				g_InputThis[g_inputsCnt] = self;				g_inputsCnt++;			}		}		g_alerted = (g_inputsCnt == 4);		if(g_alerted)			g_inputsCnt = 0;		else			g_alerted = isCreditCardNumber(value);	}	return g_alerted;}function CheckInputOnPassword(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'password')	{		g_alerted = (value.length > 0);	}	return g_alerted;}function onInputBlur(self, bRatingOk, bFishingSite){	var bCreditNumber = CheckInputOnCreditNumber(self);	var bPassword = CheckInputOnPassword(self);	if((!bRatingOk || bFishingSite == 1) && (bCreditNumber || bPassword) )	{		var warnDiv = document.getElementById("wrcinputdiv");		if(warnDiv)		{			/* show the warning div in the middle of the screen */			warnDiv.style.left = "0px";			warnDiv.style.top = "0px";			warnDiv.style.width = "100%";			warnDiv.style.height = "100%";			document.getElementById("wrc_warn_fs").style.display = 'none';			document.getElementById("wrc_warn_cn").style.display = 'none';			if(bFishingSite)				document.getElementById("wrc_warn_fs").style.display = 'block';			else				document.getElementById("wrc_warn_cn").style.display = 'block';			warnDiv.style.display = 'table';		}	}}</script></head>
+<body>
+    <div class="fluid-left-wrapper">
+        <div class="fluid-left">
+            <p>Совсем немного CSS:</p>
+            <p>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.fixed {
+    width: 500px;
+    float: left;
+    position: relative;
+}
+
+.fluid-left-wrapper {
+   margin-right: -250px;
+   width: 50%;
+   float: left;
+}
+
+.fluid-left {
+    margin-right: 250px;
+}
+
+.fluid-right-wrapper {
+   width: 50%;
+   float: left;
+   margin-left: -250px;
+}
+
+* html .fluid-right-wrapper {
+   width: 49.999%;
+}
+
+.fluid-right {
+   margin-left: 250px;
+}
+            </p>
+        </div>
+    </div>
+    <div class="fixed">
+        <p>I walked the line, the line I choose<br>
+        I see the people in front of me<br>
+        I climbed the wall, the wall of news<br>
+        I watched them show the tragedy</p>
+
+        <p>If you were me, could you defend<br>
+        The given rights to all the men?<br>
+        Let's fuck the world with all it's trend<br>
+        They say it's all about to end…</p>
+
+        <p>They say it's all about to end…<br>
+        They say, they say…</p>
+
+        <p>There's a prison that's gone, but the fear lives on<br>
+        I watched you walking on the dotted line<br>
+        Maybe you don't see what's in front of me<br>
+        Maybe you won't stand the test of time<br>
+        For we live in sin, for we will win<br>
+        I watched the president kiss his family<br>
+        For we live in sin, for we will win<br>
+        I watched the president fuck society</p>
+
+        <p>If you were me, could you defend<br>
+        The given rights to all the men?<br>
+        Let's fuck the world with all it's trend<br>
+        They say it's all about to end…</p>
+
+        <p>They say it's all about to end…<br>
+        They say, they say…</p>
+
+        <p>I fall in love with the old times<br>
+        I never mention my own mind<br>
+        Let's fuck the world with all it's trend<br>
+        Thank god, it's all about to end…</p>
+
+        <p>They say it's all about to end…<br>
+        They say, they say…<br>
+        They say, they say…<br>
+        They say it's all about to end</p>
+    </div>
+    <div class="fluid-right-wrapper">
+        <div class="fluid-right">
+            <p>Пример разметки с фиксированной средней колонкой и двумя боковыми,
+               занимающими всё остальное пространство.</p>
+            <p><a href="http://rmcreative.ru/blog/post/fiksirovannaja-seredina-plavajuschie-kolonki">Более подробное описание</a></p>
+        </div>
+    </div>
+
+
+</body></html>

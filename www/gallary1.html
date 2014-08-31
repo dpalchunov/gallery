@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+    <head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="gallary_style.css" />
+        <title>Галерея</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+<!--Скрпты отвечающие за догрузку нжней части страницы-->	
+<script>
+   
+var mouseoverLeftColumnWrap = false;     
+var thisPageNum = 10;
+var thisWork = 1;
+var picturesCount =100;
+//функция получает следующую страницу
+function getNextP(){
+  if(thisWork == 1){
+    //флаг позволяет запускать функцию сключительно последовательно
+    thisWork = 0;
+    //отображаем указатель загрузки	
+    $("#upBlock").css('display','block');
+    //запрашиваем данные у страницы get.php
+    //передаём ей
+    //	page=+thisPageNum
+    //получаем от неё
+    //	data
+    //data обрабатываем в функции
+    //	function
+    $.get("get.php?page="+thisPageNum+"&",
+	  //функция обработки полученных данных
+	  function(data){
+	    //скрываем индикатор загрузки
+	    $("#upBlock").css('display','none');
+	    //берем то что уже есть между тегами блока LoadDiv
+	    //прибавляем к этому новые данные
+	    //и устанавливаем то тчо получилось тому же LoadDiv между тегами
+	    $("#sketches_table_body").html($("#sketches_table_body").html()+" "+data);
+	    //увеличиваем переменную, чтобы потом передавать ей в страницу формирования новых данных
+	    thisPageNum = thisPageNum + 6;
+	    //флаг позволяет запускать функцию сключительно последовательно
+	    thisWork = 1;
+	    if (thisPageNum>=picturesCount) {
+	       showFooter();
+	       setLeftColumnWrapHeightEquilToMain();
+	    } else {
+		setLeftColumnWrapHeightBiggerThanMain();
+		
+	    }
+	  }
+    );
+  }
+}
+
+//download filter HTML code in panel
+function showFilterContentInPanel () {
+    $.get("filter.php",
+      //функция обработки полученных данных
+      function(data){
+	$("#filter").html(data);
+      }
+    );
+}
+
+ function onScrollfunct() {
+      // number of window pixels that are hidden from view above
+      var scro = $(this).scrollTop();
+      //высота всех блоков вместе
+
+      var scrHP = $("#main_content").height();
+
+      var scrH2 = 0;
+      //расстояния от самого верха страницы до самого низа отображаемого  онка
+      scrH2 = scrHP + scro;
+      //расстояния которое осталось прокрутить до низу, чтобы странца закончилась
+      //здесь еще надо учесть ту чать которая над контейнером +header.height
+      var leftH = scrHP/*+header.height*/ - scrH2;
+ 
+    
+      if(leftH < 300 & thisPageNum<picturesCount){
+	       getNextP();
+      }	else {
+	 setLeftColumnWrapHeightEquilToMain();}
+	 
+      // показать / не показать стрелку возврата 
+      if ($(this).scrollTop() > 100) { 		    
+       turnOnReturner();
+      } else {			
+       turnOffReturner();
+      }    
+  }
+function setWindowScrollHandler () {
+    $(window).bind('scroll',onScrollfunct);    
+}
+  
+function leftColumnWrapClickHandler() {
+    //выключаем обработчик скрола
+    $(window).unbind('scroll');
+    $('body,html').animate({scrollTop: 0}, 800, setWindowScrollHandler);    
+    turnOffReturner();
+    return false;
+}  
+
+
+$(document).ready(function(){
+  var scrH = $(window).height();
+  var scrHP = $("#container").height();			      
+  setWindowScrollHandler();
+  /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
+  turnOffReturner();
+  showFilterContentInPanel();
+});
+
+	
+
+function turnOnReturner(){
+   //каждый bind - это новый вызов одной и той же функции
+   $('#left_column_wrap').unbind("click")	
+   $('#left_column_wrap').bind("click", leftColumnWrapClickHandler)
+   if (mouseoverLeftColumnWrap) { 
+	$('#left_column_wrap').css('opacity', 0);
+   }
+   $('#left_column_wrap').hover( function(){$(this).css('opacity', 0);
+					    mouseoverLeftColumnWrap = true;},
+				 function(){$(this).css('opacity', 1);
+					    mouseoverLeftColumnWrap = false;});
+}
+
+function turnOffReturner(){
+   $('#left_column_wrap').unbind('click');
+   $('#left_column_wrap').css('opacity', 1);
+   $('#left_column_wrap').hover( function(){$(this).css('opacity', 1);
+					    mouseoverLeftColumnWrap = true;},
+				 function(){$(this).css('opacity', 1);
+					    mouseoverLeftColumnWrap = false;});
+}
+
+
+function setLeftColumnWrapHeightBiggerThanMain(){
+    if( (typeof $('#page_wrap').css("height")) != "undefined" ) {
+	    pageWrapHeight =  $("#page_wrap").css('height');
+	    pageWrapHeight.replace(/[^-\d\.]/g, '');	    
+	    $("#left_column_wrap").css('height',parseInt(pageWrapHeight) + 1000);
+    }    
+}
+
+
+function setLeftColumnWrapHeightEquilToMain(){
+    if( (typeof $('#page_wrap').css("height")) != "undefined" ) {
+	    pageWrapHeight =  $("#page_wrap").css('height');
+	    pageWrapHeight.replace(/[^-\d\.]/g, '');	    
+	    $("#left_column_wrap").css('height',parseInt(pageWrapHeight));
+    }    
+}
+
+//функция отображает футер в самом низу страницы
+function showFooter(){
+    //устанавливаем положение footer
+
+    if( (typeof ($('#header').css("height")) != "undefined")&&(typeof ($('#main_content').css("height")) != "undefined") ) {
+	$("#footer").css('display','block');	
+    }	  
+}
+</script>
+<!--Конец скрптов отвечающих за догрузку нжней части страницы-->	
+
+
+
+
+<!--Скрипт для выезжающей панели-->	
+<script src="js/jquery.tabSlideOut.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	$('.panel').tabSlideOut({							//Класс панели   
+		tabHandle: '.panelButton',						//Класс кнопки
+		pathToTabImage: 'images/panel/open_btn1.png',				//Путь к изображению кнопки
+		pathToTabImageClose: 'images/panel/close_btn.png',			//Путь к изображению кнопки закрывающей панель
+		imageHeight: '94px',						//Высота кнопки
+		imageWidth: '46px',						//Ширина кнопки
+		tabLocation: 'right',						//Расположение панели top - выдвигается сверху, right - выдвигается справа, bottom - выдвигается снизу, left - выдвигается слева
+		speed: 300,								//Скорость анимации
+		action: 'click',								//Метод показа click - выдвигается по клику на кнопку, hover - выдвигается при наведении курсора
+		topPos: '5px',							//Отступ сверху
+		fixedPosition: true						//Позиционирование блока false - position: absolute, true - position: fixed
+	});
+});
+</script>
+    </head>
+   
+    <body>
+	<div class="panel">
+	    <a class="panelButton" href="http://jemand.ru">Content</a> <!-- Ссылка для пользователей с отключенным JavaScript -->
+	    <div id="filter"></div>
+	</div>
+	<div id="arrow_pic">
+	   <br>
+	   <p>&nbsp &uArr;&nbspВверх &uArr; </p>	
+       </div> 	
+	<div id="all_space_wrap">        
+	    <div id="left_column_wrap">
+		<a href="#top"></a>
+	    </div>	    
+    	    <div id="left-trans-window"></div>
+	    <div id="page_wrap">	    	     
+	    <div id="page_wrap_padding"></div>
+	    <div id="header">		
+		<div id="header_name">		
+		</div><!--end header_name-->
+		<div id="nav_menu">		    
+		    <div id="nav_about">
+			<a href="main.html"></a>
+		    </div><!--end nav_about-->
+		    <div id="nav_contacts">		
+		    </div><!--end nav_contacts-->
+		    <div id="nav_gallary" class="active">		
+		    </div><!--end nav_gallary-->
+		    <div id="nav_order">		
+		    </div><!--end nav_order-->		
+		</div><!--end nav_menu-->		
+	    </div><!--end header-->
+	    <div id="main_content">		
+		<!--<div id="sketches_table_wrap">-->
+		    <table id="sketches_table">
+			<tbody id="sketches_table_body">
+			    <tr>				
+				<td><img  src="images/gallary/sketches/1.jpg"></td>
+				<td><img  src="images/gallary/sketches/2.jpg"></td>
+				<td><img  src="images/gallary/sketches/3.jpg"></td>			
+			    </tr>
+			    <tr class="separate_row"><td></td><td></td><td></td></tr>
+			    <tr>
+				<td><img src="images/gallary/sketches/4.jpg"></td>
+				<td><img src="images/gallary/sketches/5.jpg"></td>
+				<td><img src="images/gallary/sketches/6.jpg"></td>			
+			    </tr>
+			    <tr class="separate_row"><td></td><td></td><td></td></tr>			
+			    <tr>
+				<td><img src="images/gallary/sketches/7.jpg"></td>
+				<td><img src="images/gallary/sketches/8.jpg"></td>
+				<td><img src="images/gallary/sketches/9.jpg"></td>				
+			    </tr>
+			    <tr class="separate_row"><td></td><td></td><td></td></tr>			    
+			</tbody> 
+		    </table>
+		<!--</div>-->
+	    </div><!--end main_content-->
+	    <div id="footer">
+		<div id="footer_phrase_name"> 	    
+		</div><!--end footer_phrase_name-->		
+	    </div><!--end footer-->	    
+	    </div><!--end page_wrap-->	
+	</div><!--end all_space_wrap-->		
+    </body>
+</html>
