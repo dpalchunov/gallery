@@ -1,6 +1,6 @@
 <?php
 require_once 'phplibs/ResourceService.php';
-class  AboutPageViewer {
+class  AboutPageEditor {
     private static $template_engine;
     private static $resourceService;
 
@@ -19,14 +19,17 @@ class  AboutPageViewer {
         $lang = $resourceService -> getLang();
         $localizator = new Localizator();
         $template_engine->assign('lang',$lang);
-        if ($_COOKIE['greetingWasShown'] == 'true') {
-            $template_engine->assign('greetingClass',' class=display_none ');
-        } else {
-            $template_engine->assign('greetingClass',' ');
-        }
         $template_engine->display('about_edit.tpl');
     }
 }
 ?>
+
+
+
+
+
+
+
+
 
 
