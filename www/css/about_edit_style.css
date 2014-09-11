@@ -102,7 +102,7 @@ blockquote {
 
 
 #about_editor_content {
-    width: 859px;
+    width: 1100px;
     position: relative;
     background-repeat: no-repeat;
 
@@ -138,6 +138,16 @@ blockquote {
     float:left;
 }
 
+.control {
+    display: inline-block;
+    float: left;
+}
+
+.fileuploader_wrapper {
+    display: inline-block;
+    float: left;
+}
+
 .controls a {
     text-decoration: none;
     outline: none;
@@ -152,11 +162,12 @@ blockquote {
     font-size: 20px;
 }
 
-.green a:hover {
+
+.green a {
     color: #006200;
 }
 
-.green a {
+.green a:hover {
     color: #006200;
 }
 
@@ -171,16 +182,62 @@ blockquote {
 
 
 #uploaded {
-    width: 675px;
+    width: 1100px;
     margin: 20px;
     position: relative;
+    display:inline-block;
+}
+
+
+#uploaded_left {
+    left:0px;
+    top:0px;
+    width: 600px;
+    position: relative;
+    display:inline-block;
+    float:left;
+    margin-right: 20px;
+}
+
+#uploaded_right {
+    width: 440px;
+    position: relative;
+    display:inline-block;
+    float:left;
+}
+
+#save_cancel{
+    display:none;
+}
+
+.uploaded_img {
+    display: inline-block;
+}
+
+.cropper_div {
+    margin-bottom: 20px;
 }
 
 .cropper {
     width: 675px;
-    margin: 20px;
+    margin-bottom: 20px;
     position: relative;
 }
+
+#cropper_image{
+    overflow: hidden;
+}
+
+.cropper-preview {
+    overflow: hidden;
+    margin-bottom:20px;
+    position: relative;
+    height: 219px;
+    width: 440px;
+    float:left;
+    margin-right: 20px;
+}
+
 
 #add_new {
     height: 50px;

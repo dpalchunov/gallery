@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="/css/nav_menu_{{{$lang}}}.css" />
     <link rel="stylesheet" type="text/css" href="/css/about_edit_style.css" />
     <link rel="stylesheet" type="text/css" href="/css/cropper.css">
+    <link rel="stylesheet" type="text/css" href="/css/uploadfile.css">
+
 
     <!--[if IE]>
     <link href='http://fonts.googleapis.com/css?family=Bad+Script|Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -12,7 +14,7 @@
     <style>
         #main_text pre {
             font-family: 'Marck Script', cursive;
-            /*font-family: Garamond, 'Garamond Premier Pro';*/
+                /*font-family: Garamond, 'Garamond Premier Pro';*/
             color: black;
             font-size: 17pt;
         }
@@ -26,6 +28,7 @@
     <script type="text/javascript" src="js/jquery.cookie.js" ></script>
     <script type="text/javascript" src="js/cropper.js"></script>
     <script type="text/javascript" src="js/about_edit.js"></script>
+    <script type="text/javascript" src="js/jquery.uploadfile.js"></script>
 
 </head>
 
@@ -60,38 +63,56 @@
         </div><!-- end of add_new-->
         <div id="persisted" >
             <div class="persisted">
-                <div class="image" style=" background-image: url(http://localhost:8080/images/slider/ava1.jpg);"></div>
+                <div class="image" style=" background-image: url(http://localhost:8080/images/slider/sample.jpg);"></div>
                 <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
             </div>
+            <hr>
             <div class="persisted">
-                <div class="image" style=" background-image: url(http://localhost:8080/images/slider/ava2.jpg);"></div>
+                <div class="image" style=" background-image: url(http://localhost:8080/images/slider/sample.jpg);"></div>
                 <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
             </div>
+            <hr>
             <div class="persisted">
-                <div class="image" style="background-image: url(http://localhost:8080/images/slider/ava3.jpg); "></div>
+                <div class="image" style="background-image: url(http://localhost:8080/images/slider/sample.jpg); "></div>
                 <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
             </div>
+            <hr>
             <div class="persisted">
-                <div class="image" style="background-image: url(http://localhost:8080/images/slider/ava4.jpg); "></div>
+                <div class="image" style="background-image: url(http://localhost:8080/images/slider/sample.jpg); "></div>
                 <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
             </div>
-
+            <hr>
             {{{$persisted_pictures}}}
+            <hr>
         </div><!-- end of persisted-->
+
         <div id="uploaded">
-            <div class="uploaded">
-                <div class="cropper_div"> <img class="cropper_img" src="../../../images/slider/ava4.jpg"> </div>
-                <div class="image cropper-preview" style="background-image: url(http://localhost:8080/images/slider/ava4.jpg); "></div>
-                <div class="uploaded_img controls"><div class="red"><a href=""> crop&save </a><a href=""> cancel</a></div></div>
+            <div id="uploaded_left">
+                <div id="cropper_div" class="cropper_div"> <img  id="cropper_image" class="cropper_img"> </div>
+            </div>
+            <div id="uploaded_right">
+                <div id="cropper-preview"></div>
+                <div class="uploaded_img controls">
+                    <div id="save_cancel">
+                        <div class="green control">
+                            <a href="">save&nbsp</a>
+                        </div>
+                        <div class="red control">
+                            <a href=""> cancel</a>
+                        </div>
+                    </div>
+                    <div class="fileuploader_wrapper">
+                        <div id="fileuploader">
+                            <a href="" >+ upload</a>
+                        </div>
+                     </div>
+                </div>
             </div>
         </div><!-- end of uploaded-->
-        <div id="add_new">
-            <div id="add_new_controls" class="controls green">
-                <a href="" >+ upload more</a>
-            </div>
+        <hr>
 
-        </div><!-- end of add_new-->
     <!--[if IE]></div><![endif]--></div><!--end about_editor_content-->
+
     <div id="footer">
         <div id="footer_phrase_name">
         </div><!--end footer_phrase_name-->
