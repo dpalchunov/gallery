@@ -19,11 +19,15 @@ $(document).ready(function(){
     $("#fileuploader").uploadFile({
         url:"./about_upload_ava.php",
         fileName:"myfile",
-        onSuccess:function(files,data,xhr) {
+        onSuccess:function(files,json_data,xhr) {
             beforeUpload();
-            changeSrc(data);
+            var data = $.parseJSON(json_data);
+            var img_w = data[1];
+            var img_h = data[2];
+            changeSrc(data[0]);
             ufterUpload();
-            resizeDragAndDrop();
+            resizeDragAndDrop(img_w,img_h);
+
         },
         uploadButtonClass:"green ajax-file-upload",
         showDone:false,
@@ -34,7 +38,7 @@ $(document).ready(function(){
     function beforeUpload() {
 
         $("#cropper-preview").addClass("cropper-preview");
-        $("#cropper_div").hide();
+        //$("#cropper_div").hide();
         $("#cropper-preview").hide();
     }
 
@@ -48,12 +52,25 @@ $(document).ready(function(){
 
         $("#save_cancel").show();
         $("#cropper-preview").show();
-        $("#cropper_div").show(400,function() {resizeDragAndDrop();});
+        $("#cropper_div").show();
     }
 
-    function resizeDragAndDrop() {
+    function resizeDragAndDrop(img_w,img_h) {
         //alert("test");
-        var h = $("#uploaded_left").height() - 240;
+        var h;
+        if (img_w < 600) {
+            h = img_h;
+        } else {
+            var compression = img_w/600;
+            h = img_h/compression;
+        }
+        if (h > 315) {
+            h = h - 275;
+        }  else
+        {
+            h = 40;
+        }
+
         $(".ajax-upload-dragdrop").css('height',parseInt(h));
 
     }

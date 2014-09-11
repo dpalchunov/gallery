@@ -29,7 +29,12 @@ if(isset($_FILES["myfile"]))
     $files =  $_FILES["myfile"];
     $files["persist_name"] = "tmp";
     $ret = $fileLoader -> uploadFiles($files,$output_dir);
-    echo $ret[0];
+    $size = getimagesize($ret[0]);
+    $w = $size[0];
+    $height = $size[1];
+    $ret[1] = $w;
+    $ret[2] = $height;
+    echo json_encode($ret);
 
 }
 

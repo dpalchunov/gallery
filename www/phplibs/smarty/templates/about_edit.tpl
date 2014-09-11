@@ -88,7 +88,9 @@
 
         <div id="uploaded">
             <div id="uploaded_left">
-                <div id="cropper_div" class="cropper_div"> <img  id="cropper_image" class="cropper_img"> </div>
+                <div id="cropper_div" class="cropper_div">
+                    <img  id="cropper_image" class="cropper_img">
+                </div>
             </div>
             <div id="uploaded_right">
                 <div id="cropper-preview"></div>
