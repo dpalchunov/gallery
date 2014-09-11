@@ -83,7 +83,7 @@ margin-right:5px;
 	line-height:20px;
 	height:25px;
 	margin:0 10px 10px 0;
-  display: inline-block;
+  display: block;
   padding: 6px 10px 4px 10px;
   vertical-align:middle;
   }
@@ -98,8 +98,10 @@ margin-right:5px;
 
 	border:2px dotted #A5A5C7;
 	width:420px;
-	color: #DADCE3;
-	text-align:left;
+	color: #b8b8ca;
+	text-align:center;
+    text-valign:center;
 	vertical-align:middle;
 	padding:10px 10px 0px 10px;
+    display: table-cell;
 }
