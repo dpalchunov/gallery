@@ -62,27 +62,7 @@
 
         </div><!-- end of add_new-->
         <div id="persisted" >
-            <div class="persisted">
-                <div class="image" style=" background-image: url(http://localhost:8080/images/slider/sample.jpg);"></div>
-                <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
-            </div>
-            <hr>
-            <div class="persisted">
-                <div class="image" style=" background-image: url(http://localhost:8080/images/slider/sample.jpg);"></div>
-                <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
-            </div>
-            <hr>
-            <div class="persisted">
-                <div class="image" style="background-image: url(http://localhost:8080/images/slider/sample.jpg); "></div>
-                <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
-            </div>
-            <hr>
-            <div class="persisted">
-                <div class="image" style="background-image: url(http://localhost:8080/images/slider/sample.jpg); "></div>
-                <div class="persisted_img_controls controls"><div class="remove"><a href="" > remove</a></div></div>
-            </div>
-            <hr>
-            {{{$persisted_pictures}}}
+            {{{$persisted_avas}}}
             <hr>
         </div><!-- end of persisted-->
 

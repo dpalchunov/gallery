@@ -1,6 +1,6 @@
 @import url('reset.css');
 
-/*Основнй стиль сайта Strunkova.ru*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Strunkova.ru*/
 
 /*General Styles*/
 html {
@@ -112,12 +112,12 @@ blockquote {
 	top: 165px;
 	background-color: #d2dfe3;
   
-    /* Для WebKit (Safari, Google Chrome и т.д.) */  
+    /* пїЅпїЅпїЅ WebKit (Safari, Google Chrome пїЅ пїЅ.пїЅ.) */  
     background: -webkit-gradient(radial, 50% 40%, 50, 50% 40%, 350, from(#F6F8F9), to(#d2dfe3));   
-    /* Для Mozilla/Gecko (Firefox и т.д.) */  
+    /* пїЅпїЅпїЅ Mozilla/Gecko (Firefox пїЅ пїЅ.пїЅ.) */  
     background: -moz-radial-gradient(40% 40%, farthest-side, #d2dfe3, #d2dfe3);  
-    /* Для Internet Explorer */  
-    /* Если бы :( ... */
+    /* пїЅпїЅпїЅ Internet Explorer */  
+    /* пїЅпїЅпїЅпїЅ пїЅпїЅ :( ... */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F6F8F9', endColorstr='#d2dfe3');			
 }
 
@@ -195,7 +195,7 @@ blockquote {
 			position: absolute;
 			top:0px;
 			right:75px;
-			background-image: url("../images/slider/ava1.jpg");
+			background-image: url("../images/slider/avas/ava1.jpg");
 			background-repeat: no-repeat;
 			background-position: center;
 		}
@@ -223,8 +223,8 @@ blockquote {
 	}
 	
 	@font-face {
-	 font-family: Garamond; /* Гарнитура шрифта */
-	 src: url("../fonts/GaramondPremrPro-It.otf");/* Путь к файлу со шрифтом */
+	 font-family: Garamond; /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
+	 src: url("../fonts/GaramondPremrPro-It.otf");/* пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 	}	
 	#main_text pre {
 	
