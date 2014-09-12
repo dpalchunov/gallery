@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2013-08-25 08:29:06
+<?php /* Smarty version Smarty-3.1.11, created on 2014-09-12 05:05:19
          compiled from "phplibs/smarty/templates/contacts.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1741156073521a22c29e0d42-31497982%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ec0071c2c81546f96f027dda36f86ddb0a717179' => 
     array (
       0 => 'phplibs/smarty/templates/contacts.tpl',
-      1 => 1357083138,
+      1 => 1409514716,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.11',
+  'unifunc' => 'content_521a22c2a68c26_95964558',
   'variables' => 
   array (
     'lang' => 0,
@@ -25,8 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'contacts_skype_comment' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.11',
-  'unifunc' => 'content_521a22c2a68c26_95964558',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_521a22c2a68c26_95964558')) {function content_521a22c2a68c26_95964558($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="ru-RU">

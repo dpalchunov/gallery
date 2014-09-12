@@ -26,6 +26,10 @@ $(document).ready(function(){
         cancelCropHandler();
     });
 
+    addRemoveClickHandlers();
+
+
+
 
 
     $("#fileuploader").uploadFile({
@@ -50,7 +54,7 @@ $(document).ready(function(){
     function beforeUpload() {
 
         $("#cropper-preview").addClass("cropper-preview");
-        //$("#cropper_div").hide();
+        $("#cropper_div").hide();
         $("#cropper-preview").hide();
     }
 
@@ -123,7 +127,29 @@ $(document).ready(function(){
         })
             .done(function( msg ) {
                 $("#persisted").html(msg);
+                addRemoveClickHandlers();
             });
+    }
+
+    function removeHandler(src) {
+        $.ajax({
+            type: "POST",
+            url: "about_del_ava.php",
+            data: { avatar_src: src }
+        })
+            .done(function( msg ) {
+                reloadPersistedAvas();
+            });
+    }
+
+    function addRemoveClickHandlers() {
+        var $removeBottons = $(".remove_ava");
+
+        $removeBottons.each(function() {
+            $(this).click(function() {
+                removeHandler($(this).attr("src"))
+            });
+        });
     }
 
 
