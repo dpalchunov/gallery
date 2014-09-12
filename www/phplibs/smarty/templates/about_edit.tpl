@@ -55,12 +55,7 @@
     </div><!--end header-->
     <div id="about_editor_content"><!--[if IE]><div id="main_ie_gradient"><![endif]-->
         <div id="header_shaddow"></div>
-        <div id="add_new">
-            <div id="add_new_controls" class="controls green">
-                <a href="" >+ upload more</a>
-            </div>
 
-        </div><!-- end of add_new-->
         <div id="persisted" >
             {{{$persisted_avas}}}
             <hr>
@@ -77,10 +72,10 @@
                 <div class="uploaded_img controls">
                     <div id="save_cancel">
                         <div class="green control">
-                            <a href="">save&nbsp</a>
+                            <a id="about_save_ava" href="javascript: void(0)">save&nbsp</a>
                         </div>
-                        <div class="red control">
-                            <a href=""> cancel</a>
+                        <div   class="red control">
+                            <a id="about_cancel_ava" href="javascript: void(0)"> cancel</a>
                         </div>
                     </div>
                     <div class="fileuploader_wrapper">

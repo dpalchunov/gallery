@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var $image = $(".cropper_img");
+    var currentSrc;
 
     $image.cropper({
         aspectRatio: 575 / 301,
@@ -13,7 +14,18 @@ $(document).ready(function(){
         done: function(data) {
             console.log(data);
         }
+        });
+
+    var savehref = $('#about_save_ava');
+    savehref.click(function() {
+        saveCropHandler();
     });
+
+    var cancelhref = $('#about_cancel_ava');
+    cancelhref.click(function() {
+        cancelCropHandler();
+    });
+
 
 
     $("#fileuploader").uploadFile({
@@ -44,8 +56,10 @@ $(document).ready(function(){
 
     function changeSrc(data) {
         var d = new Date();
-        var newsrc = "./" + data + "?" + d.getTime();
-        $image.cropper("setImgSrc", newsrc);
+        currentSrc =  "./" + data
+        var src = currentSrc + "?" + d.getTime();
+
+        $image.cropper("setImgSrc", src);
     }
 
     function ufterUpload() {
@@ -74,4 +88,31 @@ $(document).ready(function(){
         $(".ajax-upload-dragdrop").css('height',parseInt(h));
 
     }
+
+    function saveCropHandler () {
+        $.ajax({
+            type: "POST",
+            url: "about_save_ava.php",
+            data: { avatar_src: currentSrc , avatar_data: JSON.stringify($image.cropper("getData"))}
+        })
+            .done(function( msg ) {
+                hideUploadControls();
+            });
+    }
+
+    function cancelCropHandler () {
+        hideUploadControls();
+    }
+
+    function hideUploadControls() {
+        $image.cropper("setImgSrc", " ");
+        $image.cropper("destroy");
+        $("#uploaded_left").height(1);
+        $("#cropper-preview").height(1);
+        $("#save_cancel").hide();
+        $(".ajax-upload-dragdrop").height(40);
+    }
+
+
+
 });
