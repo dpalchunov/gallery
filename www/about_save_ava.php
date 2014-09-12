@@ -67,8 +67,8 @@ class CropAvatar {
                 return;
             }
 
-            $dst_img = imagecreatetruecolor(220, 220);
-            $result = imagecopyresampled($dst_img, $src_img, 0, 0, $data -> x, $data -> y, 220, 220, $data -> width, $data -> height);
+            $dst_img = imagecreatetruecolor(575, 301);
+            $result = imagecopyresampled($dst_img, $src_img, 0, 0, $data -> x, $data -> y, 575, 301, $data -> width, $data -> height);
 
             if ($result) {
                 switch ($this -> type) {
