@@ -98,6 +98,7 @@ $(document).ready(function(){
         })
             .done(function( msg ) {
                 hideUploadControls();
+                reloadPersistedAvas();
             });
     }
 
@@ -113,6 +114,16 @@ $(document).ready(function(){
         $("#save_cancel").hide();
         $(".ajax-upload-dragdrop").height(40);
         $("#upload_label").text("+ upload");
+    }
+
+    function reloadPersistedAvas() {
+        $.ajax({
+            type: "POST",
+            url: "about_get_avas.php"
+        })
+            .done(function( msg ) {
+                $("#persisted").html(msg);
+            });
     }
 
 
