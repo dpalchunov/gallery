@@ -67,6 +67,7 @@ $(document).ready(function(){
         $("#save_cancel").show();
         $("#cropper-preview").show();
         $("#cropper_div").show();
+        $("#upload_label").text("+ upload another");
     }
 
     function resizeDragAndDrop(img_w,img_h) {
@@ -111,6 +112,7 @@ $(document).ready(function(){
         $("#cropper-preview").height(1);
         $("#save_cancel").hide();
         $(".ajax-upload-dragdrop").height(40);
+        $("#upload_label").text("+ upload");
     }
 
 

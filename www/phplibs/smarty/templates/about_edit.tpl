@@ -80,7 +80,7 @@
                     </div>
                     <div class="fileuploader_wrapper">
                         <div id="fileuploader">
-                            <a href="" >+ upload</a>
+                            <a id="upload_label" href="" >+ upload</a>
                         </div>
                      </div>
                 </div>
