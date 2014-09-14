@@ -32,10 +32,6 @@ $(document).ready(function(){
 
     addRemoveClickHandlers();
 
-
-
-
-
     $("#fileuploader").uploadFile({
         url:"./about_upload_ava.php",
         fileName:"myfile",
@@ -148,12 +144,33 @@ $(document).ready(function(){
             });
     }
 
-    function addRemoveClickHandlers() {
-        var $removeBottons = $(".remove_ava");
+    function st1Handler(src) {
+        $.ajax({
+            type: "POST",
+            url: "about_1st_ava.php",
+            data: { avatar_src: src }
+        })
+            .done(function( msg ) {
+                reloadPersistedAvas();
+            });
+    }
 
-        $removeBottons.each(function() {
+
+
+    function addRemoveClickHandlers() {
+        var $removeButtons = $(".remove_ava");
+
+        $removeButtons.each(function() {
             $(this).click(function() {
                 removeHandler($(this).attr("src"))
+            });
+        });
+
+        var $stButtons = $(".st1_href");
+
+        $stButtons.each(function() {
+            $(this).click(function() {
+                st1Handler($(this).attr("src"))
             });
         });
     }

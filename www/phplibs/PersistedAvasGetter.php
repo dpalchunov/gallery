@@ -1,12 +1,26 @@
 <?php
 class  PersistedAvasGetter {
     public function  generateAvasHtml() {
+        $avas_tmp = glob('./images/slider/avas/*.*');
+        $avas = array_reverse($avas_tmp);
         $avasHtml = '';
-        foreach(glob('./images/slider/avas/*.*') as $file) {
+        foreach($avas as $index => $file) {
             $avasHtml = $avasHtml.
-                "<div class=\"persisted\">
-                <div class=\"image\" style=\"background-image: url({$file}); \"></div>
-                <div class=\"persisted_img_controls controls\"><div class=\"red remove\"><a class=\"remove_ava\" src=\"{$file}\" href=\"javascript: void(0)\" > remove</a></div></div>
+            "<div class=\"persisted\">
+              <div class=\"image\" style=\"background-image: url({$file}); \"></div>
+                <div class=\"persisted_img_controls controls\">";
+            if ($index > 0) {
+                $avasHtml = $avasHtml.
+                     "<div class=\"green st1\">
+                        <a class=\"st1_href\" src=\"{$file}\" href=\"javascript: void(0)\" > 1st  </a>
+                     </div>";
+            };
+            $avasHtml = $avasHtml.
+                 "<div class=\"red remove\">
+
+                  <a class=\"remove_ava\" src=\"{$file}\" href=\"javascript: void(0)\" > remove</a>
+                 </div>
+              </div>
             </div>";
         }
         return  $avasHtml;
@@ -14,7 +28,8 @@ class  PersistedAvasGetter {
 
     public function  generateJsArrayHtml() {
 
-        $avas = glob('./images/slider/avas/*.*');
+        $avas_tmp = glob('./images/slider/avas/*.*');
+        $avas = array_reverse($avas_tmp);
         $cnt = count($avas);
         $jsArray = '[';
         if ($cnt > 0) {

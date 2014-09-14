@@ -109,14 +109,14 @@ blockquote {
 }
 
 #persisted {
-    width: 675px;
+    width: 775px;
     margin: 20px;
     position: relative;
 }
 
 .persisted {
     height: 301px;
-    width: 685px;
+    width: 785px;
     position: relative;
     margin-bottom: 20px;
 }
@@ -133,7 +133,7 @@ blockquote {
 
 .persisted_img_controls {
     height: 301px;
-    width: 80px;
+    width: 160px;
     position: relative;
     float:left;
 }
@@ -308,7 +308,16 @@ blockquote {
 	margin-top: -64px;
 }
 
+.remove {
+    display: inline-block;
+    float: left;
+}
 
+.st1 {
+    display: inline-block;
+    float: left;
+    width: 30px;
+}
 
 
 /*Footer*/
