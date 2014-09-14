@@ -18,6 +18,9 @@
         }
         $lang = $resourceService -> getLang();
         $localizator = new Localizator();
+        $persistedAvasGetter = new PersistedAvasGetter();
+        $jsArrayHtml = $persistedAvasGetter->generateJsArrayHtml();
+        $template_engine->assign('avas',$jsArrayHtml);
         $template_engine->assign('lang',$lang);          
         $template_engine->assign('main_text',$localizator -> getText( $lang, 'about_main_text'));
         $template_engine->assign('change_lang',$localizator -> getText($lang, 'about_change_lang'));        

@@ -11,6 +11,28 @@ class  PersistedAvasGetter {
         }
         return  $avasHtml;
     }
+
+    public function  generateJsArrayHtml() {
+
+        $avas = glob('./images/slider/avas/*.*');
+        $cnt = count($avas);
+        $jsArray = '[';
+        if ($cnt > 0) {
+            foreach($avas as $index => $file){
+                $jsArray = $jsArray.
+                    "\"url({$file})\"";
+                if ($index < $cnt-1) {
+                    $jsArray = $jsArray.",";
+                }
+            }
+            $jsArray = $jsArray. "]";
+        }  else  {
+            $jsArray = "[]";
+        }
+
+
+        return  $jsArray;
+    }
 }
 ?>
 

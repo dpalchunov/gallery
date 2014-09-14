@@ -1,143 +1,33 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
     <head>
-	<link rel="stylesheet" type="text/css" href="/css/nav_menu_{{{$lang}}}.css" />
-	<link rel="stylesheet" type="text/css" href="/css/style.css" />
-	
-	<!--[if IE]>
-	    <link href='http://fonts.googleapis.com/css?family=Bad+Script|Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	    <link href='http://fonts.googleapis.com/css?family=Marck+Script' rel='stylesheet' type='text/css'>		
-	    <style>
-		#main_text pre {
-			font-family: 'Marck Script', cursive;		
-			/*font-family: Garamond, 'Garamond Premier Pro';*/
-			color: black;
-			font-size: 17pt;
-		}		
-	    </style>
-	<![endif]-->	
-	<meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="/css/nav_menu_{{{$lang}}}.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
-	
+        <!--[if IE]>
+            <link href='http://fonts.googleapis.com/css?family=Bad+Script|Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=Marck+Script' rel='stylesheet' type='text/css'>
+            <style>
+            #main_text pre {
+                font-family: 'Marck Script', cursive;
+                /*font-family: Garamond, 'Garamond Premier Pro';*/
+                color: black;
+                font-size: 17pt;
+            }
+            </style>
+        <![endif]-->
+        <meta charset="utf-8"/>
         <title>О ней</title>
-	<script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.cookie.js" ></script>	
 
-<!--Скрпты отвечающие за слайдер аватарок на главной странице-->	
-	<script type="text/javascript">
-	//объявляем глобальные переменные
-	//количество фотографий , которые можно перебирать на аватарке
-	avaCount = 4;
-	//время анимации смены аватарки
-	animateTime = 120;
-	</script>	
-	
-	<script type="text/javascript">
-	    $(document).ready(function(){	     
-		$("#right_ar").click(function(){
-		    //берем адрес текущей картинки и увеличиваем в адресе лишь индекс
-		    //.replace(/"/g,'') убирает двойные кавычки, потому что разные браузеры то ставят их то нет
-		    var avaPath = $("#ava").css("background-image").replace(/"/g,'');
-		    var avaPathWhithoutIndex = avaPath.substring(0,avaPath.length-6);
-		    var avaIndex = avaPath.substring(avaPath.length-6,avaPath.length-5);
-		    //проверям не дошли ли мы до конца наших аватарок
-		    if (avaIndex==avaCount) {
-			var nextAvaIndex = 1;	
-		    } else {
-			var nextAvaIndex = 1 + parseInt(avaIndex);			
-		    }
-		    var nextAvaPath = avaPathWhithoutIndex + nextAvaIndex + ".jpg)";
-		    //привязка дива с авой к правому краю(чтобы ехал в право), ну  тени тоже
-		    $("#ava").css("left","")
-		    $("#ava").css("right","75px")
-		    $("#shaddow").css("left","")
-		    $("#shaddow").css("right","75px")		    
-		    //сначала убираем DIV
-		    $("#ava").animate({width: 'toggle'},
-				      animateTime,
-				      function () {
-					//по окончании анимации исчезновения
-					//установка нового background-image
-					$("#ava").css("background-image",nextAvaPath);
-					//привязка дива с авой к левому краю
-					$("#ava").css("right","")
-					$("#ava").css("left","68px");					
-				      }				      
-				    );
-		    //прячем тень
-		    $("#shaddow").animate({opacity: 'hide'},animateTime);		    
-		    //показываем DIV заново
-		    $("#ava").animate({width: 'toggle'},animateTime);
-		    //показываем тень
-		    $("#shaddow").animate({opacity: 'show'},animateTime);
-		});	      
-	     });
-	</script>
-	
-	<script type="text/javascript">
-	    $(document).ready(function(){	     
-		$("#left_ar").click(function(){	    
-		    //берем адрес текущей картинки и увеличиваем в адресе лишь индекс
-		    //.replace(/"/g,'') убирает двойные кавычки, потому что разные браузеры то ставят их то нет
-		    var avaPath = $("#ava").css("background-image").replace(/"/g,'');
-		    var avaPathWhithoutIndex = avaPath.substring(0,avaPath.length-6);
-		    var avaIndex = avaPath.substring(avaPath.length-6,avaPath.length-5);
-		    //проверям не дошли ли мы до начала наших аватарок
-		    if (avaIndex==1) {
-			var nextAvaIndex = avaCount;	
-		    } else {
-			var nextAvaIndex = parseInt(avaIndex) - 1;			
-		    }
-		    var nextAvaPath = avaPathWhithoutIndex + nextAvaIndex + ".jpg)";
-		    //привязка дива с авой к лувому краю(чтобы ехал в влево)
-		    $("#ava").css("right","");
-		    $("#ava").css("left","68px");
-		    //сначала убираем DIV
-		    $("#ava").animate({width: 'toggle'},
-				      animateTime,
-				      function () {
-					//по окончании анимации исчезновения
-					//установка нового background-image
-					$("#ava").css("background-image",nextAvaPath);
-					//привязка дива с авой к правому краю(чтобы выезжал справа)
-					$("#ava").css("left","");
-					$("#ava").css("right","75px");
-				      }				      
-				    );
-		    //прячем тень
-		    $("#shaddow").animate({opacity: 'hide'},animateTime);		    
-		    //показываем DIV заново
-		    $("#ava").animate({width: 'toggle'},animateTime);
-		    //показываем тень
-		    $("#shaddow").animate({opacity: 'show'},animateTime);		    
-		});	      
-	     });
-	</script>
-<!--Конец скрптов отвечающих за слайдер аватарок на главной странице-->	
+        <script type="text/javascript">
+            var avas = {{{$avas}}}
+        </script>
 
-<!-- Скрипт отвечающий для страничку приветствия, которая отображается один раз при первом посещении сайта-->
-	<script type="text/javascript">
-	    $(document).ready(function(){	     
-		$('#greeting_img').bind('click',greetingClickHandler);
-                $.cookie("greetingWasShown", "true");		
-	     });
-	    function greetingClickHandler() {
-		$('#greeting').fadeOut(400);
-	    }
-	    
-	</script>
-<!-- Конец. Скрипт отвечающий для страничку приветствия, которая отображается один раз при первом посещении сайта-->
-	<!-- Скрипт отвечающий за клик на header Kristina Strunkova-->
-	<script type="text/javascript">
-	    $(document).ready(function(){	     
-		$('#header_name').bind('click',headerNameClickHandler);
-	     });
-	    function headerNameClickHandler() {
-                $.cookie("greetingWasShown", null);
-		 window.location =  'about.php';		
-	    }
-	</script>
-        <!-- Конец. Скрипт отвечающий за клин на header Kristina Strunkova-->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js" ></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js" ></script>
+        <script type="text/javascript" src="js/about.js"></script>
     </head>
     
     <body>

@@ -41,8 +41,9 @@ $(document).ready(function(){
             var img_w = data[1];
             var img_h = data[2];
             changeSrc(data[0]);
-            ufterUpload();
-            resizeDragAndDrop(img_w,img_h);
+            img_tag_size = calc_img_size(img_w,img_h);
+            afterUpload(img_tag_size);
+            resizeDragAndDrop(img_tag_size);
 
         },
         uploadButtonClass:"green ajax-file-upload",
@@ -66,25 +67,28 @@ $(document).ready(function(){
         $image.cropper("setImgSrc", src);
     }
 
-    function ufterUpload() {
-
+    function afterUpload(img_tag_size) {
+        $("#uploaded_left").height(img_tag_size);
         $("#save_cancel").show();
         $("#cropper-preview").show();
         $("#cropper_div").show();
         $("#upload_label").text("+ upload another");
     }
 
-    function resizeDragAndDrop(img_w,img_h) {
-        //alert("test");
-        var h;
+
+    function calc_img_size(img_w,img_h) {
+
         if (img_w < 600) {
-            h = img_h;
+            img_h;
         } else {
             var compression = img_w/600;
-            h = img_h/compression;
+            img_h/compression;
         }
-        if (h > 315) {
-            h = h - 275;
+    }
+
+    function resizeDragAndDrop(img_tag_size) {
+        if (img_tag_size > 315) {
+            h = img_tag_size - 275;
         }  else
         {
             h = 40;
