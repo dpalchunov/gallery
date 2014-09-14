@@ -51,7 +51,7 @@ function avaAnimation() {
 
 $(document).ready(function(){
     initAvaArray();
-    if (avaCount > 0) {
+    if (avaCount > 1) {
         $("#right_ar").click(function(){
             var nextAvaPath =  getNextAvaPath();
             //привязка дива с авой к правому краю(чтобы ехал в право), ну  тени тоже
@@ -93,6 +93,10 @@ $(document).ready(function(){
             );
             avaAnimation();
         });
+        $("#ava").css("background-image",getCurAvaPath());
+    } else if (avaCount == 1) {
+         $("#right_ar").hide();
+         $("#left_ar").hide();
         $("#ava").css("background-image",getCurAvaPath());
     } else {
         $("#main_text").css("top",120);
