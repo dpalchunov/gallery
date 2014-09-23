@@ -1,4 +1,7 @@
 <?php
-$res =unlink($_POST['pic_src']);
-echo json_encode($res);
+    $picPath = './images/gallary/' . $_POST['file_name'];
+    $sketchPath = './images/gallary/sketches/' . $_POST['file_name'];
+    $res =unlink($picPath);
+    $res =unlink($sketchPath);
+    echo json_encode($res);
 ?>

@@ -60,9 +60,8 @@
             return '';
         }              
     }
-    
-        
-   
+
+
     private function getNotfilteredPicturesArray($filter){
         global $db;
         $query =  $this -> makeQuery($filter);
@@ -71,7 +70,8 @@
             if ($pictures = $db->query($query,NULL,'assoc')) {
                 $i = 0;
                 foreach ($pictures as $picture) {
-                    $picPath = $picture['picturepath'];
+                    $fileName = $picture['file_name'];
+                    $sketchPath = $picture['sketch_path'];
                     $rusDesc = $picture['rusdesc'];
                     $engDesc = $picture['engdesc'];                 
                     $rate = $picture['rate'];
@@ -80,7 +80,7 @@
                       'eng' => $engDesc
                     );
                     //echo $multilangDesc; 
-                    $pictureObject = new Picture($picPath,$i,$multilangDesc,$rate);
+                    $pictureObject = new Picture($fileName,$i,$rate,$multilangDesc,'',$sketchPath);
                     $pictureObjectArray[$i] = $pictureObject;
                     $i++;
                 }
@@ -125,7 +125,7 @@
     private function makePicturesQueryByWhere($whereStr) {
         global $db;
         if ($whereStr != '') {
-            $query = 'select p.picturepath,p.rusdesc,p.engdesc,p.rate, count(c.classificatorid) passedclassificators 
+            $query = 'select p.sketch_path,p.rusdesc,p.engdesc,p.rate, count(c.classificatorid) passedclassificators
                         from 
                           tclassificatorvalues cv
                             inner join tclassificators c
@@ -135,7 +135,7 @@
                                 inner join tpictures p 
                                         on p.pictureid = pcr.pictureid
                         where cv.classificatorvalueid in {CLASSIFICATOR_VALUES} 
-                        group by p.picturepath,p.rusdesc,p.engdesc,p.rate
+                        group by p.sketch_path,p.rusdesc,p.engdesc,p.rate
                         /*берем только те картины, у которых количество классификаторов в которые они вошли равно количеству классификаторов, используемых пользователем*/
                         /*passedclassificators - колчество классификаторов в которые вошла картинка  */
                         /*подзаспрос - количеству классификаторов, используемых пользователем  */
@@ -145,7 +145,7 @@
                                                                         where classificatorvalueid in {CLASSIFICATOR_VALUES}) classificators)';
             $query = str_replace('{CLASSIFICATOR_VALUES}',$whereStr,$query);
         } else {
-            $query = 'select p.picturepath, p.rusdesc,p.engdesc,p.rate from tpictures p';    
+            $query = 'select p.sketch_path, p.rusdesc,p.engdesc,p.rate from tpictures p';
         }
         return $query;
     }

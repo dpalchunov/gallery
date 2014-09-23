@@ -150,8 +150,8 @@ $(document).ready(function(){
     function saveCropHandler () {
         $.ajax({
             type: "POST",
-            url: "about_save_pic.php",
-            data: { avatar_src: currentSrc , avatar_data: JSON.stringify($image.cropper("getData"))}
+            url: "gallery_save_pic.php",
+            data: { pic_src: currentSrc , pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width() ,h: $('#cropper-preview').height()}
         })
             .done(function( msg ) {
                 hideUploadControls();
@@ -191,7 +191,7 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "gallery_del_pic.php",
-            data: { pic_src: src }
+            data: { file_name: src }
         })
             .done(function( msg ) {
                 reloadGallery();
@@ -205,7 +205,7 @@ $(document).ready(function(){
 
         $removeButtons.each(function() {
             $(this).click(function() {
-                removeHandler($(this).attr("src"))
+                removeHandler($(this).attr("file_name"))
             });
         });
 

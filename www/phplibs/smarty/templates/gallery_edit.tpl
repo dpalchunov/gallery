@@ -58,7 +58,7 @@
     <div id="gallery_editor_content"><!--[if IE]><div id="main_ie_gradient"><![endif]-->
         <div id="header_shaddow"></div>
 
-        <div id="persisted" >
+        <div id="gallery" >
             {{{$gallery}}}
             <hr>
         </div><!-- end of persisted-->

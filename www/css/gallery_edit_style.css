@@ -110,13 +110,14 @@ blockquote {
 
 #gallery {
     width: 775px;
+    height: 100%;
     margin: 20px;
     position: relative;
 }
 
-.gallery {
-    height: 301px;
-    width: 785px;
+.one_element {
+    width: 100%;
+    display: inline-block;
     position: relative;
     margin-bottom: 20px;
 }
@@ -133,11 +134,11 @@ blockquote {
 }
 
 .pic_controls {
-    height: 301px;
     width: 160px;
     position: relative;
-    float:left;
+    float:right;
     display: inline-block;
+    margin-left: 20px;
 }
 
 .control {
