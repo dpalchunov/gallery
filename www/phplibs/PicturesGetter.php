@@ -125,7 +125,7 @@
     private function makePicturesQueryByWhere($whereStr) {
         global $db;
         if ($whereStr != '') {
-            $query = 'select p.sketch_path,p.rusdesc,p.engdesc,p.rate, count(c.classificatorid) passedclassificators
+            $query = 'select p.file_name,p.position, p.sketch_path,p.rusdesc,p.engdesc,p.rate, count(c.classificatorid) passedclassificators
                         from 
                           tclassificatorvalues cv
                             inner join tclassificators c
@@ -135,7 +135,7 @@
                                 inner join tpictures p 
                                         on p.pictureid = pcr.pictureid
                         where cv.classificatorvalueid in {CLASSIFICATOR_VALUES} 
-                        group by p.sketch_path,p.rusdesc,p.engdesc,p.rate
+                        group by p.file_name,p.position,p.sketch_path,p.rusdesc,p.engdesc,p.rate
                         /*берем только те картины, у которых количество классификаторов в которые они вошли равно количеству классификаторов, используемых пользователем*/
                         /*passedclassificators - колчество классификаторов в которые вошла картинка  */
                         /*подзаспрос - количеству классификаторов, используемых пользователем  */
@@ -145,7 +145,7 @@
                                                                         where classificatorvalueid in {CLASSIFICATOR_VALUES}) classificators)';
             $query = str_replace('{CLASSIFICATOR_VALUES}',$whereStr,$query);
         } else {
-            $query = 'select p.sketch_path, p.rusdesc,p.engdesc,p.rate from tpictures p';
+            $query = 'select p.file_name,p.position,p.sketch_path, p.rusdesc,p.engdesc,p.rate from tpictures p';
         }
         return $query;
     }
@@ -261,14 +261,14 @@
         global $template_engine;
 //echo $picture . ' ';
         
-        $picturePath = $pictureObject -> getPath();
-        $pictureSequenceNumber = $pictureObject -> getSequenceNumber() + 1;
+        $pictureFileName = $pictureObject -> getFileName();
+        $pictureSequenceNumber = $pictureObject -> getPosition() + 1;
         $picDescription = $pictureObject -> getDescription($lang);
         $picRate = $pictureObject -> getRate();
         $picRateHtml = $this-> makePicRateHtml($picRate);
         $template_engine->assign('picRate', $picRateHtml);        
         $template_engine->assign('picDescription', $picDescription);        
-        $template_engine->assign('pictureNum', $picturePath);
+        $template_engine->assign('pictureFileName', $pictureFileName);
         $template_engine->assign('sequenceNumber', $pictureSequenceNumber);        
         $picHTMLCode = $template_engine -> fetch('td.tpl');
         return $picHTMLCode;     

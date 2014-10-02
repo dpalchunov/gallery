@@ -54,7 +54,7 @@
     }
     private function makePicturesQueryByWhere($whereStr) {
         global $db;
-        $query = 'select p.sketch_path, count(c.classificatorid) passedclassificators
+        $query = 'select p.file_name,p.position, p.sketch_path, count(c.classificatorid) passedclassificators
                     from 
                       tclassificatorvalues cv
                         inner join tclassificators c
@@ -64,7 +64,7 @@
                             inner join tpictures p 
                                     on p.pictureid = pcr.pictureid
                     where cv.classificatorvalueid in {classificator_values} 
-                    group by p.sketch_path
+                    group by p.file_name,p.position,p.sketch_path
                     /*берем только те картины, у которых количество классификаторов в которые они вошли равно количеству классификаторов, используемых пользователем*/
                     /*passedclassificators - колчество классификаторов в которые вошла картинка  */
                     /*подзаспрос - количеству классификаторов, используемых пользователем  */

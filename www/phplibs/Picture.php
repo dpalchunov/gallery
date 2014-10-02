@@ -10,7 +10,7 @@
     public  function __construct($fileName, $position = 0, $rate = 2,
                                  $multilangDescription = array('rus' => '', 'eng' => ''),
                                  $picPath = '', $sketchPath = '') {
-      $this->fileName($fileName);
+      $this->setfileName($fileName);
       $this->setPicPath($picPath);
       $this->setSketchPath($sketchPath);
       $this->setRate($rate);
@@ -47,8 +47,8 @@
     public function getRate() {
         return $this -> rate;            
     }
-    public function getSequenceNumber() {
-        return $this -> sequenceNumber;            
+    public function getPosition() {
+        return $this -> position;
     }
     public function getDescription($lang) {
         return $this -> multilangDescription[$lang];            
