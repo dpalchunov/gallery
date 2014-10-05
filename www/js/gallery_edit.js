@@ -42,7 +42,7 @@ function initCropper() {
         },
         preview: ".cropper-preview",
         done: function(data) {
-            console.log(data);
+//            console.log(data);
         }
     });
 
@@ -154,6 +154,7 @@ $(document).ready(function(){
             data: { pic_src: currentSrc , pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width() ,h: $('#cropper-preview').height()}
         })
             .done(function( msg ) {
+                console.log(msg);
                 hideUploadControls();
                 reloadGallery();
                 initCropper();

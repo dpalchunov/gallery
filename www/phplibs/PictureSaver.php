@@ -1,11 +1,6 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: dpalchunov
- * Date: 23/09/14
- * Time: 10:28
- * To change this template use File | Settings | File Templates.
- */
+    require_once 'phplibs/ResourceService.php';
+
 
 class PictureSaver {
 
@@ -34,12 +29,12 @@ class PictureSaver {
         }
     }
     private function prepareQueryData($picture) {
-        $descriptions = $picture -> getDescription;
-        return array($picture -> getFileName(),$picture->getRate,$descriptions('rus'),$descriptions('eng'));
+        $descriptions = $picture -> getMultilangDescription();
+        return array($picture -> getFileName(),$picture->getRate(),$descriptions['rus'],$descriptions['eng'],$picture->getPicPath(),$picture->getSketchPath(),$picture->getPosition());
     }
 
     private function preparePattern() {
-        return "INSERT INTO \'strunkovadb.tpictures\' (\'file_name\',\'rate\',\'rusdesc\',\'engdesc\') VALUES (?,?,?,?)";
+        return "INSERT INTO strunkovadb.tpictures (file_name,rate,rusdesc,engdesc,pic_path,sketch_path,position) VALUES (?,?,?,?,?,?,?)";
 
     }
 }

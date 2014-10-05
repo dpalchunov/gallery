@@ -152,16 +152,17 @@ class CropPic {
 
 
 }
-
+    require_once 'phplibs/Picture.php';
+    require_once 'phplibs/PictureSaver.php';
     $crop = new CropPic($_POST['pic_src'],$_POST['pic_data'],$_POST['w'],$_POST['h']);
     $response = array(
         'state'  => 200,
         'message' => $crop -> getMsg(),
         'result' => $crop -> getResult()
     );
+    $fileName = $crop -> getFileName();
     copy($_POST['pic_src'],'images/gallary/'. $crop -> getFileName());
-    $file_name = basename($_POST['pic_src']);
-    $pic = new $Picture($file_name);
+    $pic = new Picture($fileName);
     $pic_saver = new PictureSaver();
     $res = $pic_saver -> savePicture($pic);
     echo $res;
