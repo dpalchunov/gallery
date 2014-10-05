@@ -1,4 +1,4 @@
-
+//TODO add time gif when uploading picture (some big picture)
 var cropperHandlerIsActive = true;
 
 $(function() {

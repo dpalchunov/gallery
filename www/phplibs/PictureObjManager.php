@@ -2,7 +2,7 @@
     require_once 'phplibs/ResourceService.php';
 
 
-class PictureSaver {
+class PictureObjManager {
 
     private static $db;
 
@@ -37,4 +37,33 @@ class PictureSaver {
         return "INSERT INTO strunkovadb.tpictures (file_name,rate,rusdesc,engdesc,pic_path,sketch_path,position) VALUES (?,?,?,?,?,?,?)";
 
     }
+
+
+    public function removePicture($picture){
+        global $db;
+        $pattern =  $this -> prepareRemovePattern();
+        $data = $this -> prepareRemoveQueryData($picture);
+        try {
+            if ($pictures = $db->query($pattern,$data)) {
+                unlink($picture->getPicPath());
+                unlink($picture->getSketchPath());
+                return 'ok';
+            } else {
+                return null;
+            }
+        }
+        catch(Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+    private function prepareRemoveQueryData($picture) {
+        return array($picture -> getFileName());
+    }
+
+    private function prepareRemovePattern() {
+        return "DELETE FROM strunkovadb.tpictures WHERE file_name = ?";
+
+    }
+
 }

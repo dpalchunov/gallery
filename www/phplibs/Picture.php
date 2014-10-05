@@ -1,7 +1,7 @@
 <?php
   class  Picture {   
-    var $picsFolder = 'images/gallary/';
-    var $sketchesFolder = 'images/gallary/sketches/';
+    var $picsFolder = './images/gallary/';
+    var $sketchesFolder = './images/gallary/sketches/';
     var $sketchPath;
     var $picPath;
     var $rate;    
