@@ -102,14 +102,14 @@ blockquote {
 
 
 #gallery_editor_content {
-    width: 1100px;
+    width: 1300px;
     position: relative;
     background-repeat: no-repeat;
 
 }
 
 #gallery {
-    width: 775px;
+    width: 1200px;
     height: 100%;
     margin: 20px;
     position: relative;
@@ -346,6 +346,81 @@ blockquote {
     top: 55px;
     background-image: url(../images/footer_phrase_name.png);
     background-repeat: no-repeat;
+}
+
+#field_editor_div{
+    width:600px;
+    float:left;
+    margin-left:10px;
+}
+
+#field_editor_form{
+    width: 600px;
+    height: 500px;
+}
+#rus_desc_div{
+    width: 600px;
+    height: 30px;
+}
+
+#rus_desc_input{
+    margin-left: 10px;
+    float: right;
+    width: 350px;
+    resize: vertical;
+    height: 60px;
+}
+
+#eng_desc_div{
+    width: 600px;
+    height: 30px;
+}
+
+#eng_desc_input{
+    margin-left: 10px;
+    float: right;
+    width: 350px;
+    resize: vertical;
+    height: 60px;
+}
+
+
+#rate{
+    width: 450px;
+    height: 30px;
+}
+#rate_radio_group {
+    float: right;
+    height: 30px;
+    width: 200px;
+
+}
+
+#rate_input{
+    width: 50px;
+    height: 20px;
+    float: right;
+    vertical-align: middle;
+}
+
+#position{
+    width: 450px;
+    height: 80px;
+    align: left;
+}
+
+#position_input{
+    margin-left: 10px;
+    float: right;
+}
+
+
+.field_editor_label {
+    font-family: Times New Roman, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #000000;
+    display:inline-block;
+    float:left;
 }
 
 
