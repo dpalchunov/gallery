@@ -120,6 +120,7 @@ blockquote {
     display: inline-block;
     position: relative;
     margin-bottom: 20px;
+
 }
 
 .pic {
@@ -131,6 +132,13 @@ blockquote {
     background-repeat: no-repeat;
     background-position: center;
 
+}
+
+#controls {
+    display: inline-block;
+    width: 600px;
+    float:left;
+    margin-left: 10px;
 }
 
 .pic_controls {
@@ -145,6 +153,7 @@ blockquote {
     display: inline-block;
     float: left;
 }
+
 
 .fileuploader_wrapper {
     display: inline-block;
@@ -315,6 +324,10 @@ blockquote {
     margin-top: -64px;
 }
 
+.remove_pic{
+    float:right;
+}
+
 .remove {
     display: inline-block;
     float: left;
@@ -348,22 +361,24 @@ blockquote {
     background-repeat: no-repeat;
 }
 
-#field_editor_div{
+.field_editor_div{
     width:600px;
     float:left;
     margin-left:10px;
 }
 
-#field_editor_form{
+.field_editor_form{
     width: 600px;
-    height: 500px;
+
+    display:inline-block;
 }
-#rus_desc_div{
+.rus_desc_div{
     width: 600px;
-    height: 30px;
+    display:inline-block;
+    resize: both;
 }
 
-#rus_desc_input{
+.rus_desc_input{
     margin-left: 10px;
     float: right;
     width: 350px;
@@ -371,12 +386,13 @@ blockquote {
     height: 60px;
 }
 
-#eng_desc_div{
+.eng_desc_div{
     width: 600px;
-    height: 30px;
+    display:inline-block;
+    resize: both;
 }
 
-#eng_desc_input{
+.eng_desc_input{
     margin-left: 10px;
     float: right;
     width: 350px;
@@ -385,37 +401,50 @@ blockquote {
 }
 
 
-#rate{
-    width: 450px;
+.rate{
+    width: 600px;
     height: 30px;
 }
-#rate_radio_group {
+.rate_radio_group {
     float: right;
     height: 30px;
-    width: 200px;
+    width: 350px;
 
 }
 
-#rate_input{
-    width: 50px;
+.rate_input{
+    width: 25px;
     height: 20px;
-    float: right;
+    float: left;
     vertical-align: middle;
 }
 
-#position{
-    width: 450px;
-    height: 80px;
+.position{
+    width: 600px;
+    height: 20px;
     align: left;
 }
 
-#position_input{
-    margin-left: 10px;
+.position_input{
+
     float: right;
+    width: 340px;
 }
 
 
+.field_editor_input{
+    background-color: #e9e9ed;
+}
+
 .field_editor_label {
+    font-family: Times New Roman, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #000000;
+    display:inline-block;
+    float:left;
+}
+
+.rate_radio_label_label {
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
     color: #000000;
