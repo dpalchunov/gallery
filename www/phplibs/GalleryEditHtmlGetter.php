@@ -5,14 +5,16 @@ class  GalleryEditHtmlGetter {
         $pics = array_reverse($pics_tmp);
         $picsHtml = '';
         foreach($pics as $index => $file) {
+            $info = pathinfo($file);
             $file_name = basename($file);
+            $file_base = basename($file,'.'.$info['extension']);
             $picsHtml = $picsHtml.
-                "<div class=\"one_element\">
+                "<div id=\"area_{$file_base}\" class=\"one_element\">
                     <div class=\"pic\"\">
                         <img src=\"{$file}\"/>
                     </div>
                      <div id=\"controls\" class=\"pic_controls controls red remove\">
-                        <a class=\"remove_pic\" file_name=\"{$file_name}\" href=\"javascript: void(0)\" > remove</a>
+                        <a class=\"remove_pic\" area=\"area_{$file_base}\" file_name=\"{$file_name}\" href=\"javascript: void(0)\" > remove</a>
                     </div>
                     <div class=\"field_editor_div\">
                         <form class=\"field_editor_form\">

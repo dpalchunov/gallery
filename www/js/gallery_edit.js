@@ -208,6 +208,13 @@ $(document).ready(function(){
             $(this).click(function() {
                 removeHandler($(this).attr("file_name"))
             });
+
+            $(this).hover(function() {
+                $("#" + $(this).attr("area")).css("background-color","#e3eff4");
+            },function() {
+                $("#" + $(this).attr("area")).css("background-color","#d2dfe3");
+            });
+
         });
 
     }
