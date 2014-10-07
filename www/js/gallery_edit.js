@@ -1,6 +1,20 @@
 //TODO add time gif when uploading picture (some big picture)
 var cropperHandlerIsActive = true;
 
+String.prototype.hashCode = function(){
+    if (Array.prototype.reduce){
+        return this.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+    }
+    var hash = 0;
+    if (this.length === 0) return hash;
+    for (var i = 0; i < this.length; i++) {
+        var character  = this.charCodeAt(i);
+        hash  = ((hash<<5)-hash)+character;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+}
+
 $(function() {
     $( "#slider" ).slider({ max: 100,
                             min: 0,
@@ -81,7 +95,8 @@ $(document).ready(function(){
         cancelCropHandler();
     });
 
-    addRemoveClickHandlers();
+    addControlsClickHandlers();
+    addFieldsChangeHandlers();
 
     $("#fileuploader").uploadFile({
         url:"./gallery_upload_pic.php",
@@ -184,7 +199,7 @@ $(document).ready(function(){
         })
             .done(function( msg ) {
                 $("#gallery").html(msg);
-                addRemoveClickHandlers();
+                addControlsClickHandlers();
             });
     }
 
@@ -201,8 +216,8 @@ $(document).ready(function(){
 
 
 
-    function addRemoveClickHandlers() {
-        var $removeButtons = $(".remove_pic");
+    function addControlsClickHandlers() {
+        var $removeButtons = $(".remove_href");
 
         $removeButtons.each(function() {
             $(this).click(function() {
@@ -210,12 +225,55 @@ $(document).ready(function(){
             });
 
             $(this).hover(function() {
-                $("#" + $(this).attr("area")).css("background-color","#e3eff4");
+                $("#" + $(this).attr("area")).css("background-color","#D16464");
             },function() {
                 $("#" + $(this).attr("area")).css("background-color","#d2dfe3");
             });
 
         });
+
+        var $saveButtons = $(".save_href");
+
+        $saveButtons.each(function() {
+            $(this).click(function() {
+                removeHandler($(this).attr("file_name"))
+            });
+
+            $(this).hover(function() {
+                $("#" + $(this).attr("area")).css("background-color","#5d9f7a");
+            },function() {
+                $("#" + $(this).attr("area")).css("background-color","#d2dfe3");
+            });
+
+        });
+
+    }
+    function addFieldsChangeHandlers() {
+        var $inputs = $(".field_editor_input");
+
+        $inputs.each(function() {
+            $(this).change(function() {
+                var $hashHolderID = $(this).attr("hash_holder");
+                var $oldHash = $("#"+$hashHolderID).attr("hash");
+                var $newHash = calcFormHash($hashHolderID);
+                if ($oldHash != $newHash) {
+                    $(".save_pic[area='" + $hashHolderID + "']").show();
+                } else {
+                    $(".save_pic[area='" + $hashHolderID + "']").hide();
+                }
+            });
+        });
+    }
+
+    function calcFormHash(hash_holder_id) {
+        var $fields = $("[hash_holder='" + hash_holder_id + "']");
+        var $content = '';
+        $fields.each(function() {
+            $content += $(this).attr("value") + $(this).prop("checked");
+        });
+        var $hash = new String($content).hashCode();
+        console.log($hash);
+        return $hash;
 
     }
 

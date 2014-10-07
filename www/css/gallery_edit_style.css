@@ -109,9 +109,9 @@ blockquote {
 }
 
 #gallery {
-    width: 1200px;
+    width: 1180px;
     height: 100%;
-    margin: 20px;
+    margin: 0px;
     position: relative;
 }
 
@@ -120,7 +120,7 @@ blockquote {
     display: inline-block;
     position: relative;
     margin-bottom: 20px;
-
+    padding: 10px;
 }
 
 .pic {
@@ -134,24 +134,15 @@ blockquote {
 
 }
 
-#controls {
+.controls {
     display: inline-block;
     width: 600px;
     float:left;
     margin-left: 10px;
 }
 
-.pic_controls {
-    width: 160px;
-    position: relative;
-    float:right;
-    display: inline-block;
-    margin-left: 20px;
-}
-
 .control {
-    display: inline-block;
-    float: left;
+    margin-left: 10px;
 }
 
 
@@ -325,14 +316,15 @@ blockquote {
 }
 
 .remove_pic{
+    display: inline-block;
     float:right;
 }
 
-.remove {
+.save_pic{
     display: inline-block;
-    float: left;
+    float:right;
+    display: none;
 }
-
 
 #slider {
     margin-bottom: 10px;
