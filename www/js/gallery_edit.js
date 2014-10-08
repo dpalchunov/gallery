@@ -200,6 +200,7 @@ $(document).ready(function(){
             .done(function( msg ) {
                 $("#gallery").html(msg);
                 addControlsClickHandlers();
+                addFieldsChangeHandlers();
             });
     }
 
