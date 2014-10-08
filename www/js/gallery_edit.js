@@ -97,6 +97,7 @@ $(document).ready(function(){
 
     addControlsClickHandlers();
     addFieldsChangeHandlers();
+    addSubmitHandlers();
 
     $("#fileuploader").uploadFile({
         url:"./gallery_upload_pic.php",
@@ -201,6 +202,8 @@ $(document).ready(function(){
                 $("#gallery").html(msg);
                 addControlsClickHandlers();
                 addFieldsChangeHandlers();
+                addSubmitHandlers();
+
             });
     }
 
@@ -213,6 +216,11 @@ $(document).ready(function(){
             .done(function( msg ) {
                 reloadGallery();
             });
+    }
+
+
+    function saveHandler(formID) {
+        $("#" + formID).submit();
     }
 
 
@@ -237,7 +245,7 @@ $(document).ready(function(){
 
         $saveButtons.each(function() {
             $(this).click(function() {
-                removeHandler($(this).attr("file_name"))
+                saveHandler($(this).attr("form_id"))
             });
 
             $(this).hover(function() {
@@ -262,6 +270,25 @@ $(document).ready(function(){
                 } else {
                     $(".save_pic[area='" + $hashHolderID + "']").hide();
                 }
+            });
+        });
+    }
+
+    function addSubmitHandlers() {
+        var $forms = $(".field_editor_form");
+
+        $forms.each(function() {
+            $(this).submit(function(e) {
+                e.preventDefault();
+                console.log($(this).serialize());
+                $.ajax({
+                    type: "POST",
+                    url: "gallery_update_pic.php",
+                    data: $(this).serialize(),
+                    success: function(data) {
+                        console.log(data);
+                    }
+                })
             });
         });
     }
