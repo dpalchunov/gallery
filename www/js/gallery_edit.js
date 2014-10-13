@@ -98,6 +98,7 @@ $(document).ready(function(){
     addControlsClickHandlers();
     addFieldsChangeHandlers();
     addSubmitHandlers();
+    setCurrentHashes();
 
     $("#fileuploader").uploadFile({
         url:"./gallery_upload_pic.php",
@@ -290,6 +291,14 @@ $(document).ready(function(){
                     }
                 })
             });
+        });
+    }
+
+    function setCurrentHashes() {
+        var $areas = $(".one_element");
+        $areas.each(function() {
+            $hash = calcFormHash($(this).attr('id'));
+            $(this).attr('hash',$hash);
         });
     }
 
