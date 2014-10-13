@@ -12,6 +12,86 @@ class PictureObjManager {
         $db              = $resourceService->getDBConnection();
     }
 
+    private function prepareSelectPattern() {
+        return "select * from strunkovadb.tpictures where pictureid = ?";
+
+    }
+    private function prepareSelectAllPattern() {
+        return "select * from strunkovadb.tpictures";
+
+    }
+
+    public function selectAllPics(){
+        global $db;
+        $pattern =  $this -> prepareSelectAllPattern();
+        try {
+            if ($pictures = $db->query($pattern,NULL,'assoc')) {
+                $this -> toPicObjects($pictures);
+            } else {
+                return null;
+            }
+        }
+        catch(Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    private function toPicObjects($pictures) {
+        foreach ($pictures as $picture) {
+            $rusDesc = $picture['rusdesc'];
+            $engDesc = $picture['engdesc'];
+
+            $fileName = $picture['file_name'];
+            $position = $picture['position'];
+            $rate = $picture['rate'];
+            $multilangDesc = array (
+                'rus' => $rusDesc,
+                'eng' => $engDesc
+            );
+            $picPath = $picture['pic_path'];
+            $sketchPath = $picture['sketch_path'];
+
+            $pictureObject = new Picture($fileName, $position, $rate, $multilangDesc, $picPath, $sketchPath);
+            array_push($pictureObjectArray,$pictureObject);
+        }
+        return  $pictureObjectArray;
+    }
+
+
+    public  function __construct6($fileName, $position, $rate,
+                                  $multilangDescription,
+                                  $picPath, $sketchPath) {
+        $this->setfileName($fileName);
+        $this->setPicPath($picPath);
+        $this->setSketchPath($sketchPath);
+        $this->setRate($rate);
+        $this->setPosition($position);
+        $this->setMultilangDescription($multilangDescription);
+    }
+
+
+    public function selectPicByID($pictureID){
+        global $db;
+        $pattern =  $this -> prepareSelectPattern();
+        try {
+            if ($pictures = $db->query($pattern,array($pictureID),'assoc')) {
+                $this -> toPicObjects($pictures);
+            } else {
+                return null;
+            }
+        }
+        catch(Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+
+
+
+
+
     public function savePicture($picture){
         global $db;
         $pattern =  $this -> preparePattern();
