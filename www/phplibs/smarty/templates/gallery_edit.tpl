@@ -53,7 +53,6 @@
                 <a href="buy.php"></a>
             </div><!--end nav_order-->
         </div><!--end nav_menu-->
-        <div id=lang_changer><a href="?change_lang=1">{{{$change_lang}}}</a></div>
     </div><!--end header-->
     <div id="gallery_editor_content"><!--[if IE]><div id="main_ie_gradient"><![endif]-->
         <div id="header_shaddow"></div>

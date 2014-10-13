@@ -1,4 +1,4 @@
-//TODO add time gif when uploading picture (some big picture)
+//den_todo add time gif when uploading picture (some big picture)
 var cropperHandlerIsActive = true;
 
 String.prototype.hashCode = function(){
@@ -281,13 +281,13 @@ $(document).ready(function(){
         $forms.each(function() {
             $(this).submit(function(e) {
                 e.preventDefault();
-                console.log($(this).serialize());
+                console.log($(this).serialize());  //den_debug
                 $.ajax({
                     type: "POST",
                     url: "gallery_update_pic.php",
                     data: $(this).serialize(),
                     success: function(data) {
-                        console.log(data);
+                        console.log(data);  //den_debug
                     }
                 })
             });
@@ -309,7 +309,7 @@ $(document).ready(function(){
             $content += $(this).attr("value") + $(this).prop("checked");
         });
         var $hash = new String($content).hashCode();
-        console.log($hash);
+        console.log($hash);   //den_debug
         return $hash;
 
     }

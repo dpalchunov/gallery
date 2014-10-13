@@ -21,6 +21,7 @@
         $db->disconnect();    
     }   */
 
+
     public function getFullScreenGalleryPicture($filter, $num) {
         $pictureObjectArray = $this -> getNotfilteredPicturesArray($filter);
         if ($pictureObjectArray != null) {
@@ -70,17 +71,18 @@
             if ($pictures = $db->query($query,NULL,'assoc')) {
                 $i = 0;
                 foreach ($pictures as $picture) {
+                    $pictureID = $picture['pictureid'];
                     $fileName = $picture['file_name'];
                     $sketchPath = $picture['sketch_path'];
                     $rusDesc = $picture['rusdesc'];
-                    $engDesc = $picture['engdesc'];                 
+                    $engDesc = $picture['engdesc'];
                     $rate = $picture['rate'];
-                    $multilangDesc = array (                 
-                      'rus' => $rusDesc,
-                      'eng' => $engDesc
+                    $multilangDesc = array (
+                        'rus' => $rusDesc,
+                        'eng' => $engDesc
                     );
-                    //echo $multilangDesc; 
-                    $pictureObject = new Picture($fileName,$i,$rate,$multilangDesc,'',$sketchPath);
+                    //echo $multilangDesc;
+                    $pictureObject = new Picture($fileName,$i,$rate,$multilangDesc,'',$sketchPath, $pictureID);
                     $pictureObjectArray[$i] = $pictureObject;
                     $i++;
                 }

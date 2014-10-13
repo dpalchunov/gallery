@@ -8,6 +8,7 @@
     var $position;
     var $multilangDescription;
     var $fileName;
+    var $id;
 
 
     function __construct()
@@ -37,14 +38,15 @@
 
 
 
-    public  function __construct6($fileName, $position, $rate,
+    public  function __construct7($fileName, $position, $rate,
                                  $multilangDescription,
-                                 $picPath, $sketchPath) {
+                                 $picPath, $sketchPath, $id) {
         $this->setfileName($fileName);
         $this->setPicPath($picPath);
         $this->setSketchPath($sketchPath);
         $this->setRate($rate);
         $this->setPosition($position);
+        $this->setID($id);
         $this->setMultilangDescription($multilangDescription);
     }
 
@@ -78,6 +80,11 @@
       $this -> fileName = $fileName;
 
     }
+
+    public function setID($id) {
+      $this -> id = $id;
+
+    }
     public function getPicPath() {
         return $this -> picPath;
     }
@@ -99,6 +106,10 @@
     public function getFileName() {
         return $this -> fileName;
     }
+    public function getID() {
+        return $this -> id;
+    }
+
 
   }
   

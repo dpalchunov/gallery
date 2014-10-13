@@ -418,7 +418,6 @@ blockquote {
 }
 
 .position_input{
-
     float: right;
     width: 340px;
 }
@@ -426,6 +425,9 @@ blockquote {
 
 .field_editor_input{
     background-color: #e9e9ed;
+    font-family: Times New Roman, Helvetica, sans-serif;
+    font-size: 14px;
+    color: black;
 }
 
 .field_editor_label {

@@ -1,3 +1,4 @@
+
 <?php
     require_once 'phplibs/ResourceService.php';
 
@@ -13,11 +14,11 @@ class PictureObjManager {
     }
 
     private function prepareSelectPattern() {
-        return "select * from strunkovadb.tpictures where pictureid = ?";
+        return "select * from strunkovadb.tpictures where sketch_path <> '' and  pictureid = ?";  //den_debug remove sketch_path <> ''
 
     }
     private function prepareSelectAllPattern() {
-        return "select * from strunkovadb.tpictures";
+        return "select * from strunkovadb.tpictures where sketch_path <> ''"; //den_debug remove sketch_path <> ''
 
     }
 
@@ -26,9 +27,9 @@ class PictureObjManager {
         $pattern =  $this -> prepareSelectAllPattern();
         try {
             if ($pictures = $db->query($pattern,NULL,'assoc')) {
-                $this -> toPicObjects($pictures);
+                return $this -> toPicObjects($pictures);
             } else {
-                return null;
+                return array();
             }
         }
         catch(Exception $e) {
@@ -38,7 +39,10 @@ class PictureObjManager {
     }
 
     private function toPicObjects($pictures) {
+        $pictureObjectArray = array();
         foreach ($pictures as $picture) {
+            $pictureID = $picture['pictureid'];
+
             $rusDesc = $picture['rusdesc'];
             $engDesc = $picture['engdesc'];
 
@@ -52,24 +56,11 @@ class PictureObjManager {
             $picPath = $picture['pic_path'];
             $sketchPath = $picture['sketch_path'];
 
-            $pictureObject = new Picture($fileName, $position, $rate, $multilangDesc, $picPath, $sketchPath);
-            array_push($pictureObjectArray,$pictureObject);
+            $pictureObject = new Picture($fileName, $position, $rate, $multilangDesc, $picPath, $sketchPath,$pictureID);
+            $pictureObjectArray[] = $pictureObject;
         }
         return  $pictureObjectArray;
     }
-
-
-    public  function __construct6($fileName, $position, $rate,
-                                  $multilangDescription,
-                                  $picPath, $sketchPath) {
-        $this->setfileName($fileName);
-        $this->setPicPath($picPath);
-        $this->setSketchPath($sketchPath);
-        $this->setRate($rate);
-        $this->setPosition($position);
-        $this->setMultilangDescription($multilangDescription);
-    }
-
 
     public function selectPicByID($pictureID){
         global $db;
