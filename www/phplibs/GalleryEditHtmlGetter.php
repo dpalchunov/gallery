@@ -21,8 +21,6 @@ class  GalleryEditHtmlGetter {
             $engDesc =  $picObj -> getDescription('eng');
 
             $info = pathinfo($sketchPath);
-            $s_info = serialize($info);
-
             $file_name = basename($sketchPath);
 
             $file_base = basename($sketchPath,'.'.$info['extension']);
@@ -41,6 +39,7 @@ class  GalleryEditHtmlGetter {
                     </div>
                     <div class=\"field_editor_div\">
                         <form id=\"form_{$file_base}\" class=\"field_editor_form\" action=\"gallery_update_pic.php\">
+                            <input name=\"id\" type=\"hidden\" value=\"$id\">
                             <div class=\"rus_desc_div\">
                                 <label class=\"field_editor_label\">Desc in russian </label>
                                 <textarea name=\"rus_desc\" class=\"rus_desc_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$rusDesc</textarea>

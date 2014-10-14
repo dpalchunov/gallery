@@ -71,9 +71,15 @@
     }    
     public function setMultilangDescription($desc) {
         $this -> multilangDescription = $desc;            
-    }    
+    }
+    public function setRusDescription($lang) {
+      return $this -> multilangDescription['rus'] = $lang;
+    }
+    public function setEngDescription($lang) {
+      return $this -> multilangDescription['eng'] = $lang;
+    }
     public function setPosition($position) {
-        $this -> position = $position;
+      $this -> position = $position;
          
     }
     public function setFileName($fileName) {

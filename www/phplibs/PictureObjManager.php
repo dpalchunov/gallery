@@ -5,7 +5,7 @@
 
 class PictureObjManager {
 
-    private static $db;
+    private static $db ;
 
     public  function __construct() {
         global $db;
@@ -23,7 +23,7 @@ class PictureObjManager {
     }
 
     public function selectAllPics(){
-        global $db;
+        global $db ;
         $pattern =  $this -> prepareSelectAllPattern();
         try {
             if ($pictures = $db->query($pattern,NULL,'assoc')) {
@@ -38,7 +38,7 @@ class PictureObjManager {
         }
     }
 
-    private function toPicObjects($pictures) {
+    private function toPicObjects(array $pictures) {
         $pictureObjectArray = array();
         foreach ($pictures as $picture) {
             $pictureID = $picture['pictureid'];
@@ -67,7 +67,8 @@ class PictureObjManager {
         $pattern =  $this -> prepareSelectPattern();
         try {
             if ($pictures = $db->query($pattern,array($pictureID),'assoc')) {
-                $this -> toPicObjects($pictures);
+                $res = $this -> toPicObjects($pictures);
+                return $res[0];
             } else {
                 return null;
             }
@@ -80,10 +81,25 @@ class PictureObjManager {
 
 
 
+    public function updatePicture(Picture $picture){
+        global $db;
+        $pattern =  $this -> prepareUpdatePattern();
+        $data = $this -> prepareUpdateQueryData($picture);
+        try {
+            if ($pictures = $db->query($pattern,$data)) {
+                return 'ok';
+            } else {
+                return null;
+            }
+        }
+        catch(Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
 
 
-
-    public function savePicture($picture){
+    public function savePicture(Picture $picture){
         global $db;
         $pattern =  $this -> preparePattern();
         $data = $this -> prepareQueryData($picture);
@@ -99,9 +115,14 @@ class PictureObjManager {
             return null;
         }
     }
-    private function prepareQueryData($picture) {
+    private function prepareQueryData(Picture $picture) {
         $descriptions = $picture -> getMultilangDescription();
         return array($picture -> getFileName(),$picture->getRate(),$descriptions['rus'],$descriptions['eng'],$picture->getPicPath(),$picture->getSketchPath(),$picture->getPosition());
+    }
+
+    private function prepareUpdateQueryData(Picture $picture) {
+        $descriptions = $picture -> getMultilangDescription();
+        return array($picture -> getFileName(),$picture->getRate(),$descriptions['rus'],$descriptions['eng'],$picture->getPicPath(),$picture->getSketchPath(),$picture->getPosition(),$picture -> getID());
     }
 
     private function preparePattern() {
@@ -109,8 +130,13 @@ class PictureObjManager {
 
     }
 
+    private function prepareUpdatePattern() {
+        return "UPDATE strunkovadb.tpictures SET file_name = ?,rate = ?,rusdesc = ?,engdesc = ?,pic_path = ?,sketch_path = ?,position = ? where pictureid = ? ";
 
-    public function removePicture($picture){
+    }
+
+
+    public function removePicture(Picture $picture){
         global $db;
         $pattern =  $this -> prepareRemovePattern();
         $data = $this -> prepareRemoveQueryData($picture);
@@ -128,7 +154,7 @@ class PictureObjManager {
             return null;
         }
     }
-    private function prepareRemoveQueryData($picture) {
+    private function prepareRemoveQueryData(Picture $picture) {
         return array($picture -> getFileName());
     }
 

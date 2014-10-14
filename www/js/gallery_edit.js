@@ -171,7 +171,7 @@ $(document).ready(function(){
             data: { pic_src: currentSrc , pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width() ,h: $('#cropper-preview').height()}
         })
             .done(function( msg ) {
-                console.log(msg);
+                //console.log(msg);      //den_debug
                 hideUploadControls();
                 reloadGallery();
                 initCropper();
@@ -281,13 +281,13 @@ $(document).ready(function(){
         $forms.each(function() {
             $(this).submit(function(e) {
                 e.preventDefault();
-                console.log($(this).serialize());  //den_debug
+       //         console.log($(this).serialize());  //den_debug
                 $.ajax({
                     type: "POST",
                     url: "gallery_update_pic.php",
                     data: $(this).serialize(),
                     success: function(data) {
-                        console.log(data);  //den_debug
+     //                   console.log(data);  //den_debug
                     }
                 })
             });
@@ -309,7 +309,7 @@ $(document).ready(function(){
             $content += $(this).attr("value") + $(this).prop("checked");
         });
         var $hash = new String($content).hashCode();
-        console.log($hash);   //den_debug
+//        console.log($hash);   //den_debug
         return $hash;
 
     }
