@@ -9,6 +9,7 @@
     var $multilangDescription;
     var $fileName;
     var $id;
+    var $classification;
 
 
     function __construct()
@@ -80,7 +81,9 @@
     }
     public function setPosition($position) {
       $this -> position = $position;
-         
+    }
+    public function setClassification($classification) {
+      $this -> classification = $classification;
     }
     public function setFileName($fileName) {
       $this -> fileName = $fileName;
@@ -102,6 +105,9 @@
     }
     public function getPosition() {
         return $this -> position;
+    }
+    public function getClassification() {
+        return $this -> classification;
     }
     public function getDescription($lang) {
         return $this -> multilangDescription[$lang];            
