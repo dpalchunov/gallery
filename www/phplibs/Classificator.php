@@ -57,10 +57,17 @@ class  Classificator
         return $this->engname;
     }
 
-    public function getID()    {
+    public function getID()
+    {
         return $this->id;
     }
 
+    public function print_view()
+    {
+        return 'id = ' . $this->getID() .
+        ',engname=' . $this->getEngName() .
+        ',rusname=' . $this->getRusName() . trim("<br>");
+    }
 }
 
 ?>

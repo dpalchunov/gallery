@@ -2,8 +2,8 @@
 class  ClassificatorValue
 {
 
-    var $rusname;
-    var $engname;
+    var $rusvalue;
+    var $engvalue;
     var $id;
     var $parent_id;
     var $values;
@@ -20,15 +20,14 @@ class  ClassificatorValue
     }
 
 
-
-
-
-    public function __construct4($rusname, $engname, $id, $parent_id)
+    public function __construct6($rusvalue, $engvalue, $id, $parent_id, $level, $path)
     {
         $this->setID($id);
-        $this->setRusName($rusname);
-        $this->setEngName($engname);
+        $this->setRusName($rusvalue);
+        $this->setEngName($engvalue);
         $this->parent_id = $parent_id;
+        $this->level = $level;
+        $this->path = $path;
         $this->setValues(array());
     }
 
@@ -77,14 +76,14 @@ class  ClassificatorValue
 
     }
 
-    public function setRusName($rusname)
+    public function setRusName($rusvalue)
     {
-        $this->rusname = $rusname;
+        $this->rusvalue = $rusvalue;
     }
 
-    public function setEngName($engname)
+    public function setEngName($engvalue)
     {
-        $this->engname = $engname;
+        $this->engvalue = $engvalue;
     }
 
     public function setValues($values)
@@ -94,12 +93,12 @@ class  ClassificatorValue
 
     public function getRusName()
     {
-        return $this->rusname;
+        return $this->rusvalue;
     }
 
     public function getEngName()
     {
-        return $this->engname;
+        return $this->engvalue;
     }
 
     public function getID()
@@ -111,6 +110,17 @@ class  ClassificatorValue
     {
         return $this->parent_id;
     }
+
+    public function print_view()
+    {
+        return 'id = ' . $this->getID() .
+        ',engname=' . $this->getEngName() .
+        ',rusname=' . $this->getRusName() .
+        ',parent_id=' . $this->getParentID() .
+        ',level=' . $this->getLevel() .
+        ',path=' . $this->getPath() . ("<br>");
+    }
+
 }
 
 ?>
