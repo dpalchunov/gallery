@@ -1,0 +1,14 @@
+USE `strunkovadb`;
+DELIMITER $$
+
+CREATE TRIGGER `trclassificatovaluesoninsert` BEFORE INSERT ON `tclassificatorvalues` FOR EACH ROW
+-- Edit trigger body code below this line. Do not edit lines above this one
+  BEGIN
+    IF new.parentclassificatorvalueid IS NOT null
+    THEN
+      SET new.classificatorid = (SELECT
+                                   classificatorid
+                                 FROM tclassificatorvalues
+                                 WHERE classificatorvalueid = new.parentclassificatorvalueid);
+    END IF;
+  END
