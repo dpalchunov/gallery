@@ -36,8 +36,8 @@ class ClassificatorManager
             if ($class = $db->query($class_pattern, NULL, 'assoc')  and $values = $db->query($values_pattern, NULL, 'assoc')) {
                 $classObjs = $this->toClassObjects($class);
                 $valueObjs = $this->toFirstLevelValueObjects($values);
-                $this->showTree($this->merge($classObjs, $valueObjs));
-                //return $this->merge($classObjs, $valueObjs);
+                //$this->showTree($this->merge($classObjs, $valueObjs)); //den_debug
+                return $this->merge($classObjs, $valueObjs);
             } else {
                 return array();
             }

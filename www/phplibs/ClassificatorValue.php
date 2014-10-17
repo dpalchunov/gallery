@@ -117,12 +117,12 @@ class  ClassificatorValue
         $this->values = $values;
     }
 
-    public function getRusName()
+    public function getRusValue()
     {
         return $this->rusvalue;
     }
 
-    public function getEngName()
+    public function getEngValue()
     {
         return $this->engvalue;
     }
@@ -146,6 +146,15 @@ class  ClassificatorValue
         ',level=' . $this->getLevel() .
         ',path=' . $this->getPath() . ("<br>");
     }
+
+    /**
+     * @return array
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
+
 
     public function addValue($Value)
     {

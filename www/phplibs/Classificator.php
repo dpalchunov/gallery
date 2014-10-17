@@ -71,6 +71,14 @@ class  Classificator
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
+
     public function print_view()
     {
         return 'id = ' . $this->getID() .
