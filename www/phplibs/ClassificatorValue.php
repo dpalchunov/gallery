@@ -6,7 +6,8 @@ class  ClassificatorValue
     var $engvalue;
     var $id;
     var $parent_id;
-    var $values;
+    var $classificatorid;
+    var $values = array();
     var $level;
     var $path;
 
@@ -20,17 +21,42 @@ class  ClassificatorValue
     }
 
 
-    public function __construct6($rusvalue, $engvalue, $id, $parent_id, $level, $path)
+    public function __construct7($rusvalue, $engvalue, $id, $parent_id, $classificatorid, $level, $path)
     {
         $this->setID($id);
         $this->setRusName($rusvalue);
         $this->setEngName($engvalue);
-        $this->parent_id = $parent_id;
-        $this->level = $level;
-        $this->path = $path;
-        $this->setValues(array());
+        $this->setParentID($parent_id);
+        $this->setLevel($level);
+        $this->setPath($path);
+        $this->setClassificatorid($classificatorid);
     }
 
+    public function echoValues()
+    {
+        foreach ($this->values as $value) {
+            echo $value->getPath();
+            echo '<br>';
+            $value->echoValues;
+        }
+    }
+
+
+    /**
+     * @param mixed $calssificatorid
+     */
+    public function setClassificatorid($calssificatorid)
+    {
+        $this->classificatorid = $calssificatorid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClassificatorid()
+    {
+        return $this->classificatorid;
+    }
 
     /**
      * @param mixed $path
@@ -121,6 +147,10 @@ class  ClassificatorValue
         ',path=' . $this->getPath() . ("<br>");
     }
 
+    public function addValue($Value)
+    {
+        $this->values[] = $Value;
+    }
 }
 
 ?>

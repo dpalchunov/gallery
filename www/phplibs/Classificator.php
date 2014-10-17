@@ -26,6 +26,15 @@ class  Classificator
         $this->setValues(array());
     }
 
+    public function echoValues()
+    {
+        foreach ($this->values as $value) {
+            echo $value->getPath();
+            echo '<br>';
+            $value->echoValues;
+        }
+    }
+
     public function setID($id)
     {
         $this->id = $id;
@@ -68,6 +77,12 @@ class  Classificator
         ',engname=' . $this->getEngName() .
         ',rusname=' . $this->getRusName() . trim("<br>");
     }
+
+    public function addValue($Value)
+    {
+        $this->values[] = $Value;
+    }
+
 }
 
 ?>

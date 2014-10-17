@@ -1,16 +1,9 @@
 <?php
 
-        foreach(glob('./images/slider/*.*') as $file) {
-            echo $file;
-            echo "<br>";
+require_once 'phplibs/ResourceService.php';
 
-
-
-
-
-
-
-}
+$man = new ClassificatorManager();
+$man->selectAllClassificators();
 ?>
 
 

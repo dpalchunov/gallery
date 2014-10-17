@@ -17,13 +17,13 @@ class ClassificatorManager
 
     private function prepareSelectAllClassPattern()
     {
-        return "SELECT * FROM strunkovadb.tclassificators";
+        return "SELECT * FROM strunkovadb.tclassificators ORDER BY engname";
 
     }
 
     private function prepareSelectAllValuesPattern()
     {
-        return "SELECT * FROM strunkovadb.tclassificatorvalues";
+        return "SELECT * FROM strunkovadb.tclassificatorvalues ORDER BY path";
 
     }
 
@@ -35,14 +35,23 @@ class ClassificatorManager
         try {
             if ($class = $db->query($class_pattern, NULL, 'assoc')  and $values = $db->query($values_pattern, NULL, 'assoc')) {
                 $classObjs = $this->toClassObjects($class);
-                $valueObjs = $this->toValueObjects($values);
-                return $this->merge($classObjs, $valueObjs);
+                $valueObjs = $this->toFirstLevelValueObjects($values);
+                $this->showTree($this->merge($classObjs, $valueObjs));
+                //return $this->merge($classObjs, $valueObjs);
             } else {
                 return array();
             }
         } catch (Exception $e) {
             echo $e->getMessage();
             return null;
+        }
+    }
+
+    public function showTree(array $cls)
+    {
+        foreach ($cls as $cl) {
+            $cl->echoValues();
+
         }
     }
 
@@ -66,12 +75,23 @@ class ClassificatorManager
         return new Classificator($rusname, $engname, $id);
     }
 
-    private function toValueObjects(array $values)
+    private function toFirstLevelValueObjects(array $values)
     {
-        $objectArray = array();
+        $firstLevelArray = array();
+        $level_roots = array();
         foreach ($values as $value) {
-            $objectArray[] = $this->toValueObject($value);
+            $valObj = $this->toValueObject($value);
+            $level = $valObj->getLevel();
+            $level_roots[$level] = $valObj;
+            if ($level > 1) {
+                $current_root = $level_roots[$level - 1];
+                $current_root->addValue($valObj);
+            } else {
+                $firstLevelArray[] = $valObj;
+            }
+            $objectArray[] = $valObj;
         }
+        //      var_dump($objectArray);
         return $objectArray;
 
     }
@@ -80,24 +100,36 @@ class ClassificatorManager
     {
 
         $id = $value['classificatorvalueid'];
+        $classificatorid = $value['classificatorid'];
         $parent_id = $value['parentclassificatorvalueid'];
 
         $rusname = $value['rusvalue'];
         $engname = $value['engvalue'];
         $level = $value['level'];
         $path = $value['path'];
+        // echo  $path.'<br>';
 
-        return new ClassificatorValue($rusname, $engname, $id, $parent_id, $level, $path);
+        return new ClassificatorValue($rusname, $engname, $id, $parent_id, $classificatorid, $level, $path);
     }
 
     private function merge(array $class_array, array $values_array)
     {
+        $i = 0;
         foreach ($class_array as $class) {
-            echo $class->print_view();
+            $class_id = $class->getID();
+            //     echo  'class id'.$class_id.'<br>';      //den_debug
+
+            //    $cid =  $values_array[$i] -> getClassificatorid();      //den_debug
+            //      echo 'value_class '.$cid.'<br>';            //den_debug
+            while ($i < sizeof($values_array) && $class_id == $values_array[$i]->getClassificatorid()) {
+                //          echo 'while '.$cid.'<br>';         //den_debug
+                $class->addValue($values_array[$i]);
+                $i++;
+            }
         }
-        foreach ($values_array as $value) {
-            echo $value->print_view();
-        }
+
+        //   var_dump($class_array);
+        return $class_array;
     }
 
     public function selectPicByID($pictureID)
