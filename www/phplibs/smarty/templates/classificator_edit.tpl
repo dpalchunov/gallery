@@ -30,7 +30,7 @@
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/cropper.js"></script>
-    <script type="text/javascript" src="js/gallery_edit.js"></script>
+    <script type="text/javascript" src="js/classificator_edit.js"></script>
     <script type="text/javascript" src="js/jquery.uploadfile.js"></script>
 
 </head>
@@ -66,7 +66,7 @@
         <div id="main_ie_gradient"><![endif]-->
         <div id="header_shaddow"></div>
 
-        <div id="gallery">
+        <div id="classificators">
             {{{$classificator}}}
             <hr>
         </div>

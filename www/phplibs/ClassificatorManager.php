@@ -89,10 +89,9 @@ class ClassificatorManager
             } else {
                 $firstLevelArray[] = $valObj;
             }
-            $objectArray[] = $valObj;
+            // $objectArray[] = $valObj;
         }
-        //      var_dump($objectArray);
-        return $objectArray;
+        return $firstLevelArray;
 
     }
 
@@ -132,14 +131,31 @@ class ClassificatorManager
         return $class_array;
     }
 
-    public function selectPicByID($pictureID)
+    public function selectClByID($ID)
     {
         global $db;
-        $pattern = $this->prepareSelectPattern();
+        $pattern = $this->prepareSelectOnePattern();
         try {
-            if ($pictures = $db->query($pattern, array($pictureID), 'assoc')) {
-                $res = $this->toPicObjects($pictures);
-                return $res[0];
+            if ($cls = $db->query($pattern, array($ID), 'assoc')) {
+                $res = $this->toClassObject($cls[0]);
+                return $res;
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    public function selectVlByID($ID)
+    {
+        global $db;
+        $pattern = $this->prepareSelectOneVlPattern();
+        try {
+            if ($cls = $db->query($pattern, array($ID), 'assoc')) {
+                $res = $this->toValueObject($cls[0]);
+                return $res;
             } else {
                 return null;
             }
@@ -150,13 +166,25 @@ class ClassificatorManager
     }
 
 
-    public function updatePicture(Picture $picture)
+    private function prepareSelectOnePattern()
+    {
+        return "SELECT * FROM strunkovadb.tclassificators WHERE classificatorid = ?"; //den_debug remove sketch_path <> ''
+
+    }
+
+    private function prepareSelectOneVlPattern()
+    {
+        return "SELECT * FROM strunkovadb.tclassificatorvalues WHERE classificatorvalueid = ?"; //den_debug remove sketch_path <> ''
+
+    }
+
+    public function updateCl(Classificator $cl)
     {
         global $db;
-        $pattern = $this->prepareUpdatePattern();
-        $data = $this->prepareUpdateQueryData($picture);
+        $pattern = $this->prepareUpdateClPattern();
+        $data = $this->prepareUpdateClQueryData($cl);
         try {
-            if ($pictures = $db->query($pattern, $data)) {
+            if ($db->query($pattern, $data)) {
                 return 'ok';
             } else {
                 return null;
@@ -168,13 +196,13 @@ class ClassificatorManager
     }
 
 
-    public function savePicture(Picture $picture)
+    public function InsertCl(Classificator $cl)
     {
         global $db;
-        $pattern = $this->preparePattern();
-        $data = $this->prepareQueryData($picture);
+        $pattern = $this->prepareInsertClPattern();
+        $data = $this->prepareInsertClQueryData($cl);
         try {
-            if ($pictures = $db->query($pattern, $data)) {
+            if ($db->query($pattern, $data)) {
                 return 'ok';
             } else {
                 return null;
@@ -185,40 +213,36 @@ class ClassificatorManager
         }
     }
 
-    private function prepareQueryData(Picture $picture)
+    private function prepareInsertClQueryData(Classificator $cl)
     {
-        $descriptions = $picture->getMultilangDescription();
-        return array($picture->getFileName(), $picture->getRate(), $descriptions['rus'], $descriptions['eng'], $picture->getPicPath(), $picture->getSketchPath(), $picture->getPosition());
+        return array($cl->getRusName(), $cl->getEngName());
     }
 
-    private function prepareUpdateQueryData(Picture $picture)
+    private function prepareUpdateClQueryData(Classificator $cl)
     {
-        $descriptions = $picture->getMultilangDescription();
-        return array($picture->getFileName(), $picture->getRate(), $descriptions['rus'], $descriptions['eng'], $picture->getPicPath(), $picture->getSketchPath(), $picture->getPosition(), $picture->getID());
+        return array($cl->getRusName(), $cl->getEngName(), $cl->getID());
     }
 
-    private function preparePattern()
+    private function prepareInsertClPattern()
     {
-        return "INSERT INTO strunkovadb.tpictures (file_name,rate,rusdesc,engdesc,pic_path,sketch_path,position) VALUES (?,?,?,?,?,?,?)";
-
-    }
-
-    private function prepareUpdatePattern()
-    {
-        return "UPDATE strunkovadb.tpictures SET file_name = ?,rate = ?,rusdesc = ?,engdesc = ?,pic_path = ?,sketch_path = ?,position = ? WHERE pictureid = ? ";
+        return "INSERT INTO strunkovadb.tclassificators (rusname,engname) VALUES (?,?)";
 
     }
 
+    private function prepareUpdateClPattern()
+    {
+        return "UPDATE strunkovadb.tclassificators SET rusname = ?,engname= ? WHERE classificatorid = ? ";
 
-    public function removePicture(Picture $picture)
+    }
+
+
+    public function updateVl(ClassificatorValue $clv)
     {
         global $db;
-        $pattern = $this->prepareRemovePattern();
-        $data = $this->prepareRemoveQueryData($picture);
+        $pattern = $this->prepareUpdateVlPattern();
+        $data = $this->prepareUpdateVLQueryData($clv);
         try {
-            if ($pictures = $db->query($pattern, $data)) {
-                unlink($picture->getPicPath());
-                unlink($picture->getSketchPath());
+            if ($db->query($pattern, $data)) {
                 return 'ok';
             } else {
                 return null;
@@ -229,14 +253,105 @@ class ClassificatorManager
         }
     }
 
-    private function prepareRemoveQueryData(Picture $picture)
+
+    public function InsertVl(ClassificatorValue $clv)
     {
-        return array($picture->getFileName());
+        global $db;
+        $pattern = $this->prepareInsertVlPattern();
+        $data = $this->prepareInsertVlQueryData($clv);
+        try {
+            if ($db->query($pattern, $data)) {
+                return 'ok';
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
     }
 
-    private function prepareRemovePattern()
+
+    private function prepareUpdateVlQueryData(ClassificatorValue $clv)
     {
-        return "DELETE FROM strunkovadb.tpictures WHERE file_name = ?";
+        return array($clv->getRusValue(), $clv->getEngValue(), $clv->getID());
+    }
+
+    private function prepareInsertVlQueryData(ClassificatorValue $clv)
+    {
+        return array($clv->getRusName(), $clv->getEngName(), $clv->getParentID(), $clv->getClassificatorid());
+    }
+
+    private function prepareInsertVlPattern()
+    {
+        return "INSERT INTO strunkovadb.tclassificatorvalues (rusvalue,engvalue,parentclassificatorvalueid,classificatorid) VALUES (?,?,?,?)";
+
+    }
+
+    private function prepareUpdateVlPattern()
+    {
+        return "UPDATE strunkovadb.tclassificatorvalues SET rusvalue = ?,engvalue= ? WHERE classificatorvalueid = ? ";
+
+    }
+
+
+    public function removeClByID(String $cl_id)
+    {
+        global $db;
+        $pattern = $this->prepareRemoveClPattern();
+        $data = $this->prepareRemoveClQueryData($cl_id);
+        try {
+            if ($db->query($pattern, $data)) {
+                return 'ok';
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    public function removeCl(Classificator $cl)
+    {
+        removeClByID($cl->getID());
+    }
+
+    private function prepareRemoveClQueryData($cl_id)
+    {
+        return array($cl_id);
+    }
+
+    private function prepareRemoveClPattern()
+    {
+        return "DELETE FROM strunkovadb.tclassificators WHERE classificatorid = ?";
+    }
+
+    public function removeVl(ClassificatorValue $cl)
+    {
+        global $db;
+        $pattern = $this->prepareVlRemovePattern();
+        $data = $this->prepareVlRemoveQueryData($cl);
+        try {
+            if ($db->query($pattern, $data)) {
+                return 'ok';
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    private function prepareVlRemoveQueryData(ClassificatorValue $cl)
+    {
+        return array($cl->getID());
+    }
+
+    private function prepareVlRemovePattern()
+    {
+        return "DELETE FROM strunkovadb.tclassificatorvalues WHERE classificatorvalueid = ?";
 
     }
 
