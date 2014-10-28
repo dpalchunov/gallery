@@ -19,7 +19,7 @@ String.prototype.hashCode = function () {
 }
 
 $(document).ready(function () {
-    addControlsClickHandlers();
+    addControlsClickHandlers('*');
     addFieldsChangeHandlers();
     console.log('start handlers');
     addSubmitHandlers();
@@ -45,7 +45,7 @@ $(document).ready(function () {
         })
             .done(function (msg) {
                 $("#classificator").html(msg);
-                addControlsClickHandlers();
+                addControlsClickHandlers('*');
                 addFieldsChangeHandlers();
                 addSubmitHandlers();
                 setCurrentHashes();
@@ -65,7 +65,6 @@ $(document).ready(function () {
     }
 
     function removeVlHandler(id) {
-
         $.ajax({
             type: "POST",
             url: "classificator_del_v.php",
@@ -86,9 +85,60 @@ $(document).ready(function () {
     }
 
 
-    function addControlsClickHandlers() {
-        var $removeClButtons = $(".c_remove_href");
-        var $removeVlButtons = $(".v_remove_href");
+    function addClChildHandler() {
+        $.ajax({
+            type: "POST",
+            url: "classificator_add_cl_child.php",
+            data: { parent_id: id, eng_name: '', rus_name: '' }
+        })
+            .done(function (msg) {
+                reloadClassificators();
+            });
+    }
+
+    function addClHandler(addBefore) {
+        $.ajax({
+            type: "POST",
+            url: "classificator_add_cl.php",
+            data: { eng_name: 'test', rus_name: 'test' }
+        })
+            .done(function (new_cl_id) {
+                $.ajax({
+                    type: "POST",
+                    url: "classificator_edit_get_cl_html.php",
+                    data: { id: new_cl_id }
+                })
+                    .done(function (msg) {
+                        console.log('start');
+                        console.log(msg);
+                        console.log(addBefore)
+                        $('#' + addBefore).before(msg);
+                        addControlsClickHandlers("*[target='classificator_area_" + new_cl_id + "']");
+                    });
+            });
+    }
+
+
+    function addVlChildHandler() {
+        $.ajax({
+            type: "POST",
+            url: "classificator_add_vl_child.php",
+            data: { parent_id: id, eng_value: '', rus_value: ''  }
+        })
+            .done(function (msg) {
+                reloadClassificators();
+            });
+    }
+
+
+    function addControlsClickHandlers(filterString) {
+        var $removeClButtons = $(".c_remove_href").filter(filterString);
+        var $removeVlButtons = $(".v_remove_href").filter(filterString);
+        var $cl = $(".c_save_href").filter(filterString);
+        var $vl = $(".v_save_href").filter(filterString);
+        var $addChildClButtons = $(".c_add_child_href").filter(filterString);
+        var $addChildVlButtons = $(".v_add_child_href").filter(filterString);
+        var $addClButtons = $(".c_add_href").filter(filterString);
 
         $removeClButtons.each(function () {
             $(this).click(function () {
@@ -115,14 +165,12 @@ $(document).ready(function () {
             });
 
         });
-
-        var $cl = $(".c_save_href");
-        var $vl = $(".v_save_href");
         var $saveButtons = $cl.add($vl);
+
 
         $saveButtons.each(function () {
             $(this).click(function () {
-                saveHandler($(this).attr("form_id"), $(this).attr("hash_holder"))
+                saveHandler($(this).attr("form_id"), $(this).attr("target"))
             });
 
             $(this).hover(function () {
@@ -131,7 +179,26 @@ $(document).ready(function () {
                 $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
             });
 
+        });
+
+        $addClButtons.each(function () {
+            $(this).click(function () {
+                addClHandler($(this).attr('add_before'))
+            });
+        });
+
+        $addChildClButtons.each(function () {
+            $(this).click(function () {
+                addClChildHandler($(this).attr('cl_id'))
+            });
         })
+
+        $addChildVlButtons.each(function () {
+            $(this).click(function () {
+                addVlChildHandler($(this).attr('vl_id'))
+            });
+        });
+
 
     }
 

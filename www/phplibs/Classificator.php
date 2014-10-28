@@ -26,6 +26,12 @@ class  Classificator
         $this->setValues(array());
     }
 
+    public function __construct2($rusname, $engname)
+    {
+        $this->setRusName($rusname);
+        $this->setEngName($engname);
+    }
+
     public function echoValues()
     {
         foreach ($this->values as $value) {

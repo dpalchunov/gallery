@@ -196,14 +196,15 @@ class ClassificatorManager
     }
 
 
-    public function InsertCl(Classificator $cl)
+    public function insertCl(Classificator $cl)
     {
         global $db;
         $pattern = $this->prepareInsertClPattern();
         $data = $this->prepareInsertClQueryData($cl);
         try {
             if ($db->query($pattern, $data)) {
-                return 'ok';
+                $last_id = $this->getLastID();
+                return $last_id;
             } else {
                 return null;
             }
@@ -212,6 +213,25 @@ class ClassificatorManager
             return null;
         }
     }
+
+
+    public function getLastID()
+    {
+        global $db;
+        $pattern = $this->prepareGetLastIDPattern();
+        try {
+            if ($res = $db->query($pattern, NULL, 'assoc')) {
+                $first_row = $res[0];
+                return $first_row['id'];
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
 
     private function prepareInsertClQueryData(Classificator $cl)
     {
@@ -225,8 +245,12 @@ class ClassificatorManager
 
     private function prepareInsertClPattern()
     {
-        return "INSERT INTO strunkovadb.tclassificators (rusname,engname) VALUES (?,?)";
+        return "INSERT INTO strunkovadb.tclassificators (rusname,engname) VALUES (?,?);";
+    }
 
+    private function prepareGetLastIDPattern()
+    {
+        return "SELECT LAST_INSERT_ID() as id;";
     }
 
     private function prepareUpdateClPattern()

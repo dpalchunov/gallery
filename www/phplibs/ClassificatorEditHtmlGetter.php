@@ -3,21 +3,24 @@ require_once 'phplibs/PictureObjManager.php';
 
 class  ClassificatorEditHtmlGetter
 {
-    public function  getHTMLCode()
+    public function getClHtmlCode(Classificator $cl)
     {
-        $cl_man = new ClassificatorManager();
-        $cls = $cl_man->selectAllClassificators();
-        $clsHtml = '';
-        foreach ($cls as $cl) {
-            $id = $cl->getID();
+        $id = $cl->getID();
 
-            $rusName = $cl->getRusName();
-            $engName = $cl->getEngName();
+        $rusName = $cl->getRusName();
+        $engName = $cl->getEngName();
 
-            $clsHtml = $clsHtml .
-                "
+        $clHtml =
+            "
                  <div id=\"classificator_area_{$id}_header\" class=\"one_element_header\" name_holder1=\"cl_rus_input_{$id}\" name_holder2=\"cl_eng_input_{$id}\">
-                    {$engName} - {$rusName}
+                    <div class=\"header_text\" >
+                        {$engName} - {$rusName}
+                    </div>
+                     <div class=\"controls_header\">
+                        <div class=\"control add_child green\" area=\"classificator_area_{$id}\">
+                            <a class=\"c_add_href\" add_before=\"classificator_area_{$id}_header\" href=\"javascript: void(0)\" target=\"classificator_area_{$id}\" > add new</a>
+                        </div>
+                    </div>
                  </div>
                  <div id=\"classificator_area_{$id}\" class=\"one_element\">
                     <div class=\"field_editor_div\">
@@ -35,16 +38,31 @@ class  ClassificatorEditHtmlGetter
                     </div>
                      <div class=\"controls\">
                         <div class=\"control remove red\" area=\"classificator_area_{$id}\">
-                            <a class=\"c_remove_href\" area=\"classificator_area_{$id}\" cl_id=\"{$id}\" hash_holder=\"classificator_area_{$id}\" href=\"javascript: void(0)\" > remove</a>
+                            <a class=\"c_remove_href\" area=\"classificator_area_{$id}\" cl_id=\"{$id}\" target=\"classificator_area_{$id}\" href=\"javascript: void(0)\" > remove</a>
+                        </div>
+                        <div class=\"control add_child green\" area=\"classificator_area_{$id}\">
+                            <a class=\"c_add_child_href\" area=\"classificator_area_{$id}\" cl_id=\"{$id}\" target=\"classificator_area_{$id}\" href=\"javascript: void(0)\" > + child</a>
                         </div>
                         <div  class=\"control save green\" area=\"classificator_area_{$id}\">
-                            <a class=\"c_save_href\" area=\"classificator_area_{$id}\" cl_id=\"{$id}\" href=\"javascript: void(0)\" hash_holder=\"classificator_area_{$id}\" form_id=\"classificator_form_{$id}\" > save</a>
+                            <a class=\"c_save_href\" area=\"classificator_area_{$id}\" cl_id=\"{$id}\" href=\"javascript: void(0)\" target=\"classificator_area_{$id}\" form_id=\"classificator_form_{$id}\" > save</a>
                         </div>
                     </div>
                     <div class=\"values\">" .
-                $this->getValuesHtmlCode($cl->getValues())
-                . "</div>
+            $this->getValuesHtmlCode($cl->getValues())
+            . "</div>
                 </div>";
+        return $clHtml;
+    }
+
+
+    public function  getHTMLCode()
+    {
+        $cl_man = new ClassificatorManager();
+        $cls = $cl_man->selectAllClassificators();
+        $clsHtml = '';
+        foreach ($cls as $cl) {
+            $clHtml = $this->getClHtmlCode($cl);
+            $clsHtml = $clsHtml . $clHtml;
         }
         return $clsHtml;
     }
@@ -77,6 +95,9 @@ class  ClassificatorEditHtmlGetter
                      <div class=\"controls\">
                         <div class=\"control remove red\" area=\"values_area_{$v_id}\">
                             <a class=\"v_remove_href\" area=\"values_area_{$v_id}\" vl_id=\"{$v_id}\" href=\"javascript: void(0)\" > remove</a>
+                        </div>
+                         <div class=\"control add_child green\" area=\"classificator_area_{$v_id}\">
+                            <a class=\"c_add_child_href\" area=\"classificator_area_{$v_id}\" vl_id=\"{$v_id}\" hash_holder=\"classificator_area_{$v_id}\" href=\"javascript: void(0)\" > + child</a>
                         </div>
                         <div class=\"control save green\" area=\"values_area_{$v_id}\">
                             <a class=\"v_save_href\" area=\"values_area_{$v_id}\" vl_id=\"{$v_id}\" href=\"javascript: void(0)\" hash_holder=\"values_area_{$v_id}\" form_id=\"classificator_value_form_{$v_id}\" > save</a>

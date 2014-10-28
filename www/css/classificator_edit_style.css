@@ -137,6 +137,24 @@ blockquote {
     margin-left: 10px;
 }
 
+.controls_header {
+    display: inline-block;
+    width: 40%;
+    float: right;
+    margin-left: 10px;
+    height: 20px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.header_text {
+    display: inline-block;
+    width: 50%;
+    float: left;
+    margin-left: 10px;
+    height: 20px;
+}
+
 .control {
     margin-left: 10px;
     float: right
@@ -155,6 +173,20 @@ blockquote {
 }
 
 .controls a:hover {
+    text-decoration: underline;
+    outline: none;
+    color: #000000;
+    font-size: 20px;
+}
+
+.controls_header a {
+    text-decoration: none;
+    outline: none;
+    color: #000000;
+    font-size: 20px;
+}
+
+.controls_header a:hover {
     text-decoration: underline;
     outline: none;
     color: #000000;
