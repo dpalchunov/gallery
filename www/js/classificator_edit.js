@@ -20,10 +20,10 @@ String.prototype.hashCode = function () {
 
 $(document).ready(function () {
     addControlsClickHandlers('*');
-    addFieldsChangeHandlers();
+    addFieldsChangeHandlers('*');
     console.log('start handlers');
-    addSubmitHandlers();
-    setCurrentHashes();
+    addSubmitHandlers('*');
+    setCurrentHashes('*');
 
 
     function randomCalorize() {
@@ -46,9 +46,9 @@ $(document).ready(function () {
             .done(function (msg) {
                 $("#classificator").html(msg);
                 addControlsClickHandlers('*');
-                addFieldsChangeHandlers();
-                addSubmitHandlers();
-                setCurrentHashes();
+                addFieldsChangeHandlers('*');
+                addSubmitHandlers('*');
+                setCurrentHashes('*');
             });
     }
 
@@ -115,6 +115,11 @@ $(document).ready(function () {
                         console.log(addBefore)
                         $('#' + addBefore).before(msg);
                         addControlsClickHandlers("*[target='classificator_area_" + new_cl_id + "']");
+                        addFieldsChangeHandlers("*[hash_holder='classificator_area_" + new_cl_id + "']");
+                        setCurrentHashes('#classificator_area_' + new_cl_id);
+                        addSubmitHandlers('#classificator_form_' + new_cl_id);
+
+
                     });
             });
     }
@@ -203,9 +208,10 @@ $(document).ready(function () {
 
     }
 
-    function addFieldsChangeHandlers() {
-        var $inputs = $(".field_editor_input");
+    function addFieldsChangeHandlers(filterString) {
+        var $inputs = $(".field_editor_input").filter(filterString);
 
+        console.log(filterString);
         $inputs.each(function () {
             $(this).keyup(function () {
                 console.log('fire');
@@ -231,9 +237,9 @@ $(document).ready(function () {
         });
     }
 
-    function addSubmitHandlers() {
+    function addSubmitHandlers(filter) {
         console.log('submit handler work');  //den_debug
-        var $forms = $(".field_editor_form");
+        var $forms = $(".field_editor_form").filter(filter);
 
         $forms.each(function () {
             $(this).submit(function (e) {
@@ -252,8 +258,8 @@ $(document).ready(function () {
         });
     }
 
-    function setCurrentHashes() {
-        var $areas = $(".one_element");
+    function setCurrentHashes(filter) {
+        var $areas = $(".one_element").filter(filter);
         $areas.each(function () {
             refreshHash($(this));
         });
