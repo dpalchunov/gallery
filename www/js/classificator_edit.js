@@ -60,7 +60,8 @@ $(document).ready(function () {
             data: { id: id }
         })
             .done(function (msg) {
-                reloadClassificators();
+                $('#classificator_area_' + id + '_header').remove();
+                $('#classificator_area_' + id).remove();
             });
     }
 
@@ -219,12 +220,13 @@ $(document).ready(function () {
                 } else {
                     $(".save[area='" + hashHolderID + "']").hide();
                 }
-                var header = $('#' + hashHolderID + '_header');
+                var header = $('#' + hashHolderID + '_header')
+                var header_text = header.find('.header_text');
                 var engNameID = header.attr('name_holder1');
                 var rusNameID = header.attr('name_holder2');
                 var engName = $('#' + engNameID);
                 var rusName = $('#' + rusNameID);
-                header.html($(rusName).attr('value') + ' - ' + $(engName).attr('value'));
+                header_text.html($(rusName).attr('value') + ' - ' + $(engName).attr('value'));
             });
         });
     }

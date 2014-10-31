@@ -319,7 +319,7 @@ class ClassificatorManager
     }
 
 
-    public function removeClByID(String $cl_id)
+    public function removeClByID($cl_id)
     {
         global $db;
         $pattern = $this->prepareRemoveClPattern();
