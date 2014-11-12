@@ -37,6 +37,7 @@
 
 
 <body>
+<div id="dialog" title=""></div>
 <div id="wrap">
     <div id="header">
         <div id="header_name">

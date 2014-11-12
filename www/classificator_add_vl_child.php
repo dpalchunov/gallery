@@ -3,7 +3,9 @@
 require_once 'phplibs/ClassificatorManager.php';
 $man = new ClassificatorManager();
 
-$res = $man->removeClByID($_POST["id"]);
-echo $res;
+$vl = new ClassificatorValue($_POST["rus_value"], $_POST["eng_value"], $_POST["parent_id"], $_POST["classificator_id"]);
+
+$res = $man->insertVl($vl);
+echo json_encode($res);
 
 ?>

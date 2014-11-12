@@ -32,6 +32,14 @@ class  ClassificatorValue
         $this->setClassificatorid($classificatorid);
     }
 
+    public function __construct4($rusvalue, $engvalue, $parent_id, $classificatorid)
+    {
+        $this->setRusName($rusvalue);
+        $this->setEngName($engvalue);
+        $this->setParentID($parent_id);
+        $this->setClassificatorid($classificatorid);
+    }
+
     public function echoValues()
     {
         foreach ($this->values as $value) {

@@ -67,18 +67,27 @@ class  ClassificatorEditHtmlGetter
         return $clsHtml;
     }
 
-    public function  getValuesHtmlCode(array $vls)
+    public function  getValuesHTMLCode(array $vls)
+    {
+        $vlsHtml = '';
+        foreach ($vls as $vl) {
+            $vlHtml = $this->getVlHtmlCode($vl);
+            $vlsHtml = $vlsHtml . $vlHtml;
+        }
+        return $vlsHtml;
+    }
+
+    public function  getVlHtmlCode($vl)
     {
 
-        $vsHtml = '';
-        foreach ($vls as $vl) {
-            $v_id = $vl->getID();
+        $v_id = $vl->getID();
 
-            $rusValue = $vl->getRusValue();
-            $engValue = $vl->getEngValue();
+        $rusValue = $vl->getRusValue();
+        $engValue = $vl->getEngValue();
+        $cl_id = $vl->getClassificatorid();
 
-            $vsHtml = $vsHtml .
-                "<div id=\"values_area_{$v_id}\" class=\"one_element\">
+        $vlHtml =
+            "<div id=\"values_area_{$v_id}\" class=\"one_element\">
                     <div class=\"field_editor_div\">
                         <form id=\"classificator_value_form_{$v_id}\" class=\"field_editor_form\" action=\"classificator_value_update.php\">
                             <input name=\"id\" type=\"hidden\" value=\"$v_id\">
@@ -94,21 +103,20 @@ class  ClassificatorEditHtmlGetter
                     </div>
                      <div class=\"controls\">
                         <div class=\"control remove red\" area=\"values_area_{$v_id}\">
-                            <a class=\"v_remove_href\" area=\"values_area_{$v_id}\" vl_id=\"{$v_id}\" href=\"javascript: void(0)\" > remove</a>
+                            <a class=\"v_remove_href\" area=\"values_area_{$v_id}\" vl_id=\"{$v_id}\" target=\"values_area_{$v_id}\" href=\"javascript: void(0)\" > remove</a>
                         </div>
-                         <div class=\"control add_child green\" area=\"classificator_area_{$v_id}\">
-                            <a class=\"c_add_child_href\" area=\"classificator_area_{$v_id}\" vl_id=\"{$v_id}\" hash_holder=\"classificator_area_{$v_id}\" href=\"javascript: void(0)\" > + child</a>
+                         <div class=\"control add_child green\" area=\"values_area_{$v_id}\">
+                            <a class=\"v_add_child_href\" area=\"values_area_{$v_id}\" vl_id=\"{$v_id}\"  cl_id=\"{$cl_id}\"  target=\"values_area_{$v_id}\" href=\"javascript: void(0)\" > + child</a>
                         </div>
                         <div class=\"control save green\" area=\"values_area_{$v_id}\">
-                            <a class=\"v_save_href\" area=\"values_area_{$v_id}\" vl_id=\"{$v_id}\" href=\"javascript: void(0)\" hash_holder=\"values_area_{$v_id}\" form_id=\"classificator_value_form_{$v_id}\" > save</a>
+                            <a class=\"v_save_href\" area=\"values_area_{$v_id}\" vl_id=\"{$v_id}\" href=\"javascript: void(0)\" target=\"values_area_{$v_id}\" form_id=\"classificator_value_form_{$v_id}\" > save</a>
                         </div>
                     </div>
                     <div class=\"values\">" .
-                $this->getValuesHtmlCode($vl->getValues())
-                . "</div>
+            $this->getValuesHtmlCode($vl->getValues(), $cl_id)
+            . "</div>
                 </div>";
-        }
-        return $vsHtml;
+        return $vlHtml;
     }
 
 }

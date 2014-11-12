@@ -1,8 +1,11 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: dpalchunov
- * Date: 26/10/14
- * Time: 23:25
- * To change this template use File | Settings | File Templates.
- */
+
+require_once 'phplibs/ClassificatorManager.php';
+$man = new ClassificatorManager();
+
+$vl = new ClassificatorValue($_POST["rus_value"], $_POST["eng_value"], null, $_POST["classificator_id"]);
+
+$res = $man->insertVl($vl);
+echo json_encode($res);
+
+?>

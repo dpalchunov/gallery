@@ -17,13 +17,13 @@ class ClassificatorManager
 
     private function prepareSelectAllClassPattern()
     {
-        return "SELECT * FROM strunkovadb.tclassificators ORDER BY engname";
+        return "SELECT *,cast(classificatorid AS CHAR(10)) AS ord FROM strunkovadb.tclassificators ORDER BY ord ASC";
 
     }
 
     private function prepareSelectAllValuesPattern()
     {
-        return "SELECT * FROM strunkovadb.tclassificatorvalues ORDER BY path";
+        return "SELECT * FROM strunkovadb.tclassificatorvalues ORDER BY path_ids ASC ";
 
     }
 
@@ -180,11 +180,17 @@ class ClassificatorManager
 
     public function updateCl(Classificator $cl)
     {
+        $old_cl_id = $cl->getID();
+        $old_cl = $this->selectClByID($old_cl_id);
+        $old_path = $old_cl->getEngName();
         global $db;
         $pattern = $this->prepareUpdateClPattern();
         $data = $this->prepareUpdateClQueryData($cl);
+
+        $children_pattern = $this->prepareUpdateClChildrenPattern();
+
         try {
-            if ($db->query($pattern, $data)) {
+            if ($db->query($pattern, $data) and $db->query($children_pattern, array($old_path . '%'))) {
                 return 'ok';
             } else {
                 return null;
@@ -260,13 +266,25 @@ class ClassificatorManager
     }
 
 
+    private function prepareUpdateClChildrenPattern()
+    {
+        $res = 'UPDATE strunkovadb.tclassificatorvalues SET path =path WHERE path LIKE ? ORDER BY path_ids ASC';
+        return $res;
+    }
+
+
     public function updateVl(ClassificatorValue $clv)
     {
+        $old_vl_id = $clv->getID();
+        $old_vl = $this->selectVlByID($old_vl_id);
+        $old_path = $old_vl->getPath();
         global $db;
         $pattern = $this->prepareUpdateVlPattern();
         $data = $this->prepareUpdateVLQueryData($clv);
+
+        $children_pattern = $this->prepareUpdateClChildrenPattern();
         try {
-            if ($db->query($pattern, $data)) {
+            if ($db->query($pattern, $data) and $db->query($children_pattern, array($old_path . '%'))) {
                 return 'ok';
             } else {
                 return null;
@@ -283,15 +301,25 @@ class ClassificatorManager
         global $db;
         $pattern = $this->prepareInsertVlPattern();
         $data = $this->prepareInsertVlQueryData($clv);
+        $res = array();
         try {
+
             if ($db->query($pattern, $data)) {
-                return 'ok';
+
+                $last_id = $this->getLastID();
+                $res['return_code'] = 0;
+                $res['res'] = $last_id;
+
             } else {
-                return null;
+                $res['return_code'] = -1;
+                $res['error_message'] = 'error was occurred';
             }
+            return $res;
         } catch (Exception $e) {
-            echo $e->getMessage();
-            return null;
+            $mes = $e->getMessage();
+            $res['return_code'] = -1;
+            $res['error_message'] = $mes;
+            return $res;
         }
     }
 
@@ -303,12 +331,12 @@ class ClassificatorManager
 
     private function prepareInsertVlQueryData(ClassificatorValue $clv)
     {
-        return array($clv->getRusName(), $clv->getEngName(), $clv->getParentID(), $clv->getClassificatorid());
+        return array($clv->getRusValue(), $clv->getEngValue(), $clv->getParentID(), $clv->getClassificatorid());
     }
 
     private function prepareInsertVlPattern()
     {
-        return "INSERT INTO strunkovadb.tclassificatorvalues (rusvalue,engvalue,parentclassificatorvalueid,classificatorid) VALUES (?,?,?,?)";
+        return "INSERT INTO strunkovadb.tclassificatorvalues (rusvalue,engvalue,parentclassificatorvalueid,classificatorid) VALUES (?,?,?INT-NULL,?)";
 
     }
 
@@ -351,13 +379,17 @@ class ClassificatorManager
         return "DELETE FROM strunkovadb.tclassificators WHERE classificatorid = ?";
     }
 
-    public function removeVl(ClassificatorValue $cl)
+    public function removeVl(ClassificatorValue $vl)
+    {
+        removeClByID($vl->getID());
+    }
+
+    public function removeVlByID($vl_id)
     {
         global $db;
         $pattern = $this->prepareVlRemovePattern();
-        $data = $this->prepareVlRemoveQueryData($cl);
         try {
-            if ($db->query($pattern, $data)) {
+            if ($db->query($pattern, array($vl_id))) {
                 return 'ok';
             } else {
                 return null;
@@ -366,11 +398,6 @@ class ClassificatorManager
             echo $e->getMessage();
             return null;
         }
-    }
-
-    private function prepareVlRemoveQueryData(ClassificatorValue $cl)
-    {
-        return array($cl->getID());
     }
 
     private function prepareVlRemovePattern()

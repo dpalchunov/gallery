@@ -77,6 +77,7 @@ class  Classificator
         return $this->id;
     }
 
+
     /**
      * @return mixed
      */

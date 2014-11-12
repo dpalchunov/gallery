@@ -18,6 +18,11 @@ body {
 
 }
 
+#dialog {
+    font-family: Times New Roman, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
 p {
     font-size: 14px;
     color: b9b9b9;

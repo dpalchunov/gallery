@@ -19,6 +19,7 @@ String.prototype.hashCode = function () {
 }
 
 $(document).ready(function () {
+    $("#dialog").dialog({ autoOpen: false });
     addControlsClickHandlers('*');
     addFieldsChangeHandlers('*');
     console.log('start handlers');
@@ -72,7 +73,7 @@ $(document).ready(function () {
             data: { id: id }
         })
             .done(function (msg) {
-                reloadClassificators();
+                $('#values_area_' + id).remove();
             });
     }
 
@@ -85,17 +86,6 @@ $(document).ready(function () {
         console.log('submit');  //den_debug
     }
 
-
-    function addClChildHandler() {
-        $.ajax({
-            type: "POST",
-            url: "classificator_add_cl_child.php",
-            data: { parent_id: id, eng_name: '', rus_name: '' }
-        })
-            .done(function (msg) {
-                reloadClassificators();
-            });
-    }
 
     function addClHandler(addBefore) {
         $.ajax({
@@ -124,15 +114,74 @@ $(document).ready(function () {
             });
     }
 
+    function addClChildHandler(cl_id, values_div) {
+        $.ajax({
+            type: "POST",
+            url: "classificator_add_cl_child.php",
+            data: { eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
+        })
+            .done(function (json_data) {
+                var data = $.parseJSON(json_data);
+                if (data['return_code'] == 0) {
+                    new_vl_id = data['res']
+                    $.ajax({
+                        type: "POST",
+                        url: "classificator_edit_get_vl_html.php",
+                        data: { id: new_vl_id }
+                    })
+                        .done(function (msg) {
+                            console.log('start');
+                            console.log(msg);
+                            values_div.prepend(msg);
+                            addControlsClickHandlers("*[target='values_area_" + new_vl_id + "']");
+                            addFieldsChangeHandlers("*[hash_holder='values_area_" + new_vl_id + "']");
+                            setCurrentHashes('#values_area_' + new_vl_id);
+                            addSubmitHandlers('#classificator_value_form_' + new_vl_id);
 
-    function addVlChildHandler() {
+
+                        });
+                } else {
+                    $("#dialog").html(data['error_message']);
+                    $("#dialog").dialog("open");
+
+                }
+
+            });
+    }
+
+
+    function addVlChildHandler(parent_id, cl_id, values_div) {
         $.ajax({
             type: "POST",
             url: "classificator_add_vl_child.php",
-            data: { parent_id: id, eng_value: '', rus_value: ''  }
+            data: { parent_id: parent_id, eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
         })
-            .done(function (msg) {
-                reloadClassificators();
+            .done(function (json_data) {
+                var data = $.parseJSON(json_data);
+                if (data['return_code'] == 0) {
+                    new_vl_id = data['res']
+                    $.ajax({
+                        type: "POST",
+                        url: "classificator_edit_get_vl_html.php",
+                        data: { id: new_vl_id }
+                    })
+                        .done(function (msg) {
+                            console.log('start');
+                            console.log(msg);
+                            values_div.prepend(msg);
+                            addControlsClickHandlers("*[target='values_area_" + new_vl_id + "']");
+                            addFieldsChangeHandlers("*[hash_holder='values_area_" + new_vl_id + "']");
+                            setCurrentHashes('#values_area_' + new_vl_id);
+                            addSubmitHandlers('#classificator_value_form_' + new_vl_id);
+
+
+                        });
+                } else {
+                    $("#dialog").html(data['error_message']);
+                    $("#dialog").dialog("open");
+
+                }
+
             });
     }
 
@@ -195,13 +244,21 @@ $(document).ready(function () {
 
         $addChildClButtons.each(function () {
             $(this).click(function () {
-                addClChildHandler($(this).attr('cl_id'))
+                var clID = $(this).attr('cl_id');
+                var areaID = $(this).attr('area');
+                var values_div = $('#' + areaID).children('.values');
+                addClChildHandler(clID, values_div);
             });
         })
 
         $addChildVlButtons.each(function () {
             $(this).click(function () {
-                addVlChildHandler($(this).attr('vl_id'))
+                var valueID = $(this).attr('vl_id');
+                var clID = $(this).attr('cl_id');
+                var areaID = $(this).attr('area');
+                var values_div = $('#' + areaID).find('.values');
+                console.log('found div');
+                addVlChildHandler(valueID, clID, values_div);
             });
         });
 
@@ -240,8 +297,10 @@ $(document).ready(function () {
     function addSubmitHandlers(filter) {
         console.log('submit handler work');  //den_debug
         var $forms = $(".field_editor_form").filter(filter);
-
+        console.log(filter);
         $forms.each(function () {
+            console.log('qwe');
+
             $(this).submit(function (e) {
                 e.preventDefault();
                 console.log('fire');  //den_debug
