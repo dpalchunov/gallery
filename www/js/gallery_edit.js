@@ -1,28 +1,35 @@
 //den_todo add time gif when uploading picture (some big picture)
 var cropperHandlerIsActive = true;
 
-String.prototype.hashCode = function(){
-    if (Array.prototype.reduce){
-        return this.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+String.prototype.hashCode = function () {
+    if (Array.prototype.reduce) {
+        return this.split("").reduce(function (a, b) {
+            a = ((a << 5) - a) + b.charCodeAt(0);
+            return a & a
+        }, 0);
     }
     var hash = 0;
     if (this.length === 0) return hash;
     for (var i = 0; i < this.length; i++) {
-        var character  = this.charCodeAt(i);
-        hash  = ((hash<<5)-hash)+character;
+        var character = this.charCodeAt(i);
+        hash = ((hash << 5) - hash) + character;
         hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
 }
 
-$(function() {
-    $( "#slider" ).slider({ max: 100,
-                            min: 0,
-                            step: 1,
-                            value:50 ,
-                            slide: function( event, ui ) { slideHandler();},
-                            stop: function( event, ui ) { slideHandler();}
-                                    } );
+$(function () {
+    $("#slider").slider({ max: 100,
+        min: 0,
+        step: 1,
+        value: 50,
+        slide: function (event, ui) {
+            slideHandler();
+        },
+        stop: function (event, ui) {
+            slideHandler();
+        }
+    });
 });
 
 function slideHandler() {
@@ -32,16 +39,16 @@ function slideHandler() {
 function setPreviewSize() {
     cropperHandlerIsActive = false;
     var data = $(".cropper_img").cropper("getData");
-    var ratio = (data.height)/(data.width);
+    var ratio = (data.height) / (data.width);
 
-    var w = Math.round(440/100*$( "#slider" ).slider( "value" ));
-    var h = Math.round(w*ratio);
+    var w = Math.round(440 / 100 * $("#slider").slider("value"));
+    var h = Math.round(w * ratio);
     $('#cropper-preview').width(w);
     $('#cropper-preview').height(h);
 
 
     //refresh cropper to recalculate preview
-    $(".cropper_img").cropper("setData",data);
+    $(".cropper_img").cropper("setData", data);
     cropperHandlerIsActive = true;
 }
 
@@ -55,7 +62,7 @@ function initCropper() {
             height: 360
         },
         preview: ".cropper-preview",
-        done: function(data) {
+        done: function (data) {
 //            console.log(data);
         }
     });
@@ -66,12 +73,17 @@ function initCropper() {
 
 function setCropperHandler() {
     var $image = $(".cropper_img");
-    $image.on("render.cropper",function() {if (cropperHandlerIsActive) {cropperChangeHandler();}})
+    $image.on("render.cropper", function () {
+        if (cropperHandlerIsActive) {
+            cropperChangeHandler();
+        }
+    })
 }
 
 function unCropperHandler() {
     var $image = $(".cropper_img");
-    $image.on("render.cropper",function() {})
+    $image.on("render.cropper", function () {
+    })
 }
 
 
@@ -79,19 +91,19 @@ function cropperChangeHandler() {
     setPreviewSize();
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
 
 
     var $image = $(".cropper_img");
     var currentSrc;
     initCropper();
     var savehref = $('#gallery_save_pic');
-    savehref.click(function() {
+    savehref.click(function () {
         saveCropHandler();
     });
 
     var cancelhref = $('#gallery_cancel_pic');
-    cancelhref.click(function() {
+    cancelhref.click(function () {
         cancelCropHandler();
     });
 
@@ -101,24 +113,24 @@ $(document).ready(function(){
     setCurrentHashes();
 
     $("#fileuploader").uploadFile({
-        url:"./gallery_upload_pic.php",
-        fileName:"myfile",
-        onSuccess:function(files,json_data,xhr) {
+        url: "./gallery_upload_pic.php",
+        fileName: "myfile",
+        onSuccess: function (files, json_data, xhr) {
 
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
             var img_h = data[2];
             changeSrc(data[0]);
-            img_tag_size = calc_img_size(img_w,img_h);
+            img_tag_size = calc_img_size(img_w, img_h);
             afterUpload(img_tag_size);
             resizeDragAndDrop(img_tag_size);
 
         },
-        uploadButtonClass:"green ajax-file-upload",
-        showDone:false,
-        showProgress:false,
-        allowedTypes:"jpg,jpeg,png,gif"
+        uploadButtonClass: "green ajax-file-upload",
+        showDone: false,
+        showProgress: false,
+        allowedTypes: "jpg,jpeg,png,gif"
     });
 
     function beforeUpload() {
@@ -131,7 +143,7 @@ $(document).ready(function(){
 
     function changeSrc(data) {
         var d = new Date();
-        currentSrc =  "./" + data
+        currentSrc = "./" + data
         var src = currentSrc + "?" + d.getTime();
 
         $image.cropper("setImgSrc", src);
@@ -148,29 +160,28 @@ $(document).ready(function(){
     }
 
 
-    function calc_img_size(img_w,img_h) {
-        return  img_h*600/img_w;
+    function calc_img_size(img_w, img_h) {
+        return  img_h * 600 / img_w;
     }
 
     function resizeDragAndDrop(img_tag_size) {
         if (img_tag_size > 315) {
             h = img_tag_size - 275;
-        }  else
-        {
+        } else {
             h = 40;
         }
 
-        $(".ajax-upload-dragdrop").css('height',parseInt(h));
+        $(".ajax-upload-dragdrop").css('height', parseInt(h));
 
     }
 
-    function saveCropHandler () {
+    function saveCropHandler() {
         $.ajax({
             type: "POST",
             url: "gallery_save_pic.php",
-            data: { pic_src: currentSrc , pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width() ,h: $('#cropper-preview').height()}
+            data: { pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
         })
-            .done(function( msg ) {
+            .done(function (msg) {
                 //console.log(msg);      //den_debug
                 hideUploadControls();
                 reloadGallery();
@@ -178,7 +189,7 @@ $(document).ready(function(){
             });
     }
 
-    function cancelCropHandler () {
+    function cancelCropHandler() {
         hideUploadControls();
         initCropper();
     }
@@ -199,7 +210,7 @@ $(document).ready(function(){
             type: "POST",
             url: "gallery_edit_get_gallery.php"
         })
-            .done(function( msg ) {
+            .done(function (msg) {
                 $("#gallery").html(msg);
                 addControlsClickHandlers();
                 addFieldsChangeHandlers();
@@ -214,57 +225,59 @@ $(document).ready(function(){
             url: "gallery_del_pic.php",
             data: { file_name: src }
         })
-            .done(function( msg ) {
+            .done(function (msg) {
                 reloadGallery();
             });
     }
 
 
-    function saveHandler(formID) {
+    function saveHandler(formID, hashHolderID) {
         $("#" + formID).submit();
+        $(".save_pic[area='" + hashHolderID + "']").hide();
+        refreshHashByID(hashHolderID);
     }
-
 
 
     function addControlsClickHandlers() {
         var $removeButtons = $(".remove_href");
 
-        $removeButtons.each(function() {
-            $(this).click(function() {
+        $removeButtons.each(function () {
+            $(this).click(function () {
                 removeHandler($(this).attr("file_name"))
             });
 
-            $(this).hover(function() {
-                $("#" + $(this).attr("area")).css("background-color","#D16464");
-            },function() {
-                $("#" + $(this).attr("area")).css("background-color","#d2dfe3");
+            $(this).hover(function () {
+                $("#" + $(this).attr("area")).css("background-color", "#D16464");
+            }, function () {
+                $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
             });
 
         });
 
         var $saveButtons = $(".save_href");
 
-        $saveButtons.each(function() {
-            $(this).click(function() {
-                saveHandler($(this).attr("form_id"))
+        $saveButtons.each(function () {
+            $(this).click(function () {
+                saveHandler($(this).attr("form_id"), $(this).attr("area"))
             });
 
-            $(this).hover(function() {
-                $("#" + $(this).attr("area")).css("background-color","#5d9f7a");
-            },function() {
-                $("#" + $(this).attr("area")).css("background-color","#d2dfe3");
+            $(this).hover(function () {
+                $("#" + $(this).attr("area")).css("background-color", "#5d9f7a");
+            }, function () {
+                $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
             });
 
         });
 
     }
+
     function addFieldsChangeHandlers() {
         var $inputs = $(".field_editor_input");
 
-        $inputs.each(function() {
-            $(this).change(function() {
+        $inputs.each(function () {
+            $(this).change(function () {
                 var $hashHolderID = $(this).attr("hash_holder");
-                var $oldHash = $("#"+$hashHolderID).attr("hash");
+                var $oldHash = $("#" + $hashHolderID).attr("hash");
                 var $newHash = calcFormHash($hashHolderID);
                 if ($oldHash != $newHash) {
                     $(".save_pic[area='" + $hashHolderID + "']").show();
@@ -278,16 +291,16 @@ $(document).ready(function(){
     function addSubmitHandlers() {
         var $forms = $(".field_editor_form");
 
-        $forms.each(function() {
-            $(this).submit(function(e) {
+        $forms.each(function () {
+            $(this).submit(function (e) {
                 e.preventDefault();
-       //         console.log($(this).serialize());  //den_debug
+                //         console.log($(this).serialize());  //den_debug
                 $.ajax({
                     type: "POST",
                     url: "gallery_update_pic.php",
                     data: $(this).serialize(),
-                    success: function(data) {
-     //                   console.log(data);  //den_debug
+                    success: function (data) {
+                        //                   console.log(data);  //den_debug
                     }
                 })
             });
@@ -296,16 +309,26 @@ $(document).ready(function(){
 
     function setCurrentHashes() {
         var $areas = $(".one_element");
-        $areas.each(function() {
+        $areas.each(function () {
             $hash = calcFormHash($(this).attr('id'));
-            $(this).attr('hash',$hash);
+            $(this).attr('hash', $hash);
         });
+    }
+
+
+    function refreshHashByID(ID) {
+        refreshHash($('#' + ID));
+    }
+
+    function refreshHash(hash_holder) {
+        var hash = calcFormHash($(hash_holder).attr('id'));
+        $(hash_holder).attr('hash', hash);
     }
 
     function calcFormHash(hash_holder_id) {
         var $fields = $("[hash_holder='" + hash_holder_id + "']");
         var $content = '';
-        $fields.each(function() {
+        $fields.each(function () {
             $content += $(this).attr("value") + $(this).prop("checked");
         });
         var $hash = new String($content).hashCode();
