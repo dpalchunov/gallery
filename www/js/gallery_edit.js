@@ -162,11 +162,15 @@ function loadAndSetPaths() {
 }
 
 function splitPath(path) {
-    if (path === 'undefined') {
-        return new Array();
-    } else {
-        return path.split('/');
+    var res = new Array();
+    if (path != 'undefined' && path != undefined) {
+        $.each(path.split('/'), function (i, v) {
+            if (v.trim() != '') {
+                res.push(v);
+            }
+        })
     }
+    return res;
 }
 
 function joinPath(arr) {
@@ -193,17 +197,44 @@ function getClValues() {
 }
 
 
-function createClValues() {
-    $(".cl_text_edit").each(function () {
-        var path = $(this).attr("value");
+function saveValuesRelations(hashHolderID, pic_id) {
+    $(".cl_text_edit[hash_holder='" + hashHolderID + "']").each(function () {
+        var cl_id = $(this).attr("db_id");
+        var path = $(this).attr("value").trim();
         if (path != '') {
-            searchVlIDbyPath($(this).attr("db_id"), path);
+            var res;
+
+            function iteration() {
+                res = searchVlIDbyPath(cl_id, path);
+            }
+
+            iteration();
+            if (res.rest_path.trim() != '') {
+
+                createNewClValue(cl_id, res.vid, pic_id, res.rest_path);
+
+                iteration();
+            }
+            //create link
+
+
         }
     })
 }
 
+
+function createNewClValue(cl_id, v_id, pic_id, new_branch) {
+    $.ajax({
+        type: "POST",
+        url: "classificator_add_vl_branch.php",
+        data: {cl_id: cl_id, v_id: v_id, pic_id: pic_id, new_branch: new_branch},
+        success: function (data) {
+            console.log(data);  //den_debug
+        }
+    });
+}
+
 function searchVlIDbyPath(cl_db_id, path) {
-    var res = 0;
     var pathPoints = splitPath(path);
     var pathLength = pathPoints.length;
 
@@ -212,9 +243,9 @@ function searchVlIDbyPath(cl_db_id, path) {
         var level = 0;
         var point = pathPoints[level];
         var pointFound = true;
-        var vid;
+        var vid = 0;
         while (level < pathLength && pointFound) {
-            res = searchPoint(point, valuesTree, level);
+            var res = searchPoint(point, valuesTree, level);
             valuesTree = res.tree;
             if (res.vid > 0) {
                 vid = res.vid;
@@ -224,12 +255,13 @@ function searchVlIDbyPath(cl_db_id, path) {
             point = pathPoints[level];
         }
         var restPath = '';
-        if (level < pathLength) {
+
+        if (!pointFound && level <= pathLength) {
             restPath = joinPath(pathPoints, level - 1, pathLength);
         }
-        console.log(path + ' ' + vid + ' ' + restPath);
     }
-    return res;
+    f_ret = {vid: vid, rest_path: restPath};
+    return f_ret;
 }
 
 function searchPoint(in_point, in_valuesTree, level) {
@@ -279,7 +311,6 @@ function searchPoint(in_point, in_valuesTree, level) {
 function filterByLevel(valuesTree, level) {
     res = new Array();
     $.each(valuesTree, function (i, v) {
-        console.log(v);
         if (splitPath(v.v).length >= (level + 1)) {
             res.push(v);
         }
@@ -400,8 +431,8 @@ function removeHandler(src) {
 }
 
 
-function saveHandler(formID, hashHolderID) {
-    createClValues();
+function saveHandler(formID, hashHolderID, pic_id) {
+    saveValuesRelations(hashHolderID, pic_id);
     $("#" + formID).submit();
     $(".save_pic[area='" + hashHolderID + "']").hide();
     refreshHashByID(hashHolderID);
@@ -428,7 +459,7 @@ function addControlsClickHandlers() {
 
     $saveButtons.each(function () {
         $(this).click(function () {
-            saveHandler($(this).attr("form_id"), $(this).attr("area"))
+            saveHandler($(this).attr("form_id"), $(this).attr("area"), $(this).attr("pic_id"))
         });
 
         $(this).hover(function () {

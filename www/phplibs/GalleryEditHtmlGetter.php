@@ -46,12 +46,12 @@ class  GalleryEditHtmlGetter
                             <a class=\"remove_href\" area=\"area_{$file_base}\" file_name=\"{$file_name}\" href=\"javascript: void(0)\" > remove</a>
                         </div>
                         <div class=\"control save_pic green\" area=\"area_{$file_base}\">
-                            <a class=\"save_href\" area=\"area_{$file_base}\" file_name=\"{$file_name}\" href=\"javascript: void(0)\" form_id=\"form_{$file_base}\" > save</a>
+                            <a class=\"save_href\" pic_id =\"{$id}\" area=\"area_{$file_base}\" file_name=\"{$file_name}\" href=\"javascript: void(0)\" form_id=\"form_{$file_base}\" > save</a>
                         </div>
                     </div>
                     <div class=\"field_editor_div\">
                         <form id=\"form_{$file_base}\" class=\"field_editor_form\" action=\"gallery_update_pic.php\">
-                            <input name=\"id\" type=\"hidden\" value=\"$id\">
+                            <input name=\"id\" type=\"hidden\" value=\"{$id}\">
                             <div class=\"rus_desc_div\">
                                 <label class=\"field_editor_label\">Desc in russian </label>
                                 <textarea name=\"rus_desc\" class=\"rus_desc_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$rusDesc</textarea>
