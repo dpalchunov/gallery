@@ -39,7 +39,7 @@ a:hover {
 
 code {
     font-family: "Courier New", Courier, monospace;
-    color:#000;
+    color: #000;
 }
 
 blockquote {
@@ -78,7 +78,6 @@ blockquote {
 
 }
 
-
 #header_underline {
     height: 1px;
     background: #727272;
@@ -96,10 +95,7 @@ blockquote {
 
 }
 
-
 /*Main content*/
-
-
 
 #gallery_editor_content {
     width: 1300px;
@@ -126,7 +122,7 @@ blockquote {
 .pic {
     left: 50px;
     position: relative;
-    float:left;
+    float: left;
     display: inline-block;
     margin-right: 50px;
     background-repeat: no-repeat;
@@ -137,14 +133,13 @@ blockquote {
 .controls {
     display: inline-block;
     width: 600px;
-    float:left;
+    float: left;
     margin-left: 10px;
 }
 
 .control {
     margin-left: 10px;
 }
-
 
 .fileuploader_wrapper {
     display: inline-block;
@@ -165,7 +160,6 @@ blockquote {
     font-size: 20px;
 }
 
-
 .green a {
     color: #006200;
 }
@@ -173,7 +167,6 @@ blockquote {
 .green a:hover {
     color: #006200;
 }
-
 
 .red a:hover {
     color: #620000;
@@ -183,34 +176,32 @@ blockquote {
     color: #620000;
 }
 
-
 #uploaded {
     width: 1100px;
     margin: 20px;
     position: relative;
-    display:inline-block;
+    display: inline-block;
 }
 
-
 #uploaded_left {
-    left:0px;
-    top:0px;
+    left: 0px;
+    top: 0px;
     width: 600px;
     position: relative;
-    display:inline-block;
-    float:left;
+    display: inline-block;
+    float: left;
     margin-right: 20px;
 }
 
 #uploaded_right {
     width: 440px;
     position: relative;
-    display:inline-block;
-    float:left;
+    display: inline-block;
+    float: left;
 }
 
-#save_cancel{
-    display:none;
+#save_cancel {
+    display: none;
 }
 
 .uploaded_img {
@@ -227,24 +218,20 @@ blockquote {
     position: relative;
 }
 
-#cropper_image{
+#cropper_image {
     overflow: hidden;
 }
 
 .cropper-preview {
     overflow: hidden;
-    margin-bottom:20px;
+    margin-bottom: 20px;
     position: relative;
     height: 219px;
     width: 440px;
-    float:left;
+    float: left;
     margin-right: 20px;
 
 }
-
-
-
-
 
 #add_new {
     height: 50px;
@@ -260,7 +247,6 @@ blockquote {
     margin: 20px;
     position: relative;
 }
-
 
 @font-face {
     font-family: Garamond; /* ��������� ������ */
@@ -281,7 +267,7 @@ blockquote {
     font-size: 17pt;
 }
 
-.info a{
+.info a {
 
     font-family: Garamond, 'Garamond Premier Pro';
     color: black;
@@ -300,8 +286,6 @@ blockquote {
     height: 8pt;
 }
 
-
-
 .container {
     margin-top: 10px;
     height: 64px;
@@ -310,33 +294,32 @@ blockquote {
     display: block;
 }
 
-.container:hover img{
+.container:hover img {
 
     margin-top: -64px;
 }
 
-.remove_pic{
+.remove_pic {
     display: inline-block;
-    float:right;
+    float: right;
 }
 
-.save_pic{
+.save_pic {
     display: inline-block;
-    float:right;
+    float: right;
     display: none;
 }
 
 #slider {
     margin-bottom: 10px;
-    display:none;
+    display: none;
 }
-
 
 /*Footer*/
 #footer {
     position: relative;
     top: 0px;
-    left:0px;
+    left: 0px;
     height: 80px;
     width: 100%;
     color: #FFFFFF;
@@ -353,24 +336,31 @@ blockquote {
     background-repeat: no-repeat;
 }
 
-.field_editor_div{
-    width:600px;
-    float:left;
-    margin-left:10px;
+.field_editor_div {
+    width: 600px;
+    float: left;
+    margin-left: 10px;
 }
 
-.field_editor_form{
+.classification_div {
+    width: 600px;
+    float: left;
+    margin-top: 20px;
+}
+
+.field_editor_form {
     width: 600px;
 
-    display:inline-block;
+    display: inline-block;
 }
-.rus_desc_div{
+
+.rus_desc_div {
     width: 600px;
-    display:inline-block;
+    display: inline-block;
     resize: both;
 }
 
-.rus_desc_input{
+.rus_desc_input {
     margin-left: 10px;
     float: right;
     width: 350px;
@@ -378,13 +368,18 @@ blockquote {
     height: 60px;
 }
 
-.eng_desc_div{
+.eng_desc_div {
     width: 600px;
-    display:inline-block;
+    display: inline-block;
     resize: both;
 }
 
-.eng_desc_input{
+.cl_ref {
+    width: 600px;
+    display: inline-block;
+}
+
+.eng_desc_input {
     margin-left: 10px;
     float: right;
     width: 350px;
@@ -392,11 +387,11 @@ blockquote {
     height: 60px;
 }
 
-
-.rate{
+.rate {
     width: 600px;
     height: 30px;
 }
+
 .rate_radio_group {
     float: right;
     height: 30px;
@@ -404,26 +399,31 @@ blockquote {
 
 }
 
-.rate_input{
+.rate_input {
     width: 25px;
     height: 20px;
     float: left;
     vertical-align: middle;
 }
 
-.position{
+.position {
     width: 600px;
     height: 20px;
     align: left;
 }
 
-.position_input{
+.position_input {
     float: right;
     width: 340px;
 }
 
+.cl_text_edit {
+    margin-left: 10px;
+    float: right;
+    width: 340px;
+}
 
-.field_editor_input{
+.field_editor_input {
     background-color: #e9e9ed;
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 14px;
@@ -434,16 +434,21 @@ blockquote {
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
     color: #000000;
-    display:inline-block;
-    float:left;
+    display: inline-block;
+    float: left;
 }
 
 .rate_radio_label_label {
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
     color: #000000;
-    display:inline-block;
-    float:left;
+    display: inline-block;
+    float: left;
+}
+
+.ui-autocomplete.ui-widget {
+    font-family: Times New Roman, Helvetica, sans-serif;
+    font-size: 14px;
 }
 
 

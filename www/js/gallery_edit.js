@@ -133,208 +133,378 @@ $(document).ready(function () {
         allowedTypes: "jpg,jpeg,png,gif"
     });
 
-    function beforeUpload() {
-
-        $("#cropper-preview").addClass("cropper-preview");
-        $("#cropper_div").hide();
-        $("#cropper-preview").hide();
-        $("#slider").hide();
-    }
-
-    function changeSrc(data) {
-        var d = new Date();
-        currentSrc = "./" + data
-        var src = currentSrc + "?" + d.getTime();
-
-        $image.cropper("setImgSrc", src);
-    }
-
-    function afterUpload(img_tag_size) {
-        $("#uploaded_left").height(img_tag_size);
-        $("#cropper-preview").height(219);
-        $("#save_cancel").show();
-        $("#cropper-preview").show();
-        $("#slider").show();
-        $("#cropper_div").show();
-        $("#upload_label").text("+ upload another");
-    }
-
-
-    function calc_img_size(img_w, img_h) {
-        return  img_h * 600 / img_w;
-    }
-
-    function resizeDragAndDrop(img_tag_size) {
-        if (img_tag_size > 315) {
-            h = img_tag_size - 275;
-        } else {
-            h = 40;
-        }
-
-        $(".ajax-upload-dragdrop").css('height', parseInt(h));
-
-    }
-
-    function saveCropHandler() {
-        $.ajax({
-            type: "POST",
-            url: "gallery_save_pic.php",
-            data: { pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
-        })
-            .done(function (msg) {
-                //console.log(msg);      //den_debug
-                hideUploadControls();
-                reloadGallery();
-                initCropper();
-            });
-    }
-
-    function cancelCropHandler() {
-        hideUploadControls();
-        initCropper();
-    }
-
-    function hideUploadControls() {
-        $image.cropper("setImgSrc", " ");
-        $image.cropper("destroy");
-        $("#uploaded_left").height(1);
-        $("#cropper-preview").height(1);
-        $("#save_cancel").hide();
-        $("#slider").hide();
-        $(".ajax-upload-dragdrop").height(40);
-        $("#upload_label").text("+ upload");
-    }
-
-    function reloadGallery() {
-        $.ajax({
-            type: "POST",
-            url: "gallery_edit_get_gallery.php"
-        })
-            .done(function (msg) {
-                $("#gallery").html(msg);
-                addControlsClickHandlers();
-                addFieldsChangeHandlers();
-                addSubmitHandlers();
-
-            });
-    }
-
-    function removeHandler(src) {
-        $.ajax({
-            type: "POST",
-            url: "gallery_del_pic.php",
-            data: { file_name: src }
-        })
-            .done(function (msg) {
-                reloadGallery();
-            });
-    }
-
-
-    function saveHandler(formID, hashHolderID) {
-        $("#" + formID).submit();
-        $(".save_pic[area='" + hashHolderID + "']").hide();
-        refreshHashByID(hashHolderID);
-    }
-
-
-    function addControlsClickHandlers() {
-        var $removeButtons = $(".remove_href");
-
-        $removeButtons.each(function () {
-            $(this).click(function () {
-                removeHandler($(this).attr("file_name"))
-            });
-
-            $(this).hover(function () {
-                $("#" + $(this).attr("area")).css("background-color", "#D16464");
-            }, function () {
-                $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
-            });
-
-        });
-
-        var $saveButtons = $(".save_href");
-
-        $saveButtons.each(function () {
-            $(this).click(function () {
-                saveHandler($(this).attr("form_id"), $(this).attr("area"))
-            });
-
-            $(this).hover(function () {
-                $("#" + $(this).attr("area")).css("background-color", "#5d9f7a");
-            }, function () {
-                $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
-            });
-
-        });
-
-    }
-
-    function addFieldsChangeHandlers() {
-        var $inputs = $(".field_editor_input");
-
-        $inputs.each(function () {
-            $(this).change(function () {
-                var $hashHolderID = $(this).attr("hash_holder");
-                var $oldHash = $("#" + $hashHolderID).attr("hash");
-                var $newHash = calcFormHash($hashHolderID);
-                if ($oldHash != $newHash) {
-                    $(".save_pic[area='" + $hashHolderID + "']").show();
-                } else {
-                    $(".save_pic[area='" + $hashHolderID + "']").hide();
-                }
-            });
-        });
-    }
-
-    function addSubmitHandlers() {
-        var $forms = $(".field_editor_form");
-
-        $forms.each(function () {
-            $(this).submit(function (e) {
-                e.preventDefault();
-                //         console.log($(this).serialize());  //den_debug
-                $.ajax({
-                    type: "POST",
-                    url: "gallery_update_pic.php",
-                    data: $(this).serialize(),
-                    success: function (data) {
-                        //                   console.log(data);  //den_debug
-                    }
-                })
-            });
-        });
-    }
-
-    function setCurrentHashes() {
-        var $areas = $(".one_element");
-        $areas.each(function () {
-            $hash = calcFormHash($(this).attr('id'));
-            $(this).attr('hash', $hash);
-        });
-    }
-
-
-    function refreshHashByID(ID) {
-        refreshHash($('#' + ID));
-    }
-
-    function refreshHash(hash_holder) {
-        var hash = calcFormHash($(hash_holder).attr('id'));
-        $(hash_holder).attr('hash', hash);
-    }
-
-    function calcFormHash(hash_holder_id) {
-        var $fields = $("[hash_holder='" + hash_holder_id + "']");
-        var $content = '';
-        $fields.each(function () {
-            $content += $(this).attr("value") + $(this).prop("checked");
-        });
-        var $hash = new String($content).hashCode();
-//        console.log($hash);   //den_debug
-        return $hash;
-
-    }
+    loadAndSetPaths();
 
 });
+
+function loadAndSetPaths() {
+    $cl_vid_path = getClValues();
+    $cl_k_v = new Array();
+    var cl_paths = new Array($cl_vid_path);
+    $.each($cl_vid_path, function (cl, vid_path) {
+        var paths = new Array();
+        var id_paths = new Array();
+        $.each(vid_path, function (vid, path) {
+            var pathArray = splitPath(path);
+            var trimmedPath = joinPath(pathArray, 1, pathArray.length);
+            paths.push(trimmedPath);
+            id_paths.push({k: vid, v: trimmedPath});
+        });
+        cl_paths[cl] = paths;
+        $cl_k_v[cl] = sortSourceArray(id_paths);
+    });
+    $(".cl_text_edit").each(function () {
+        $(this).autocomplete({
+
+            source: cl_paths[$(this).attr("db_id")]
+        });
+    })
+}
+
+function splitPath(path) {
+    if (path === 'undefined') {
+        return new Array();
+    } else {
+        return path.split('/');
+    }
+}
+
+function joinPath(arr) {
+    return joinPath(arr, 0, arr.length)
+}
+
+function joinPath(arr, leftBorder, rightBorder) {
+    var sliced_arr = arr.slice(leftBorder, rightBorder);
+    return sliced_arr.join('/');
+}
+
+function getClValues() {
+    var data;
+    $.ajax({
+        type: "POST",
+        url: "classificator_get_paths.php",
+        data: {},
+        async: false
+    })
+        .done(function (json_data) {
+            data = $.parseJSON(json_data);
+        });
+    return data;
+}
+
+
+function createClValues() {
+    $(".cl_text_edit").each(function () {
+        var path = $(this).attr("value");
+        if (path != '') {
+            searchVlIDbyPath($(this).attr("db_id"), path);
+        }
+    })
+}
+
+function searchVlIDbyPath(cl_db_id, path) {
+    var res = 0;
+    var pathPoints = splitPath(path);
+    var pathLength = pathPoints.length;
+
+    if (pathLength > 0) {
+        var valuesTree = $cl_k_v[cl_db_id];
+        var level = 0;
+        var point = pathPoints[level];
+        var pointFound = true;
+        var vid;
+        while (level < pathLength && pointFound) {
+            res = searchPoint(point, valuesTree, level);
+            valuesTree = res.tree;
+            if (res.vid > 0) {
+                vid = res.vid;
+            }
+            pointFound = (valuesTree.length > 0);
+            level++;
+            point = pathPoints[level];
+        }
+        var restPath = '';
+        if (level < pathLength) {
+            restPath = joinPath(pathPoints, level - 1, pathLength);
+        }
+        console.log(path + ' ' + vid + ' ' + restPath);
+    }
+    return res;
+}
+
+function searchPoint(in_point, in_valuesTree, level) {
+    var valuesTree = filterByLevel(in_valuesTree, level);
+    //console.log('valuesTree:');
+    //console.log(valuesTree);
+    var point = in_point.toUpperCase();
+    //console.log('point:' + point);
+    var vid = 0;
+    var resultTree = new Array();
+
+    if (valuesTree.length > 0) {
+        var i = 0;
+        var currentPathArray;
+        var currentPathArrayLength;
+        var currentTreePoint;
+
+        function iteration(i) {
+            currentPathArray = splitPath(valuesTree[i].v);
+            currentPathArrayLength = currentPathArray.length;
+            currentTreePoint = currentPathArray[level].toUpperCase();
+            //console.log('currentPathArray:');
+            //console.log(currentPathArray);
+            //console.log('currentTreePoint:' + currentTreePoint);
+
+        }
+
+        for (iteration(i); i < valuesTree.length && point >= currentTreePoint; i++) {
+            //console.log('inside');
+            iteration(i);
+            if (point === currentTreePoint) {
+                resultTree.push(valuesTree[i]);
+                if (currentPathArray.length == (level + 1)) {
+                    vid = valuesTree[i].k;
+                }
+            }
+
+        }
+    }
+
+    res = {tree: resultTree, vid: vid}
+    //console.log('res:' + res);
+    //console.log(res);
+    return res;
+}
+
+function filterByLevel(valuesTree, level) {
+    res = new Array();
+    $.each(valuesTree, function (i, v) {
+        console.log(v);
+        if (splitPath(v.v).length >= (level + 1)) {
+            res.push(v);
+        }
+    })
+    return res;
+}
+
+function sortSourceArray(cl_k_v) {
+    return cl_k_v.sort(function (a, b) {
+        var a_v = a.v.toUpperCase();
+        var b_v = b.v.toUpperCase();
+        res = 0;
+        if (a_v > b_v) {
+            res = 1;
+        }
+        if (a_v < b_v) {
+            res = -1;
+        }
+        return res;
+    })
+}
+
+function beforeUpload() {
+
+    $("#cropper-preview").addClass("cropper-preview");
+    $("#cropper_div").hide();
+    $("#cropper-preview").hide();
+    $("#slider").hide();
+}
+
+function changeSrc(data) {
+    var d = new Date();
+    currentSrc = "./" + data
+    var src = currentSrc + "?" + d.getTime();
+
+    $image.cropper("setImgSrc", src);
+}
+
+function afterUpload(img_tag_size) {
+    $("#uploaded_left").height(img_tag_size);
+    $("#cropper-preview").height(219);
+    $("#save_cancel").show();
+    $("#cropper-preview").show();
+    $("#slider").show();
+    $("#cropper_div").show();
+    $("#upload_label").text("+ upload another");
+}
+
+
+function calc_img_size(img_w, img_h) {
+    return  img_h * 600 / img_w;
+}
+
+function resizeDragAndDrop(img_tag_size) {
+    if (img_tag_size > 315) {
+        h = img_tag_size - 275;
+    } else {
+        h = 40;
+    }
+
+    $(".ajax-upload-dragdrop").css('height', parseInt(h));
+
+}
+
+function saveCropHandler() {
+    $.ajax({
+        type: "POST",
+        url: "gallery_save_pic.php",
+        data: { pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
+    })
+        .done(function (msg) {
+            //console.log(msg);      //den_debug
+            hideUploadControls();
+            reloadGallery();
+            initCropper();
+        });
+}
+
+function cancelCropHandler() {
+    hideUploadControls();
+    initCropper();
+}
+
+function hideUploadControls() {
+    $image.cropper("setImgSrc", " ");
+    $image.cropper("destroy");
+    $("#uploaded_left").height(1);
+    $("#cropper-preview").height(1);
+    $("#save_cancel").hide();
+    $("#slider").hide();
+    $(".ajax-upload-dragdrop").height(40);
+    $("#upload_label").text("+ upload");
+}
+
+function reloadGallery() {
+    $.ajax({
+        type: "POST",
+        url: "gallery_edit_get_gallery.php"
+    })
+        .done(function (msg) {
+            $("#gallery").html(msg);
+            addControlsClickHandlers();
+            addFieldsChangeHandlers();
+            addSubmitHandlers();
+
+        });
+}
+
+function removeHandler(src) {
+    $.ajax({
+        type: "POST",
+        url: "gallery_del_pic.php",
+        data: { file_name: src }
+    })
+        .done(function (msg) {
+            reloadGallery();
+        });
+}
+
+
+function saveHandler(formID, hashHolderID) {
+    createClValues();
+    $("#" + formID).submit();
+    $(".save_pic[area='" + hashHolderID + "']").hide();
+    refreshHashByID(hashHolderID);
+}
+
+
+function addControlsClickHandlers() {
+    var $removeButtons = $(".remove_href");
+
+    $removeButtons.each(function () {
+        $(this).click(function () {
+            removeHandler($(this).attr("file_name"))
+        });
+
+        $(this).hover(function () {
+            $("#" + $(this).attr("area")).css("background-color", "#D16464");
+        }, function () {
+            $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
+        });
+
+    });
+
+    var $saveButtons = $(".save_href");
+
+    $saveButtons.each(function () {
+        $(this).click(function () {
+            saveHandler($(this).attr("form_id"), $(this).attr("area"))
+        });
+
+        $(this).hover(function () {
+            $("#" + $(this).attr("area")).css("background-color", "#5d9f7a");
+        }, function () {
+            $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
+        });
+
+    });
+
+}
+
+function addFieldsChangeHandlers() {
+    var $inputs = $(".field_editor_input");
+
+    $inputs.each(function () {
+        $(this).change(function () {
+            var $hashHolderID = $(this).attr("hash_holder");
+            var $oldHash = $("#" + $hashHolderID).attr("hash");
+            var $newHash = calcFormHash($hashHolderID);
+            if ($oldHash != $newHash) {
+                $(".save_pic[area='" + $hashHolderID + "']").show();
+            } else {
+                $(".save_pic[area='" + $hashHolderID + "']").hide();
+            }
+        });
+    });
+}
+
+function addSubmitHandlers() {
+    var $forms = $(".field_editor_form");
+
+    $forms.each(function () {
+        $(this).submit(function (e) {
+            e.preventDefault();
+            //         console.log($(this).serialize());  //den_debug
+            $.ajax({
+                type: "POST",
+                url: "gallery_update_pic.php",
+                data: $(this).serialize(),
+                success: function (data) {
+                    //                   console.log(data);  //den_debug
+                }
+            })
+        });
+    });
+}
+
+function setCurrentHashes() {
+    var $areas = $(".one_element");
+    $areas.each(function () {
+        $hash = calcFormHash($(this).attr('id'));
+        $(this).attr('hash', $hash);
+    });
+}
+
+
+function refreshHashByID(ID) {
+    refreshHash($('#' + ID));
+}
+
+function refreshHash(hash_holder) {
+    var hash = calcFormHash($(hash_holder).attr('id'));
+    $(hash_holder).attr('hash', hash);
+}
+
+function calcFormHash(hash_holder_id) {
+    var $fields = $("[hash_holder='" + hash_holder_id + "']");
+    var $content = '';
+    $fields.each(function () {
+        $content += $(this).attr("value") + $(this).prop("checked");
+    });
+    var $hash = new String($content).hashCode();
+//        console.log($hash);   //den_debug
+    return $hash;
+
+}
+
+

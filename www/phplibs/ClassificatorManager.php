@@ -27,6 +27,46 @@ class ClassificatorManager
 
     }
 
+    public function getValuesPaths()
+    {
+        $cls = $this->selectAllClassificators();
+        $paths = array();
+        foreach ($cls as $cl) {
+            $cl_paths = $this->pathsByCl($cl);
+            $paths = $paths + $cl_paths;
+
+        }
+        return $paths;
+    }
+
+    private function pathsByCl(Classificator $cl)
+    {
+        $vls = $cl->getValues();
+        $paths = array();
+        $cl_paths = array();
+        foreach ($vls as $vl) {
+            $vl_paths = $this->pathsByVl($vl);
+            $cl_paths = $cl_paths + $vl_paths;
+        }
+        $cl_id = $cl->getID();
+        $paths[$cl_id] = $cl_paths;
+        return $paths;
+    }
+
+    private function pathsByVl(ClassificatorValue $clv)
+    {
+        $v_paths = array();
+        $clv_path = $clv->getPath();
+        $clv_id = $clv->getID();
+        $v_paths[$clv_id] = $clv_path;
+        $child_clvs = $clv->getValues();
+        foreach ($child_clvs as $child_clv) {
+            $child_vl_paths = $this->pathsByVl($child_clv);
+            $v_paths = $v_paths + $child_vl_paths;
+        }
+        return $v_paths;
+    }
+
     public function selectAllClassificators()
     {
         global $db;
