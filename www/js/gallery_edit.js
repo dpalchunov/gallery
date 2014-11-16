@@ -197,7 +197,7 @@ function getClValues() {
 }
 
 
-function saveValuesRelations(hashHolderID, pic_id) {
+function saveValuesRelations(hashHolderID) {
     $(".cl_text_edit[hash_holder='" + hashHolderID + "']").each(function () {
         var cl_id = $(this).attr("db_id");
         var path = $(this).attr("value").trim();
@@ -211,7 +211,7 @@ function saveValuesRelations(hashHolderID, pic_id) {
             iteration();
             if (res.rest_path.trim() != '') {
 
-                createNewClValue(cl_id, res.vid, pic_id, res.rest_path);
+                createNewClValue(cl_id, res.vid, res.rest_path);
 
                 iteration();
             }
@@ -223,11 +223,11 @@ function saveValuesRelations(hashHolderID, pic_id) {
 }
 
 
-function createNewClValue(cl_id, v_id, pic_id, new_branch) {
+function createNewClValue(cl_id, v_id, new_branch) {
     $.ajax({
         type: "POST",
         url: "classificator_add_vl_branch.php",
-        data: {cl_id: cl_id, v_id: v_id, pic_id: pic_id, new_branch: new_branch},
+        data: {cl_id: cl_id, v_id: v_id, new_branch: new_branch},
         success: function (data) {
             console.log(data);  //den_debug
         }
@@ -431,8 +431,8 @@ function removeHandler(src) {
 }
 
 
-function saveHandler(formID, hashHolderID, pic_id) {
-    saveValuesRelations(hashHolderID, pic_id);
+function saveHandler(formID, hashHolderID) {
+    saveValuesRelations(hashHolderID);
     $("#" + formID).submit();
     $(".save_pic[area='" + hashHolderID + "']").hide();
     refreshHashByID(hashHolderID);
@@ -459,7 +459,7 @@ function addControlsClickHandlers() {
 
     $saveButtons.each(function () {
         $(this).click(function () {
-            saveHandler($(this).attr("form_id"), $(this).attr("area"), $(this).attr("pic_id"))
+            saveHandler($(this).attr("form_id"), $(this).attr("area"))
         });
 
         $(this).hover(function () {
