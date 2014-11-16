@@ -74,11 +74,11 @@ class  GalleryEditHtmlGetter
                             <div class=\"position\">
                                 <label class=\"field_editor_label\">Position </label>
                                 <input name=\"position\" class=\"position_input field_editor_input\"  type=\"text\" hash_holder=\"area_{$file_base}\" value=\"$position\"></input>
-                            </div>
-                        </form>"
+                            </div>"
                 . $this->getClsHTMLCode($cls, $file_base) .
-                "</div>
-            </div>";
+                "</form>
+        </div>
+    </div>";
         }
         return $picsHtml;
     }
@@ -90,7 +90,7 @@ class  GalleryEditHtmlGetter
             $html_code = $html_code .
                 "<div class=\"cl_ref\">
                     <label class=\"cl_label field_editor_label\">{$cl->getEngName()}</label>
-                    <input db_id=\"{$cl->getID()}\" class=\"cl_text_edit field_editor_input\" type=\"text\" hash_holder=\"area_{$file_base}\"></input>
+                    <input name=\"cl_{$cl->getID()}\" db_id=\"{$cl->getID()}\" class=\"cl_text_edit field_editor_input\" type=\"text\" hash_holder=\"area_{$file_base}\"></input>
                 </div>
                 ";
         }

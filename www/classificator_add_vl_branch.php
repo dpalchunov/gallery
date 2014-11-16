@@ -19,10 +19,7 @@ foreach ($eng_values as $eng_value) {
 
     }
 };
-if ($ret_code == 0) {
-    echo 'ok';
-} else {
-    echo $error;
-}
+
+echo json_encode($res);
 
 ?>

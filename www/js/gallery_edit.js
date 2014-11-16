@@ -197,41 +197,59 @@ function getClValues() {
 }
 
 
-function saveValuesRelations(hashHolderID) {
+function saveValuesRelations(hashHolderID, formID) {
+    var newClValues = new Object();
     $(".cl_text_edit[hash_holder='" + hashHolderID + "']").each(function () {
         var cl_id = $(this).attr("db_id");
         var path = $(this).attr("value").trim();
+        newClValues[cl_id] = 'to_remove';
         if (path != '') {
             var res;
-
-            function iteration() {
-                res = searchVlIDbyPath(cl_id, path);
-            }
-
-            iteration();
+            res = searchVlIDbyPath(cl_id, path);
             if (res.rest_path.trim() != '') {
-
-                createNewClValue(cl_id, res.vid, res.rest_path);
-
-                iteration();
+                var newClValue = createNewClValue(cl_id, res.vid, res.rest_path);
+                if (newClValue > 0) {
+                    newClValues[cl_id] = newClValue;
+                }
+            } else {
+                newClValues[cl_id] = res.vid;
             }
-            //create link
-
-
         }
-    })
+    });
+    var js_values = JSON.stringify(newClValues);
+
+    $('#classification_for_' + formID).remove();
+    $('<input />').attr('type', 'hidden')
+        .attr('id', 'classification_for_' + formID)
+        .attr('name', 'classification')
+        .attr('value', js_values)
+        .appendTo('#' + formID);
+
+
 }
 
 
 function createNewClValue(cl_id, v_id, new_branch) {
+    var created_vid = 0;
     $.ajax({
         type: "POST",
         url: "classificator_add_vl_branch.php",
         data: {cl_id: cl_id, v_id: v_id, new_branch: new_branch},
-        success: function (data) {
-            console.log(data);  //den_debug
+        async: false,
+        success: function (json_data) {
+            console.log(json_data);  //den_debug
+            var data = $.parseJSON(json_data);
+            if (data['return_code'] == 0) {
+                alert('ok');
+                created_vid = data['res'];
+            } else {
+                alert('not ok');
+
+            }
         }
     });
+
+    return created_vid;
 }
 
 function searchVlIDbyPath(cl_db_id, path) {
@@ -432,7 +450,7 @@ function removeHandler(src) {
 
 
 function saveHandler(formID, hashHolderID) {
-    saveValuesRelations(hashHolderID);
+    saveValuesRelations(hashHolderID, formID);
     $("#" + formID).submit();
     $(".save_pic[area='" + hashHolderID + "']").hide();
     refreshHashByID(hashHolderID);
@@ -493,13 +511,17 @@ function addSubmitHandlers() {
     var $forms = $(".field_editor_form");
 
     $forms.each(function () {
+
+
+        var f = $(this).serialize();
+
         $(this).submit(function (e) {
             e.preventDefault();
             //         console.log($(this).serialize());  //den_debug
             $.ajax({
                 type: "POST",
                 url: "gallery_update_pic.php",
-                data: $(this).serialize(),
+                data: f,
                 success: function (data) {
                     //                   console.log(data);  //den_debug
                 }
