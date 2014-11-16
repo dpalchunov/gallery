@@ -243,7 +243,7 @@ function createNewClValue(cl_id, v_id, new_branch) {
                 alert('ok');
                 created_vid = data['res'];
             } else {
-                alert('not ok');
+                alert(data['error_message']);
 
             }
         }
@@ -261,7 +261,7 @@ function searchVlIDbyPath(cl_db_id, path) {
         var level = 0;
         var point = pathPoints[level];
         var pointFound = true;
-        var vid = 0;
+        var vid = undefined;
         while (level < pathLength && pointFound) {
             var res = searchPoint(point, valuesTree, level);
             valuesTree = res.tree;
