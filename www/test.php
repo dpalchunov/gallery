@@ -2,8 +2,9 @@
 
 require_once 'phplibs/ResourceService.php';
 
-$man = new ClassificatorManager();
-$man->selectAllClassificators();
+$man = new PictureObjManager();
+$pic = $man->selectPicByID(131);
+
 ?>
 
 
