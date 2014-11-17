@@ -85,7 +85,7 @@ class  GalleryEditHtmlGetter
 
     public function getClsHTMLCode($cls, $file_base)
     {
-        $html_code = " <div class=\"classification_div\">";
+        $html_code = " <div class=\"classification_div\" >";
         foreach ($cls as $cl) {
             $html_code = $html_code .
                 "<div class=\"cl_ref\">

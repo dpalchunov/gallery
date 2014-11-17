@@ -50,7 +50,7 @@ class PictureObjManager
     {
         global $db;
         $pattern = $this->prepareSelectAllPattern();
-        $rels_pattern = preparePicRelSelectAllPattern();
+        $rels_pattern = $this->preparePicRelSelectAllPattern();
         try {
             if ($pictures = $db->query($pattern, NULL, 'assoc') and $raw_rels = $db->query($rels_pattern, NULL, 'assoc')) {
                 $rels = $this->transform_raw_pic_rels($raw_rels);
@@ -140,7 +140,7 @@ class PictureObjManager
         $data = $this->prepareUpdateQueryData($picture);
         try {
             if ($pictures = $db->query($pattern, $data)) {
-                updateRelations($picture);
+                $this->updateRelations($picture);
                 return 'ok';
             } else {
                 return null;
@@ -152,7 +152,7 @@ class PictureObjManager
     }
 
 
-    public function updateRelations(PicClRel $rels)
+    public function updateRelations(array $rels)
     {
         foreach ($rels as $rel) {
             $id = $rel->getID();

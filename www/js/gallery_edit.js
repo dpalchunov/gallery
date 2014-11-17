@@ -202,7 +202,7 @@ function saveValuesRelations(hashHolderID, formID) {
     $(".cl_text_edit[hash_holder='" + hashHolderID + "']").each(function () {
         var cl_id = $(this).attr("db_id");
         var path = $(this).attr("value").trim();
-        newClValues[cl_id] = 'to_remove';
+        newClValues[cl_id] = 0;
         if (path != '') {
             var res;
             res = searchVlIDbyPath(cl_id, path);
@@ -217,6 +217,7 @@ function saveValuesRelations(hashHolderID, formID) {
         }
     });
     var js_values = JSON.stringify(newClValues);
+
 
     $('#classification_for_' + formID).remove();
     $('<input />').attr('type', 'hidden')
@@ -240,16 +241,14 @@ function createNewClValue(cl_id, v_id, new_branch) {
             console.log(json_data);  //den_debug
             var data = $.parseJSON(json_data);
             if (data['return_code'] == 0) {
-                alert('ok');
                 created_vid = data['res'];
             } else {
-                alert(data['error_message']);
 
             }
         }
     });
 
-    return created_vid;
+    return parseInt(created_vid);
 }
 
 function searchVlIDbyPath(cl_db_id, path) {
@@ -278,7 +277,7 @@ function searchVlIDbyPath(cl_db_id, path) {
             restPath = joinPath(pathPoints, level - 1, pathLength);
         }
     }
-    f_ret = {vid: vid, rest_path: restPath};
+    f_ret = {vid: parseInt(vid), rest_path: restPath};
     return f_ret;
 }
 
@@ -511,19 +510,15 @@ function addSubmitHandlers() {
     var $forms = $(".field_editor_form");
 
     $forms.each(function () {
-
-
-        var f = $(this).serialize();
-
         $(this).submit(function (e) {
             e.preventDefault();
             //         console.log($(this).serialize());  //den_debug
             $.ajax({
                 type: "POST",
                 url: "gallery_update_pic.php",
-                data: f,
+                data: $(this).serialize(),
                 success: function (data) {
-                    //                   console.log(data);  //den_debug
+                    console.log(data);  //den_debug
                 }
             })
         });
