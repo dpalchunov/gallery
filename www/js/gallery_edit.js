@@ -214,6 +214,8 @@ function saveValuesRelations(hashHolderID, formID) {
             } else {
                 newClValues[cl_id] = res.vid;
             }
+        } else {
+            newClValues[cl_id] = 'to_remove';
         }
     });
     var js_values = JSON.stringify(newClValues);
@@ -229,17 +231,28 @@ function saveValuesRelations(hashHolderID, formID) {
 
 }
 
+function isInt(n) {
+    return n % 1 === 0;
+}
 
 function createNewClValue(cl_id, v_id, new_branch) {
     var created_vid = 0;
+    var send_data;
+    if (isInt(v_id)) {
+        send_data = {cl_id: cl_id, v_id: v_id, new_branch: new_branch};
+    } else {
+        send_data = {cl_id: cl_id, new_branch: new_branch};
+
+    }
     $.ajax({
         type: "POST",
         url: "classificator_add_vl_branch.php",
-        data: {cl_id: cl_id, v_id: v_id, new_branch: new_branch},
+        data: send_data,
         async: false,
         success: function (json_data) {
             console.log(json_data);  //den_debug
             var data = $.parseJSON(json_data);
+
             if (data['return_code'] == 0) {
                 created_vid = data['res'];
             } else {
@@ -255,12 +268,12 @@ function searchVlIDbyPath(cl_db_id, path) {
     var pathPoints = splitPath(path);
     var pathLength = pathPoints.length;
 
+    var vid = undefined;
     if (pathLength > 0) {
         var valuesTree = $cl_k_v[cl_db_id];
         var level = 0;
         var point = pathPoints[level];
         var pointFound = true;
-        var vid = undefined;
         while (level < pathLength && pointFound) {
             var res = searchPoint(point, valuesTree, level);
             valuesTree = res.tree;
@@ -277,7 +290,7 @@ function searchVlIDbyPath(cl_db_id, path) {
             restPath = joinPath(pathPoints, level - 1, pathLength);
         }
     }
-    f_ret = {vid: parseInt(vid), rest_path: restPath};
+    f_ret = {vid: vid, rest_path: restPath};
     return f_ret;
 }
 

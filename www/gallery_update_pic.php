@@ -5,7 +5,6 @@ $pic_man = new PictureObjManager();
 
 $pic = $pic_man->selectPicByID($_POST["id"]);
 if ($pic != null) {
-
     $pic->setRate($_POST["rate"]);
     $pic->setPosition($_POST["position"]);
 
@@ -26,7 +25,10 @@ if ($pic != null) {
     foreach ($old_rels as $cl_rel) {
         $cl_id = $cl_rel->getClId();
         $cl_vid = $gui_rels[$cl_id];
-        $cl_rel->setClvlID($cl_vid);
+        $cl_rel->setClvlID((int)$cl_vid);
+        if ($cl_vid == 'to_remove') {
+            $cl_rel->SetRemoveOnPersist(true);
+        }
         array_push($new_rels, $cl_rel);
     }
     $pic->setClassification($new_rels);

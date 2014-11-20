@@ -68,7 +68,7 @@ class PictureObjManager
     {
         $pictureObjectArray = array();
         foreach ($pictures as $picture) {
-            $pictureID = $picture['pictureid'];
+            $pictureID = (int)$picture['pictureid'];
 
             $rusDesc = $picture['rusdesc'];
             $engDesc = $picture['engdesc'];
@@ -83,7 +83,7 @@ class PictureObjManager
             $picPath = $picture['pic_path'];
             $sketchPath = $picture['sketch_path'];
 
-            $pic_rels = $pics_rels[$pictureID];
+            $pic_rels = $pics_rels["p" . $pictureID];
 
 
             $pictureObject = new Picture($fileName, $position, $rate, $multilangDesc, $picPath, $sketchPath, $pictureID, $pic_rels);
@@ -117,18 +117,21 @@ class PictureObjManager
     {
         $pic_rels = array();
         foreach ($raw_pic_rels as $raw_pic_rel) {
-            $pictureID = $raw_pic_rel['pictureid'];
-            $id = $raw_pic_rel['id'];
-            $cl_v_id = $raw_pic_rel['cv_id'];
-            $cl_id = $raw_pic_rel['cl_id'];
+            $pictureID = (int)$raw_pic_rel['pictureid'];
+            $id = (int)$raw_pic_rel['id'];
+            $cl_v_id = (int)$raw_pic_rel['cv_id'];
+            $cl_id = (int)$raw_pic_rel['cl_id'];
 
             $picRel = new PicClRel($id, $pictureID, $cl_id, $cl_v_id);
-            $pic_arr = $pic_rels[$pictureID];
+            if ($id > 0) {
+                $picRel->setPersisted(true);
+            }
+            $pic_arr = $pic_rels["p" . $pictureID];
             if (!isset($pic_arr)) {
                 $pic_arr = array();
             }
             array_push($pic_arr, $picRel);
-            $pic_rels[$pictureID] = $pic_arr;
+            $pic_rels["p" . $pictureID] = $pic_arr;
         }
         return $pic_rels;
     }
@@ -140,7 +143,7 @@ class PictureObjManager
         $data = $this->prepareUpdateQueryData($picture);
         try {
             if ($pictures = $db->query($pattern, $data)) {
-                $this->updateRelations($picture);
+                $this->updateRelations($picture->getClassification());
                 return 'ok';
             } else {
                 return null;
@@ -154,13 +157,45 @@ class PictureObjManager
 
     public function updateRelations(array $rels)
     {
+        var_dump($rels);
         foreach ($rels as $rel) {
             $id = $rel->getID();
-            if (is_int($id)) {
-                $this->updateRelation($rel);
+            $rop = $rel->getRemoveOnPersist();
+            //$cl_vid = $rel -> getClvlID();
+            $persisted = $rel->getPersisted();
+            echo ' persisted:' . $persisted . ' ';
+            if ($persisted) {
+                echo $id;
+                if ($rop) {
+                    echo '-remove ';
+                    $this->removeRelation($rel);
+                } else {
+                    echo '-update ';
+                    $this->updateRelation($rel);
+                }
             } else {
-                $this->insertRelation($rel);
+
+                if (!$rop) {
+
+                    echo '-insert ';
+                    $this->insertRelation($rel);
+                } else {
+                    echo '-nothing to do  ';
+                }
             }
+
+
+            /*   if (is_int($id) && $id > 0) {
+                   if (is_int($cl_vid) && $cl_vid > 0)  {
+                       $this->updateRelation($rel);
+                   }  else {
+                       $this->removeRelation($rel);
+                   }
+               } else {
+                   if (is_int($cl_vid) && $cl_vid > 0) {
+                       $this->insertRelation($rel);
+                   }
+               }    */
         }
     }
 
@@ -281,14 +316,31 @@ class PictureObjManager
         }
     }
 
-    private function prepareRemoveQueryData(Picture $picture)
+    public function removeRelation(PicClRel $pic_rel)
     {
-        return array($picture->getFileName());
+        global $db;
+        $pattern = $this->prepareRemovePattern();
+        $data = $this->prepareRemoveQueryData($pic_rel);
+        try {
+            if ($db->query($pattern, $data)) {
+                return 'ok';
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    private function prepareRemoveQueryData(PicClRel $pic_rel)
+    {
+        return array($pic_rel->getID());
     }
 
     private function prepareRemovePattern()
     {
-        return "DELETE FROM strunkovadb.tpictures WHERE file_name = ?";
+        return "DELETE FROM strunkovadb.tpictureclassificatorvaluerelations WHERE tpictureclassificatorvaluerelations.pictureclassificatorvaluerelationid = ?";
 
     }
 

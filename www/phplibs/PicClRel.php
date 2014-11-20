@@ -13,6 +13,47 @@ class PicClRel
     var $cl_id;
     var $clvlID;
     var $ID;
+    var $persisted;
+    var $removeOnPersist;
+
+    public function removeOnPersist()
+    {
+        $this->removeOnPersist = true;
+    }
+
+
+    /**
+     * @param mixed $removeOnPersist
+     */
+    public function setRemoveOnPersist($removeOnPersist)
+    {
+        $this->removeOnPersist = $removeOnPersist;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRemoveOnPersist()
+    {
+        return $this->removeOnPersist;
+    }
+
+
+    /**
+     * @param mixed $persisted
+     */
+    public function setPersisted($persisted)
+    {
+        $this->persisted = $persisted;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPersisted()
+    {
+        return $this->persisted;
+    }
 
     /**
      * @param mixed $cl_id
@@ -47,6 +88,9 @@ class PicClRel
         $this->setPicID($pictureID);
         $this->setClvlID($cl_v_id);
         $this->setClId($cl_id);
+        $this->setClId($cl_id);
+        $this->setPersisted(false);
+        $this->SetRemoveOnPersist(false);
 
     }
 
