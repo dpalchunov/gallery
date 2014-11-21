@@ -22,7 +22,7 @@ class PictureObjManager
 
     private function preparePicRelSelectPattern()
     {
-        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id FROM
+        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id, max(cv.path) AS path FROM
                     tclassificators c
                       INNER JOIN tpictures p ON p.pictureid = ?
                       LEFT JOIN tclassificatorvalues cv ON cv.classificatorid = c.classificatorid
@@ -32,7 +32,7 @@ class PictureObjManager
 
     private function preparePicRelSelectAllPattern()
     {
-        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id FROM
+        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id , max(cv.path) AS path FROM
                     tclassificators c
                       INNER JOIN tpictures p
                       LEFT JOIN tclassificatorvalues cv ON cv.classificatorid = c.classificatorid
@@ -121,8 +121,10 @@ class PictureObjManager
             $id = (int)$raw_pic_rel['id'];
             $cl_v_id = (int)$raw_pic_rel['cv_id'];
             $cl_id = (int)$raw_pic_rel['cl_id'];
+            $path = $raw_pic_rel['path'];
 
             $picRel = new PicClRel($id, $pictureID, $cl_id, $cl_v_id);
+            $picRel->setPath($path);
             if ($id > 0) {
                 $picRel->setPersisted(true);
             }

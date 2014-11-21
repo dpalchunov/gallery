@@ -15,6 +15,24 @@ class PicClRel
     var $ID;
     var $persisted;
     var $removeOnPersist;
+    var $path;
+
+    /**
+     * @param mixed $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
 
     public function removeOnPersist()
     {

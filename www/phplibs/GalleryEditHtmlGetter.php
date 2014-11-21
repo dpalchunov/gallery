@@ -10,10 +10,13 @@ class  GalleryEditHtmlGetter
         $pics = $pic_man->selectAllPics();
         $picsHtml = '';
         $cls = $cl_man->selectAllClassificators();
+
         foreach ($pics as $index => $picObj) {
             $id = $picObj->getID();
             $sketchPath = $picObj->getSketchPath();
             $rate = $picObj->getRate();
+            $rels = $picObj->getClassification();
+            $cl_path = $this->relToPath($rels);
 
             $rate1 = '';
             $rate2 = '';
@@ -75,7 +78,7 @@ class  GalleryEditHtmlGetter
                                 <label class=\"field_editor_label\">Position </label>
                                 <input name=\"position\" class=\"position_input field_editor_input\"  type=\"text\" hash_holder=\"area_{$file_base}\" value=\"$position\"></input>
                             </div>"
-                . $this->getClsHTMLCode($cls, $file_base) .
+                . $this->getClsHTMLCode($cls, $cl_path, $file_base) .
                 "</form>
         </div>
     </div>";
@@ -83,19 +86,29 @@ class  GalleryEditHtmlGetter
         return $picsHtml;
     }
 
-    public function getClsHTMLCode($cls, $file_base)
+    public function getClsHTMLCode($cls, $cl_path, $file_base)
     {
         $html_code = " <div class=\"classification_div\" >";
         foreach ($cls as $cl) {
+            $id = $cl->getID();
             $html_code = $html_code .
                 "<div class=\"cl_ref\">
                     <label class=\"cl_label field_editor_label\">{$cl->getEngName()}</label>
-                    <input name=\"cl_{$cl->getID()}\" db_id=\"{$cl->getID()}\" class=\"cl_text_edit field_editor_input\" type=\"text\" hash_holder=\"area_{$file_base}\"></input>
+                    <input name=\"cl_{$id}\" db_id=\"{$id}\" class=\"cl_text_edit field_editor_input\" type=\"text\" hash_holder=\"area_{$file_base}\" value=\"{$cl_path[$id]}\"></input>
                 </div>
                 ";
         }
         $html_code = $html_code . "</div>";
         return $html_code;
+    }
+
+    private function relToPath($rels)
+    {
+        $cl_path = array();
+        foreach ($rels as $rel) {
+            $cl_path[$rel->getClId()] = $rel->getPath();;
+        }
+        return $cl_path;
     }
 }
 
