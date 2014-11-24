@@ -108,7 +108,7 @@ $(document).ready(function () {
     });
 
     addControlsClickHandlers();
-    addFieldsChangeHandlers();
+    addFieldsHandlers();
     addSubmitHandlers();
     setCurrentHashes();
 

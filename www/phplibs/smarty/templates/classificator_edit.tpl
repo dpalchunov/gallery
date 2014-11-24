@@ -2,6 +2,7 @@
 <html lang="ru-RU">
 <head>
     <link rel="stylesheet" type="text/css" href="/css/nav_menu_eng.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/admin_menu.css"/>
     <link rel="stylesheet" type="text/css" href="/css/classificator_edit_style.css"/>
     <link rel="stylesheet" type="text/css" href="/css/cropper.css">
     <link rel="stylesheet" type="text/css" href="/css/uploadfile.css">
@@ -61,6 +62,18 @@
             <!--end nav_order-->
         </div>
         <!--end nav_menu-->
+        <div id="admin_menu">
+            <div id="classification_edit">
+                <a href="classificator_edit.php" class="active">Classification editor</a>
+            </div>
+            <div id="gallery_edit">
+                <a href="gallery_edit.php">Gallery editor</a>
+            </div>
+            <div id="about_edit">
+                <a href="about_edit.php">About editor</a>
+            </div>
+        </div>
+        <!--end admin_menu-->
     </div>
     <!--end header-->
     <div id="gallery_editor_content"><!--[if IE]>
