@@ -11,7 +11,7 @@ class  GalleryEditHtmlGetter
         $picsHtml = '';
         $cls = $cl_man->selectAllClassificators();
 
-        foreach ($pics as $index => $picObj) {
+        foreach ($pics as $picObj) {
             $id = $picObj->getID();
             $sketchPath = $picObj->getSketchPath();
             $rate = $picObj->getRate();
@@ -106,7 +106,9 @@ class  GalleryEditHtmlGetter
     {
         $cl_path = array();
         foreach ($rels as $rel) {
-            $cl_path[$rel->getClId()] = $rel->getPath();;
+            $path = PathHelper::cut_root($rel->getPath());
+            // $path = $rel -> getPath();
+            $cl_path[$rel->getClId()] = $path;
         }
         return $cl_path;
     }

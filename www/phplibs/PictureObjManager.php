@@ -22,21 +22,23 @@ class PictureObjManager
 
     private function preparePicRelSelectPattern()
     {
-        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id, max(cv.path) AS path FROM
+        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id, max(cv1.path) AS path FROM
                     tclassificators c
                       INNER JOIN tpictures p ON p.pictureid = ?
                       LEFT JOIN tclassificatorvalues cv ON cv.classificatorid = c.classificatorid
                       LEFT JOIN tpictureclassificatorvaluerelations r ON r.classificatorvalueid = cv.classificatorvalueid AND r.pictureid = p.pictureid
+                       LEFT JOIN tclassificatorvalues cv1 ON cv1.classificatorvalueid = r.classificatorvalueid
                   GROUP BY p.pictureid, c.classificatorid";
     }
 
     private function preparePicRelSelectAllPattern()
     {
-        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id , max(cv.path) AS path FROM
+        return "SELECT p.pictureid,c.classificatorid AS cl_id,max(r.pictureclassificatorvaluerelationid) AS id, max(r.classificatorvalueid) AS cv_id , max(cv1.path) AS path FROM
                     tclassificators c
                       INNER JOIN tpictures p
                       LEFT JOIN tclassificatorvalues cv ON cv.classificatorid = c.classificatorid
                       LEFT JOIN tpictureclassificatorvaluerelations r ON r.classificatorvalueid = cv.classificatorvalueid AND r.pictureid = p.pictureid
+                      LEFT JOIN tclassificatorvalues cv1 ON cv1.classificatorvalueid = r.classificatorvalueid
                   GROUP BY p.pictureid, c.classificatorid";
     }
 
