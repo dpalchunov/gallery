@@ -155,8 +155,14 @@ function loadAndSetPaths() {
     });
     $(".cl_text_edit").each(function () {
         $(this).autocomplete({
-
+            delay: 0,
+            minLength: 0,
             source: cl_paths[$(this).attr("db_id")]
+        });
+
+        $(this).on("focus", function (event, ui) {
+            $(this).trigger(jQuery.Event("keydown"));
+            // Since I know keydown opens the menu, might as well fire a keydown event to the element
         });
     })
 }
@@ -443,7 +449,7 @@ function reloadGallery() {
         .done(function (msg) {
             $("#gallery").html(msg);
             addControlsClickHandlers();
-            addFieldsChangeHandlers();
+            addFieldsHandlers();
             addSubmitHandlers();
 
         });
@@ -465,6 +471,7 @@ function saveHandler(formID, hashHolderID) {
     saveValuesRelations(hashHolderID, formID);
     $("#" + formID).submit();
     $(".save_pic[area='" + hashHolderID + "']").hide();
+    loadAndSetPaths();
     refreshHashByID(hashHolderID);
 }
 
@@ -502,11 +509,15 @@ function addControlsClickHandlers() {
 
 }
 
-function addFieldsChangeHandlers() {
-    var $inputs = $(".field_editor_input");
 
-    $inputs.each(function () {
-        $(this).change(function () {
+function addFieldsHandlers() {
+    var inputs = $(".field_editor_input");
+    addFieldsChangeHandlers(inputs);
+}
+
+function addFieldsChangeHandlers(inputs) {
+    $(inputs).each(function () {
+        $(this).keyup(function () {
             var $hashHolderID = $(this).attr("hash_holder");
             var $oldHash = $("#" + $hashHolderID).attr("hash");
             var $newHash = calcFormHash($hashHolderID);
@@ -518,6 +529,7 @@ function addFieldsChangeHandlers() {
         });
     });
 }
+
 
 function addSubmitHandlers() {
     var $forms = $(".field_editor_form");
