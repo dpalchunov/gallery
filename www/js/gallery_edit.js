@@ -157,7 +157,11 @@ function loadAndSetPaths() {
         $(this).autocomplete({
             delay: 0,
             minLength: 0,
-            source: cl_paths[$(this).attr("db_id")]
+            source: cl_paths[$(this).attr("db_id")],
+            select: function (a, b) {
+                $(this).val(b.item.value);
+                checkPicHash($(this));
+            }
         });
 
         $(this).on("focus", function (event, ui) {
@@ -518,16 +522,20 @@ function addFieldsHandlers() {
 function addFieldsChangeHandlers(inputs) {
     $(inputs).each(function () {
         $(this).keyup(function () {
-            var $hashHolderID = $(this).attr("hash_holder");
-            var $oldHash = $("#" + $hashHolderID).attr("hash");
-            var $newHash = calcFormHash($hashHolderID);
-            if ($oldHash != $newHash) {
-                $(".save_pic[area='" + $hashHolderID + "']").show();
-            } else {
-                $(".save_pic[area='" + $hashHolderID + "']").hide();
-            }
+            checkPicHash($(this));
         });
     });
+}
+
+function checkPicHash(input) {
+    var $hashHolderID = $(input).attr("hash_holder");
+    var $oldHash = $("#" + $hashHolderID).attr("hash");
+    var $newHash = calcFormHash($hashHolderID);
+    if ($oldHash != $newHash) {
+        $(".save_pic[area='" + $hashHolderID + "']").show();
+    } else {
+        $(".save_pic[area='" + $hashHolderID + "']").hide();
+    }
 }
 
 
