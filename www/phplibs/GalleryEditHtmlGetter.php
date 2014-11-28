@@ -3,6 +3,7 @@ require_once 'phplibs/PictureObjManager.php';
 
 class  GalleryEditHtmlGetter
 {
+
     public function  getHTMLCode()
     {
         $pic_man = new PictureObjManager();
@@ -110,6 +111,36 @@ class  GalleryEditHtmlGetter
             $cl_path[$rel->getClId()] = $path;
         }
         return $cl_path;
+    }
+
+    public function getPaginationHtml($active_page)
+    {
+        $pic_man = new PictureObjManager();
+        $pic_per_page = 5;
+        $cnt = $pic_man->getCount();
+        $cnt = 11;
+        if (($cnt % $pic_per_page) == 0) {
+            $pages_cnt = $cnt / $pic_per_page;
+        } else {
+            $pages_cnt = floor($cnt / $pic_per_page) + 1;
+        }
+        $pages = '';
+        if ($active_page > 1) {
+            $pages = "<div class=\"page_div\"><a href=\" \"><<</a></div>";
+        }
+        for ($i = 1; $i <= $pages_cnt; $i++) {
+            if ($active_page == $i) {
+                $active = ' active ';
+
+            } else {
+                $active = '';
+            }
+            $pages = $pages . "<div class=\"page_div{$active}\"><a href=\" \">{$i}</a></div>";
+        }
+        if ($active_page <> $pages_cnt) {
+            $pages = $pages . "<div class=\"page_div\"><a href=\" \">>></a></div>";
+        }
+        return $pages;
     }
 }
 

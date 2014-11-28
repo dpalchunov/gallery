@@ -451,5 +451,26 @@ blockquote {
     font-size: 14px;
 }
 
+#pagination {
+    width: 1200px;
+}
+
+#pagination a {
+    font-size: 14px;
+    color: black;
+}
+
+.page_div {
+    width: 20px;
+    margin-left: 20px;
+    display: inline-block;
+    float: left;
+}
+
+#pagination .active {
+    font-weight: bold;
+}
+
+
 
 

@@ -41,7 +41,7 @@ function setPreviewSize() {
     var data = $(".cropper_img").cropper("getData");
     var ratio = (data.height) / (data.width);
 
-    var w = Math.round(440 / 100 * $("#slider").slider("value"));
+    var w = Math.round(350 / 100 * $("#slider").slider("value"));
     var h = Math.round(w * ratio);
     $('#cropper-preview').width(w);
     $('#cropper-preview').height(h);
@@ -53,7 +53,7 @@ function setPreviewSize() {
 }
 
 function initCropper() {
-    var $image = $(".cropper_img");
+    $image = $(".cropper_img");
     $image.cropper({
         data: {
             x: 480,
@@ -111,6 +111,7 @@ $(document).ready(function () {
     addFieldsHandlers();
     addSubmitHandlers();
     setCurrentHashes();
+    loadAndSetPaths();
 
     $("#fileuploader").uploadFile({
         url: "./gallery_upload_pic.php",
@@ -132,8 +133,6 @@ $(document).ready(function () {
         showProgress: false,
         allowedTypes: "jpg,jpeg,png,gif"
     });
-
-    loadAndSetPaths();
 
 });
 
@@ -385,7 +384,7 @@ function changeSrc(data) {
     var d = new Date();
     currentSrc = "./" + data
     var src = currentSrc + "?" + d.getTime();
-
+    var $image = $(".cropper_img");
     $image.cropper("setImgSrc", src);
 }
 
@@ -416,6 +415,7 @@ function resizeDragAndDrop(img_tag_size) {
 }
 
 function saveCropHandler() {
+    var $image = $(".cropper_img");
     $.ajax({
         type: "POST",
         url: "gallery_save_pic.php",
@@ -455,7 +455,8 @@ function reloadGallery() {
             addControlsClickHandlers();
             addFieldsHandlers();
             addSubmitHandlers();
-
+            setCurrentHashes();
+            loadAndSetPaths();
         });
 }
 

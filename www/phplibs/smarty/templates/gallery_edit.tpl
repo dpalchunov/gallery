@@ -80,9 +80,16 @@
 
         <div id="gallery">
             {{{$gallery}}}
-            <hr>
+
         </div>
         <!-- end of persisted-->
+        <div id="pagination">
+            <hr>
+            {{{$pagination}}}
+            <br>
+            <hr>
+
+        </div>
 
         <div id="uploaded">
             <div id="uploaded_left">

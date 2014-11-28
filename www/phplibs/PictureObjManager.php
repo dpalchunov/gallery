@@ -323,8 +323,8 @@ class PictureObjManager
     public function removeRelation(PicClRel $pic_rel)
     {
         global $db;
-        $pattern = $this->prepareRemovePattern();
-        $data = $this->prepareRemoveQueryData($pic_rel);
+        $pattern = $this->prepareRemovePicRelPattern();
+        $data = $this->prepareRemovePicRelQueryData($pic_rel);
         try {
             if ($db->query($pattern, $data)) {
                 return 'ok';
@@ -337,15 +337,44 @@ class PictureObjManager
         }
     }
 
-    private function prepareRemoveQueryData(PicClRel $pic_rel)
+    private function prepareRemovePicRelQueryData(PicClRel $pic_rel)
     {
         return array($pic_rel->getID());
     }
 
-    private function prepareRemovePattern()
+    private function prepareRemovePicRelPattern()
     {
         return "DELETE FROM strunkovadb.tpictureclassificatorvaluerelations WHERE tpictureclassificatorvaluerelations.pictureclassificatorvaluerelationid = ?";
 
+    }
+
+
+    private function prepareRemoveQueryData(Picture $picture)
+    {
+        return array($picture->getFileName());
+    }
+
+    private function prepareRemovePattern()
+    {
+        return "DELETE FROM strunkovadb.tpictures WHERE file_name = ?";
+
+    }
+
+    public function getCount()
+    {
+        global $db;
+        $pattern = 'SELECT count(*) AS cnt FROM tpictures';
+        try {
+            if ($r_tmp = $db->query($pattern, NULL, 'assoc')) {
+                $res = $r_tmp[0];
+                return $res['cnt'];
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
     }
 
 }
