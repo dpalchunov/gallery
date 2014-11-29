@@ -16,7 +16,7 @@ class PictureObjManager
 
     private function preparePicSelectPattern()
     {
-        return "SELECT * FROM strunkovadb.tpictures WHERE sketch_path <> '' AND  pictureid = ?"; //den_debug remove sketch_path <> ''
+        return "SELECT * FROM strunkovadb.tpictures WHERE  pictureid = ?";
 
     }
 
@@ -44,9 +44,17 @@ class PictureObjManager
 
     private function prepareSelectAllPattern()
     {
-        return "SELECT * FROM strunkovadb.tpictures WHERE sketch_path <> ''"; //den_debug remove sketch_path <> ''
-
+        return "SELECT * FROM strunkovadb.tpictures ";
     }
+
+    private function prepareSelectPagePattern($active_page)
+    {
+        $pic_per_page = 5;
+        $from = ($active_page - 1) * $pic_per_page;
+        $sql = "SELECT * FROM strunkovadb.tpictures LIMIT " . "{$from}" . "," . "{$pic_per_page}";
+        return $sql;
+    }
+
 
     public function selectAllPics()
     {
@@ -65,6 +73,25 @@ class PictureObjManager
             return null;
         }
     }
+
+    public function selectPicsPage($page)
+    {
+        global $db;
+        $pattern = $this->prepareSelectPagePattern($page);
+        $rels_pattern = $this->preparePicRelSelectAllPattern();
+        try {
+            if ($pictures = $db->query($pattern, NULL, 'assoc') and $raw_rels = $db->query($rels_pattern, NULL, 'assoc')) {
+                $rels = $this->transform_raw_pic_rels($raw_rels);
+                return $this->toPicObjects($pictures, $rels);
+            } else {
+                return array();
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
 
     private function toPicObjects(array $pictures, array $pics_rels)
     {

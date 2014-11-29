@@ -112,6 +112,7 @@ $(document).ready(function () {
     addSubmitHandlers();
     setCurrentHashes();
     loadAndSetPaths();
+    initPagination();
 
     $("#fileuploader").uploadFile({
         url: "./gallery_upload_pic.php",
@@ -135,6 +136,23 @@ $(document).ready(function () {
     });
 
 });
+
+function initPagination() {
+    var page_hrefs = $('.page_href');
+    $.each(page_hrefs, function () {
+        $(this).click(function () {
+
+            pageClickHandler($(this));
+        });
+    });
+};
+
+function pageClickHandler(page) {
+    var new_active_page = $(page).attr('value');
+    reloadGallery(new_active_page);
+    reloadPagination(new_active_page);
+    document.location.href = "#top";
+}
 
 function loadAndSetPaths() {
     $cl_vid_path = getClValues();
@@ -424,7 +442,7 @@ function saveCropHandler() {
         .done(function (msg) {
             //console.log(msg);      //den_debug
             hideUploadControls();
-            reloadGallery();
+            reloadGallery($('.page_href').filter('.active').attr('value'));
             initCropper();
         });
 }
@@ -445,10 +463,11 @@ function hideUploadControls() {
     $("#upload_label").text("+ upload");
 }
 
-function reloadGallery() {
+function reloadGallery(active_page) {
     $.ajax({
         type: "POST",
-        url: "gallery_edit_get_gallery.php"
+        url: "gallery_edit_get_gallery.php",
+        data: {active_page: active_page}
     })
         .done(function (msg) {
             $("#gallery").html(msg);
@@ -460,6 +479,18 @@ function reloadGallery() {
         });
 }
 
+function reloadPagination(active_page) {
+    $.ajax({
+        type: "POST",
+        url: "gallery_edit_get_pagination.php",
+        data: {active_page: active_page}
+    })
+        .done(function (msg) {
+            $("#pagination").html('<hr>' + msg + '<br><hr>');
+            initPagination();
+        });
+}
+
 function removeHandler(src) {
     $.ajax({
         type: "POST",
@@ -467,7 +498,7 @@ function removeHandler(src) {
         data: { file_name: src }
     })
         .done(function (msg) {
-            reloadGallery();
+            reloadGallery($('#active_page').attr('active_page'));
         });
 }
 
@@ -552,7 +583,7 @@ function addSubmitHandlers() {
                 url: "gallery_update_pic.php",
                 data: $(this).serialize(),
                 success: function (data) {
-                    console.log(data);  //den_debug
+                    //    console.log(data);  //den_debug
                 }
             })
         });

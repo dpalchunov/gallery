@@ -12,19 +12,13 @@ class  GalleryEditor
         $template_engine = $resourceService->getTemplateEngine();
     }
 
-    public function editGallery()
+    public function editGallery($page)
     {
         global $template_engine, $resourceService;
 
         $galleryEditHtmlGetter = new GalleryEditHtmlGetter();
-        $gallery_edit_html_code = $galleryEditHtmlGetter->getHTMLCode();
-
-        if (isset($_POST['active_page'])) {
-            $active_page = $_POST['active_page'];
-        } else {
-            $active_page = 1;
-        }
-        $pagination = $galleryEditHtmlGetter->getPaginationHtml($active_page);
+        $gallery_edit_html_code = $galleryEditHtmlGetter->getHTMLCode($page);
+        $pagination = $galleryEditHtmlGetter->getPaginationHtml($page);
         $template_engine->assign('pagination', $pagination);
         $template_engine->assign('gallery', $gallery_edit_html_code);
         $template_engine->display('gallery_edit.tpl');

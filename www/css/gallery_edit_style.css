@@ -471,6 +471,15 @@ blockquote {
     font-weight: bold;
 }
 
+#active_page {
+    display: none;
+}
+
+.page_div {
+    width: 15px;
+    height: 15px;
+}
+
 
 
 

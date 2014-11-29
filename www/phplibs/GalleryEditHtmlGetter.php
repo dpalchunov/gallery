@@ -4,11 +4,11 @@ require_once 'phplibs/PictureObjManager.php';
 class  GalleryEditHtmlGetter
 {
 
-    public function  getHTMLCode()
+    public function  getHTMLCode($active_page)
     {
         $pic_man = new PictureObjManager();
         $cl_man = new ClassificatorManager();
-        $pics = $pic_man->selectAllPics();
+        $pics = $pic_man->selectPicsPage($active_page);
         $picsHtml = '';
         $cls = $cl_man->selectAllClassificators();
 
@@ -118,27 +118,31 @@ class  GalleryEditHtmlGetter
         $pic_man = new PictureObjManager();
         $pic_per_page = 5;
         $cnt = $pic_man->getCount();
-        $cnt = 11;
         if (($cnt % $pic_per_page) == 0) {
             $pages_cnt = $cnt / $pic_per_page;
         } else {
             $pages_cnt = floor($cnt / $pic_per_page) + 1;
         }
         $pages = '';
+        $pages = $pages . "<div id =\"active_page\" actve_page=\"{$active_page}\"></div>";
         if ($active_page > 1) {
-            $pages = "<div class=\"page_div\"><a href=\" \"><<</a></div>";
+            $page = $active_page - 1;
+            $pages = $pages . "<div class=\"page_div\"><a class=\"page_href\" value=\"{$page}\" href=\"javascript: void(0)\"><<</a></div>";
+        } else {
+            $pages = $pages . "<div class=\"page_div\"></div>";
         }
         for ($i = 1; $i <= $pages_cnt; $i++) {
             if ($active_page == $i) {
-                $active = ' active ';
+                $active = ' active';
 
             } else {
                 $active = '';
             }
-            $pages = $pages . "<div class=\"page_div{$active}\"><a href=\" \">{$i}</a></div>";
+            $pages = $pages . "<div class=\"page_div\" page=\"{$i}\" ><a class=\"page_href{$active}\" value=\"{$i}\" href=\"javascript: void(0)\">{$i}</a></div>";
         }
         if ($active_page <> $pages_cnt) {
-            $pages = $pages . "<div class=\"page_div\"><a href=\" \">>></a></div>";
+            $page = $active_page + 1;
+            $pages = $pages . "<div class=\"page_div\"><a class=\"page_href\" value=\"{$page}\" href=\"javascript: void(0)\">>></a></div>";
         }
         return $pages;
     }

@@ -6,6 +6,6 @@ if (isset($_POST['active_page'])) {
 } else {
     $page = 1;
 }
-$gallery_html_code = $galleryEditHtmlGetter->getHTMLCode($page);
-echo $gallery_html_code;
+$pagination_html_code = $galleryEditHtmlGetter->getPaginationHtml($page);
+echo $pagination_html_code;
 ?>
