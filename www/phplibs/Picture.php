@@ -3,8 +3,27 @@ class  Picture
 {
     var $picsFolder = './images/gallary/';
     var $sketchesFolder = './images/gallary/sketches/';
+    var $thumbFolder = './images/gallary/mini/';
     var $sketchPath;
     var $picPath;
+    var $thumbnail;
+
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
     var $rate;
     var $position;
     var $multilangDescription;
@@ -32,17 +51,19 @@ class  Picture
         $this->setfileName($fileName);
         $picPath = $this->generatePicPath();
         $sketchPath = $this->generateSketchPath();
+        $thumbPath = $this->generateThumbPath();
         $this->setPicPath($picPath);
         $this->setSketchPath($sketchPath);
+        $this->setThumbnail($thumbPath);
         $this->setRate($rate);
         $this->setPosition($position);
         $this->setMultilangDescription($multilangDescription);
     }
 
 
-    public function __construct7($fileName, $position, $rate,
+    public function __construct8($fileName, $position, $rate,
                                  $multilangDescription,
-                                 $picPath, $sketchPath, $id)
+                                 $picPath, $sketchPath, $thumbnail, $id)
     {
         $this->setfileName($fileName);
         $this->setPicPath($picPath);
@@ -51,11 +72,12 @@ class  Picture
         $this->setPosition($position);
         $this->setID($id);
         $this->setMultilangDescription($multilangDescription);
+        $this->setThumbnail($thumbnail);
     }
 
-    public function __construct8($fileName, $position, $rate,
+    public function __construct9($fileName, $position, $rate,
                                  $multilangDescription,
-                                 $picPath, $sketchPath, $id, $classification)
+                                 $picPath, $sketchPath, $thumbnail, $id, $classification)
     {
         $this->setfileName($fileName);
         $this->setPicPath($picPath);
@@ -65,6 +87,7 @@ class  Picture
         $this->setID($id);
         $this->setMultilangDescription($multilangDescription);
         $this->setClassification($classification);
+        $this->setThumbnail($thumbnail);
     }
 
     private function generatePicPath()
@@ -78,6 +101,13 @@ class  Picture
         $res = $this->sketchesFolder . $this->fileName;
         return $res;
     }
+
+    private function generateThumbPath()
+    {
+        $res = $this->thumbFolder . $this->fileName;
+        return $res;
+    }
+
 
     public function setPicPath($path)
     {

@@ -109,13 +109,14 @@ class PictureObjManager
                 'rus' => $rusDesc,
                 'eng' => $engDesc
             );
+            $thumbnail = $picture['thumbnail'];
             $picPath = $picture['pic_path'];
             $sketchPath = $picture['sketch_path'];
 
             $pic_rels = $pics_rels["p" . $pictureID];
 
 
-            $pictureObject = new Picture($fileName, $position, $rate, $multilangDesc, $picPath, $sketchPath, $pictureID, $pic_rels);
+            $pictureObject = new Picture($fileName, $position, $rate, $multilangDesc, $picPath, $sketchPath, $thumbnail, $pictureID, $pic_rels);
             $pictureObjectArray[] = $pictureObject;
         }
         return $pictureObjectArray;
@@ -157,12 +158,10 @@ class PictureObjManager
             if ($id > 0) {
                 $picRel->setPersisted(true);
             }
-            $pic_arr = $pic_rels["p" . $pictureID];
-            if (!isset($pic_arr)) {
-                $pic_arr = array();
+            if (!isset($pic_rels["p" . $pictureID])) {
+                $pic_rels["p" . $pictureID] = array();
             }
-            array_push($pic_arr, $picRel);
-            $pic_rels["p" . $pictureID] = $pic_arr;
+            array_push($pic_rels["p" . $pictureID], $picRel);
         }
         return $pic_rels;
     }
@@ -285,13 +284,13 @@ class PictureObjManager
     private function prepareQueryData(Picture $picture)
     {
         $descriptions = $picture->getMultilangDescription();
-        return array($picture->getFileName(), $picture->getRate(), $descriptions['rus'], $descriptions['eng'], $picture->getPicPath(), $picture->getSketchPath(), $picture->getPosition());
+        return array($picture->getFileName(), $picture->getRate(), $descriptions['rus'], $descriptions['eng'], $picture->getPicPath(), $picture->getSketchPath(), $picture->getThumbnail(), $picture->getPosition());
     }
 
     private function prepareUpdateQueryData(Picture $picture)
     {
         $descriptions = $picture->getMultilangDescription();
-        return array($picture->getFileName(), $picture->getRate(), $descriptions['rus'], $descriptions['eng'], $picture->getPicPath(), $picture->getSketchPath(), $picture->getPosition(), $picture->getID());
+        return array($picture->getFileName(), $picture->getRate(), $descriptions['rus'], $descriptions['eng'], $picture->getPicPath(), $picture->getSketchPath(), $picture->getThumbnail(), $picture->getPosition(), $picture->getID());
     }
 
     private function prepareUpdateRelQueryData(PicClRel $rel)
@@ -306,13 +305,13 @@ class PictureObjManager
 
     private function preparePattern()
     {
-        return "INSERT INTO strunkovadb.tpictures (file_name,rate,rusdesc,engdesc,pic_path,sketch_path,position) VALUES (?,?,?,?,?,?,?)";
+        return "INSERT INTO strunkovadb.tpictures (file_name,rate,rusdesc,engdesc,pic_path,sketch_path,thumbnail,position) VALUES (?,?,?,?,?,?,?,?)";
 
     }
 
     private function prepareUpdatePattern()
     {
-        return "UPDATE strunkovadb.tpictures SET file_name = ?,rate = ?,rusdesc = ?,engdesc = ?,pic_path = ?,sketch_path = ?,position = ? WHERE pictureid = ? ";
+        return "UPDATE strunkovadb.tpictures SET file_name = ?,rate = ?,rusdesc = ?,engdesc = ?,pic_path = ?,sketch_path = ?,thumbnail =?, position = ? WHERE pictureid = ? ";
 
     }
 
@@ -335,8 +334,15 @@ class PictureObjManager
         $data = $this->prepareRemoveQueryData($picture);
         try {
             if ($pictures = $db->query($pattern, $data)) {
-                unlink($picture->getPicPath());
-                unlink($picture->getSketchPath());
+                if (file_exists($picture->getPicPath())) {
+                    unlink($picture->getPicPath());
+                };
+                if (file_exists($picture->getThumbnail())) {
+                    unlink($picture->getThumbnail());
+                };
+                if (file_exists($picture->getSketchPath())) {
+                    unlink($picture->getSketchPath());
+                };
                 return 'ok';
             } else {
                 return null;

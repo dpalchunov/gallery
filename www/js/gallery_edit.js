@@ -277,7 +277,7 @@ function createNewClValue(cl_id, v_id, new_branch) {
         data: send_data,
         async: false,
         success: function (json_data) {
-            console.log(json_data);  //den_debug
+            // console.log(json_data);  //den_debug
             var data = $.parseJSON(json_data);
 
             if (data['return_code'] == 0) {
@@ -440,9 +440,11 @@ function saveCropHandler() {
         data: { pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
     })
         .done(function (msg) {
-            //console.log(msg);      //den_debug
+            console.log(msg);      //den_debug
             hideUploadControls();
-            reloadGallery($('.page_href').filter('.active').attr('value'));
+            var active_page = $('.page_href').filter('.active').attr('value');
+            reloadGallery(active_page);
+            reloadPagination(active_page);
             initCropper();
         });
 }
@@ -498,7 +500,7 @@ function removeHandler(src) {
         data: { file_name: src }
     })
         .done(function (msg) {
-            reloadGallery($('#active_page').attr('active_page'));
+            reloadGallery($('.page_href').filter('.active').attr('value'));
         });
 }
 

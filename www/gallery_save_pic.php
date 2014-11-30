@@ -5,11 +5,13 @@ class CropPic
     private $data;
     private $fileName;
     private $dst;
+    private $thumb;
     private $dst_h;
     private $dst_w;
     private $type;
     private $extension;
     private $dstDir = 'images/gallary/sketches';
+    private $thumbDir = 'images/gallary/mini';
     private $msg;
 
     function __construct($src, $data, $dst_w, $dst_h)
@@ -18,7 +20,7 @@ class CropPic
         $this->setData($data);
         $this->dst_h = $dst_h;
         $this->dst_w = $dst_w;
-        $this->crop($this->src, $this->dst, $this->data);
+        $this->crop($this->src, $this->dst, $this->thumb, $this->data);
 
     }
 
@@ -47,15 +49,17 @@ class CropPic
     private function setDst()
     {
         $dir = $this->dstDir;
+        $thumb_dir = $this->thumbDir;
 
         if (!file_exists($dir)) {
             mkdir($dir, 0777);
         }
         $this->fileName = date('YmdHis') . $this->extension;
         $this->dst = $dir . '/' . $this->fileName;
+        $this->thumb = $thumb_dir . '/' . $this->fileName;
     }
 
-    private function crop($src, $dst, $data)
+    private function crop($src, $dst, $thumbnail, $data)
     {
         if (!empty($src) && !empty($dst) && !empty($data)) {
             switch ($this->type) {
@@ -78,20 +82,22 @@ class CropPic
             }
 
             $dst_img = imagecreatetruecolor($this->dst_w, $this->dst_h);
-            $result = imagecopyresampled($dst_img, $src_img, 0, 0, $data->x, $data->y, $this->dst_w, $this->dst_h, $data->width, $data->height);
+            $thumb_img = imagecreatetruecolor($this->dst_w, $this->dst_h);
+            $result = (imagecopyresampled($dst_img, $src_img, 0, 0, $data->x, $data->y, $this->dst_w, $this->dst_h, $data->width, $data->height) and
+                imagecopyresampled($thumb_img, $src_img, 0, 0, $data->x, $data->y, $this->dst_w, $this->dst_h, $data->width, $data->height));
 
             if ($result) {
                 switch ($this->type) {
                     case IMAGETYPE_GIF:
-                        $result = imagegif($dst_img, $dst);
+                        $result = (imagegif($dst_img, $dst) and imagegif($dst_img, $thumbnail));
                         break;
 
                     case IMAGETYPE_JPEG:
-                        $result = imagejpeg($dst_img, $dst);
+                        $result = (imagejpeg($dst_img, $dst) and imagegif($dst_img, $thumbnail));
                         break;
 
                     case IMAGETYPE_PNG:
-                        $result = imagepng($dst_img, $dst);
+                        $result = (imagepng($dst_img, $dst) and imagegif($dst_img, $thumbnail));
                         break;
                 }
 
@@ -104,6 +110,7 @@ class CropPic
 
             imagedestroy($src_img);
             imagedestroy($dst_img);
+            imagedestroy($thumb_img);
         }
     }
 
