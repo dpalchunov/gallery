@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/css/nav_menu_eng.css"/>
     <link rel="stylesheet" type="text/css" href="/css/admin_menu.css"/>
     <link rel="stylesheet" type="text/css" href="/css/gallery_edit_style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header_style.css"/>
     <link rel="stylesheet" type="text/css" href="/css/cropper.css">
     <link rel="stylesheet" type="text/css" href="/css/uploadfile.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">

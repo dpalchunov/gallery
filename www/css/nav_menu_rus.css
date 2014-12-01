@@ -14,8 +14,6 @@
 		width: 81px;
 		left:0px;
 		top:0px;
-		background-image: url(../images/nav_menu/ru/about.png);
-		background-repeat: no-repeat;
 	}
 	#nav_about.active {
 		position: absolute;
@@ -23,8 +21,6 @@
 		width: 81px;
 		left:0px;
 		top:0px;
-		background-image: url(../images/nav_menu/ru/about_active.png);
-		background-repeat: no-repeat;
 	}
 	#nav_about a{
 		display: block;
@@ -36,8 +32,6 @@
 		width: 81px;
 		left:0px;
 		top:0px;
-		background-image: url(../images/nav_menu/ru/about_hover.png);
-		background-repeat: no-repeat;
 	}
 	#nav_about.active:hover {
 		position: absolute;
@@ -45,8 +39,6 @@
 		width: 81px;
 		left:0px;
 		top:0px;
-		background-image: url(../images/nav_menu/ru/about_active.png);
-		background-repeat: no-repeat;
 	}
 	/*Navigation menu -contacts*/
 	#nav_contacts {

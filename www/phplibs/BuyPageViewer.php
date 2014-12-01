@@ -18,9 +18,12 @@
         }
         $lang = $resourceService -> getLang();
         $localizator = new Localizator();
-        $template_engine->assign('lang',$lang);          
-        $template_engine->assign('change_lang',$localizator -> getText($lang, 'about_change_lang'));
-        
+
+        $headerGetter = HeaderGetter::getHeaderHtml($lang,'buy');
+        $meta = HeaderGetter::getMeta();
+        $template_engine->assign('meta', $meta);
+        $template_engine->assign('header', $headerGetter);
+        $template_engine->assign('lang',$lang);
         $template_engine->assign('buy_pic',$localizator -> getText($lang, 'buy_pic'));
         $template_engine->assign('buy_pic_price1',$localizator -> getText($lang, 'buy_pic_price1'));
         $template_engine->assign('buy_pic_price2',$localizator -> getText($lang, 'buy_pic_price2'));

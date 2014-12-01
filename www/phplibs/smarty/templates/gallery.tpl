@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+{{{$meta}}}
 <html lang="ru-RU">
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/css/nav_menu_{{{$lang}}}.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/nav_menu.css"/>
     <link rel="stylesheet" type="text/css" href="/css/gallary_style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header.css"/>
     <title>Галерея</title>
 
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -37,32 +39,7 @@
 <div id="arrow_pic">
     <br>
 </div>
-<div id="header">
-    <div id="header_name">
-        KRISTINA STRUNKOVA
-    </div>
-    <!--end header_name-->
-    <div id="nav_menu">
-        <div id="nav_about">
-            <a href="about.php"></a>
-        </div>
-        <!--end nav_about-->
-        <div id="nav_contacts">
-            <a href="contacts.php"></a>
-        </div>
-        <!--end nav_contacts-->
-        <div id="nav_gallary" class="active">
-        </div>
-        <!--end nav_gallary-->
-        <div id="nav_order">
-            <a href="buy.php"></a>
-        </div>
-        <!--end nav_order-->
-    </div>
-    <!--end nav_menu-->
-    <div id=lang_changer><a href="?change_lang=1">{{{$change_lang}}}</a></div>
-</div>
-<!--end header-->
+{{{$header}}}
 <div id="all_space_wrap">
     <div id="left_column_wrap">
         <a href="#top"></a>

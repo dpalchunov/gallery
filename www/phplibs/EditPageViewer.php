@@ -20,8 +20,7 @@
         $localizator = new Localizator();
         $template_engine->assign('lang',$lang);          
         $template_engine->assign('main_text',$localizator -> getText( $lang, 'about_main_text'));
-        $template_engine->assign('change_lang',$localizator -> getText($lang, 'about_change_lang'));        
-        $template_engine->display('edit.tpl');        
+        $template_engine->display('edit.tpl');
     }
   }
 ?>

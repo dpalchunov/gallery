@@ -23,15 +23,20 @@ class  AboutPageViewer
         $localizator = new Localizator();
         $persistedAvasGetter = new PersistedAvasGetter();
         $jsArrayHtml = $persistedAvasGetter->generateJsArrayHtml1();
+        $headerGetter = HeaderGetter::getHeaderHtml($lang,'about');
+        $meta = HeaderGetter::getMeta();
+        $template_engine->assign('meta', $meta);
+        $template_engine->assign('header', $headerGetter);
+
         $template_engine->assign('avas', $jsArrayHtml);
         $template_engine->assign('lang', $lang);
         $template_engine->assign('main_text', $localizator->getText($lang, 'about_main_text'));
-        $template_engine->assign('change_lang', $localizator->getText($lang, 'about_change_lang'));
         if ($_COOKIE['greetingWasShown'] == 'true') {
             $template_engine->assign('greetingClass', ' class=display_none ');
         } else {
             $template_engine->assign('greetingClass', ' ');
         }
+
         $template_engine->display('about.tpl');
     }
 }

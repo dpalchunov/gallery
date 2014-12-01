@@ -55,45 +55,6 @@ blockquote {
     position: relative;
 }
 
-/*Header*/
-
-#header {
-    position: relative;
-    height: 165px;
-    background: #303030;
-    background-image: url(../images/header_bg_01.png);
-    background-repeat: repeat-x;
-
-}
-
-#header_name {
-    height: 55px;
-    width: 363px;
-    color: #0b0b0b;
-    position: absolute;
-    left: 82px;
-    top: 63px;
-    background-image: url(../images/header_name_transparent.png);
-    background-repeat: no-repeat;
-
-}
-
-#header_underline {
-    height: 1px;
-    background: #727272;
-    position: relative;
-    left: 85px;
-    top: 75px;
-    width: 875px;
-}
-
-#header_shaddow {
-    height: 58px;
-    width: 1200px;
-    background-image: url(../images/header_shaddow.png);
-    background-repeat: no-repeat;
-
-}
 
 /*Main content*/
 

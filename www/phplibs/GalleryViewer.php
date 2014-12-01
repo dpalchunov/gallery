@@ -18,14 +18,16 @@
         }
         $lang = $resourceService -> getLang();    
         $localizator = new Localizator();
-     
+        $headerGetter = HeaderGetter::getHeaderHtml($lang,'gallery');
+        $meta = HeaderGetter::getMeta();
+        $template_engine->assign('meta', $meta);
+        $template_engine->assign('header', $headerGetter);
       
         $classificatorsGetter = new ClassificatorsGetter($lang);
         $classifiactors_html_code = $classificatorsGetter -> getHTMLCode();
         $template_engine->assign('classificators',$classifiactors_html_code);
         $template_engine->assign('lang',$lang);
-        $template_engine->assign('no_results',$localizator -> getText($lang, 'no_results'));         
-        $template_engine->assign('change_lang',$localizator -> getText($lang, 'about_change_lang'));           
+        $template_engine->assign('no_results',$localizator -> getText($lang, 'no_results'));
         $template_engine->display('gallery.tpl');        
     }
   }

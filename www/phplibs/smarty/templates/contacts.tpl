@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{{{$meta}}}
 <html lang="ru-RU">
     <head>
-	<link rel="stylesheet" type="text/css" href="/css/nav_menu_{{{$lang}}}.css" />
+	<link rel="stylesheet" type="text/css" href="/css/nav_menu.css" />
 	<link rel="stylesheet" type="text/css" href="/css/contacts_style.css" />
+     <link rel="stylesheet" type="text/css" href="/css/header.css"/>
 	
 	<!--[if IE]>
 	    <link href='http://fonts.googleapis.com/css?family=Bad+Script|Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -57,25 +59,8 @@
     </head>
     
     <body>
-	<div id="wrap">
-	    <div id="header">		
-		<div id="header_name">		
-		</div><!--end header_name-->
-		<div id="nav_menu">		
-		    <div id="nav_about">
-			<a href="about.php"></a>			
-		    </div><!--end nav_about-->
-		    <div id="nav_contacts" class="active">		
-		    </div><!--end nav_contacts-->
-		    <div id="nav_gallary">
-			<a href="gallery.php"></a>
-		    </div><!--end nav_gallary-->
-		    <div id="nav_order">
-			<a href="buy.php"></a>				
-		    </div><!--end nav_order-->		
-		</div><!--end nav_menu-->
-		<div id=lang_changer><a href="?change_lang=1">{{{$change_lang}}}</a></div>
-	    </div><!--end header-->
+    {{{$header}}}
+    <div id="wrap">
 	    <div id="main_content">
 		<div id="header_shaddow"></div>
 		<div id="contacts_table">

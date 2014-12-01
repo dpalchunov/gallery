@@ -18,9 +18,14 @@
         }
         $lang = $resourceService -> getLang();
         $localizator = new Localizator();
-        $template_engine->assign('lang',$lang);          
-        $template_engine->assign('change_lang',$localizator -> getText($lang, 'about_change_lang'));
-        
+
+        $headerGetter = HeaderGetter::getHeaderHtml($lang,'contacts');
+        $meta = HeaderGetter::getMeta();
+        $template_engine->assign('meta', $meta);
+        $template_engine->assign('header', $headerGetter);
+
+        $template_engine->assign('lang',$lang);
+
         $template_engine->assign('contacts_call_comment',$localizator -> getText($lang, 'contacts_call_comment'));
         $template_engine->assign('contacts_mail_comment',$localizator -> getText($lang, 'contacts_mail_comment'));
         $template_engine->assign('contacts_skype_comment',$localizator -> getText($lang, 'contacts_skype_comment'));
