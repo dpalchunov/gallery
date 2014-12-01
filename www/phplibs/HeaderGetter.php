@@ -40,7 +40,7 @@
               $template_engine->assign('buy_active','');
           }
 
-          $headerHtml = $template_engine-> display('header.tpl') ;
+          $headerHtml = $template_engine-> fetch('header.tpl') ;
           return  $headerHtml;
       }
 

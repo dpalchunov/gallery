@@ -144,8 +144,8 @@ function smallImageMouseOverHandler() {
     if (details.css('display') == 'none' || details.height() == 0) {
         pic_width = $(this).width();
         all_td_space_width = $(all_td_space).width();
-        details.width(pic_width - 50);
-        details.css('left', (all_td_space_width - pic_width + 50) / 2 + 'px');
+        details.width(pic_width);
+        details.css('left', (all_td_space_width - pic_width) / 2 + 'px');
         details.css('height', '25%');
         details.slideDown(400);
 
@@ -160,8 +160,8 @@ function smallImageMouseOverHandler() {
     if (rate.css('display') == 'none' || rate.height() == 0) {
         pic_width = $(this).width();
         all_td_space_width = $(all_td_space).width();
-        rate.width(pic_width - 50);
-        rate.css('left', (all_td_space_width - pic_width + 50) / 2 + 'px');
+        rate.width(pic_width);
+        rate.css('left', (all_td_space_width - pic_width) / 2 + 'px');
         rate.css('height', '17px');
         rate.slideDown(400);
 
@@ -279,13 +279,16 @@ function turnOnReturner() {
     $('#left_column_wrap').bind("click", leftColumnWrapClickHandler)
     if (mouseoverLeftColumnWrap) {
         $('#left_column_wrap').css('opacity', 0);
+        $('#arrow_pic').css('background-color', '#7e7e7e');
     }
     $('#left_column_wrap').hover(function () {
             $(this).css('opacity', 0);
+            $('#arrow_pic').css('background-color', '#7e7e7e');
             mouseoverLeftColumnWrap = true;
         },
         function () {
             $(this).css('opacity', 1);
+            $('#arrow_pic').css('background-color', '#000');
             mouseoverLeftColumnWrap = false;
         });
 }
@@ -293,6 +296,7 @@ function turnOnReturner() {
 function turnOffReturner() {
     $('#left_column_wrap').unbind('click');
     $('#left_column_wrap').css('opacity', 1);
+    $('#arrow_pic').css('background-color', '#000');
     $('#left_column_wrap').hover(function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = true;

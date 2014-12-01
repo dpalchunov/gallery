@@ -64,47 +64,24 @@ $(document).ready(function () {
             );
             avaAnimation();
         });
-        $("#left_ar").click(function () {
-
-            var nextAvaPath = getPrevAvaPath();
-            //привязка дива с авой к лувому краю(чтобы ехал в влево)
-            $("#ava_img").css("right", "");
-            $("#ava_img").css("left", "68px");
-            //сначала убираем DIV
-            $("#ava_img").animate({width: 'toggle'},
-                animateTime,
-                function () {
-                    //по окончании анимации исчезновения
-                    //установка нового background-image
-                    $("#ava_img").attr("src", nextAvaPath);
-                    //привязка дива с авой к правому краю(чтобы выезжал справа)
-                    $("#ava_img").css("left", "");
-                    $("#ava_img").css("right", "75px");
-                }
-            );
-            avaAnimation();
-        });
         $("#ava_img").attr("src", getCurAvaPath());
     } else if (avaCount == 1) {
-        $("#right_ar").hide();
-        $("#left_ar").hide();
         $("#ava_img").attr("src", getCurAvaPath());
     } else {
-        $("#main_text").css("top", 120);
         $("#slider").hide();
     }
-
 });
 <!--Конец скрптов отвечающих за слайдер аватарок на главной странице-->
 
 <!-- Скрипт отвечающий для страничку приветствия, которая отображается один раз при первом посещении сайта-->
 
 $(document).ready(function () {
-    $('#greeting_img').bind('click', greetingClickHandler);
+    $('#greeting').bind('click', greetingClickHandler);
     $.cookie("greetingWasShown", "true");
 });
 function greetingClickHandler() {
     $('#greeting').fadeOut(400);
+    $('#wrapper').show();
 }
 <!-- Конец. Скрипт отвечающий для страничку приветствия, которая отображается один раз при первом посещении сайта-->
 

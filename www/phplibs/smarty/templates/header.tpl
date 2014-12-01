@@ -23,5 +23,5 @@
         <!--end nav_order-->
     </div>
     <!--end nav_menu-->
-    <div id=lang_changer><a href="?change_lang=1">{{{$change_lang}}}</a></div>
+    <div id="lang_changer"><a href="?change_lang=1">{{{$change_lang}}}</a></div>
 </div>

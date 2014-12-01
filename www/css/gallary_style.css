@@ -106,18 +106,6 @@ blockquote {
     overflow: hidden;
 }
 
-/*
-#left_column_wrap:hover {
-    position: relative;
-    margin-right: -700px;
-    width: 50%;
-    float: left;
-    height:  5000px;
-    background-color: #eee;
-    opacity: 0;
-    z-index: 1;
-    display: block;
-}*/
 
 #arrow_pic {
     position: fixed;
@@ -125,7 +113,7 @@ blockquote {
     height: 100%;
     font-family: Georgia;
     background-image: url("../images/returner/up.png");
-    background-color: #f3f3f3;
+    background-color: #7e7e7e;
     background-repeat: no-repeat;
     background-position: center 3%;
     position: fixed;
@@ -192,7 +180,6 @@ blockquote {
 #header_shaddow {
     height: 150px;
     width: 1200px;
-/ / background-image : url ( ../images/header_shaddow.png );
     background: #000;
     background-repeat: no-repeat;
 
@@ -274,12 +261,12 @@ blockquote {
 
 .details {
     margin: auto;
-    width: 50%;
+    width: 100%;
     height: 0px;
     position: absolute;
-    bottom: 25px;
+    bottom: 0px;
     opacity: 0.7;
-    background: rgba(0, 0, 0, 0.3); /* фон с полупрозрачностью */
+    background: rgba(0, 0, 0, 0.5); /* фон с полупрозрачностью */
     filter: alpha(Opacity=70); /* Прозрачность в IE */
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000)"; /* все тот же фон с полупрозрачностью, но фильтр для ИЕ8 */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000); /* все тот же фон с полупрозрачностью, но фильтр для ИЕ7 и ИЕ6 */
@@ -304,7 +291,7 @@ blockquote {
     width: 50%;
     height: 0px;
     position: absolute;
-    top: 25px;
+    top: 0px;
     opacity: 0.7;
     background: rgba(0, 0, 0, 0); /* фон с полупрозрачностью */
     filter: alpha(Opacity=0); /* Прозрачность в IE */

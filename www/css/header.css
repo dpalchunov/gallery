@@ -3,11 +3,13 @@
 #header {
     position: relative;
     height: 165px;
+    width: 100%;
     background: #303030;
     background-image: url(../images/header_bg_01.png);
     background-repeat: repeat-x;
     z-index: 10;
 }
+
 
 #header_name {
     height: 34px;
@@ -27,18 +29,4 @@
     margin-left: 32px;
 }
 
-#header_underline {
-    height: 1px;
-    background: #727272;
-    position: relative;
-    left: 85px;
-    top: 75px;
-    width: 875px;
-}
 
-#header_shaddow {
-    height: 58px;
-    width: 1200px;
-    background-repeat: no-repeat;
-
-}

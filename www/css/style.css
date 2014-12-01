@@ -2,22 +2,14 @@
 
 /*������� ����� ����� Strunkova.ru*/
 
-/*General Styles*/
-html {
-    height: 100%;
-}
-
 body {
     background: #000;
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
     color: #ffffff;
-    min-height: 100%;
     padding-top: 5px;
     background-color: #000;
-    /*background-image: url(../images/main_bg.jpg);
-    background-repeat: repeat-x;*/
-
+    width: 100%;
 }
 
 p {
@@ -50,168 +42,59 @@ blockquote {
     margin-left: 20px;
 }
 
-#wrap {
-    width: 1200px;
-    height: 1200px;
-    /*	background-image: url(../images/main_bg.gif);
-        background-repeat: repeat-y round;*/
-    background: #000;
-    margin: 0 auto;
-    position: relative;
+#wrapper {
+    width: 100%;
 }
-
 
 /*Main content*/
 
 #main_content {
-    height: 975px;
     width: 100%;
     position: relative;
-    float: left;
-    top: 165px;
-    background-color: #000;
-
-}
-
-#slider {
-    position: relative;
+    background-color: black;
     display: inline-block;
-    float: left;
+    margin-top: 125px;
 
 }
-
-#left_ar {
-    width: 60px;
-    height: 97px;
-    position: absolute;
-    top: 104px;
-    left: 0px;
-    background-image: url(../images/slider/left_ar.png);
-    background-repeat: no-repeat;
-}
-
-#left_ar a {
-    display: block;
-    height: 100%
-}
-
-#right_ar {
-    width: 59px;
-    height: 97px;
-    position: absolute;
-    top: 104px;
-    left: 661px;
-    background-image: url(../images/slider/right_ar.png);
-    background-repeat: no-repeat;
-}
-
-#right_ar a {
-    display: block;
-    height: 100%
-}
-
-#left_ar:hover {
-    width: 60px;
-    height: 97px;
-    position: absolute;
-    top: 104px;
-    left: 0px;
-    background-image: url(../images/slider/left_ar_hover.png);
-    background-repeat: no-repeat;
-}
-
-#right_ar:hover {
-    width: 59px;
-    height: 97px;
-    position: absolute;
-    top: 104px;
-    left: 661px;
-    background-image: url(../images/slider/right_ar_hover.png);
-    background-repeat: no-repeat;
-}
-
 #ava {
-    display: inline-block;
     position: relative;
+    display: inline-block;
     float: left;
-    top: 0px;
-    left: 0px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+    margin-left: 50px;
 
-#shaddow {
-    width: 575px;
-    height: 85px;
-    position: absolute;
-    top: 301px;
-    right: 75px;
-    background-image: url(../images/slider/shaddow.png);
-    background-repeat: no-repeat;
 }
 
 #main_text {
+    position: relative;
     float: left;
     display: inline-block;
     margin-left: 40px;
 
 }
 
-@font-face {
-    font-family: Garamond; /* ��������� ������ */
-    src: url("../fonts/GaramondPremrPro-It.otf");/* ���� � ����� �� ������� */
-}
 
 #main_text pre {
-
-    font-family: Garamond, 'Garamond Premier Pro';
-}
-/* font-family : Georgia, 'Times New Roman', Times, serif;  8/
+    font-family: Code LIGHT;
+    font-size: 20px;
     color: white;
-    font-size: 16pt;
-}
-
-#main_text_part1 {
-    height: 200px;
-    width: 1000px;
-    position: absolute;
-    top: 240px;
-    left: 155px;
-}
-
-#main_text_part2 {
-    height: 396px;
-    width: 800px;
-    position: absolute;
-    top: 460px;
-    left: 155px;
-}
-
-#photo_area {
-    height: 396px;
-    width: 314px;
-    position: absolute;
-    top: 15px;
-    left: 630px;
-    background-image: url(../images/avatar.png);
-    background-repeat: no-repeat;
+    display: inline-block;
 }
 
 /*Footer*/
 #footer {
-    position: absolute;
-    top: 1120px;
-    left: 0px;
+    position: relative;
     height: 80px;
     width: 100%;
     color: #FFFFFF;
-    background-color: #000000;
+    background-color: black;
+    display: block;
 }
+
 
 #footer_phrase_name {
     height: 15px;
     width: 241px;
-    position: absolute;
+    position: relative;
     left: 200px;
     top: 55px;
     background-image: url(../images/footer_phrase_name.png);
@@ -223,14 +106,17 @@ blockquote {
     position: absolute;
     left: 0;
     top: 0;
-    height: 1300px;
-    width: 1600px;
+    width: 100%;
     z-index: 9999;
     text-align: center;
 }
 
 .display_none {
     display: none;
+}
+
+.display_inline_block {
+    display: inline-block;
 }
 
 #greeting img {

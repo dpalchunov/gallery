@@ -35,11 +35,13 @@ class  Localizator
         );
         $eng = array(
             'about_main_text' =>
-'Strunkova Kristina. Was born in Tartu in 1989. Kristina studied art at school in Tambov.
-In 2005 began studying at Moscow State Art College by name 1905 year and finished it in 2009.
-In the same year she began studying at Moscow State Art Institute by name of V.Surikov in the
-faculty of painting and this continues at this moment. She took part in several exhibitions
-in Moscow and Tambov in Russia and England.',
+'Strunkova Kristina. Was born in Tartu in 1989.
+Kristina studied art at school in Tambov. In 2005 began studying at
+Moscow State Art College by name 1905 year and finished it in 2009.
+In the same year she began studying at Moscow State Art Institute
+by name of V.Surikov in the faculty of painting and this continues
+at this moment.She took part in several exhibitions in Moscow and
+Tambov in Russia and England.',
             'change_lang_label' => 'рус',
             'contacts_call_comment' => 'Call to mobile phone in Moscow.',
             'contacts_mail_comment' => 'Mail to electronic mail.',
