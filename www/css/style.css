@@ -205,7 +205,8 @@ blockquote {
 #main_text pre {
 
     font-family: Garamond, 'Garamond Premier Pro';
-/ / font-family : Georgia, 'Times New Roman', Times, serif;
+
+/* font-family : Georgia, 'Times New Roman', Times, serif;  8/
     color: white;
     font-size: 16pt;
 }
