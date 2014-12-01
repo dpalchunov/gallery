@@ -82,22 +82,42 @@ class CropPic
             }
 
             $dst_img = imagecreatetruecolor($this->dst_w, $this->dst_h);
-            $thumb_img = imagecreatetruecolor($this->dst_w, $this->dst_h);
+
+            $src_part_w = $data->width;
+            $src_part_h = $data->height;
+
+            if ($src_part_w <= 800 and $src_part_h <= 600) {
+                $thumb_w = $src_part_w;
+                $thumb_h = $src_part_h;
+            } else {
+                $ratio = $src_part_w / $src_part_h;
+                if ((($src_part_w) / 800) >= ($src_part_h) / 600) {
+                    $thumb_w = 800;
+                    $thumb_h = $thumb_w = $thumb_w / $ratio;
+                } else {
+                    $thumb_h = 600;
+                    $thumb_w = $thumb_h * $ratio;
+                }
+            }
+            $thumb_w = round($thumb_w);
+            $thumb_h = round($thumb_h);
+            trigger_error($thumb_w . ' -x ' . $thumb_h . ' -y');
+            $thumb_img = imagecreatetruecolor($thumb_w, $thumb_h);
             $result = (imagecopyresampled($dst_img, $src_img, 0, 0, $data->x, $data->y, $this->dst_w, $this->dst_h, $data->width, $data->height) and
-                imagecopyresampled($thumb_img, $src_img, 0, 0, $data->x, $data->y, $this->dst_w, $this->dst_h, $data->width, $data->height));
+                imagecopyresampled($thumb_img, $src_img, 0, 0, $data->x, $data->y, $thumb_w, $thumb_h, $data->width, $data->height));
 
             if ($result) {
                 switch ($this->type) {
                     case IMAGETYPE_GIF:
-                        $result = (imagegif($dst_img, $dst) and imagegif($dst_img, $thumbnail));
+                        $result = (imagegif($dst_img, $dst) and imagegif($thumb_img, $thumbnail));
                         break;
 
                     case IMAGETYPE_JPEG:
-                        $result = (imagejpeg($dst_img, $dst) and imagegif($dst_img, $thumbnail));
+                        $result = (imagejpeg($dst_img, $dst) and imagegif($thumb_img, $thumbnail));
                         break;
 
                     case IMAGETYPE_PNG:
-                        $result = (imagepng($dst_img, $dst) and imagegif($dst_img, $thumbnail));
+                        $result = (imagepng($dst_img, $dst) and imagegif($thumb_img, $thumbnail));
                         break;
                 }
 
@@ -181,7 +201,7 @@ $response = array(
 $fileName = $crop->getFileName();
 copy($_POST['pic_src'], 'images/gallary/' . $crop->getFileName());
 $pic = new Picture($fileName);
-ImageHelper::addBgAndShadow($pic->getSketchPath());
+//ImageHelper::addBgAndShadow($pic->getSketchPath());
 $pic_man = new PictureObjManager();
 $res = $pic_man->savePicture($pic);
 echo $res;
