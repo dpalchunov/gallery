@@ -157,10 +157,11 @@ class  PicturesGetter
                         HAVING passedclassificators = (SELECT COUNT(classificators.classificatorid) FROM
                                                                         (SELECT DISTINCT(classificatorid) classificatorid
                                                                         FROM tclassificatorvalues
-                                                                        WHERE classificatorvalueid IN {CLASSIFICATOR_VALUES}) classificators)';
+                                                                        WHERE classificatorvalueid IN {CLASSIFICATOR_VALUES}) classificators)
+                        ORDER BY position';
             $query = str_replace('{CLASSIFICATOR_VALUES}', $whereStr, $query);
         } else {
-            $query = 'SELECT p.file_name,p.position,p.sketch_path,p.pic_path,p.thumbnail, p.rusdesc,p.engdesc,p.rate FROM tpictures p';
+            $query = 'SELECT p.file_name,p.position,p.sketch_path,p.pic_path,p.thumbnail, p.rusdesc,p.engdesc,p.rate FROM tpictures p ORDER BY position';
         }
         return $query;
     }

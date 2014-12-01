@@ -44,14 +44,14 @@ class PictureObjManager
 
     private function prepareSelectAllPattern()
     {
-        return "SELECT * FROM strunkovadb.tpictures ";
+        return "SELECT * FROM strunkovadb.tpictures ORDER BY position";
     }
 
     private function prepareSelectPagePattern($active_page)
     {
         $pic_per_page = 5;
         $from = ($active_page - 1) * $pic_per_page;
-        $sql = "SELECT * FROM strunkovadb.tpictures LIMIT " . "{$from}" . "," . "{$pic_per_page}";
+        $sql = "SELECT * FROM strunkovadb.tpictures order by position LIMIT " . "{$from}" . "," . "{$pic_per_page}";
         return $sql;
     }
 
