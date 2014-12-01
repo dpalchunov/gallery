@@ -1,8 +1,9 @@
+var cropperHandlerIsActive = true;
+
 
 function initCropper() {
     var $image = $(".cropper_img");
     $image.cropper({
-        aspectRatio: 575 / 301,
         data: {
             x: 480,
             y: 60,
@@ -10,47 +11,81 @@ function initCropper() {
             height: 360
         },
         preview: ".cropper-preview",
-        done: function(data) {
-            console.log(data);
+        done: function (data) {
+            //console.log(data);
         }
     });
+
+    setCropperHandler();
+
 }
 
-$(document).ready(function(){
+function cropperChangeHandler() {
+    setPreviewSize();
+}
+
+//den_todo does cropperHandlerIsActive works?
+function setPreviewSize() {
+    cropperHandlerIsActive = false;
+    var data = $(".cropper_img").cropper("getData");
+    var ratio = (data.height) / (data.width);
+
+    var w = 350;
+    var h = Math.round(w * ratio);
+    $('#cropper-preview').width(w);
+    $('#cropper-preview').height(h);
+
+
+    //refresh cropper to recalculate preview
+    $(".cropper_img").cropper("setData", data);
+    cropperHandlerIsActive = true;
+}
+
+
+function setCropperHandler() {
+    var $image = $(".cropper_img");
+    $image.on("render.cropper", function () {
+        if (cropperHandlerIsActive) {
+            cropperChangeHandler();
+        }
+    })
+}
+
+$(document).ready(function () {
     var $image = $(".cropper_img");
     var currentSrc;
     initCropper();
     var savehref = $('#about_save_ava');
-    savehref.click(function() {
+    savehref.click(function () {
         saveCropHandler();
     });
 
     var cancelhref = $('#about_cancel_ava');
-    cancelhref.click(function() {
+    cancelhref.click(function () {
         cancelCropHandler();
     });
 
     addRemoveClickHandlers();
 
     $("#fileuploader").uploadFile({
-        url:"./about_upload_ava.php",
-        fileName:"myfile",
-        onSuccess:function(files,json_data,xhr) {
+        url: "./about_upload_ava.php",
+        fileName: "myfile",
+        onSuccess: function (files, json_data, xhr) {
 
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
             var img_h = data[2];
             changeSrc(data[0]);
-            img_tag_size = calc_img_size(img_w,img_h);
+            img_tag_size = calc_img_size(img_w, img_h);
             afterUpload(img_tag_size);
             resizeDragAndDrop(img_tag_size);
 
         },
-        uploadButtonClass:"green ajax-file-upload",
-        showDone:false,
-        showProgress:false,
-        allowedTypes:"jpg,jpeg,png,gif"
+        uploadButtonClass: "green ajax-file-upload",
+        showDone: false,
+        showProgress: false,
+        allowedTypes: "jpg,jpeg,png,gif"
     });
 
     function beforeUpload() {
@@ -62,7 +97,7 @@ $(document).ready(function(){
 
     function changeSrc(data) {
         var d = new Date();
-        currentSrc =  "./" + data
+        currentSrc = "./" + data
         var src = currentSrc + "?" + d.getTime();
 
         $image.cropper("setImgSrc", src);
@@ -78,36 +113,35 @@ $(document).ready(function(){
     }
 
 
-    function calc_img_size(img_w,img_h) {
-        return  img_h*600/img_w;
+    function calc_img_size(img_w, img_h) {
+        return  img_h * 600 / img_w;
     }
 
     function resizeDragAndDrop(img_tag_size) {
         if (img_tag_size > 315) {
             h = img_tag_size - 275;
-        }  else
-        {
+        } else {
             h = 40;
         }
 
-        $(".ajax-upload-dragdrop").css('height',parseInt(h));
+        $(".ajax-upload-dragdrop").css('height', parseInt(h));
 
     }
 
-    function saveCropHandler () {
+    function saveCropHandler() {
         $.ajax({
             type: "POST",
             url: "about_save_ava.php",
-            data: { avatar_src: currentSrc , avatar_data: JSON.stringify($image.cropper("getData"))}
+            data: { avatar_src: currentSrc, avatar_data: JSON.stringify($image.cropper("getData"))}
         })
-            .done(function( msg ) {
+            .done(function (msg) {
                 hideUploadControls();
                 reloadPersistedAvas();
                 initCropper();
             });
     }
 
-    function cancelCropHandler () {
+    function cancelCropHandler() {
         hideUploadControls();
         initCropper();
     }
@@ -127,7 +161,7 @@ $(document).ready(function(){
             type: "POST",
             url: "about_get_avas.php"
         })
-            .done(function( msg ) {
+            .done(function (msg) {
                 $("#persisted").html(msg);
                 addRemoveClickHandlers();
             });
@@ -139,7 +173,7 @@ $(document).ready(function(){
             url: "about_del_ava.php",
             data: { avatar_src: src }
         })
-            .done(function( msg ) {
+            .done(function (msg) {
                 reloadPersistedAvas();
             });
     }
@@ -150,31 +184,29 @@ $(document).ready(function(){
             url: "about_1st_ava.php",
             data: { avatar_src: src }
         })
-            .done(function( msg ) {
+            .done(function (msg) {
                 reloadPersistedAvas();
             });
     }
 
 
-
     function addRemoveClickHandlers() {
         var $removeButtons = $(".remove_ava");
 
-        $removeButtons.each(function() {
-            $(this).click(function() {
+        $removeButtons.each(function () {
+            $(this).click(function () {
                 removeHandler($(this).attr("src"))
             });
         });
 
         var $stButtons = $(".st1_href");
 
-        $stButtons.each(function() {
-            $(this).click(function() {
+        $stButtons.each(function () {
+            $(this).click(function () {
                 st1Handler($(this).attr("src"))
             });
         });
     }
-
 
 
 });

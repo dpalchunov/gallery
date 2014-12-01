@@ -1,5 +1,6 @@
 <?php
-class CropAvatar {
+class CropAvatar
+{
     private $src;
     private $data;
     private $file;
@@ -10,45 +11,50 @@ class CropAvatar {
     private $dstDir = 'images/slider/avas';
     private $msg;
 
-    function __construct($src, $data) {
-        $this -> setSrc($src);
-        $this -> setData($data);
-        $this -> crop($this -> src, $this -> dst, $this -> data);
+    function __construct($src, $data)
+    {
+        $this->setSrc($src);
+        $this->setData($data);
+        $this->crop($this->src, $this->dst, $this->data);
     }
 
-    private function setSrc($src) {
+    private function setSrc($src)
+    {
         if (!empty($src)) {
             $type = exif_imagetype($src);
 
             if ($type) {
-                $this -> src = $src;
-                $this -> type = $type;
-                $this -> extension = image_type_to_extension($type);
-                $this -> setDst();
+                $this->src = $src;
+                $this->type = $type;
+                $this->extension = image_type_to_extension($type);
+                $this->setDst();
             }
         }
     }
 
-    private function setData($data) {
+    private function setData($data)
+    {
         if (!empty($data)) {
-            $this -> data = json_decode(stripslashes($data));
+            $this->data = json_decode(stripslashes($data));
         }
     }
 
 
-    private function setDst() {
-        $dir = $this -> dstDir;
+    private function setDst()
+    {
+        $dir = $this->dstDir;
 
         if (!file_exists($dir)) {
             mkdir($dir, 0777);
         }
 
-        $this -> dst = $dir . '/' . date('YmdHis') . $this -> extension;
+        $this->dst = $dir . '/' . date('YmdHis') . $this->extension;
     }
 
-    private function crop($src, $dst, $data) {
+    private function crop($src, $dst, $data)
+    {
         if (!empty($src) && !empty($dst) && !empty($data)) {
-            switch ($this -> type) {
+            switch ($this->type) {
                 case IMAGETYPE_GIF:
                     $src_img = imagecreatefromgif($src);
                     break;
@@ -63,15 +69,19 @@ class CropAvatar {
             }
 
             if (!$src_img) {
-                $this -> msg = "Failed to read the image file";
+                $this->msg = "Failed to read the image file";
                 return;
             }
 
-            $dst_img = imagecreatetruecolor(575, 301);
-            $result = imagecopyresampled($dst_img, $src_img, 0, 0, $data -> x, $data -> y, 575, 301, $data -> width, $data -> height);
+            $dst_w = 400;
+            $ratio = ($data->width) / ($data->height);
+            $dst_h = $dst_w / $ratio;
+
+            $dst_img = imagecreatetruecolor($dst_w, $dst_h);
+            $result = imagecopyresampled($dst_img, $src_img, 0, 0, $data->x, $data->y, $dst_w, $dst_h, $data->width, $data->height);
 
             if ($result) {
-                switch ($this -> type) {
+                switch ($this->type) {
                     case IMAGETYPE_GIF:
                         $result = imagegif($dst_img, $dst);
                         break;
@@ -86,10 +96,10 @@ class CropAvatar {
                 }
 
                 if (!$result) {
-                    $this -> msg = "Failed to save the cropped image file";
+                    $this->msg = "Failed to save the cropped image file";
                 }
             } else {
-                $this -> msg = "Failed to crop the image file";
+                $this->msg = "Failed to crop the image file";
             }
 
             imagedestroy($src_img);
@@ -97,7 +107,8 @@ class CropAvatar {
         }
     }
 
-    private function codeToMessage($code) {
+    private function codeToMessage($code)
+    {
         switch ($code) {
             case UPLOAD_ERR_INI_SIZE:
                 $message = 'The uploaded file exceeds the upload_max_filesize directive in php.ini';
@@ -134,20 +145,22 @@ class CropAvatar {
         return $message;
     }
 
-    public function getResult() {
-        return !empty($this -> data) ? $this -> dst : $this -> src;
+    public function getResult()
+    {
+        return !empty($this->data) ? $this->dst : $this->src;
     }
 
-    public function getMsg() {
-        return $this -> msg;
+    public function getMsg()
+    {
+        return $this->msg;
     }
 }
 
-$crop = new CropAvatar($_POST['avatar_src'],$_POST['avatar_data']);
+$crop = new CropAvatar($_POST['avatar_src'], $_POST['avatar_data']);
 $response = array(
-    'state'  => 200,
-    'message' => $crop -> getMsg(),
-    'result' => $crop -> getResult()
+    'state' => 200,
+    'message' => $crop->getMsg(),
+    'result' => $crop->getResult()
 );
 
 echo json_encode($response);

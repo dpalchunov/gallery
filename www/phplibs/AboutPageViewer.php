@@ -1,35 +1,39 @@
-<?php   
-  require_once 'phplibs/ResourceService.php';
-  class  AboutPageViewer {
+<?php
+require_once 'phplibs/ResourceService.php';
+class  AboutPageViewer
+{
     private static $template_engine;
-    private static $resourceService;    
+    private static $resourceService;
 
-    public  function __construct() {
-      global $template_engine, $resourceService;
-      $resourceService = new ResourceService();
-      $template_engine = $resourceService->getTemplateEngine(); 
+    public function __construct()
+    {
+        global $template_engine, $resourceService;
+        $resourceService = new ResourceService();
+        $template_engine = $resourceService->getTemplateEngine();
     }
-    
-    public function showAboutPage() {
-        global $template_engine, $resourceService; 
+
+    public function showAboutPage()
+    {
+        global $template_engine, $resourceService;
         if ($_GET['change_lang'] == 1) {
-          $resourceService -> changeLang();
-          header( 'Location: about.php' );          
+            $resourceService->changeLang();
+            header('Location: about.php');
         }
-        $lang = $resourceService -> getLang();
+        $lang = $resourceService->getLang();
         $localizator = new Localizator();
         $persistedAvasGetter = new PersistedAvasGetter();
-        $jsArrayHtml = $persistedAvasGetter->generateJsArrayHtml();
-        $template_engine->assign('avas',$jsArrayHtml);
-        $template_engine->assign('lang',$lang);          
-        $template_engine->assign('main_text',$localizator -> getText( $lang, 'about_main_text'));
-        $template_engine->assign('change_lang',$localizator -> getText($lang, 'about_change_lang'));        
+        $jsArrayHtml = $persistedAvasGetter->generateJsArrayHtml1();
+        $template_engine->assign('avas', $jsArrayHtml);
+        $template_engine->assign('lang', $lang);
+        $template_engine->assign('main_text', $localizator->getText($lang, 'about_main_text'));
+        $template_engine->assign('change_lang', $localizator->getText($lang, 'about_change_lang'));
         if ($_COOKIE['greetingWasShown'] == 'true') {
-          $template_engine->assign('greetingClass',' class=display_none ');            
+            $template_engine->assign('greetingClass', ' class=display_none ');
         } else {
-          $template_engine->assign('greetingClass',' ');             
+            $template_engine->assign('greetingClass', ' ');
         }
-        $template_engine->display('about.tpl');        
+        $template_engine->display('about.tpl');
     }
-  }
+}
+
 ?>

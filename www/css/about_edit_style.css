@@ -2,104 +2,100 @@
 
 /*General Styles*/
 html {
-	height: 100%;
+    height: 100%;
 }
 
 body {
-	background: #FFFFFF;
-	font-family: Times New Roman, Helvetica, sans-serif;
-	font-size: 18px;
-	color: #ffffff;
-	min-height: 100%;
-	padding-top: 5px;
-	background-color: #eee;
-	/*background-image: url(../images/main_bg.jpg);
-	background-repeat: repeat-x;*/
-	
+    background: #FFFFFF;
+    font-family: Times New Roman, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    min-height: 100%;
+    padding-top: 5px;
+    background-color: #eee;
+    /*background-image: url(../images/main_bg.jpg);
+    background-repeat: repeat-x;*/
+
 }
 
 p {
-	font-size: 14px;
-	color: b9b9b9; 
+    font-size: 14px;
+    color: b9b9b9;
 }
 
 a {
-	text-decoration: none;
-	outline: none;
-	color: #ffffff;
-	font-size: 14px;
+    text-decoration: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 14px;
 }
 
 a:hover {
-	text-decoration: underline;
-	outline: none;
-	color: #FFFFFF;
-	font-size: 14px;
+    text-decoration: underline;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 14px;
 }
 
 code {
-	font-family: "Courier New", Courier, monospace;
-	color:#000;
+    font-family: "Courier New", Courier, monospace;
+    color: #000;
 }
 
 blockquote {
-	font-style: italic;
-	background: #ccc;
-	margin-left: 20px;
+    font-style: italic;
+    background: #ccc;
+    margin-left: 20px;
 }
 
 #wrap {
-	width: 1200px;
-	background: #d2dfe3;
-	margin: 0 auto;
-	position: relative;
+    width: 1200px;
+    background: #d2dfe3;
+    margin: 0 auto;
+    position: relative;
 }
 
 /*Header*/
 
 #header {
-	position: relative;
-	height: 165px;
-	background: #303030;
-	background-image: url(../images/header_bg_01.png);
-	background-repeat: repeat-x;	
-	
+    position: relative;
+    height: 165px;
+    background: #303030;
+    background-image: url(../images/header_bg_01.png);
+    background-repeat: repeat-x;
+
 }
 
 #header_name {
-	height: 55px;
-	width: 363px;
-	color: #0b0b0b;
-	position: absolute;
-	left: 82px;
-	top: 63px;
-	background-image: url(../images/header_name_transparent.png);
-	background-repeat: no-repeat;
+    height: 55px;
+    width: 363px;
+    color: #0b0b0b;
+    position: absolute;
+    left: 82px;
+    top: 63px;
+    background-image: url(../images/header_name_transparent.png);
+    background-repeat: no-repeat;
 
 }
 
-
 #header_underline {
-	height: 1px;
-	background: #727272;
-	position: relative;
-	left: 85px;
-	top: 75px;
-	width: 875px;
+    height: 1px;
+    background: #727272;
+    position: relative;
+    left: 85px;
+    top: 75px;
+    width: 875px;
 }
 
 #header_shaddow {
-	height: 58px;
-	width: 1200px;
-	background-image: url(../images/header_shaddow.png);
-	background-repeat: no-repeat;
+    height: 58px;
+    width: 1200px;
+    background-image: url(../images/header_shaddow.png);
+    background-repeat: no-repeat;
 
 }
 
-
 /*Main content*/
-
-
 
 #about_editor_content {
     width: 1100px;
@@ -125,8 +121,8 @@ blockquote {
     height: 301px;
     width: 575px;
     position: relative;
-    float:left;
-    float:left;
+    float: left;
+    float: left;
     margin-right: 20px;
 
 }
@@ -135,7 +131,7 @@ blockquote {
     height: 301px;
     width: 160px;
     position: relative;
-    float:left;
+    float: left;
 }
 
 .control {
@@ -162,7 +158,6 @@ blockquote {
     font-size: 20px;
 }
 
-
 .green a {
     color: #006200;
 }
@@ -170,7 +165,6 @@ blockquote {
 .green a:hover {
     color: #006200;
 }
-
 
 .red a:hover {
     color: #620000;
@@ -180,34 +174,32 @@ blockquote {
     color: #620000;
 }
 
-
 #uploaded {
     width: 1100px;
     margin: 20px;
     position: relative;
-    display:inline-block;
+    display: inline-block;
 }
 
-
 #uploaded_left {
-    left:0px;
-    top:0px;
+    left: 0px;
+    top: 0px;
     width: 600px;
     position: relative;
-    display:inline-block;
-    float:left;
+    display: inline-block;
+    float: left;
     margin-right: 20px;
 }
 
 #uploaded_right {
     width: 440px;
     position: relative;
-    display:inline-block;
-    float:left;
+    display: inline-block;
+    float: left;
 }
 
-#save_cancel{
-    display:none;
+#save_cancel {
+    display: none;
 }
 
 .uploaded_img {
@@ -224,20 +216,17 @@ blockquote {
     position: relative;
 }
 
-#cropper_image{
+#cropper_image {
     overflow: hidden;
 }
 
 .cropper-preview {
     overflow: hidden;
-    margin-bottom:20px;
+    margin-bottom: 20px;
     position: relative;
-    height: 219px;
-    width: 440px;
-    float:left;
+    float: left;
     margin-right: 20px;
 }
-
 
 #add_new {
     height: 50px;
@@ -254,58 +243,55 @@ blockquote {
     position: relative;
 }
 
-
 @font-face {
- font-family: Garamond; /* ��������� ������ */
- src: url("../fonts/GaramondPremrPro-It.otf");/* ���� � ����� �� ������� */
-}	
+    font-family: Garamond; /* ��������� ������ */
+    src: url("../fonts/GaramondPremrPro-It.otf");/* ���� � ����� �� ������� */
+}
 
 .head {
 
-	font-family: Garamond, 'Garamond Premier Pro';
-	color: black;
-	font-size: 20pt;
+    font-family: Garamond, 'Garamond Premier Pro';
+    color: black;
+    font-size: 20pt;
 }
 
 .info {
 
-	font-family: Garamond, 'Garamond Premier Pro';
-	color: black;
-	font-size: 17pt;
+    font-family: Garamond, 'Garamond Premier Pro';
+    color: black;
+    font-size: 17pt;
 }
 
-.info a{
+.info a {
 
-	font-family: Garamond, 'Garamond Premier Pro';
-	color: black;
-	font-size: 17pt;
+    font-family: Garamond, 'Garamond Premier Pro';
+    color: black;
+    font-size: 17pt;
 }
 
 .comment {
 
-	font-family: Garamond, 'Garamond Premier Pro';
-	color: black;
-	font-size: 12pt;
+    font-family: Garamond, 'Garamond Premier Pro';
+    color: black;
+    font-size: 12pt;
 }
 
 .empty {
 
-	height: 8pt;
+    height: 8pt;
 }
-
-
 
 .container {
-	margin-top: 10px;
-	height: 64px;
-	width: 64px;
-	overflow: hidden;
-	display: block;
+    margin-top: 10px;
+    height: 64px;
+    width: 64px;
+    overflow: hidden;
+    display: block;
 }
 
-.container:hover img{
+.container:hover img {
 
-	margin-top: -64px;
+    margin-top: -64px;
 }
 
 .remove {
@@ -319,26 +305,25 @@ blockquote {
     width: 30px;
 }
 
-
 /*Footer*/
 #footer {
-	position: relative;
-	top: 0px;
-	left:0px;
-	height: 80px;
-	width: 100%;
-	color: #FFFFFF;
-	background-color: #000000;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 80px;
+    width: 100%;
+    color: #FFFFFF;
+    background-color: #000000;
 }
 
 #footer_phrase_name {
-	height: 15px;
-	width: 241px;
-	position: absolute;
-	left: 200px;
-	top: 55px;
-	background-image: url(../images/footer_phrase_name.png);
-	background-repeat: no-repeat;
+    height: 15px;
+    width: 241px;
+    position: absolute;
+    left: 200px;
+    top: 55px;
+    background-image: url(../images/footer_phrase_name.png);
+    background-repeat: no-repeat;
 }
 
 
