@@ -12,7 +12,7 @@
     
     public function showGallary() {
         global $template_engine, $resourceService; 
-        if ($_GET['change_lang'] == 1) {
+        if (isset($_GET['change_lang']) && $_GET['change_lang'] == 1) {
           $resourceService -> changeLang();
           header( 'Location: gallery.php' );          
         }
@@ -20,15 +20,15 @@
         $localizator = new Localizator();
         $headerGetter = HeaderGetter::getHeaderHtml($lang,'gallery');
         $meta = HeaderGetter::getMeta();
-        $template_engine->assign('meta', $meta);
-        $template_engine->assign('header', $headerGetter);
-      
+
         $classificatorsGetter = new ClassificatorsGetter($lang);
         $classifiactors_html_code = $classificatorsGetter -> getHTMLCode();
         $template_engine->assign('classificators',$classifiactors_html_code);
+        $template_engine->assign('meta', $meta);
+        $template_engine->assign('header', $headerGetter);
         $template_engine->assign('lang',$lang);
         $template_engine->assign('no_results',$localizator -> getText($lang, 'no_results'));
-        $template_engine->display('gallery.tpl');        
+        $template_engine->display('gallery.tpl');
     }
   }
 ?>

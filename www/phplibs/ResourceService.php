@@ -56,8 +56,7 @@ class  ResourceService
         $smarty->left_delimiter = '{{{';
         $smarty->right_delimiter = '}}}';
 
-        $smarty;
-        return $smarty;
+        retur   n $smarty;
     }
 
     public static function getLang()
