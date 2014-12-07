@@ -55,6 +55,7 @@ blockquote {
     display: inline-block;
     margin-top: 125px;
 
+
 }
 #ava {
     position: relative;
@@ -74,7 +75,7 @@ blockquote {
 
 
 #main_text pre {
-    font-family: Code LIGHT;
+    font-family: Code bold;
     font-size: 20px;
     color: white;
     display: inline-block;
@@ -88,6 +89,7 @@ blockquote {
     color: #FFFFFF;
     background-color: black;
     display: block;
+    margin-top: 125px
 }
 
 
