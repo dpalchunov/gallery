@@ -5,9 +5,14 @@ html {
 	height: 100%;
 }
 
+@font-face {
+    font-family: MainText; /* Имя шрифта */
+    src: url(../fonts/OpenSans-Light.ttf); /* Путь к файлу со шрифтом */
+    src: url(../fonts/SourceSansPro-Light.ttf); /* Путь к файлу со шрифтом */
+}
+
 body {
 	background: #FFFFFF;
-	font-family: Times New Roman, Helvetica, sans-serif;
 	font-size: 18px;
 	color: #ffffff;
 	min-height: 100%;
@@ -38,7 +43,6 @@ a:hover {
 }
 
 code {
-	font-family: "Courier New", Courier, monospace;
 	color:#fff;
 }
 
@@ -50,9 +54,7 @@ blockquote {
 
 #wrap {
 	width: 1200px;
-	height: 1200px;
-/*	background-image: url(../images/main_bg.gif);
-	background-repeat: repeat-y round;*/
+	height: 500px;
 	background: #000;
 	margin: 0 auto;
 	position: relative;
@@ -65,41 +67,35 @@ blockquote {
 	height: 282px;
 	width: 859px;
 	position: absolute;
-	top: 200px;
+	top: 100px;
 	left: 150px;
 	background-repeat: no-repeat;
 
 }
 
-@font-face {
- font-family: Garamond; /* ��������� ������ */
- src: url("../fonts/GaramondPremrPro-It.otf");/* ���� � ����� �� ������� */
-}	
+
 
 .head {
 
-	font-family: Garamond, 'Garamond Premier Pro';
+    FONT-FAMILY: MainText;
 	color: white;
 	font-size: 20pt;
 }
 
 .info {
-
-	font-family: Garamond, 'Garamond Premier Pro';
+    FONT-FAMILY: MainText
 	color: white;
 	font-size: 17pt;
 }
 
 .info a{
-
-	font-family: Garamond, 'Garamond Premier Pro';
+    FONT-FAMILY: MainText
 	color: white;
 	font-size: 17pt;
 }
 
-.comment {
-
-	font-family: Garamond, 'Garamond Premier Pro';
+td.comment {
+    FONT-FAMILY: MainText
 	color: black;
 	font-size: 12pt;
 }
@@ -130,7 +126,7 @@ blockquote {
 /*Footer*/
 #footer {
 	position: absolute;
-	top: 1120px;
+	top: 500px;
 	left:0px;
 	height: 80px;
 	width: 100%;
@@ -146,6 +142,10 @@ blockquote {
 	top: 55px;
 	background-image: url(../images/footer_phrase_name.png);
 	background-repeat: no-repeat;
+}
+
+object#skypedetectionswf {
+    display:none;
 }
 
 

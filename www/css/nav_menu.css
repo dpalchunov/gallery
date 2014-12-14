@@ -1,11 +1,14 @@
 /*Navigation menu*/
 #nav_menu {
-    position: absolute;
+    position: relative;
+    float: right;
     height: 37px;
     line-height: 37px;
     width: 343px;
-    left:1043px;
     top:81px;
+    float:right;
+    margin-right: 30px;
+    display: block;
 }
 
 /*Navigation menu -about*/
@@ -36,34 +39,36 @@ div.menu_button a {
 
 
 #nav_about {
-    position: absolute;
+    position: relative;
+    float: right;
     height: 37px;
     width: 81px;
-    left:0px;
     top:0px;
-}
-/*Navigation menu -contacts*/
-#nav_contacts {
-    position: absolute;
-    height: 37px;
-    width: 96px;
-    left:83px;
-    top:0px;
-}
-#nav_contacts:hover {
-    position: absolute;
+    display: inline-block;
 }
 /*Navigation menu -galary*/
 #nav_gallary {
-    position: absolute;
+    position: relative;
+    float: right;
     height: 37px;
     width: 82px;
-    left:181px;
     top:0px;
+    display: inline-block;
 }
+/*Navigation menu -contacts*/
+#nav_contacts {
+    position: relative;
+    float: right;
+    height: 37px;
+    width: 96px;
+    top:0px;
+    display: inline-block;
+}
+
 /*Navigation menu -order*/
 #nav_order {
-    position: absolute;
+    position: relative;
+    float: right;
     height: 37px;
     width: 85px;
     left:265px;
@@ -76,9 +81,10 @@ div.menu_button a {
 #lang_changer  {
     position: relative;
     display: block;
-    left:1370px;
+    float:right;
     top:138px;
     width: 20px;
+    margin-right: 50px;
 }
 #lang_changer a {
     font-family: Arial;

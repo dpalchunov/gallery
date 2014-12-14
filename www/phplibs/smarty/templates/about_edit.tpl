@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/header.css"/>
     <link rel="stylesheet" type="text/css" href="/css/nav_menu_eng.css"/>
     <link rel="stylesheet" type="text/css" href="/css/admin_menu.css"/>
     <link rel="stylesheet" type="text/css" href="/css/about_edit_style.css"/>
@@ -37,43 +38,7 @@
 
 <body>
 <div id="wrap">
-    <div id="header">
-        <div id="header_name">
-        </div>
-        <!--end header_name-->
-        <div id="nav_menu">
-            <div id="nav_about">
-            </div>
-            <!--end nav_about-->
-            <div id="nav_contacts">
-                <a href="contacts.php"></a>
-            </div>
-            <!--end nav_contacts-->
-            <div id="nav_gallary">
-                <a href="gallery.php"></a>
-            </div>
-            <!--end nav_gallary-->
-            <div id="nav_order">
-                <a href="buy.php"></a>
-            </div>
-            <!--end nav_order-->
-        </div>
-        <!--end nav_menu-->
-        <!--end nav_menu-->
-        <div id="admin_menu">
-            <div id="classification_edit">
-                <a href="classificator_edit.php">Classification editor</a>
-            </div>
-            <div id="gallery_edit">
-                <a href="gallery_edit.php">Gallery editor</a>
-            </div>
-            <div id="about_edit">
-                <a href="about_edit.php" class="active">About editor</a>
-            </div>
-        </div>
-        <!--end admin_menu-->
-    </div>
-    <!--end header-->
+    {{{$header}}}
     <div id="about_editor_content"><!--[if IE]>
         <div id="main_ie_gradient"><![endif]-->
         <div id="header_shaddow"></div>

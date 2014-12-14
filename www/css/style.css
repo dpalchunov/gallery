@@ -74,9 +74,15 @@ blockquote {
 }
 
 
+@font-face {
+    font-family: MainText; /* Имя шрифта */
+    src: url(../fonts/OpenSans-Light.ttf); /* Путь к файлу со шрифтом */
+    src: url(../fonts/SourceSansPro-Light.ttf); /* Путь к файлу со шрифтом */
+}
+
 #main_text pre {
-    font-family: Code bold;
-    font-size: 20px;
+    FONT-FAMILY: MainText;
+    font-size: 24px;
     color: white;
     display: inline-block;
 }

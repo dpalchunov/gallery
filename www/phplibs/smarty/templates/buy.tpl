@@ -3,7 +3,7 @@
 <html lang="ru-RU">
     <head>
 	<link rel="stylesheet" type="text/css" href="/css/nav_menu.css" />
-	<link rel="stylesheet" type="text/css" href="/css/contacts_style.css" />
+	<link rel="stylesheet" type="text/css" href="/css/buy_style.css" />
 	<link rel="stylesheet" type="text/css" href="/css/header.css" />
 
 	<!--[if IE]>

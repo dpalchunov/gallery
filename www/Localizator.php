@@ -9,7 +9,7 @@ class  Localizator
         global $rus, $eng;
         $rus = array(
             'about_main_text' =>
-'Ро.дилась в городе Тарту в 1989 году.
+'Родилась в городе Тарту в 1989 году.
 В 2005 году поступила в Московское государственное академическое
 художественное училище памяти 1905 года.
 С 2010 года по настоящее время является студенткой МГАХИ им. Сурикова,
@@ -19,8 +19,8 @@ class  Localizator
             'contacts_call_comment' => 'Звоните на мой мобильный телефон в Москве.',
             'contacts_mail_comment' => 'Пишите на электронную почту.',
             'contacts_skype_comment' => 'Звоните в скайп.',
-            'contacts_main_phrase' => 'По вопросам приобретения картин, заказа портретов и иным вопросам:',
-            'buy_main_phrase' => 'По вопросам приобретения картин, заказа портретов и иным вопросам:',
+            'contacts_main_phrase' => 'По вопросам сотрудничества, приобритения работ обращайтесь:',
+            'buy_main_phrase' => 'По вопросам сотрудничества, приобритения работ обращайтесь:',
             'buy_pic' => 'Купите любую из понравившихся вам картину, ценовой диапазон определяется следующим образом:',
             'buy_pic_price1' => 'до пятидесяти тысяч рублей.',
             'buy_pic_price2' => 'до двухсот тысяч рублей.',
@@ -46,7 +46,7 @@ Tambov in Russia and England.',
             'contacts_call_comment' => 'Call to mobile phone in Moscow.',
             'contacts_mail_comment' => 'Mail to electronic mail.',
             'contacts_skype_comment' => 'Call in Skype.',
-            'contacts_main_phrase' => 'If you want to buy painting, order some portret or have another idea:',
+            'contacts_main_phrase' => 'To explore the possibilities for cooperation or art works purchase contact me',
             'buy_pic' => 'Order any of your favorite painting, near price is:',
             'buy_pic_price1' => 'less than two thousand dollars.',
             'buy_pic_price2' => 'less than five thousand dollars.',

@@ -2,7 +2,7 @@
 
 #header {
     position: relative;
-    height: 165px;
+    height: 130px;
     width: 100%;
     background: #303030;
     background-image: url(../images/header_bg_01.png);
@@ -17,7 +17,7 @@
     color: #0b0b0b;
     position: absolute;
     left: 95px;
-    top: 74px;
+    top: 75px;
     background-repeat: no-repeat;
     FONT-FAMILY: Code LIGHT;
     FONT-SIZE: 60px;
@@ -26,7 +26,16 @@
 }
 
 #last_name {
-    margin-left: 32px;
+    margin-left: 0px;
+}
+
+#line {
+    position: absolute;
+    top: 128px;
+    height: 3px;
+    width: 100%;
+    background-color: #800000;
+
 }
 
 

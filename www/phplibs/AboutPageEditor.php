@@ -18,6 +18,11 @@ class  AboutPageEditor {
             header( 'Location: about_edit.php' );
         }
         $lang = $resourceService -> getLang();
+        $headerGetter = HeaderGetter::getHeaderHtml($lang,'about_edit');
+        $template_engine-> fetch('header.tpl');
+        $meta = HeaderGetter::getMeta();
+        $template_engine->assign('meta', $meta);
+        $template_engine->assign('header', $headerGetter);
         $template_engine->assign('lang',$lang);
         $persistedAvasGetter = new PersistedAvasGetter();
         $persisted_avas_html_code = $persistedAvasGetter->generateAvasHtml();
