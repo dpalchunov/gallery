@@ -90,7 +90,13 @@ function rewritePageByPageNum(pageNum) {
             if (trim(data) != '') {
                 hideFooter();
                 $("#sketches_table_body").html(data);
-                setImagesClickhandler();
+                dragAndResize();
+                var s_images = $(".small_image");
+                $.each(s_images, function(i,v) {
+                    $(v).hide();
+
+                });
+                //setImagesClickhandler();
                 setDetailsAndRateClickhandler();
                 setImagesMousehandler();
                 setLeftColumnWrapHeightBiggerThanMain();
@@ -269,9 +275,19 @@ $(document).ready(function () {
     /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
+    dragAndResize();
     //showFilterContentInPanel();
 });
 
+function dragAndResize() {
+    console.log("sdfsds");
+    var images = $(".all_td_space");
+    console.log(images);
+    $.each(images, function(i,v) {
+        $(v).resizable().draggable();
+
+    });
+}
 
 function turnOnReturner() {
     //каждый bind - это новый вызов одной и той же функции

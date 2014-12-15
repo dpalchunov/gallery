@@ -6,12 +6,15 @@
     <link rel="stylesheet" type="text/css" href="/css/nav_menu.css"/>
     <link rel="stylesheet" type="text/css" href="/css/gallary_style.css"/>
     <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
     <title>Галерея</title>
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/jquery.tabSlideOut.js"></script>
     <script type="text/javascript" src="js/gallery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
 
 
     <!-- Скрипт отвечающий за клик на header Kristina Strunkova-->
