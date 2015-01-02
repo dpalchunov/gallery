@@ -117,6 +117,11 @@ class PictureObjManager
 
 
             $pictureObject = new Picture($fileName, $position, $rate, $multilangDesc, $picPath, $sketchPath, $thumbnail, $pictureID, $pic_rels);
+            //pic expo position
+            $em =  new ExpositionManager();
+            $expo = $em->selectExpositionByPicID($pictureID);
+            $pictureObject ->setExpoPosition($expo);
+
             $pictureObjectArray[] = $pictureObject;
         }
         return $pictureObjectArray;

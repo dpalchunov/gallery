@@ -7,6 +7,32 @@ class  Picture
     var $sketchPath;
     var $picPath;
     var $thumbnail;
+    var $rate;
+    var $position;
+    var $multilangDescription;
+    var $fileName;
+    var $id;
+    var $classification;
+    var $expo_position;
+
+    /**
+     * @param mixed $expo_position
+     */
+    public function setExpoPosition($expo_position)
+    {
+        $this->expo_position = $expo_position;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpoPosition()
+    {
+        return $this->expo_position;
+    }
+
+
+
 
     /**
      * @param mixed $thumbnail
@@ -23,13 +49,6 @@ class  Picture
     {
         return $this->thumbnail;
     }
-
-    var $rate;
-    var $position;
-    var $multilangDescription;
-    var $fileName;
-    var $id;
-    var $classification;
 
 
     function __construct()
@@ -88,6 +107,18 @@ class  Picture
         $this->setMultilangDescription($multilangDescription);
         $this->setClassification($classification);
         $this->setThumbnail($thumbnail);
+    }
+
+
+    public function __construct10($fileName, $position, $rate,
+                                 $multilangDescription,
+                                 $picPath, $sketchPath, $thumbnail, $id, $classification,$expo_position)
+    {
+        $this -> __construct9($fileName, $position, $rate,
+            $multilangDescription,
+            $picPath, $sketchPath, $thumbnail, $id, $classification);
+
+        $this->setExpoPosition($expo_position);
     }
 
     private function generatePicPath()

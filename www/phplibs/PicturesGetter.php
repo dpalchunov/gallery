@@ -53,6 +53,18 @@ class  PicturesGetter
     }
 
 
+    public function getPicExposition($lang)
+    {
+        $pm = new PictureObjManager();
+        $pictureObjectArray = $pm -> selectAllPics();
+        if ($pictureObjectArray != null) {
+            $expoHTML = $this->getPicturesHTML($pictureObjectArray, $lang);
+            return $expoHTML;
+        } else {
+            return '';
+        }
+    }
+
     public function getPicturesPageByFilterAndPageNum($filter, $pageNum, $lang)
     {
         $pictureObjectArray = $this->getNotfilteredPicturesArray($filter);
@@ -89,6 +101,10 @@ class  PicturesGetter
                     );
                     //echo $multilangDesc;
                     $pictureObject = new Picture($fileName, $i, $rate, $multilangDesc, $picPath, $sketchPath, $thumbnail, $pictureID);
+                    //pic expo position
+                    $em =  new ExpositionManager();
+                    $expo = $em->selectExpositionByPicID($pictureID);
+                    $pictureObject ->setExpoPosition($expo);
 
                     $pictureObjectArray[$i] = $pictureObject;
                     $i++;
@@ -140,7 +156,7 @@ class  PicturesGetter
     {
         global $db;
         if ($whereStr != '') {
-            $query = 'SELECT p.file_name,p.position, p.sketch_path,p.pic_path,p.thumbnail, p.rusdesc,p.engdesc,p.rate, count(c.classificatorid) passedclassificators
+            $query = 'SELECT p.pictureid, p.file_name,p.position, p.sketch_path,p.pic_path,p.thumbnail, p.rusdesc,p.engdesc,p.rate, count(c.classificatorid) passedclassificators
                         FROM
                           tclassificatorvalues cv
                             INNER JOIN tclassificators c
@@ -150,7 +166,7 @@ class  PicturesGetter
                                 INNER JOIN tpictures p
                                         ON p.pictureid = pcr.pictureid
                         WHERE cv.classificatorvalueid IN {CLASSIFICATOR_VALUES}
-                        GROUP BY p.file_name,p.position,p.sketch_path,p.pic_path,p.thumbnail,p.rusdesc,p.engdesc,p.rate
+                        GROUP BY p.pictureid, p.file_name,p.position,p.sketch_path,p.pic_path,p.thumbnail,p.rusdesc,p.engdesc,p.rate
                         /*берем только те картины, у которых количество классификаторов в которые они вошли равно количеству классификаторов, используемых пользователем*/
                         /*passedclassificators - колчество классификаторов в которые вошла картинка  */
                         /*подзаспрос - количеству классификаторов, используемых пользователем  */
@@ -161,7 +177,7 @@ class  PicturesGetter
                         ORDER BY position';
             $query = str_replace('{CLASSIFICATOR_VALUES}', $whereStr, $query);
         } else {
-            $query = 'SELECT p.file_name,p.position,p.sketch_path,p.pic_path,p.thumbnail, p.rusdesc,p.engdesc,p.rate FROM tpictures p ORDER BY position';
+            $query = 'SELECT p.pictureid,p.file_name,p.position,p.sketch_path,p.pic_path,p.thumbnail, p.rusdesc,p.engdesc,p.rate FROM tpictures p ORDER BY position';
         }
         return $query;
     }
@@ -200,23 +216,14 @@ class  PicturesGetter
         if (!(sizeof($pictures) > 0)) {
             return '';
         };
-        $fullRowsCount = $this->getFullRowsCount($pictures);
 
-        $pictureRows = '';
-        //сначала все полные строки
-        for ($row = 0; $row < $fullRowsCount; $row++) {
-            $pictureRow = $this->getPictureRowHtmlCode($lang, $pictures, $row);
-            $pictureRows .= $pictureRow . $this->getEmptyPictureRowHtmlCode();
+        $pictureHtmls = '';
+        foreach ($pictures as $i => $picture) {
+            $picHtml = $this -> getSketchHTMLCode($picture,$lang,$i);
+            $pictureHtmls .= $picHtml;
         }
-        $filledRowsCount = $this->getFilledRowsCount($pictures);
-        if ($filledRowsCount > $fullRowsCount) {
-            $lastRowPicCount = $this->getLastRowPicCount($pictures);
-            //последнюю неполную строку
-            $pictureRow = $this->getPictureRowHtmlCode($lang, $pictures, $fullRowsCount, $lastRowPicCount);
-            $pictureRows .= $pictureRow . $this->getEmptyPictureRowHtmlCode();
 
-        }
-        return $pictureRows;
+        return $pictureHtmls;
     }
 
 
@@ -286,21 +293,83 @@ class  PicturesGetter
     private function getPicHTMLCode($pictureObject, $lang)
     {
         global $template_engine;
-//echo $picture . ' ';
 
         $pictureFileName = $pictureObject->getFileName();
         $pictureSequenceNumber = $pictureObject->getPosition() + 1;
         $picDescription = $pictureObject->getDescription($lang);
         $picRate = $pictureObject->getRate();
+        $picExpo = $pictureObject->getExpoPosition();
+        $id = $pictureObject->getID();
+        if ($picExpo != null){
+
+            $left = $picExpo ->getLeft();
+            $width = $picExpo ->getWidth();
+            $ratio = $picExpo ->getRatio();
+
+
+            $template_engine->assign('left', $left."px");
+            $template_engine->assign('width', $width."px");
+            $template_engine->assign('ratio', $ratio);
+            $template_engine->assign('pic_id', $id);
+        } else {
+
+        }
+
         $picRateHtml = $this->makePicRateHtml($picRate);
         $template_engine->assign('picRate', $picRateHtml);
         $template_engine->assign('picDescription', $picDescription);
         $template_engine->assign('pictureFileName', $pictureFileName);
         $template_engine->assign('sequenceNumber', $pictureSequenceNumber);
+
         $picHTMLCode = $template_engine->fetch('td.tpl');
         return $picHTMLCode;
-//        $classificatorValueHtmlCode = $template_engine->fetch('checkbox.tpl');
+
     }
+
+    private function getSketchHTMLCode($pictureObject, $lang, $zindex)
+    {
+        global $template_engine;
+
+        $pictureFileName = $pictureObject->getFileName();
+        $pictureSequenceNumber = $pictureObject->getPosition() + 1;
+        $picDescription = $pictureObject->getDescription($lang);
+        $picRate = $pictureObject->getRate();
+        $picExpo = $pictureObject->getExpoPosition();
+        $id = $pictureObject->getID();
+        $template_engine->assign('pic_id', $id);
+        $template_engine->assign('zindex', $zindex);
+        if ($picExpo != null){
+
+            $left = $picExpo ->getLeft();
+            $top = $picExpo ->getTop();
+            $width = $picExpo ->getWidth();
+            $ratio = $picExpo ->getRatio();
+
+
+            $template_engine->assign('css_left', $left."px");
+            $template_engine->assign('css_top', $left."px");
+            $template_engine->assign('css_width', $width."px");
+            $template_engine->assign('left', $left);
+            $template_engine->assign('top', $top);
+            $template_engine->assign('width', $width);
+            $template_engine->assign('ratio', $ratio);
+
+
+        } else {
+
+        }
+
+        $picRateHtml = $this->makePicRateHtml($picRate);
+        $template_engine->assign('picRate', $picRateHtml);
+        $template_engine->assign('picDescription', $picDescription);
+        $template_engine->assign('pictureFileName', $pictureFileName);
+        $template_engine->assign('sequenceNumber', $pictureSequenceNumber);
+
+        $picHTMLCode = $template_engine->fetch('sketch.tpl');
+        return $picHTMLCode;
+
+    }
+
 
     private function makePicRateHtml($picRate)
     {

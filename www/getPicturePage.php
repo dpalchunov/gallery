@@ -7,5 +7,5 @@
   $filter = $_POST;
   unset($filter['pageNum']);
   unset($filter['lang']); 
-  echo $picturesGetter->getPicturesPageByFilterAndPageNum($filter,$pageNum,$lang);
+  echo $picturesGetter->getPicExposition($lang);
 ?>
