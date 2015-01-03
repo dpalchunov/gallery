@@ -348,7 +348,7 @@ class  PicturesGetter
 
             $template_engine->assign('css_left', $left."px");
             $template_engine->assign('css_top', $left."px");
-            $template_engine->assign('css_width', $width."px");
+            $template_engine->assign('css_width', $width."%");
             $template_engine->assign('left', $left);
             $template_engine->assign('top', $top);
             $template_engine->assign('width', $width);

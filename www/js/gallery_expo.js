@@ -85,16 +85,18 @@ function dragAndResize() {
     var sk = $("#sketches");
     var sk_l = sk.offset().left;
     var sk_t = sk.offset().top;
+    var sk_w = sk.width();
 
     $.each(images, function(i,v) {
-        var r = $(v).attr("ratio");
-        var l = parseInt($(v).attr("left"));
-        var t = parseInt($(v).attr("top"));
-        var w = $(v).width();
-
-        $(v).height(w*r);
-        console.log({top:sk_t + t,left:sk_l + l});
+        var l_percent = parseFloat($(v).attr("left"));
+        var t_ratio = parseFloat($(v).attr("top"));
+        var l = l_percent*sk_w;
+        var t = t_ratio*l;
         $(v).offset({top:sk_t + t,left:sk_l + l});
+
+        var w = $(v).width();
+        var r = $(v).attr("ratio");
+        $(v).height(w*r);
 
         $(v).resizable(
             {   aspectRatio: true,
@@ -116,13 +118,16 @@ function save(e) {
     var t = e.offset().top - sk.offset().top;
     var l = e.offset().left - sk.offset().left;
     var w = e.width();
+    var l_percent = l/sk.width();
+    var w_percent = w/sk.width()*100;
+    var t_ratio = t/l;
     var r = h/w;
     var pic_id = e.attr("pic_id");
 
     $.ajax({
         type: "POST",
         url: "gallery_expo_save.php",
-        data: {pic_id:pic_id,ratio:r,width:w,left:l,top:t}
+        data: {pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
     })
         .done(function (msg) {
             console.log(msg);
