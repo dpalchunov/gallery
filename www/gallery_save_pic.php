@@ -192,17 +192,33 @@ class CropPic
 
 require_once 'phplibs/Picture.php';
 require_once 'phplibs/PictureObjManager.php';
-$crop = new CropPic($_POST['pic_src'], $_POST['pic_data'], $_POST['w'], $_POST['h']);
-$response = array(
-    'state' => 200,
-    'message' => $crop->getMsg(),
-    'result' => $crop->getResult()
-);
-$fileName = $crop->getFileName();
-copy($_POST['pic_src'], 'images/gallary/' . $crop->getFileName());
-$pic = new Picture($fileName);
+
+if (isset($_POST['w']) && $_POST['h'] && $_POST['w'] > 0 && $_POST['w'] > 0) {
+
+    $crop = new CropPic($_POST['pic_src'], $_POST['pic_data'], $_POST['w'], $_POST['h']);
+    $response = array(
+        'state' => 200,
+        'message' => $crop->getMsg(),
+        'result' => $crop->getResult()
+    );
+    $fileName = $crop->getFileName();
+    copy($_POST['pic_src'], 'images/gallary/' . $crop->getFileName());
+    $pic = new Picture($fileName);
 //ImageHelper::addBgAndShadow($pic->getSketchPath());
-$pic_man = new PictureObjManager();
-$res = $pic_man->savePicture($pic);
+    $pic_man = new PictureObjManager();
+    $pic_id = $pic_man->savePicture($pic);
+    if ($pic_id != null) {
+        $man = new ExpositionManager();
+        $exp = new Exposition();
+        $exp -> setPicId($pic_id);
+
+        $exp -> setRatio($_POST['h']/$_POST['w']);
+        $exp -> setWidth($_POST['w']);
+        $res = $man -> save($exp);
+
+    }
+} else {
+    $res = 'wrong input parameters';
+}
 echo $res;
 ?>

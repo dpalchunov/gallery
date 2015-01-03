@@ -276,7 +276,8 @@ class PictureObjManager
         $data = $this->prepareQueryData($picture);
         try {
             if ($pictures = $db->query($pattern, $data)) {
-                return 'ok';
+                $last_id = $this->getLastID();
+                return $last_id;
             } else {
                 return null;
             }
@@ -285,6 +286,29 @@ class PictureObjManager
             return null;
         }
     }
+
+    public function getLastID()
+    {
+        global $db;
+        $pattern = $this->prepareGetLastIDPattern();
+        try {
+            if ($res = $db->query($pattern, NULL, 'assoc')) {
+                $first_row = $res[0];
+                return $first_row['id'];
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    private function prepareGetLastIDPattern()
+    {
+        return "SELECT LAST_INSERT_ID() as id;";
+    }
+
 
     private function prepareQueryData(Picture $picture)
     {
