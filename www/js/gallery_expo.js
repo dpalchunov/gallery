@@ -97,7 +97,8 @@ function dragAndResize() {
         $(v).offset({top:sk_t + t,left:sk_l + l});
 
         $(v).resizable(
-            {stop:function( event, ui ) {
+            {   aspectRatio: true,
+                stop:function( event, ui ) {
                 save($(v));
 
             }}).draggable(

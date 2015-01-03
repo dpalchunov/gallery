@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="/css/nav_menu.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/gallary_style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/gallary_expo_style.css"/>
     <link rel="stylesheet" type="text/css" href="/css/header.css"/>
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
 
