@@ -58,7 +58,7 @@ function trim(str) {
 
 
 function setWindowScrollHandler() {
-
+    $(window).bind('scroll', onScrollfunct);
 }
 
 function leftColumnWrapClickHandler() {
@@ -76,40 +76,58 @@ $(document).ready(function () {
     /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
-    dragAndResize();
-    //showFilterContentInPanel();
 });
 
 function dragAndResize() {
     var images = $(".ui-widget-content");
     var sk = $("#sketches");
-    var sk_l = sk.offset().left;
-    var sk_t = sk.offset().top;
     var sk_w = sk.width();
+    var sk_h = 0;
+
 
     $.each(images, function(i,v) {
         var l_percent = parseFloat($(v).attr("left"));
         var t_ratio = parseFloat($(v).attr("top"));
         var l = l_percent*sk_w;
         var t = t_ratio*l;
-        $(v).offset({top:sk_t + t,left:sk_l + l});
-
         var w = $(v).width();
         var r = $(v).attr("ratio");
-        $(v).height(w*r);
+        var h = w*r;
+        $(v).height(h);
+        if (h+t > sk_h) {
+            sk_h = h+t
+        }
 
-        $(v).resizable(
-            {   aspectRatio: true,
+        $(v).resizable({
+               // containment: "parent",
+                aspectRatio: true,
                 stop:function( event, ui ) {
-                save($(v));
+                    save($(v));
+                }
 
-            }}).draggable(
-                {stop:function( event, ui ) {
-                save($(v));
-        }});
-
-
+            }).draggable({
+                    containment:"parent",
+                    stop:function( event, ui ) {
+                            save($(v));
+                    },
+                    scroll:true
+            }).position({
+                my: "left top",
+                at: "left+" + l_percent*100 + "% top+" + t,
+                of: "#sketches",
+                collision: "none"
+            });
+        $(v).css("position","absolute");
     });
+
+    $(sk).height(sk_h);
+    $(sk).resizable({
+        stop: function(event,ui) {
+            $("#all_space_wrap").height(ui.size.height + $(sk).position().top + 500);
+        },
+        handles: "s"
+    });
+    $("#all_space_wrap").height(sk_h + $(sk).position().top + 500 );
 }
 
 function save(e) {
@@ -134,22 +152,39 @@ function save(e) {
         });
 }
 
+function onScrollfunct() {
+
+    var leftH = $("#main_content").height() - $(window).height() - $(this).scrollTop();
+
+    // показать / не показать стрелку возврата
+    if ($(this).scrollTop() > 100) {
+        turnOnReturner();
+    } else {
+        turnOffReturner();
+    }
+}
+
+
 function turnOnReturner() {
+    $('#arrow_pic').css('background-image', "url('../images/returner/arrow.png')");
     //каждый bind - это новый вызов одной и той же функции
     $('#left_column_wrap').unbind("click")
     $('#left_column_wrap').bind("click", leftColumnWrapClickHandler)
     if (mouseoverLeftColumnWrap) {
         $('#left_column_wrap').css('opacity', 0);
-        $('#arrow_pic').css('background-color', '#7e7e7e');
+        $('#arrow_pic').css('background-color', '#A8A8A8');
     }
     $('#left_column_wrap').hover(function () {
             $(this).css('opacity', 0);
-            $('#arrow_pic').css('background-color', '#7e7e7e');
+            $('#arrow_pic').css('background-color', '#A8A8A8');
+            $('#arrow_pic').css('background-image', "url('../images/returner/arrow.png')");
+
             mouseoverLeftColumnWrap = true;
         },
         function () {
             $(this).css('opacity', 1);
             $('#arrow_pic').css('background-color', '#000');
+
             mouseoverLeftColumnWrap = false;
         });
 }
@@ -158,6 +193,8 @@ function turnOffReturner() {
     $('#left_column_wrap').unbind('click');
     $('#left_column_wrap').css('opacity', 1);
     $('#arrow_pic').css('background-color', '#000');
+    $('#arrow_pic').css('background-image', 'none');
+
     $('#left_column_wrap').hover(function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = true;
@@ -197,7 +234,7 @@ function rewritePageByPageNum(pageNum) {
 
                 });
             } else {
-                $("#sketches").html("<tr><td colspan=3 padding=25px>&nbsp &nbsp &nbsp &nbsp &nbsp{{{$no_results}}}</td></tr>");
+                $("#sketches").html("no data");
                 showFooter();
             }
         }

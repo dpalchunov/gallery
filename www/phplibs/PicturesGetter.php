@@ -337,7 +337,7 @@ class  PicturesGetter
         $picExpo = $pictureObject->getExpoPosition();
         $id = $pictureObject->getID();
         $template_engine->assign('pic_id', $id);
-        $template_engine->assign('zindex', $zindex);
+        $template_engine->assign('zindex', 0);
         if ($picExpo != null){
 
             $left = $picExpo ->getLeft();
@@ -346,8 +346,7 @@ class  PicturesGetter
             $ratio = $picExpo ->getRatio();
 
 
-            $template_engine->assign('css_left', $left."px");
-            $template_engine->assign('css_top', $left."px");
+            $template_engine->assign('css_left', $left."%");
             $template_engine->assign('css_width', $width."%");
             $template_engine->assign('left', $left);
             $template_engine->assign('top', $top);

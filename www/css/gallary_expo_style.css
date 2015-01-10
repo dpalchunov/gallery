@@ -10,10 +10,9 @@ html {
 }
 
 body {
-    background: #FFFFFF;
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
-    color: #eee;
+    color: #000;
     min-height: 100%;
     background-color: #000000;
     /*background-image: url(../images/main_bg.jpg);
@@ -71,23 +70,23 @@ blockquote {
 /*оборачивает хидер контекнт и футер*/
 #page_wrap {
     /*	padding-top: 5px;*/
-    width: 90%;
-    background: #d2dfe3;
+    width: 95%;
+    height: 100%;
+    background: #000;
     /*margin: 0 auto;*/
     /*position: relative;*/
     float: left;
     position: relative;
     z-index: 2;
-    margin-top: 80px;
 }
 
 /*служит прозрачным блоком в который упирается page_wrap при увеличении масшатаба странцы
  что позволяет оставить область слева от page_wrap на которой отображается стрелочка "вверх"(возврат к заголовку страницы)*/
 #left-trans-window {
     position: relative;
-    width: 10%;
+    width: 5%;
     float: left;
-    height: 1000px;
+    height: 100%;
     z-index: 0;
     opacity: 0;
 }
@@ -99,8 +98,8 @@ blockquote {
     position: relative;
     margin-right: -50%;
     width: 50%;
+    height:100%;
     float: left;
-    height: 5000px;
     background-color: #000;
     z-index: 1;
     overflow: hidden;
@@ -109,10 +108,10 @@ blockquote {
 
 #arrow_pic {
     position: fixed;
-    width: 100px;
+    width: 60px;
     height: 100%;
     font-family: Georgia;
-    background-image: url("../images/returner/up.png");
+    background-image: url("../images/returner/arrow.png");
     background-color: #7e7e7e;
     background-repeat: no-repeat;
     background-position: center 3%;
@@ -150,17 +149,15 @@ blockquote {
     min-height: 975px;
     width: 100%;
     position: relative;
-    /*top: 165px;*/
     background-color: #000000;
-    /*background-image: url(../images/gallary_bg.jpg);*/
     background-repeat: no-repeat;
     z-index: 1;
 }
 
 #sketches {
-    top: 50px;
+    top: 130px;
     border: 0px solid black;
-    width: 90%;
+    width: 94.44%;
     display: block;
     border: dashed 1px #ffffff;
 }
