@@ -10,10 +10,9 @@ html {
 }
 
 body {
-    background: #FFFFFF;
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
-    color: #eee;
+    color: #000;
     min-height: 100%;
     background-color: #000000;
     /*background-image: url(../images/main_bg.jpg);
@@ -63,21 +62,19 @@ blockquote {
 #all_space_wrap {
     position: relative;
     width: 100%;
+    float:left;
+    display: block;
     float: left;
-    /*height: 10000px;*/
-    min-width: 1300px;
     opacity: 1;
 }
 
 /*оборачивает хидер контекнт и футер*/
 #page_wrap {
-    /*	padding-top: 5px;*/
-    width: 1300px;
-    background: #d2dfe3;
-    /*margin: 0 auto;*/
-    /*position: relative;*/
-    float: left;
+    width: 95%;
+    background: #000;
     position: relative;
+    height: 100%;
+    float:left;
     z-index: 2;
 }
 
@@ -85,9 +82,9 @@ blockquote {
  что позволяет оставить область слева от page_wrap на которой отображается стрелочка "вверх"(возврат к заголовку страницы)*/
 #left-trans-window {
     position: relative;
-    width: 100px;
-    float: left;
-    height: 1000px;
+    width: 5%;
+    float:left;
+    height: 100%;
     z-index: 0;
     opacity: 0;
 }
@@ -97,10 +94,10 @@ blockquote {
 #left_column_wrap {
     color: #123;
     position: relative;
-    margin-right: -700px;
+    margin-right: -50%;
     width: 50%;
-    float: left;
-    height: 5000px;
+    float:left;
+    height:100%;
     background-color: #000;
     z-index: 1;
     overflow: hidden;
@@ -109,10 +106,10 @@ blockquote {
 
 #arrow_pic {
     position: fixed;
-    width: 100px;
+    width: 60px;
     height: 100%;
     font-family: Georgia;
-    background-image: url("../images/returner/up.png");
+    background-image: url("../images/returner/arrow.png");
     background-color: #7e7e7e;
     background-repeat: no-repeat;
     background-position: center 3%;
@@ -144,65 +141,25 @@ blockquote {
     position: relative;
 }
 
-#header {
-    position: relative;
-    height: 165px;
-    width: 100%;
-    background: #303030;
-    background-image: url(../images/header_bg_01.png);
-    background-repeat: repeat-x;
-    z-index: 10;
-}
-
-#header_name {
-    height: 34px;
-    width: 300px;
-    color: #0b0b0b;
-    position: absolute;
-    left: 95px;
-    top: 74px;
-    background-repeat: no-repeat;
-    FONT-FAMILY: Code LIGHT;
-    FONT-SIZE: 60px;
-    color: #ffffff;
-
-}
-
-#header_underline {
-    height: 1px;
-    background: #000000;
-    position: relative;
-    left: 85px;
-    top: 75px;
-    width: 875px;
-}
-
-#header_shaddow {
-    height: 150px;
-    width: 1200px;
-    background: #000;
-    background-repeat: no-repeat;
-
-}
-
 /*Main content*/
 
 #main_content {
-    min-height: 975px;
     width: 100%;
+    height: 100%;
+    display: block;
     position: relative;
-    /*top: 165px;*/
     background-color: #000000;
-    /*background-image: url(../images/gallary_bg.jpg);*/
     background-repeat: no-repeat;
     z-index: 1;
 }
 
-#sketches_table {
-    top: 50px;
+#sketches {
+    position: relative;
+    top: 130px;
     border: 0px solid black;
-    width: 100%;
-    display: table;
+    width: 94.44%;
+    display: block;
+    height: 100%;
 }
 
 #ordinary_row {
@@ -213,50 +170,6 @@ blockquote {
 
     display: table-row;
     vertical-align: middle;
-}
-
-#separate_row {
-    height: 150px;
-    width: 100%;
-    /*float: left;*/
-    display: table-row;
-}
-
-.table_dot {
-    width: 33%;
-    vertical-align: middle;
-    display: inline;
-    float: left;
-
-}
-
-#sketches_table td {
-    border: 0px solid black;
-    width: 440px;
-    color: #222;
-}
-
-#sketches_table img {
-    margin: 0 auto;
-    display: block;
-
-    /*рамка
-     *	padding:1px;
-        border:1px solid #021a40;
-        background-color:#FFF;*/
-    /*
-        -moz-box-shadow: 10px 10px 50px 10px rgba(120, 120, 120, 50);
-        -webkit-box-shadow: 10px 10px 50px 10px rgba(120, 120, 120, 50);
-        box-shadow: 10px 10px 50px 10px rgba(120, 120, 120, 50);
-        behavior: url(1ie-css3.htc);
-        border-collapse: separate;*/
-}
-
-.all_td_space {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
 }
 
 .details {
@@ -328,7 +241,7 @@ blockquote {
     width: 100%;
     color: #FFFFFF;
     background-color: #000000;
-    display: none;
+    display: block;
     z-index: 10;
 }
 

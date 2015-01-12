@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/css/nav_menu.css"/>
     <link rel="stylesheet" type="text/css" href="/css/gallary_style.css"/>
     <link rel="stylesheet" type="text/css" href="/css/header.css"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
 
     <title>Галерея</title>
 
@@ -52,11 +52,7 @@
         <div id="page_wrap_padding"></div>
         <div id="main_content">
             <div id="header_shaddow"></div>
-            <div id="sketches_table_wrap">
-                <table id="sketches_table">
-                    <tbody id="sketches_table_body"></tbody>
-                </table>
-            </div>
+            <div id="sketches"></div>
         </div>
         <!--end main_content-->
         <div id="footer">
@@ -69,9 +65,5 @@
     <!--end page_wrap-->
 </div>
 <!--end all_space_wrap-->
-<div class="panel">
-    <div class="panelButton"></div>
-    <div id="classificators">{{{$classificators}}}</div>
-</div>
 </body>
 </html>
