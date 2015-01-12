@@ -5,12 +5,76 @@ var nextPageNum = 1;
 var getNextPInWork = 0;
 var allPicturesLoaded = false;
 var returnedPageData = '';
+var detailsShow;
+var rateShow;
 var img_state_idle = 1,
     img_state_dragging = 2,
     img_state_persist_delay = 3
 
 
+function setImagesMousehandler() {
+    $('.sketch').unbind('mouseover');
+    $('.sketch').bind('mouseover', smallImageMouseOverHandler);
+}
 
+function smallImageMouseOverHandler() {
+    var all_td_space = $(this);
+    var details = all_td_space.find('[class=details]');
+    window.clearTimeout(detailsShow);
+    if (details.css('display') == 'none' || details.height() == 0) {
+        pic_width = $(this).width();
+        all_td_space_width = $(all_td_space).width();
+        details.width(pic_width);
+        details.css('height', '25%');
+        details.slideDown(400);
+
+    }
+    detailsShow = window.setTimeout(function () {
+        closeAllAnnotations();
+    }, 3000);
+
+
+    var rate = all_td_space.find('[class=rate]');
+    window.clearTimeout(rateShow);
+    if (rate.css('display') == 'none' || rate.height() == 0) {
+        pic_width = $(this).width();
+        all_td_space_width = $(all_td_space).width();
+        rate.width(pic_width);
+        rate.css('height', '17px');
+        rate.slideDown(400);
+
+    }
+    rateShow = window.setTimeout(function () {
+        closeAllAnnotations();
+    }, 3000);
+}
+
+    function closeAllAnnotations() {
+    $('[class=details]').each(function (index, element) {
+        if ($(element).height() > 0) {
+            $(element).fadeOut(400);
+        }
+    });
+    }
+
+    function setAllDetailsPlace() {
+        var details = $('*').filter(function (index) {
+            var itIsDetails = $(this).hasClass('details');
+            var heightBiggerZero = ($(this).height() > 0);
+            return (itIsDetails && heightBiggerZero);
+        })
+        setDetailsPlace(details);
+    }
+
+    function setDetailsPlace(details_array) {
+        details_array.each(function (index, element) {
+            var all_td_space = $(element).parent();
+            var pic_width = all_td_space.find('img[class1=small_image]').width();
+            var all_td_space_width = all_td_space.width();
+            $(element).width(pic_width - 50);
+            $(element).css('left', (all_td_space_width - pic_width + 50) / 2 + 'px');
+        });
+    }
 
 //функция получает следующую страницу
 function getNextP() {
@@ -202,6 +266,7 @@ function rewritePageByPageNum(pageNum) {
             if (trim(data) != '') {
                 $("#sketches").html(data);
                 dragAndResize();
+                setImagesMousehandler();
                 var s_images = $(".small_image");
                 $.each(s_images, function(i,v) {
                     $(v).hide();
@@ -222,7 +287,7 @@ function makePictureGetterParametersStringForPageGet(pageNum) {
 
     var allParamsString = pageNumString + "&" + checkboxesValueString;
     return allParamsString;
-}
+};
 
 
 
