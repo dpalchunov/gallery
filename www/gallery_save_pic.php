@@ -213,7 +213,7 @@ if (isset($_POST['w']) && $_POST['h'] && $_POST['w'] > 0 && $_POST['w'] > 0) {
         $exp -> setPicId($pic_id);
 
         $exp -> setRatio($_POST['h']/$_POST['w']);
-        $exp -> setWidth($_POST['w']);
+        $exp -> setWidth(30);
         $res = $man -> save($exp);
 
     }

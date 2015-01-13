@@ -514,7 +514,7 @@ function smallImageClickHandler() {
 function showFullScreenGallery() {
 
     $(document.documentElement).css('overflow', 'hidden');
-    $('div[class=fullScreenGallery]').height($('#all_space_wrap').height());
+    $('div[class=fullScreenGallery]').height($('#sketches').height() + $("#header").height() + $("#footer").height()+80);
 
     $('div[class=fullScreenGallery]').show();
     $('#fullScreenPicContainer').show();

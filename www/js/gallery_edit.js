@@ -19,10 +19,10 @@ String.prototype.hashCode = function () {
 }
 
 $(function () {
-    $("#slider").slider({ max: 100,
-        min: 0,
+    $("#slider").slider({ max: 150,
+        min: 150,
         step: 1,
-        value: 50,
+        value: 150,
         slide: function (event, ui) {
             slideHandler();
         },
