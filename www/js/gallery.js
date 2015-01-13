@@ -278,6 +278,7 @@ function changeFullScreenPic(sketch) {
     var p = {path:$(sketch).attr("picpath"),ratio:$(sketch).attr("ratio")};
     replaceCurPictureByNext(p.path);
     picIterator = fullScreenPics.map(function(e) {return e.path;}).indexOf(p.path);
+    getNextPicInfo();
 }
 
 <!--Скрипты полноэкранной галереи-->
