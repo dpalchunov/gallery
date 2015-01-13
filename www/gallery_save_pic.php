@@ -11,7 +11,7 @@ class CropPic
     private $type;
     private $extension;
     private $dstDir = 'images/gallary/sketches';
-    private $thumbDir = 'images/gallary/mini';
+    private $thumbDir = 'images/gallary';
     private $msg;
 
     function __construct($src, $data, $dst_w, $dst_h)
@@ -86,16 +86,16 @@ class CropPic
             $src_part_w = $data->width;
             $src_part_h = $data->height;
 
-            if ($src_part_w <= 800 and $src_part_h <= 600) {
+            if ($src_part_w <= 1900 and $src_part_h <= 1600) {
                 $thumb_w = $src_part_w;
                 $thumb_h = $src_part_h;
             } else {
                 $ratio = $src_part_w / $src_part_h;
-                if ((($src_part_w) / 800) >= ($src_part_h) / 600) {
-                    $thumb_w = 800;
+                if ((($src_part_w) / 1900) >= ($src_part_h) / 1600) {
+                    $thumb_w = 1900;
                     $thumb_h = $thumb_w = $thumb_w / $ratio;
                 } else {
-                    $thumb_h = 600;
+                    $thumb_h = 1600;
                     $thumb_w = $thumb_h * $ratio;
                 }
             }
@@ -202,7 +202,7 @@ if (isset($_POST['w']) && $_POST['h'] && $_POST['w'] > 0 && $_POST['w'] > 0) {
         'result' => $crop->getResult()
     );
     $fileName = $crop->getFileName();
-    copy($_POST['pic_src'], 'images/gallary/' . $crop->getFileName());
+  //  copy($_POST['pic_src'], 'images/gallary/' . $crop->getFileName());
     $pic = new Picture($fileName);
 //ImageHelper::addBgAndShadow($pic->getSketchPath());
     $pic_man = new PictureObjManager();

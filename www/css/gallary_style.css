@@ -28,7 +28,7 @@ body {
 }
 
 p {
-    font-size: 14px;
+    font-size: 18px;
     color: #b9b9b9;
 }
 
@@ -178,9 +178,9 @@ blockquote {
     height: 0px;
     position: absolute;
     bottom: 0px;
-    opacity: 0.7;
-    background: rgba(0, 0, 0, 0.5); /* фон с полупрозрачностью */
-    filter: alpha(Opacity=70); /* Прозрачность в IE */
+    opacity: 0.9;
+    background: rgba(0, 0, 0, 0.9); /* фон с полупрозрачностью */
+    filter: alpha(Opacity=90); /* Прозрачность в IE */
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000)"; /* все тот же фон с полупрозрачностью, но фильтр для ИЕ8 */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000); /* все тот же фон с полупрозрачностью, но фильтр для ИЕ7 и ИЕ6 */
 
