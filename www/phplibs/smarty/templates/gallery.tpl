@@ -36,6 +36,9 @@
     <div id="fullScreenGalleryLeftSide" class="fullScreenGalleryNaviButton"></div>
     <div id="fullScreenPicContanier">
 
+        <img id="fullScreenPic">
+
+        </img>
     </div>
     <div id="fullScreenGalleryRightSide" class="fullScreenGalleryNaviButton"></div>
 </div>

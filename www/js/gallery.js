@@ -144,7 +144,7 @@ $(document).ready(function () {
     /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
-    nextPicture();
+
 });
 
 function dragAndResize() {
@@ -265,7 +265,6 @@ function refreshPictures() {
 
 function closeFullScreenGalleryClickHandler() {
     hideFullScreenGallery();
-    $("#fullScreenPicContanier").html('');
 }
 
 function hideFullScreenGallery() {
@@ -274,9 +273,10 @@ function hideFullScreenGallery() {
     $('div[class=fullScreenGallery]').hide();
 }
 
-function changeFullScreenPic(sourceSmallPic) {
-    curPic_num = parseInt(sourceSmallPic.getAttribute('sequence_number'));
-    replaceCurPictureByNext(curPic_num);
+function changeFullScreenPic(sketch) {
+    var pp = $(sketch).attr("picpath");
+    replaceCurPictureByNext(pp);
+    picIterator = fullScreenPics.indexOf(pp);
 }
 
 <!--Скрипты полноэкранной галереи-->
@@ -431,10 +431,8 @@ function nextPicture() {
         nextPictureInWork = 1;
         //отображаем указатель загрузки
         $("#upBlock").css('display', 'block');
-        var res = getNext(fullScreenPics,picIterator)
-        var nextP = res.res;
-        picIterator = res.i;
-        //replaceCurPictureByNext(nextPicNum);
+        var nextPicPath = getNextPicPath();
+        replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
 
     }
@@ -447,30 +445,14 @@ function previousPicture() {
         nextPictureInWork = 1;
         //отображаем указатель загрузки
         $("#upBlock").css('display', 'block');
-        var res = getPre(fullScreenPics,picIterator)
-        var nextP = res.res;
-        //replaceCurPictureByNext(nextPicNum);
+        var nextPicPath = getPrePicPath();
+        replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
-        console.log(nextP);
     }
 }
 
-function replaceCurPictureByNext(picNum) {
-    var allParamsString = makePictureGetterParametersStringForPictureGet(picNum);
-//alert(allParamsString);
-    $.post("getPicture.php", allParamsString,
-        //функция обработки полученных данных
-        function (data) {
-            if (trim(data) != '') {
-                $('#fullScreenPic').hide();
-                $("#fullScreenPicContanier").html(data);
-                $('#fullScreenPic').bind('click', fullScreenPicClickHandler);
-                needShowPicAfterLoad = 1;
-                $('#fullScreenPic').bind('load', fullScreenPicLoadHandler);
-                curPic_num = picNum;
-            }
-        }
-    );
+function replaceCurPictureByNext(picPath) {
+    $("#fullScreenPic").attr("src",picPath);
 }
 
 
@@ -484,18 +466,10 @@ function rewritePageByPageNum(pageNum) {
                 $(".sketch").each(function(i,e) {
                     fullScreenPics.push( $(e).attr("picPath"));
                 });
-                for (i=1;i<100;i++) {
-
-                    console.log(getNextPicPath());
-                }
-
-                for (i=1;i<100;i++) {
-
-                    console.log(getPrePicPath());
-                }
 
                 dragAndResize();
                 setImagesMousehandler();
+                setImagesClickhandler();
 
             } else {
                 $("#sketches").html("no data");
@@ -513,6 +487,38 @@ function makePictureGetterParametersStringForPageGet(pageNum) {
     var allParamsString = pageNumString + "&" + checkboxesValueString;
     return allParamsString;
 };
+
+
+function setImagesClickhandler() {
+    $('.sketch').unbind('click');
+    $('.sketch').bind('click', smallImageClickHandler);
+}
+
+
+function smallImageClickHandler() {
+
+    changeFullScreenPic(this);
+    showFullScreenGallery();
+}
+
+
+function showFullScreenGallery() {
+
+    $(document.documentElement).css('overflow', 'hidden');
+    $('div[class=fullScreenGallery]').height($('#all_space_wrap').height());
+
+    $('div[class=fullScreenGallery]').show();
+    $('#fullScreenPic').show();
+    locateFullScreenGallaryControls();
+    centerFullScreenPic();
+}
+
+function hideFullScreenGallery() {
+    $(document.documentElement).css('overflow', 'scroll');
+    $('#fullScreenPic').hide();
+    $('div[class=fullScreenGallery]').hide();
+}
+
 
 
 
