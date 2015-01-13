@@ -34,11 +34,7 @@
 <body>
 <div class="fullScreenGallery">
     <div id="fullScreenGalleryLeftSide" class="fullScreenGalleryNaviButton"></div>
-    <div id="fullScreenPicContanier">
-
-        <img id="fullScreenPic">
-
-        </img>
+    <div id="fullScreenPicContainer">
     </div>
     <div id="fullScreenGalleryRightSide" class="fullScreenGalleryNaviButton"></div>
 </div>

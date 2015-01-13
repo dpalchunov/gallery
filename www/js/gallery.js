@@ -13,6 +13,7 @@ var img_state_idle = 1,
 var fullScreenPics = [];
 var picIterator = 0;
 var nextPictureInWork = 0;
+var needShowPicAfterLoad = false;
 
 
 
@@ -274,9 +275,9 @@ function hideFullScreenGallery() {
 }
 
 function changeFullScreenPic(sketch) {
-    var pp = $(sketch).attr("picpath");
-    replaceCurPictureByNext(pp);
-    picIterator = fullScreenPics.indexOf(pp);
+    var p = {path:$(sketch).attr("picpath"),ratio:$(sketch).attr("ratio")};
+    replaceCurPictureByNext(p.path);
+    picIterator = fullScreenPics.map(function(e) {return e.path;}).indexOf(p.path);
 }
 
 <!--Скрипты полноэкранной галереи-->
@@ -285,10 +286,10 @@ $(function () {
     $('#fullScreenGalleryLeftSide').bind('click', backFullScreenGalleryClickHandler);
     $('.fullScreenGalleryNaviButton').bind('mouseover', fullScreenGalleryNaviButtonMouseOverHandler);
     $('.fullScreenGalleryNaviButton').bind('mouseout', fullScreenGalleryNaviButtonMouseOutHandler);
-    $('#fullScreenPic').bind('click', fullScreenPicClickHandler);
-    $('#fullScreenPic').bind('load', fullScreenPicLoadHandler);
+    $('#fullScreenPicContainer').bind('click', fullScreenPicClickHandler);
+    $('#fullScreenPicContainer').bind('load', fullScreenPicLoadHandler);
     locateFullScreenGallaryControls();
-    centerFullScreenPic();
+  //  centerFullScreenPic();
 })
 
 
@@ -302,7 +303,7 @@ $(document).keydown(function (e) {
             break;
 
         case 39: // right
-            $('#fullScreenPic').click();
+            $('#fullScreenPicContainer').click();
             break;
 
         case 40: // down
@@ -328,7 +329,7 @@ function fullScreenPicLoadHandler() {
 
 function showfullScreenPicIfNeeded() {
     if (needShowPicAfterLoad == 1) {
-        $('#fullScreenPic').show();
+        $('#fullScreenPicContainer').show();
         needShowPicAfterLoad = 0;
     }
 }
@@ -357,17 +358,21 @@ function locateFullScreenGallaryControls() {
 }
 
 function centerFullScreenPic() {
-    /*$('#fullScreenPic').css({
-     position:'absolute',
-     left: ($(window).width() - $('#fullScreenPic').outerWidth())/2,
-     top: $(window).scrollTop() + ($(window).height() - $('#fullScreenPic').outerHeight())/2
-     });*/
-    $('#fullScreenPicContanier').css({
+    var winRatio = $(window).height()/($(window).width()*0.80);
+    var imgRatio = (getCurPicInfo().ratio);
+    if (imgRatio > winRatio) {
+        $("#fullScreenPicContainer").height($(window).height());
+        $("#fullScreenPicContainer").width($("#fullScreenPicContainer").height()/imgRatio);
+    } else {
+        $("#fullScreenPicContainer").width($(window).width()*0.80);
+        $("#fullScreenPicContainer").height($("#fullScreenPicContainer").width()*imgRatio);
+    }
+
+
+    $('#fullScreenPicContainer').css({
         position: 'absolute',
-        left: ($(window).width() - $('#fullScreenPic').outerWidth()) / 2,
-        top: $(window).scrollTop() + ($(window).height() - $('#fullScreenPic').outerHeight()) / 2,
-        height: $('#fullScreenPic').height(),
-        width: $('#fullScreenPic').width(),
+        left: ($(window).width() - $('#fullScreenPicContainer').outerWidth()) / 2,
+        top: $(window).scrollTop() + ($(window).height() - $('#fullScreenPicContainer').outerHeight()) / 2,
         display: 'block'
     });
 }
@@ -379,13 +384,17 @@ function backFullScreenGalleryClickHandler() {
     previousPicture();
 }
 
-function getNextPicPath() {
+function getCurPicInfo() {
+    return getCur(fullScreenPics,picIterator);
+}
+
+function getNextPicInfo() {
     var res = getNext(fullScreenPics,picIterator);
     var nextP = res.res;
     picIterator = res.i;
     return nextP;
 }
-function getPrePicPath() {
+function getPrePicInfo() {
     var res = getPre(fullScreenPics,picIterator);
     var nextP = res.res;
     picIterator = res.i;
@@ -431,7 +440,7 @@ function nextPicture() {
         nextPictureInWork = 1;
         //отображаем указатель загрузки
         $("#upBlock").css('display', 'block');
-        var nextPicPath = getNextPicPath();
+        var nextPicPath = getNextPicInfo().path;
         replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
 
@@ -445,14 +454,14 @@ function previousPicture() {
         nextPictureInWork = 1;
         //отображаем указатель загрузки
         $("#upBlock").css('display', 'block');
-        var nextPicPath = getPrePicPath();
+        var nextPicPath = getPrePicInfo().path;
         replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
     }
 }
 
 function replaceCurPictureByNext(picPath) {
-    $("#fullScreenPic").attr("src",picPath);
+    $("#fullScreenPicContainer").css("background-image","url(" + picPath + ")");
 }
 
 
@@ -464,9 +473,9 @@ function rewritePageByPageNum(pageNum) {
             if (trim(data) != '') {
                 $("#sketches").html(data);
                 $(".sketch").each(function(i,e) {
-                    fullScreenPics.push( $(e).attr("picPath"));
+                    fullScreenPics.push( {path:$(e).attr("picPath"),ratio:$(e).attr("ratio")});
                 });
-
+                 console.log(getCurPicInfo());
                 dragAndResize();
                 setImagesMousehandler();
                 setImagesClickhandler();
@@ -508,14 +517,14 @@ function showFullScreenGallery() {
     $('div[class=fullScreenGallery]').height($('#all_space_wrap').height());
 
     $('div[class=fullScreenGallery]').show();
-    $('#fullScreenPic').show();
+    $('#fullScreenPicContainer').show();
     locateFullScreenGallaryControls();
     centerFullScreenPic();
 }
 
 function hideFullScreenGallery() {
     $(document.documentElement).css('overflow', 'scroll');
-    $('#fullScreenPic').hide();
+    $('#fullScreenPicContainer').hide();
     $('div[class=fullScreenGallery]').hide();
 }
 

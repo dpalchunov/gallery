@@ -483,15 +483,17 @@ blockquote {
 }
 
 #fullScreenPic {
-    height: auto;
-    width: auto;
+    max-width: 100%;
+    max-height: 100%;
     z-index: 10000;
     display: none;
     cursor: pointer;
 }
 
-#fullScreenPicContanier {
+#fullScreenPicContainer {
     z-index: 9000;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 
