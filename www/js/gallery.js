@@ -10,6 +10,10 @@ var rateShow;
 var img_state_idle = 1,
     img_state_dragging = 2,
     img_state_persist_delay = 3
+var fullScreenPics = [];
+var picIterator = 0;
+var nextPictureInWork = 0;
+
 
 
 function setImagesMousehandler() {
@@ -140,6 +144,7 @@ $(document).ready(function () {
     /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
+    nextPicture();
 });
 
 function dragAndResize() {
@@ -170,7 +175,7 @@ function dragAndResize() {
     var footer_h = 80;
     $(sk).height(sk_h + footer_h);
     $("#all_space_wrap").height(Math.round(sk_h + footer_h));
-    console.log(sk_h + footer_h);
+  //  console.log(sk_h + footer_h);
 
 }
 
@@ -258,6 +263,217 @@ function refreshPictures() {
 }
 
 
+function closeFullScreenGalleryClickHandler() {
+    hideFullScreenGallery();
+    $("#fullScreenPicContanier").html('');
+}
+
+function hideFullScreenGallery() {
+    $(document.documentElement).css('overflow', 'scroll');
+    $('#fullScreenPic').hide();
+    $('div[class=fullScreenGallery]').hide();
+}
+
+function changeFullScreenPic(sourceSmallPic) {
+    curPic_num = parseInt(sourceSmallPic.getAttribute('sequence_number'));
+    replaceCurPictureByNext(curPic_num);
+}
+
+<!--Скрипты полноэкранной галереи-->
+$(function () {
+    $('#fullScreenGalleryRightSide').bind('click', closeFullScreenGalleryClickHandler);
+    $('#fullScreenGalleryLeftSide').bind('click', backFullScreenGalleryClickHandler);
+    $('.fullScreenGalleryNaviButton').bind('mouseover', fullScreenGalleryNaviButtonMouseOverHandler);
+    $('.fullScreenGalleryNaviButton').bind('mouseout', fullScreenGalleryNaviButtonMouseOutHandler);
+    $('#fullScreenPic').bind('click', fullScreenPicClickHandler);
+    $('#fullScreenPic').bind('load', fullScreenPicLoadHandler);
+    locateFullScreenGallaryControls();
+    centerFullScreenPic();
+})
+
+
+$(document).keydown(function (e) {
+    switch (e.which) {
+        case 37: // left
+            $('#fullScreenGalleryLeftSide').click();
+            break;
+
+        case 38: // up
+            break;
+
+        case 39: // right
+            $('#fullScreenPic').click();
+            break;
+
+        case 40: // down
+            break;
+
+        case 27: // esc
+            $('#fullScreenGalleryRightSide').click();
+            break;
+
+        default:
+            return; // exit this handler for other keys
+    }
+    e.preventDefault();
+});
+
+
+function fullScreenPicLoadHandler() {
+    locateFullScreenGallaryControls();
+    centerFullScreenPic();
+    showfullScreenPicIfNeeded();
+
+}
+
+function showfullScreenPicIfNeeded() {
+    if (needShowPicAfterLoad == 1) {
+        $('#fullScreenPic').show();
+        needShowPicAfterLoad = 0;
+    }
+}
+function fullScreenGalleryNaviButtonMouseOverHandler() {
+    $(this).stop().animate({opacity: '1.0'}, 300);
+    $(this).css('cursor', 'pointer');
+}
+
+function fullScreenGalleryNaviButtonMouseOutHandler() {
+    $(this).stop().animate({opacity: '0.2'}, 200);
+}
+
+$(window).resize(function () {
+    locateFullScreenGallaryControls();
+    centerFullScreenPic();
+});
+
+function locateFullScreenGallaryControls() {
+    var scrollTopString = $(window).scrollTop() + 'px';
+    $('#fullScreenGalleryRightSide').css(
+        'background-position', '100% ' + scrollTopString
+    );
+    $('#fullScreenGalleryLeftSide').css(
+        'background-position', '0% ' + scrollTopString
+    );
+}
+
+function centerFullScreenPic() {
+    /*$('#fullScreenPic').css({
+     position:'absolute',
+     left: ($(window).width() - $('#fullScreenPic').outerWidth())/2,
+     top: $(window).scrollTop() + ($(window).height() - $('#fullScreenPic').outerHeight())/2
+     });*/
+    $('#fullScreenPicContanier').css({
+        position: 'absolute',
+        left: ($(window).width() - $('#fullScreenPic').outerWidth()) / 2,
+        top: $(window).scrollTop() + ($(window).height() - $('#fullScreenPic').outerHeight()) / 2,
+        height: $('#fullScreenPic').height(),
+        width: $('#fullScreenPic').width(),
+        display: 'block'
+    });
+}
+
+function fullScreenPicClickHandler() {
+    nextPicture();
+}
+function backFullScreenGalleryClickHandler() {
+    previousPicture();
+}
+
+function getNextPicPath() {
+    var res = getNext(fullScreenPics,picIterator);
+    var nextP = res.res;
+    picIterator = res.i;
+    return nextP;
+}
+function getPrePicPath() {
+    var res = getPre(fullScreenPics,picIterator);
+    var nextP = res.res;
+    picIterator = res.i;
+    return nextP;
+}
+
+function getCur(a,i) {
+    return a[i];
+}
+function getNext(a,i) {
+    var next = getCur(a,i);
+    var new_pos = fwd(a,i);
+    return {res:next,i:new_pos};
+}
+function getPre(a,i) {
+    var new_pos = bkw(a,i);
+    var next = getCur(a,new_pos);
+    return {res:next,i:new_pos};
+}
+function fwd(a,i) {
+    if(a.length-1 == i) {
+        return 0 ;
+    } else {
+        i ++;
+        return i;
+    }
+
+}
+
+function bkw(a,iterator) {
+    if( 0== iterator) {
+        var new_pos = a.length-1
+        return new_pos;
+    } else {
+        iterator --;
+        return iterator;
+    }
+}
+//функция получает следующую картинку в полноэкранной галерее
+function nextPicture() {
+    if (nextPictureInWork == 0) {
+        //флаг позволяет запускать функцию сключительно последовательно
+        nextPictureInWork = 1;
+        //отображаем указатель загрузки
+        $("#upBlock").css('display', 'block');
+        var res = getNext(fullScreenPics,picIterator)
+        var nextP = res.res;
+        picIterator = res.i;
+        //replaceCurPictureByNext(nextPicNum);
+        nextPictureInWork = 0;
+
+    }
+}
+
+//функция получает предыдущую картинку в полноэкранной галерее
+function previousPicture() {
+    if (nextPictureInWork == 0) {
+        //флаг позволяет запускать функцию сключительно последовательно
+        nextPictureInWork = 1;
+        //отображаем указатель загрузки
+        $("#upBlock").css('display', 'block');
+        var res = getPre(fullScreenPics,picIterator)
+        var nextP = res.res;
+        //replaceCurPictureByNext(nextPicNum);
+        nextPictureInWork = 0;
+        console.log(nextP);
+    }
+}
+
+function replaceCurPictureByNext(picNum) {
+    var allParamsString = makePictureGetterParametersStringForPictureGet(picNum);
+//alert(allParamsString);
+    $.post("getPicture.php", allParamsString,
+        //функция обработки полученных данных
+        function (data) {
+            if (trim(data) != '') {
+                $('#fullScreenPic').hide();
+                $("#fullScreenPicContanier").html(data);
+                $('#fullScreenPic').bind('click', fullScreenPicClickHandler);
+                needShowPicAfterLoad = 1;
+                $('#fullScreenPic').bind('load', fullScreenPicLoadHandler);
+                curPic_num = picNum;
+            }
+        }
+    );
+}
+
+
 function rewritePageByPageNum(pageNum) {
     var allParamsString = makePictureGetterParametersStringForPageGet(pageNum);
     $.post("getPicturePage.php", allParamsString,
@@ -265,13 +481,22 @@ function rewritePageByPageNum(pageNum) {
         function (data) {
             if (trim(data) != '') {
                 $("#sketches").html(data);
+                $(".sketch").each(function(i,e) {
+                    fullScreenPics.push( $(e).attr("picPath"));
+                });
+                for (i=1;i<100;i++) {
+
+                    console.log(getNextPicPath());
+                }
+
+                for (i=1;i<100;i++) {
+
+                    console.log(getPrePicPath());
+                }
+
                 dragAndResize();
                 setImagesMousehandler();
-                var s_images = $(".small_image");
-                $.each(s_images, function(i,v) {
-                    $(v).hide();
 
-                });
             } else {
                 $("#sketches").html("no data");
                 showFooter();

@@ -330,7 +330,8 @@ class  PicturesGetter
     {
         global $template_engine;
 
-        $pictureFileName = $pictureObject->getFileName();
+        $pictureSketchPath = $pictureObject->getSketchPath();
+        $picturePath = $pictureObject->getPicPath();
         $pictureSequenceNumber = $pictureObject->getPosition() + 1;
         $picDescription = $pictureObject->getDescription($lang);
         $picRate = $pictureObject->getRate();
@@ -361,7 +362,8 @@ class  PicturesGetter
         $picRateHtml = $this->makePicRateHtml($picRate);
         $template_engine->assign('picRate', $picRateHtml);
         $template_engine->assign('picDescription', $picDescription);
-        $template_engine->assign('pictureFileName', $pictureFileName);
+        $template_engine->assign('pictureSketchPath', $pictureSketchPath);
+        $template_engine->assign('picPath', $picturePath);
         $template_engine->assign('sequenceNumber', $pictureSequenceNumber);
 
         $picHTMLCode = $template_engine->fetch('sketch.tpl');

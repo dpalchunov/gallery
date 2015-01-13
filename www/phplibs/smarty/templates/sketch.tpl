@@ -1,7 +1,8 @@
     <div class="sketch ui-widget-content"
          ratio="{{{$ratio}}}" pic_id="{{{$pic_id}}}"
          left ="{{{$left}}}" top ="{{{$top}}}" width= "{{{$width}}}"
-         style="background-image:url(images/gallary/sketches/{{{$pictureFileName}}});
+         picPath="{{{$picPath}}}"
+         style="background-image:url({{{$pictureSketchPath}}});
                 background-repeat: no-repeat;background-size: 100%;
                 left:{{{$css_left}}};width:{{{$css_width}}};
                 z-index: {{{$zindex}}}">
