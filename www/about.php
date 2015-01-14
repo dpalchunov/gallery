@@ -1,5 +1,5 @@
 <?php   
   require_once 'phplibs/ResourceService.php';
   $aboutPage = new AboutPageViewer();
-  $aboutPage -> showAboutPage();  
+  $aboutPage -> showPage();
 ?>
