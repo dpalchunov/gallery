@@ -2,7 +2,6 @@
     <img id="greeting_img" src="images/greeting.png">
 </div>
 <div id="wrapper" {{{$wrapper_class}}}>
-{{{$header}}}
     <div id="main_content">
             <div id="ava"><img id="ava_img"/></div>
             <div id="main_text">

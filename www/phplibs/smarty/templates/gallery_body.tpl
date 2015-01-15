@@ -7,7 +7,6 @@
 <div id="arrow_pic">
     <br>
 </div>
-{{{$header}}}
 <div id="all_space_wrap">
     <div id="left_column_wrap">
         <a href="#top"></a>

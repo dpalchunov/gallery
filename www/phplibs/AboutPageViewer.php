@@ -10,6 +10,13 @@ class  AboutPageViewer extends Page
         $template_engine->assign('avas', $jsArrayHtml);
         return $template_engine->fetch('about_head.tpl');
     }
+
+    public function getHeader() {
+        global  $resourceService;
+        $lang = $resourceService -> getLang();
+        return HeaderGetter::getHeaderHtml($lang,'about');
+    }
+
     public function getBody() {
         global $template_engine, $resourceService;
         if ($_GET['change_lang'] == 1) {
@@ -18,8 +25,6 @@ class  AboutPageViewer extends Page
         }
         $lang = $resourceService->getLang();
         $localizator = new Localizator();
-        $headerGetter = HeaderGetter::getHeaderHtml($lang,'about');
-        $template_engine->assign('header', $headerGetter);
 
         $template_engine->assign('lang', $lang);
         $template_engine->assign('main_text', $localizator->getText($lang, 'about_main_text'));
@@ -33,6 +38,8 @@ class  AboutPageViewer extends Page
 
         return $template_engine->fetch('about_body.tpl');
     }
+
+
 }
 
 ?>

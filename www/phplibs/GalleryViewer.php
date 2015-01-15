@@ -8,6 +8,12 @@
 
     }
 
+    public function getHeader() {
+        global  $resourceService;
+        $lang = $resourceService -> getLang();
+        return HeaderGetter::getHeaderHtml($lang,'gallery');
+    }
+
     public function getBody() {
         global $template_engine, $resourceService;
         if (isset($_GET['change_lang']) && $_GET['change_lang'] == 1) {
@@ -16,9 +22,7 @@
         }
         $lang = $resourceService -> getLang();
         $localizator = new Localizator();
-        $header = HeaderGetter::getHeaderHtml($lang,'gallery');
 
-        $template_engine->assign('header', $header);
         $template_engine->assign('lang',$lang);
         $template_engine->assign('no_results',$localizator -> getText($lang, 'no_results'));
         return $template_engine->fetch('gallery_body.tpl');

@@ -4,6 +4,7 @@
         {{{$head}}}
     </head>
     <body>
+        {{{$header}}}
         {{{$body}}}
     </body>
 </html>
