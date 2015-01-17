@@ -27,10 +27,12 @@
 	
         <title>На заказ</title>
 	<script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.cookie.js" ></script>	
-        <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js" ></script>
+    <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+    <script type="text/javascript" src="js/header.js"></script>
 
-	<!-- Скрипт отвечающий за клик на header Kristina Strunkova-->
+
+    <!-- Скрипт отвечающий за клик на header Kristina Strunkova-->
 	<script type="text/javascript">
 	    $(document).ready(function(){	     
 		$('#header_name').bind('click',headerNameClickHandler);

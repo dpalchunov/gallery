@@ -6,13 +6,13 @@
     </div>
     <div id="nav_menu">
         <div id="nav_gallary" class="menu_button {{{$gallery_active}}}">
-            <a href="gallery.php">{{{$gallery}}}</a>
+            <a id="gallery_href" class="menu_href" href="javascript:void(0)">{{{$gallery}}}</a>
         </div>
         <div id="nav_contacts" class="menu_button {{{$contacts_active}}}">
-            <a href="contacts.php">{{{$contacts}}}</a>
+            <a id="buy_href" class="menu_href" href="javascript:void(0)">{{{$contacts}}}</a>
         </div>
         <div id="nav_about" class="menu_button {{{$about_active}}}">
-            <a href="about.php">{{{$about}}}</a>
+            <a id="about_href" class="menu_href" href="javascript:void(0)">{{{$about}}}</a>
         </div>
     </div>
     <!--end nav_menu-->

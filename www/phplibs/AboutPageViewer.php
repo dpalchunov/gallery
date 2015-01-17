@@ -2,13 +2,20 @@
 require_once 'phplibs/ResourceService.php';
 class  AboutPageViewer extends Page
 {
-    public function getHead() {
+
+    function AboutPageViewer() {
+        parent::Page();
+        global $js_scripts,$styles;
+        $js_scripts = array('about.js');
+        $styles = array('style.css');
+    }
+
+    public function getHeadContent() {
         global $template_engine;
         $persistedAvasGetter = new PersistedAvasGetter();
         $jsArrayHtml = $persistedAvasGetter->generateJsArrayHtml1();
-
         $template_engine->assign('avas', $jsArrayHtml);
-        return $template_engine->fetch('about_head.tpl');
+        return $template_engine->fetch('about_head_content.tpl');
     }
 
     public function getHeader() {
@@ -38,6 +45,7 @@ class  AboutPageViewer extends Page
 
         return $template_engine->fetch('about_body.tpl');
     }
+
 
 
 }

@@ -139,14 +139,19 @@ function leftColumnWrapClickHandler() {
 }
 
 $(document).ready(function () {
+    //alert('gallery_ready');
+    mainInit();
+
+});
+
+function mainInit() {
     var scrH = $(window).height();
     var scrHP = $("#container").height();
     setWindowScrollHandler();
     /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
-
-});
+}
 
 function dragAndResize() {
     var images = $(".ui-widget-content");
@@ -198,7 +203,7 @@ function save(e) {
         data: {pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
     })
         .done(function (msg) {
-            console.log(msg);
+          //  console.log(msg);
         });
 }
 
@@ -476,7 +481,7 @@ function rewritePageByPageNum(pageNum) {
                 $(".sketch").each(function(i,e) {
                     fullScreenPics.push( {path:$(e).attr("picPath"),ratio:$(e).attr("ratio")});
                 });
-                 console.log(getCurPicInfo());
+               //  console.log(getCurPicInfo());
                 dragAndResize();
                 setImagesMousehandler();
                 setImagesClickhandler();
@@ -515,7 +520,7 @@ function smallImageClickHandler() {
 function showFullScreenGallery() {
 
     $(document.documentElement).css('overflow', 'hidden');
-    $('div[class=fullScreenGallery]').height($('#sketches').height() + $("#header").height() + $("#footer").height()+80);
+    $('div[class=fullScreenGallery]').height($('#sketches').height() + $("#header").height() + $("#footer").height()+200);
 
     $('div[class=fullScreenGallery]').show();
     $('#fullScreenPicContainer').show();

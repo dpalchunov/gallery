@@ -2,10 +2,22 @@
   require_once 'phplibs/ResourceService.php';
   class  BuyPageViewer extends Page {
 
+      function BuyPageViewer() {
+          parent::Page();
+          global $js_scripts,$styles;
+          $js_scripts = array('http://download.skype.com/share/skypebuttons/js/skypeCheck.js');
+          $styles = array('buy_style.css');
+      }
+
       public function getHeader() {
           global  $resourceService;
           $lang = $resourceService -> getLang();
           return HeaderGetter::getHeaderHtml($lang,'buy');
+      }
+
+      public function getHeadContent() {
+          global $template_engine;
+          return $template_engine->fetch('buy_head_content.tpl');
       }
 
       public function getHead() {
@@ -13,7 +25,7 @@
           return $template_engine->fetch('buy_head.tpl');
       }
 
-    public function BuyContactsPage() {
+    public function getBody() {
         global $template_engine, $resourceService; 
         if ($_GET['change_lang'] == 1) {
           $resourceService -> changeLang();

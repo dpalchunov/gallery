@@ -148,7 +148,7 @@ function save(e) {
         data: {pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
     })
         .done(function (msg) {
-            console.log(msg);
+            //console.log(msg);
         });
 }
 

@@ -440,7 +440,7 @@ function saveCropHandler() {
         data: { pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
     })
         .done(function (msg) {
-            console.log(msg);      //den_debug
+            //console.log(msg);      //den_debug
             hideUploadControls();
             var active_page = $('.page_href').filter('.active').attr('value');
             reloadGallery(active_page);
