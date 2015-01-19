@@ -1,25 +1,26 @@
 var routes = {
-    about_href: "./about.php/",
-    gallery_href: "./gallery.php/",
-    buy_href: "./contacts.php/"
+    about_href: {href:"./about.php/",page_name:'about.php'},
+    gallery_href: {href:"./gallery.php/",page_name:'gallery.php'},
+    buy_href: {href:"./contacts.php/",page_name:'contacts.php'}
 };
 
 $(document).ready(function () {
     $('.menu_href').each(function (i, e) {
         $(e).bind('click', reload);
     });
-    //alert('header_ready');
-
 });
 
 
 function reload() {
     var id = $(this).attr("id");
-    $.post(routes[id], {part: "head_content_and_styles"}).done(function (data) {
+    history.pushState({},'',routes[id].page_name);
+    $('.menu_button.active').removeClass('active');
+    $(this).parent().addClass('active');
+    $.post(routes[id].href, {part: "head_content_and_styles"}).done(function (data) {
         $("head").html(data);
         $.ajax({
             type: "POST",
-            url: routes[id],
+            url: routes[id].href,
             data: {part: "styles"},
             async: false
         }).done(function (data) {
@@ -34,14 +35,14 @@ function reload() {
 //                });
                 $.ajax({
                     type: "POST",
-                    url: routes[id],
+                    url: routes[id].href,
                     data: {part: "body"},
                     async: false
                 }).done(function (body) {
                         $("#body_wrapper").html(body);
                         $.ajax({
                             type: "POST",
-                            url: routes[id],
+                            url: routes[id].href,
                             data: {part: "scripts"},
                             async: false
                         }).done(function (data) {
