@@ -28,6 +28,15 @@ abstract class  Page
         return $template_engine->fetch('head.tpl');
     }
 
+    public function getHeadContentAndStyles() {
+        return $this -> getHeadContent() . $this -> getAllStyles();
+    }
+    public function getHeadContentAndHeaderStyle() {
+        return $this -> getHeadContent() . $this -> getStylesByArray(array('header.css'));
+    }
+
+
+
     public function showPage() {
         global $template_engine;
         $template_engine->assign('meta', $this -> getMeta());
@@ -70,6 +79,10 @@ abstract class  Page
                 $result = $this -> getHead();
             } elseif ($post['part'] == 'head_content') {
                 $result = $this -> getHeadContent();
+            } elseif ($post['part'] == 'head_content_and_styles') {
+                $result = $this -> getHeadContentAndStyles();
+            } elseif ($post['part'] == 'head_content_and_header_style') {
+                $result = $this -> getHeadContentAndHeaderStyle();
             } elseif ($post['part'] == 'header') {
                 $result = $this -> getHeader();
             } elseif ($post['part'] == 'scripts') {
@@ -85,19 +98,28 @@ abstract class  Page
     }
 
 
-
     public function getStyles() {
-        global $template_engine,$styles;
+        global $styles;
+        return $this -> getStylesByArray($styles);
+    }
+
+    public function getStylesByArray($styles) {
+        global $template_engine;
         $template_engine->assign('styles', $styles);
         $template_engine->assign('count', sizeof($styles));
         $res =  $template_engine->fetch('styles.tpl');
         return $res;
     }
 
-    public function getScriptsArray() {
+    public function getAAScriptsArray() {
         global $js_common_scripts,$js_scripts;
         $res = array_merge($js_common_scripts,$js_scripts);
         return $res;
+    }
+
+    public function getScriptsArray() {
+        global $js_scripts;
+        return $js_scripts;
     }
 
     public function getAllStylesArray() {

@@ -18,6 +18,7 @@
           return $template_engine->fetch('gallery_head_content.tpl');
       }
 
+
       public function getHeader() {
           global  $resourceService;
           $lang = $resourceService -> getLang();

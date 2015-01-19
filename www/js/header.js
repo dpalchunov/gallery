@@ -15,9 +15,8 @@ $(document).ready(function () {
 
 function reload() {
     var id = $(this).attr("id");
-    $.post(routes[id], {part: "head_content"}).done(function (data) {
+    $.post(routes[id], {part: "head_content_and_styles"}).done(function (data) {
         $("head").html(data);
-
         $.ajax({
             type: "POST",
             url: routes[id],
@@ -26,48 +25,40 @@ function reload() {
         }).done(function (data) {
                 var links = $.parseJSON(data);
                 console.log(links);
-                $.each(links, function (i, e) {
-                    var l = document.createElement("link");
-                    l.rel = "stylesheet";
-                    l.type = "text/css";
-                    l.href = "./css/" + e + "?t=" + Date.now();
-                    document.head.appendChild(l);
-                });
+//                $.each(links, function (i, e) {
+//                    var l = document.createElement("link");
+//                    l.rel = "stylesheet";
+//                    l.type = "text/css";
+//                    l.href = "./css/" + e + "?t=" + Date.now();
+//                    //document.head.appendChild(l);
+//                });
                 $.ajax({
                     type: "POST",
                     url: routes[id],
                     data: {part: "body"},
                     async: false
                 }).done(function (body) {
+                        $("#body_wrapper").html(body);
                         $.ajax({
                             type: "POST",
                             url: routes[id],
-                            data: {part: "header"},
+                            data: {part: "scripts"},
                             async: false
-                        }).done(function (header) {
-                                $("body").html(header + body);
-
-                                $.ajax({
-                                    type: "POST",
-                                    url: routes[id],
-                                    data: {part: "scripts"},
-                                    async: false
-                                }).done(function (data) {
-                                        var scripts = $.parseJSON(data);
-                                        var last = scripts.length - 1;
-                                        $.each(scripts, function (i, e) {
-                                            var s = document.createElement("script");
-                                            s.type = "text/javascript";
-                                            var src =  "./js/" + e + "?t=" + Date.now();
-                                            $.ajax({
-                                                type: "GET",
-                                                url: src,
-                                                async: false
-                                            });
-                                        });
-
+                        }).done(function (data) {
+                                var scripts = $.parseJSON(data);
+                                $.each(scripts, function (i, e) {
+                                    var s = document.createElement("script");
+                                    s.type = "text/javascript";
+                                    var src =  "./js/" + e + "?t=" + Date.now();
+                                    $.ajax({
+                                        type: "GET",
+                                        url: src,
+                                        async: false
                                     });
+                                });
+
                             });
+
                     });
             });
     });
