@@ -11,6 +11,16 @@
       public static function getHeaderHtml($lang,$active_button) {
           $resourceService = new ResourceService();
           $template_engine = $resourceService->getTemplateEngine();
+          $nav = HeaderGetter:: getNavMenuHtml($lang,$active_button);
+          $template_engine-> assign('nav_menu',$nav);
+          $headerHtml = $template_engine-> fetch('header.tpl') ;
+          return  $headerHtml;
+      }
+
+
+      public static function getNavMenuHtml($lang,$active_button) {
+          $resourceService = new ResourceService();
+          $template_engine = $resourceService->getTemplateEngine();
           $localizator = new Localizator();
 
           $template_engine->assign('change_lang',$localizator -> getText($lang, 'change_lang_label'));
@@ -40,9 +50,11 @@
               $template_engine->assign('buy_active','');
           }
 
-          $headerHtml = $template_engine-> fetch('header.tpl') ;
-          return  $headerHtml;
+          $html = $template_engine-> fetch('nav_menu.tpl');
+          return  $html;
       }
+
+
 
       public static function getMeta() {
         return '<meta http-equiv="Content-Type" content="text/html;charset=utf-8">';

@@ -20,6 +20,12 @@
           return HeaderGetter::getHeaderHtml($lang,'contacts');
       }
 
+      public function getNavMenu() {
+          global  $resourceService;
+          $lang = $resourceService -> getLang();
+          return HeaderGetter::getNavMenuHtml($lang,'contacts');
+      }
+
       public function getBody() {
           global $template_engine;
           $res =  $template_engine->fetch('contacts_body.tpl');

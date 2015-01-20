@@ -24,12 +24,14 @@ class  AboutPageViewer extends Page
         return HeaderGetter::getHeaderHtml($lang,'about');
     }
 
+    public function getNavMenu() {
+        global  $resourceService;
+        $lang = $resourceService -> getLang();
+        return HeaderGetter::getNavMenuHtml($lang,'about');
+    }
+
     public function getBody() {
         global $template_engine, $resourceService;
-        if ($_GET['change_lang'] == 1) {
-            $resourceService->changeLang();
-            header('Location: about.php');
-        }
         $lang = $resourceService->getLang();
         $localizator = new Localizator();
 

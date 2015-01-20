@@ -25,6 +25,12 @@
           return $template_engine->fetch('buy_head.tpl');
       }
 
+      public function getNavMenu() {
+          global  $resourceService;
+          $lang = $resourceService -> getLang();
+          return HeaderGetter::getNavMenuHtml($lang,'contacts');
+      }
+
     public function getBody() {
         global $template_engine, $resourceService; 
         if ($_GET['change_lang'] == 1) {

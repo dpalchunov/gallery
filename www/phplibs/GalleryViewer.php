@@ -25,6 +25,14 @@
           return HeaderGetter::getHeaderHtml($lang,'gallery');
       }
 
+      public function getNavMenu() {
+          global  $resourceService;
+          $lang = $resourceService -> getLang();
+          return HeaderGetter::getNavMenuHtml($lang,'gallery');
+      }
+
+
+
       public function getBody() {
           global $template_engine;
           $res =  $template_engine->fetch('gallery_body.tpl');

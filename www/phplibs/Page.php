@@ -14,6 +14,7 @@ abstract class  Page
 
     abstract function getHeadContent();
     abstract function getHeader();
+    abstract function getNavMenu();
     abstract function getBody();
 
 
@@ -85,6 +86,8 @@ abstract class  Page
                 $result = $this -> getHeadContentAndHeaderStyle();
             } elseif ($post['part'] == 'header') {
                 $result = $this -> getHeader();
+            } elseif ($post['part'] == 'nav_menu') {
+                $result = $this -> getNavMenu();
             } elseif ($post['part'] == 'scripts') {
                 $result = json_encode($this -> getScriptsArray());
             } elseif ($post['part'] == 'styles') {
