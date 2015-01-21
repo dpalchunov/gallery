@@ -8,5 +8,4 @@
         {{{$nav_menu}}}
      </div>
     <!--end nav_menu-->
-    <div id="line"></div>
 </div>

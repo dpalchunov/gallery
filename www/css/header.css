@@ -10,6 +10,30 @@
     z-index: 10;
 }
 
+#player {
+    position: relative;
+    height: 20px;
+    width: 100%;
+    background-color: blue;
+    z-index: 1;
+    display: block;
+}
+
+.player_control {
+    display: inline-block;
+    position: relative;
+    float: right;
+    height: 20px;
+    width: 40px;
+    background-color: darkgreen;
+    z-index: 1;
+}
+
+#next {
+    margin-right:100px;
+}
+
+
 
 #header_name {
     height: 34px;
@@ -30,12 +54,21 @@
 }
 
 #line {
-    position: absolute;
-    top: 128px;
+    position: relative;
     height: 3px;
     width: 100%;
     background-color: #800000;
 
 }
+
+#progress {
+    position: relative;
+    float:left;
+    height: 3px;
+    width: 0%;
+    background-color: #c60000;
+
+}
+
 
 

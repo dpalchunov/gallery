@@ -8,7 +8,7 @@ abstract class  Page
         global $template_engine, $resourceService,$js_common_scripts,$common_styles;
         $resourceService = new ResourceService();
         $template_engine = $resourceService->getTemplateEngine();
-        $js_common_scripts = array('jquery.js','jquery-ui.js','jquery.cookie.js','header.js','wellcome.js');
+        $js_common_scripts = array('jquery.js','jquery-ui.js','jquery.cookie.js','header.js','wellcome.js','jquery.jplayer.min.js','player.js');
         $common_styles = array('nav_menu.css','header.css','jquery-ui.css');
     }
 
@@ -42,9 +42,16 @@ abstract class  Page
         global $template_engine;
         $template_engine->assign('meta', $this -> getMeta());
         $template_engine->assign('head', $this -> getHead());
+        $template_engine->assign('header', $this -> getPlayer());
         $template_engine->assign('header', $this -> getHeader());
         $template_engine->assign('body', $this -> getBody());
         $template_engine->display('page.tpl');
+    }
+
+    public function getPlayer() {
+        global $template_engine;
+        $player = $template_engine -> fetch('player.tpl');
+        $template_engine->assign('player',$player);
     }
 
     public function getMeta() {
