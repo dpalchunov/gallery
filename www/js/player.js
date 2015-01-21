@@ -9,7 +9,6 @@ $(document).ready(function(){
 	// Instance jPlayer
 	my_jPlayer.jPlayer({
 		ready: function () {
-            alert('ok');
             $(this).jPlayer("setMedia",{
                 title:"1.mp3",
                 mp3: './mp3/1.mp3'

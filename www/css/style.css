@@ -1,19 +1,27 @@
 @import url('reset.css');
 
-/*������� ����� ����� Strunkova.ru*/
+/*General Styles*/
+html {
+    height: 100%;
+}
 
 body {
     background: #000;
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
     color: #ffffff;
-    padding-top: 5px;
     background-color: #000;
     width: 100%;
 }
 
+.noscrolled_body {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
 p {
-    font-size: 14px;
+    font-size: 18px;
     color: #b9b9b9;
 }
 
