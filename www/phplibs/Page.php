@@ -9,7 +9,7 @@ abstract class  Page
         $resourceService = new ResourceService();
         $template_engine = $resourceService->getTemplateEngine();
         $js_common_scripts = array('jquery.js','jquery-ui.js','jquery.cookie.js','header.js','wellcome.js','jquery.jplayer.min.js','player.js');
-        $common_styles = array('nav_menu.css','header.css','jquery-ui.css');
+        $common_styles = array('nav_menu.css','header.css','jquery-ui.css','general.css');
     }
 
     abstract function getHeadContent();
@@ -27,10 +27,12 @@ abstract class  Page
 
     public function getHead() {
         global $template_engine;
-        $css =  $this -> getAllStyles();
+        $css =  $this ->getStyles();
+        $common_css = $this ->getCommonStyles();
         $scripts =  $this -> getAllScripts();
         $content = $this -> getHeadContent();
         $template_engine->assign('styles', $css);
+        $template_engine->assign('common_styles', $common_css);
         $template_engine->assign('scripts', $scripts);
         $template_engine->assign('content', $content);
         return $template_engine->fetch('head.tpl');
@@ -72,6 +74,7 @@ abstract class  Page
         global $template_engine,$common_styles;
         $template_engine->assign('styles', $common_styles);
         $template_engine->assign('count', sizeof($common_styles));
+        $template_engine->assign('class', 'common_style');
         $res =  $template_engine->fetch('styles.tpl');
         return $res;
     }
@@ -104,8 +107,8 @@ abstract class  Page
                 $result = $this -> getNavMenu();
             } elseif ($post['part'] == 'scripts') {
                 $result = json_encode($this -> getScriptsArray());
-            } elseif ($post['part'] == 'styles') {
-                $result = json_encode($this -> getAllStylesArray());
+            } elseif ($post['part'] == 'page_styles') {
+                $result = json_encode($this -> getPecuilarStylesArray() );
             } elseif ($post['part'] == 'header_labels') {
                 $result = json_encode($this -> getHeaderLabels());
             }
@@ -118,7 +121,8 @@ abstract class  Page
 
 
     public function getStyles() {
-        global $styles;
+        global $styles,$template_engine;
+        $template_engine->assign('class', 'page_style');
         return $this -> getStylesByArray($styles);
     }
 

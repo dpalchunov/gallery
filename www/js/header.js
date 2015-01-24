@@ -47,9 +47,53 @@ function reload(hrefObj) {
     history.pushState({},'',routes[id].page_name);
     $('.menu_button.active').removeClass('active');
     hrefObj.parent().addClass('active');
-    $("#body_wrapper").html("");
+    //unload current style
+    $('link[class="page_style"]').remove();
+    //load opened page styles
+    $.ajax({
+        type: "POST",
+        url: routes[id].href,
+        data: {part: "page_styles"},
+        async: false
+    }).done(function (data) {
+            var links = $.parseJSON(data);
+            $.each(links, function (i, e) {
+                var l = document.createElement("link");
+                l.rel = "stylesheet";
+                l.type = "text/css";
+                l.href = "./css/" + e + "?t=" + Date.now();
+                document.head.appendChild(l);
+            });
 
+            $.ajax({
+                type: "POST",
+                url: routes[id].href,
+                data: {part: "body"},
+                async: false
+            }).done(function (body) {
+                        $("#body_wrapper").html(body);
+                        //load scripts
+                        $.ajax({
+                            type: "POST",
+                            url: routes[id].href,
+                            data: {part: "scripts"},
+                            async: false
+                        }).done(function (data) {
+                                var scripts = $.parseJSON(data);
+                                $.each(scripts, function (i, e) {
+                                    var s = document.createElement("script");
+                                    s.type = "text/javascript";
+                                    var src =  "./js/" + e + "?t=" + Date.now();
+                                        $.ajax({
+                                            type: "GET",
+                                            url: src,
+                                            async: false
+                                        });
+                                });
 
+                            });
+                    });
+            });
 }
 function reload_backup(hrefObj) {
     var id = hrefObj.attr("id");

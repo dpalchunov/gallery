@@ -75,6 +75,17 @@ class  PersistedAvasGetter
 
         return $jsArray;
     }
+
+    public function  getAvasArray()
+    {
+
+        $avas_tmp = glob('./images/slider/avas/*.*');
+        $avas = array_reverse($avas_tmp);
+        return  $avas;
+    }
+
+
+
 }
 
 ?>

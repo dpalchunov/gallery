@@ -139,7 +139,7 @@ function leftColumnWrapClickHandler() {
 }
 
 $(document).ready(function () {
-    //alert('gallery_ready');
+//    alert('gallery_ready');
     mainInit();
 
 });

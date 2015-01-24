@@ -7,7 +7,7 @@ class  AboutPageViewer extends Page
         parent::Page();
         global $js_scripts,$styles;
         $js_scripts = array('about.js');
-        $styles = array('style.css');
+        $styles = array('about_style.css');
     }
 
     public function getHeadContent() {

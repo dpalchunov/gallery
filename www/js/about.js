@@ -2,9 +2,10 @@
 
 //объявляем глобальные переменные
 //количество фотографий , которые можно перебирать на аватарке
+var avas;
 var avaCount;
 
-var avaPosition;
+var avaPosition=0;
 //время анимации смены аватарки
 var animateTime = 120;
 
@@ -32,9 +33,19 @@ function getPrevAvaPath() {
     return avas[avaPosition - 1];
 }
 
-function initAvaArray() {
-    avaCount = avas.length;
-    avaPosition = 1;
+function loadAvas() {
+    $.ajax({
+        type: "POST",
+        url: 'about_get_avas.php',
+        data: {action:'get_avas_array'},
+        async:false
+    }).done(function (data) {
+            avas = $.parseJSON(data);
+            console.log(avas);
+            avaCount = avas.length;
+            avaPosition = 1;
+            setup_avas();
+        });
 }
 
 function avaAnimation() {
@@ -48,7 +59,11 @@ function avaAnimation() {
 
 
 $(document).ready(function () {
-    initAvaArray();
+    loadAvas();
+
+});
+
+function setup_avas() {
     if (avaCount > 1) {
         $("#ava_img").click(function () {
             var nextAvaPath = getNextAvaPath();
@@ -70,7 +85,7 @@ $(document).ready(function () {
     } else {
         $("#slider").hide();
     }
-});
+}
 <!--Конец скрптов отвечающих за слайдер аватарок на главной странице-->
 
 <!-- Скрипт отвечающий для страничку приветствия, которая отображается один раз при первом посещении сайта-->
