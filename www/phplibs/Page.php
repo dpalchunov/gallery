@@ -16,7 +16,14 @@ abstract class  Page
     abstract function getHeader();
     abstract function getNavMenu();
     abstract function getBody();
+    abstract function getLabelsArray($label);
 
+
+    public function getHeaderLabels() {
+        global  $resourceService;
+        $lang = $resourceService -> getLang();
+        return array_merge(HeaderGetter::getLabelsArray($lang),$this -> getLabelsArray($lang));
+    }
 
     public function getHead() {
         global $template_engine;
@@ -99,6 +106,8 @@ abstract class  Page
                 $result = json_encode($this -> getScriptsArray());
             } elseif ($post['part'] == 'styles') {
                 $result = json_encode($this -> getAllStylesArray());
+            } elseif ($post['part'] == 'header_labels') {
+                $result = json_encode($this -> getHeaderLabels());
             }
 
             echo $result;

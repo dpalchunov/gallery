@@ -56,7 +56,13 @@
           return  $html;
       }
 
-
+      public static function getLabelsArray($lang) {
+          $localizator = new Localizator();
+          return  array('about_href' => $localizator->getText($lang, 'about_label'),
+                       'gallery_href' => $localizator->getText($lang, 'gallery_label'),
+                       'buy_href' => $localizator->getText($lang, 'contacts_label'),
+                       'lang_changer_href' => $localizator->getText($lang, 'change_lang_label'));
+      }
 
       public static function getMeta() {
         return '<meta http-equiv="Content-Type" content="text/html;charset=utf-8">';

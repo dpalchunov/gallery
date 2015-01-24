@@ -6,6 +6,6 @@
                 background-repeat: no-repeat;background-size: 100%;
                 left:{{{$css_left}}};width:{{{$css_width}}};
                 z-index: {{{$zindex}}}">
-        <div class="details" align="left"><div class="details_inner"><p>{{{$picDescription}}}</p></div></div>
+        <div class="details" align="left"><div class="details_inner"><p id="{{{$pic_desc_id}}}">{{{$picDescription}}}</p></div></div>
     </div>
 

@@ -18,11 +18,23 @@ function change_lang() {
         url: 'change_lang.php',
         data: {},
         success:function(output, status, xhr) {
-            reload($('.menu_button.active').children().first());
+            //reload($('.menu_button.active').children().first());
         },
+        async:false,
         cache:false
     });
+    $.ajax({
+        type: "POST",
+        url: routes[$('.menu_button.active').children().first().attr('id')].href,
+        data: {part: "header_labels"},
+        async:false
+    }).done(function (data) {
+            var labels = $.parseJSON(data);
 
+            $.each(labels,function (k,v) {
+                $('#' + k).text(v);
+            })
+        });
 
 }
 
@@ -35,8 +47,17 @@ function reload(hrefObj) {
     history.pushState({},'',routes[id].page_name);
     $('.menu_button.active').removeClass('active');
     hrefObj.parent().addClass('active');
+    $("#body_wrapper").html("");
+
+
+}
+function reload_backup(hrefObj) {
+    var id = hrefObj.attr("id");
+    history.pushState({},'',routes[id].page_name);
+    $('.menu_button.active').removeClass('active');
+    hrefObj.parent().addClass('active');
     $.post(routes[id].href, {part: "head_content_and_styles"}).done(function (data) {
-        $("head").html(data);
+        //$("head").html(data);
         $.ajax({
             type: "POST",
             url: routes[id].href,
@@ -68,7 +89,7 @@ function reload(hrefObj) {
                     data: {part: "body"},
                     async: false
                 }).done(function (body) {
-                        $("#body_wrapper").html(body);
+                        $("#body_wrapper").html("");
                         $.ajax({
                             type: "POST",
                             url: routes[id].href,
@@ -81,11 +102,11 @@ function reload(hrefObj) {
                                     var s = document.createElement("script");
                                     s.type = "text/javascript";
                                     var src =  "./js/" + e + "?t=" + Date.now();
-                                    $.ajax({
-                                        type: "GET",
-                                        url: src,
-                                        async: false
-                                    });
+//                                    $.ajax({
+//                                        type: "GET",
+//                                        url: src,
+//                                        async: false
+//                                    });
                                 });
 
                             });

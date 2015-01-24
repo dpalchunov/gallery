@@ -48,6 +48,11 @@ class  AboutPageViewer extends Page
         return $template_engine->fetch('about_body.tpl');
     }
 
+    public function getLabelsArray($lang) {
+        $localizator = new Localizator();
+        return  array('main_text_pre' => $localizator->getText($lang, 'about_main_text'));
+    }
+
 
 
 }

@@ -27,21 +27,24 @@
       }
 
       public function getBody() {
-          global $template_engine;
+          global $template_engine,$resourceService;
+          $localizator = new Localizator();
+          $lang = $resourceService -> getLang();
+          $template_engine->assign('contacts_call_comment',$localizator -> getText($lang, 'contacts_call_comment'));
+          $template_engine->assign('contacts_mail_comment',$localizator -> getText($lang, 'contacts_mail_comment'));
+          $template_engine->assign('contacts_skype_comment',$localizator -> getText($lang, 'contacts_skype_comment'));
+          $template_engine->assign('contacts_main_phrase',$localizator -> getText($lang, 'contacts_main_phrase'));
           $res =  $template_engine->fetch('contacts_body.tpl');
           return $res;
       }
-    
-    public function showContactsPage() {
-        global $template_engine;
-        $localizator = new Localizator();
 
-        $template_engine->assign('contacts_call_comment',$localizator -> getText($lang, 'contacts_call_comment'));
-        $template_engine->assign('contacts_mail_comment',$localizator -> getText($lang, 'contacts_mail_comment'));
-        $template_engine->assign('contacts_skype_comment',$localizator -> getText($lang, 'contacts_skype_comment'));
-        $template_engine->assign('contacts_main_phrase',$localizator -> getText($lang, 'contacts_main_phrase'));         
-        
-        return $template_engine->fetch ('contacts.tpl');
-    }
+
+      public function getLabelsArray($lang) {
+          $localizator = new Localizator();
+          return  array('contacts_main_phrase' => $localizator -> getText($lang, 'contacts_call_comment'),
+              'contacts_mail_comment' => $localizator -> getText($lang, 'contacts_mail_comment'),
+              'contacts_skype_comment' => $localizator -> getText($lang, 'contacts_skype_comment'),
+              'contacts_call_comment' => $localizator -> getText($lang, 'contacts_call_comment'));
+      }
   }
 ?>

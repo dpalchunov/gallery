@@ -338,6 +338,7 @@ class  PicturesGetter
         $picExpo = $pictureObject->getExpoPosition();
         $id = $pictureObject->getID();
         $template_engine->assign('pic_id', $id);
+        $template_engine->assign('pic_desc_id', $id.'_desc');
         $template_engine->assign('zindex', 0);
         if ($picExpo != null){
 
@@ -395,6 +396,38 @@ class  PicturesGetter
         $picHTMLCode = $template_engine->fetch('fullscreengallery_pic.tpl');
         return $picHTMLCode;
     }
+
+
+
+
+    public function getLabelsArray($lang)
+    {
+        $pm = new PictureObjManager();
+        $pictureObjectArray = $pm -> selectAllPics();
+        if ($pictureObjectArray != null) {
+            $res = $this->getPicturesLabels($pictureObjectArray, $lang);
+        } else {
+            $res = array();
+        }
+        return $res;
+    }
+
+    private function getPicturesLabels($pictures, $lang)
+    {
+        if (!(sizeof($pictures) > 0)) {
+            return '';
+        };
+
+        $all_labels = array();
+        foreach ($pictures as $picture) {
+            $id = $picture->getID();
+            $picDescription = $picture->getDescription($lang);
+            $all_labels[$id.'_desc'] = $picDescription;
+        }
+
+        return $all_labels;
+    }
+
 
 }
 
