@@ -5,7 +5,6 @@
         <div id="fullScreenGalleryRightSide" class="fullScreenGalleryNaviButton"></div>
     </div>
     <div id="arrow_pic">
-        <br>
     </div>
     <div id="all_space_wrap">
         <div id="left_column_wrap">

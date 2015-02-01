@@ -5,7 +5,8 @@
       function ContactsPageViewer() {
           parent::Page();
           global $js_scripts,$styles;
-          $js_scripts = array('skype_check.js');
+          //$js_scripts = array('skype_check.js');
+          $js_scripts = array();
           $styles = array('contacts_style.css');
       }
 

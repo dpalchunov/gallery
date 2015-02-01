@@ -1,6 +1,3 @@
-<div id="greeting" {{{$greetingClass}}}>
-    <img id="greeting_img" src="images/greeting.png">
-</div>
 <div id="wrapper" {{{$wrapper_class}}}>
     <div id="main_content">
             <div id="ava"><img id="ava_img"/></div>

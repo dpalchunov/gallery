@@ -88,25 +88,3 @@ function setup_avas() {
 }
 <!--Конец скрптов отвечающих за слайдер аватарок на главной странице-->
 
-<!-- Скрипт отвечающий для страничку приветствия, которая отображается один раз при первом посещении сайта-->
-
-$(document).ready(function () {
-    $('#greeting').bind('click', greetingClickHandler);
-    $.cookie("greetingWasShown", "true");
-});
-function greetingClickHandler() {
-    $('#greeting').fadeOut(400);
-    $('#wrapper').show();
-}
-<!-- Конец. Скрипт отвечающий для страничку приветствия, которая отображается один раз при первом посещении сайта-->
-
-<!-- Скрипт отвечающий за клик на header Kristina Strunkova-->
-$(document).ready(function () {
-    $('#header_name').bind('click', headerNameClickHandler);
-});
-
-function headerNameClickHandler() {
-    $.cookie("greetingWasShown", null);
-    window.location = 'about.php';
-}
-<!-- Конец. Скрипт отвечающий за клин на header Kristina Strunkova-->

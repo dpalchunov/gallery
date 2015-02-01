@@ -1,0 +1,24 @@
+#greeting {
+    background-color: #000;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#greeting img {
+    position: relative;
+    top: 10px;
+    margin: 0 auto;
+}
+
+#greeting img:hover {
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    margin: auto;
+}
+
+
+

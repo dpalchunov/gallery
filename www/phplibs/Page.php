@@ -8,7 +8,7 @@ abstract class  Page
         global $template_engine, $resourceService,$js_common_scripts,$common_styles;
         $resourceService = new ResourceService();
         $template_engine = $resourceService->getTemplateEngine();
-        $js_common_scripts = array('jquery.js','jquery-ui.js','jquery.cookie.js','header.js','wellcome.js','jquery.jplayer.min.js','player.js');
+        $js_common_scripts = array('jquery.js','jquery-ui.js','jquery.cookie.js','header.js','jquery.jplayer.min.js','player.js');
         $common_styles = array('nav_menu.css','header.css','jquery-ui.css','general.css');
     }
 

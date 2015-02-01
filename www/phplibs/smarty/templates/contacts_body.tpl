@@ -16,7 +16,7 @@
 		      <tr  class="empty"><td rowspan=3><a class="container" href="skype:kristina_551?call"><img  src="../images/contacts/skype1.png"/></a></td><td></td></tr>
 		      <tr><td class="info"><a href="skype:kristina_551?call">kristina_571</a></td></tr>
 		      <tr><td id="contacts_skype_comment" class="comment">{{{$contacts_skype_comment}}}</td></tr>
-    
+
 		    </table>			    
 		</div><!--end contacts_table-->
 	    </div><!--end main_content-->

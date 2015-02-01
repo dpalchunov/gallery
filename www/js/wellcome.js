@@ -1,11 +1,9 @@
 $(document).ready(function () {
-    wellcomeInit();
+    $('#greeting').bind('click', greetingClickHandler);
+    $.cookie("greetingWasShown", "true");
+    $("#header").hide();
 });
-function headerNameClickHandler() {
-    $.cookie("greetingWasShown", null);
-    window.location = 'about.php';
-}
-
-function wellcomeInit() {
-    $('#header_name').bind('click', headerNameClickHandler);
+function greetingClickHandler() {
+    reload($("#about_href"));
+    $("#header").show();
 }

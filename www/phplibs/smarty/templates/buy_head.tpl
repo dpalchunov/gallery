@@ -32,14 +32,3 @@
     <script type="text/javascript" src="js/header.js"></script>
 
 
-    <!-- Скрипт отвечающий за клик на header Kristina Strunkova-->
-	<script type="text/javascript">
-	    $(document).ready(function(){	     
-		$('#header_name').bind('click',headerNameClickHandler);
-	     });
-	    function headerNameClickHandler() {
-                $.cookie("greetingWasShown", null);
-		 window.location =  'about.php';		
-	    }
-	</script>
-        <!-- Конец. Скрипт отвечающий за клин на header Kristina Strunkova-->
