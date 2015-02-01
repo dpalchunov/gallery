@@ -37,13 +37,6 @@ class  AboutPageViewer extends Page
 
         $template_engine->assign('lang', $lang);
         $template_engine->assign('main_text', $localizator->getText($lang, 'about_main_text'));
-        if ($_COOKIE['greetingWasShown'] == 'true') {
-            $template_engine->assign('greetingClass', ' class="display_none" ');
-            $template_engine->assign('wrapper_class', ' class="inline_block" ');
-        } else {
-            $template_engine->assign('greetingClass', ' class="inline_block" ');
-            $template_engine->assign('wrapper_class', ' class="display_none" ');
-        }
 
         return $template_engine->fetch('about_body.tpl');
     }
