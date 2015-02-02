@@ -145,10 +145,7 @@ $(document).ready(function () {
 });
 
 function mainInit() {
-    var scrH = $(window).height();
-    var scrHP = $("#container").height();
     setWindowScrollHandler();
-    /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
 }
@@ -276,7 +273,7 @@ function closeFullScreenGalleryClickHandler() {
 function hideFullScreenGallery() {
     $(document.documentElement).css('overflow', 'scroll');
     $('#fullScreenPic').hide();
-    $('div[class=fullScreenGallery]').hide();
+    $('#fullScreenGallery').hide();
 }
 
 function changeFullScreenPic(sketch) {
@@ -520,9 +517,9 @@ function smallImageClickHandler() {
 function showFullScreenGallery() {
 
     $(document.documentElement).css('overflow', 'hidden');
-    $('div[class=fullScreenGallery]').height($('#sketches').height() + $("#header").height() + $("#footer").height()+200);
+    $('#fullScreenGallery').height($('#sketches').height() + $("#header").height() + $("#footer").height()+200);
 
-    $('div[class=fullScreenGallery]').show();
+    $('#fullScreenGallery').show();
     $('#fullScreenPicContainer').show();
     locateFullScreenGallaryControls();
     centerFullScreenPic();
@@ -531,7 +528,7 @@ function showFullScreenGallery() {
 function hideFullScreenGallery() {
     $(document.documentElement).css('overflow', 'scroll');
     $('#fullScreenPicContainer').hide();
-    $('div[class=fullScreenGallery]').hide();
+    $('#fullScreenGallery').hide();
 }
 
 

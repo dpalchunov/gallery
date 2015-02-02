@@ -85,12 +85,11 @@
 
 #main_content {
     width: 100%;
-    height: 100%;
     display: block;
     position: relative;
     background-color: #000000;
     background-repeat: no-repeat;
-    z-index: 1;
+    margin-top: 0px;
 }
 
 #sketches {
@@ -386,10 +385,10 @@
 
 /*Full screen gallery*/
 
-.fullScreenGallery {
+#fullScreenGallery {
     position: absolute;
-    top: 0;
-    left: 0;
+    top:0px;
+    left:0px;
     height: 100%;
     width: 100%;
     z-index: 30;

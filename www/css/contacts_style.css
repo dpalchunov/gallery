@@ -1,20 +1,13 @@
-#wrap {
-	width: 1200px;
-	height: 500px;
-	background: #000;
-	margin: 0 auto;
-	position: relative;
-}
-
-
 /*Main content*/
 	
 #contacts_table {
+    display: inline-block;
+    float:left;
 	height: 282px;
-	width: 859px;
-	position: absolute;
-	top: 100px;
-	left: 150px;
+	width: 90%;
+	position: relative;
+	margin-top: 100px;
+    margin-left:10%;
 	background-repeat: no-repeat;
 
 }
@@ -58,7 +51,7 @@ td.comment {
 	height: 64px;
 	width: 64px;
 	overflow: hidden;
-	display: block;
+	display: inline-block;
 }
 
 .container:hover img{
@@ -67,31 +60,42 @@ td.comment {
 }
 
 
-
-
 /*Footer*/
 #footer {
-	position: absolute;
-	top: 500px;
-	left:0px;
-	height: 80px;
-	width: 100%;
-	color: #FFFFFF;
-	background-color: #000000;
+    display:inline-block;
+    float:left;
+    position: relative;
+    height: 80px;
+    width: 100%;
+    color: #FFFFFF;
+    background-color: black;
+    margin-top: 125px
 }
 
+
 #footer_phrase_name {
-	height: 15px;
-	width: 241px;
-	position: absolute;
-	left: 200px;
-	top: 55px;
-	background-image: url(../images/footer_phrase_name.png);
-	background-repeat: no-repeat;
+    height: 15px;
+    width: 241px;
+    position: relative;
+    left: 200px;
+    top: 55px;
+    background-image: url(../images/footer_phrase_name.png);
+    background-repeat: no-repeat;
 }
 
 object#skypedetectionswf {
     display:none;
+}
+
+#main_content {
+    width: 100%;
+    position: relative;
+    background-color: black;
+    display: inline-block;
+    float:left;
+    margin-top:0px;
+
+
 }
 
 

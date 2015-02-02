@@ -10,6 +10,13 @@
     z-index: 10;
 }
 
+#body_wrapper {
+    position:relative;
+    display: inline-block;
+    float:left;
+    width: 100%;
+}
+
 #player {
     position: relative;
     height: 20px;

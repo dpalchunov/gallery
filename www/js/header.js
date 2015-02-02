@@ -81,7 +81,9 @@ function reload(hrefObj) {
                 data: {part: "body"},
                 async: false
             }).done(function (body) {
-                        $("#body_wrapper").html(body);
+                        $(".mc_el").remove();
+
+                        $("body").append(body);
                         //load scripts
                         $.ajax({
                             type: "POST",

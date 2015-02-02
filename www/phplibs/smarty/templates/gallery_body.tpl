@@ -1,12 +1,12 @@
-    <div class="fullScreenGallery">
+    <div id="fullScreenGallery" class="mc_el">
         <div id="fullScreenGalleryLeftSide" class="fullScreenGalleryNaviButton"></div>
         <div id="fullScreenPicContainer">
         </div>
         <div id="fullScreenGalleryRightSide" class="fullScreenGalleryNaviButton"></div>
     </div>
-    <div id="arrow_pic">
+    <div id="arrow_pic" class=" mc_el">
     </div>
-    <div id="all_space_wrap">
+    <div id="all_space_wrap" class="mc_el">
         <div id="left_column_wrap">
             <a href="#top"></a>
         </div>

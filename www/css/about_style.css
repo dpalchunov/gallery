@@ -6,6 +6,7 @@
     background-color: black;
     display: inline-block;
     margin-top: 125px;
+    float:left;
 
 
 }
@@ -36,17 +37,20 @@
     FONT-FAMILY: MainText;
     font-size: 24px;
     color: white;
-    display: inline-block;
+    display:inline-block;
+    float:left;
+    position:relative;
 }
 
 /*Footer*/
 #footer {
+    display:inline-block;
+    float:left;
     position: relative;
     height: 80px;
     width: 100%;
     color: #FFFFFF;
     background-color: black;
-    display: block;
     margin-top: 125px
 }
 
