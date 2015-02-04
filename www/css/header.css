@@ -19,7 +19,7 @@
 
 #player {
     position: relative;
-    height: 20px;
+    height: 40px;
     width: 100%;
     background-color: blue;
     z-index: 1;
@@ -27,25 +27,63 @@
 }
 
 .player_control {
+    margin-top: 20px;
     display: inline-block;
     position: relative;
     float: right;
-    height: 20px;
-    width: 40px;
-    background-color: darkgreen;
+    height: 30px;
+    width: 30px;
+    background-color: black;
     z-index: 1;
+    cursor: pointer;
+}
+
+
+#prev {
+    background-image: url(../images/player/prev_na.svg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+#prev:hover {
+    background-image: url(../images/player/prev_a.svg);
 }
 
 #next {
-    margin-right:100px;
+    margin-right:115px;
+    background-image: url(../images/player/next_na.svg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+#next:hover {
+    background-image: url(../images/player/next_a.svg);
 }
 
+#pause {
+    background-image: url(../images/player/pause_na.svg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+#pause:hover {
+    background-image: url(../images/player/pause_a.svg);
+}
+
+#play {
+    background-image: url(../images/player/play_na.svg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+
+}
+
+#play:hover {
+    background-image: url(../images/player/play_a.svg);
+}
 
 
 #header_name {
     height: 34px;
     width: 300px;
-    color: #0b0b0b;
     position: absolute;
     left: 95px;
     top: 75px;

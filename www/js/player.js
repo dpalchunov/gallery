@@ -12,7 +12,7 @@ $(document).ready(function(){
             $(this).jPlayer("setMedia",{
                 title:"1.mp3",
                 mp3: './mp3/1.mp3'
-            }).jPlayer("play",40);
+            });//.jPlayer("play",40);
 		},
 		timeupdate: function(event) {
             progress.width(parseInt(event.jPlayer.status.currentPercentAbsolute, 10) + "%");
