@@ -14,7 +14,6 @@ $(document).ready(function () {
     progressInit();
 });
 
-
 function progressInit() {
     $("#header").bind("mouseenter",function(e) {
         $("#inline").height(15);
@@ -36,6 +35,7 @@ function headerNameClickHandler() {
     $("#header").hide();
     $("#footer").hide();
 }
+
 function wellcomeInit() {
     $('#header_name').bind('click', headerNameClickHandler);
 }
