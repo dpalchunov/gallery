@@ -31,7 +31,14 @@ $(document).ready(function(){
         var w = $("#inline").width();
         var pos = delta/w;
         var new_time = pos*songDuration;
-        my_jPlayer.jPlayer("pause").jPlayer("play",new_time);
+        if (my_jPlayer.data().jPlayer.status.paused) {
+            my_jPlayer.jPlayer("pause",new_time);
+        } else {
+            my_jPlayer.jPlayer("pause").jPlayer("play",new_time);
+        }
+
+
+
     })
 
 });
