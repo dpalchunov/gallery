@@ -15,12 +15,15 @@ $(document).ready(function(){
             });//.jPlayer("play",40);
 		},
 		timeupdate: function(event) {
-            progress.width(parseInt(event.jPlayer.status.currentPercentAbsolute, 10) + "%");
+            var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
+            console.log(v);
+            progress.width(v);
 		},
 		swfPath: "./swf",
 		cssSelectorAncestor: "#player_controls",
 		supplied: "mp3",
-		wmode: "window"
+		wmode: "window",
+        smoothPlayBar:true
 	});
 
 });
