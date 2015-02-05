@@ -15,6 +15,7 @@ $(document).ready(function(){
             songDuration = event.jPlayer.status.duration;
         },
 		timeupdate: function(event) {
+            $("#progress_time_time").text($.jPlayer.convertTime( event.jPlayer.status.currentTime));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             progress.width(v);
 		},

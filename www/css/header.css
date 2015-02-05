@@ -140,7 +140,7 @@
 #append {
     float:right;
     height: 3px;
-    width:30%;
+    width:25%;
     background-color: #800000;
     display: inline-block;
 
@@ -159,6 +159,32 @@
 
 #progress:hover {
     height: 15px;
+}
+
+#progress_time {
+    position: relative;
+    float:right;
+    width:5%;
+    display: inline-block;
+    background-color: #000000;
+}
+
+#progress_time_line {
+    background-color: #800000;
+    display: block;
+    width: 100%;
+    height: 3px;
+
+}
+
+#progress_time_time {
+    display: block;
+    width: 100%;
+    height: 12px;
+    text-align: right;
+    font-size: 13px;
+    color:black;
+
 }
 
 

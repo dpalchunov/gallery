@@ -17,15 +17,19 @@ $(document).ready(function () {
 function progressInit() {
     $("#header").bind("mouseenter",function(e) {
         $("#inline").height(15);
+        $("#progress_time_time").css("color","grey");
     });
     $("#header").bind("mouseleave",function(e) {
         $("#inline").height(3);
+        $("#progress_time_time").css("color","black")
     });
     $("#outline").bind("mouseenter",function(e) {
         $("#inline").height(15);
+        $("#progress_time_time").css("color","grey")
     });
     $("#outline").bind("mouseleave",function(e) {
         $("#inline").height(3);
+        $("#progress_time_time").css("color","black")
     });
 
 }
