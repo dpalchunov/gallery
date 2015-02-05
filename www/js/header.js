@@ -11,7 +11,25 @@ $(document).ready(function () {
     });
     $('#lang_changer_href').bind('click', change_lang);
     wellcomeInit();
+    progressInit();
 });
+
+
+function progressInit() {
+    $("#header").bind("mouseenter",function(e) {
+        $("#inline").height(15);
+    });
+    $("#header").bind("mouseleave",function(e) {
+        $("#inline").height(3);
+    });
+    $("#outline").bind("mouseenter",function(e) {
+        $("#inline").height(15);
+    });
+    $("#outline").bind("mouseleave",function(e) {
+        $("#inline").height(3);
+    });
+
+}
 
 function headerNameClickHandler() {
     reload($("#greeting_href"));
