@@ -19,9 +19,7 @@ $(document).ready(function(){
                         title:"5.mp3",
                         mp3: './mp3/5.mp3'
                     }];
-
-    var currentTrack = 1;
-
+    var currentTrack = 0;
 	// Local copy of jQuery selectors, for performance.
 	var	my_jPlayer = $("#player"),
         progress = $("#progress");
@@ -29,10 +27,36 @@ $(document).ready(function(){
 	// Instance jPlayer
 	my_jPlayer.jPlayer({
 		ready: function () {
-            $(this).jPlayer("setMedia",{
-                title:playList[currentTrack].title,
-                mp3: playList[currentTrack].mp3
-            });//.jPlayer("play",40);
+            var track_number = 0;
+            if (check_audio_cookies()) {
+                try {
+                    var time = Math.floor(parseFloat($.cookie('track_time')));
+                    currentTrack = $.cookie('track_number');
+                    $(this).jPlayer("setMedia",{
+                        title:playList[currentTrack].title,
+                        mp3: playList[currentTrack].mp3
+                    });
+                    if (($.cookie('paused') == "true")) {
+                        $(this).jPlayer("pause",time)
+                    } else {
+                        $(this).jPlayer("play",time );
+                    }
+                } catch(e) {
+                    console.error('audio player cookies load failure');
+                    $(this).jPlayer("setMedia",{
+                        title:playList[currentTrack].title,
+                        mp3: playList[currentTrack].mp3
+                    }).jPlayer("play");
+                }
+
+            } else {
+                $(this).jPlayer("setMedia",{
+                    title:playList[currentTrack].title,
+                    mp3: playList[currentTrack].mp3
+                }).jPlayer("play");
+            }
+
+            $.cookie("track_number", getCurrentInd(), {expires:365});
             $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + playList.length + "]");
 		},
         loadeddata: function(event){ // calls after setting the song duration
@@ -40,16 +64,30 @@ $(document).ready(function(){
 
         },
 		timeupdate: function(event) {
-            $("#progress_time_time").text($.jPlayer.convertTime( event.jPlayer.status.currentTime));
+            var cur_time = event.jPlayer.status.currentTime;
+            $.cookie("track_time", cur_time, {expires:365});
+            $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             progress.width(v);
 		},
+        pause: function(event) {
+            $.cookie("paused", "true", {expires:365});
+        },
+        play: function(event) {
+            $.cookie("paused", "false",{expires:365});
+        },
 		swfPath: "./swf",
 		cssSelectorAncestor: "#player_controls",
 		supplied: "mp3",
 		wmode: "window",
         smoothPlayBar:true
 	});
+
+    function check_audio_cookies() {
+        return  ( $.cookie('track_number') != null) &&
+            ($.cookie('track_time') != null) &&
+                ($.cookie('paused') != null);
+    }
 
     $("#inline").bind("click",function(event) {
         var x = $("#inline").offset().left;
@@ -79,6 +117,7 @@ $(document).ready(function(){
     });
 
     function playcurrent() {
+        $.cookie("track_number", getCurrentInd(), {expires:365});
         var wasPaused = my_jPlayer.data().jPlayer.status.paused;
         var cur = getCurrentInd();
         var p = my_jPlayer.jPlayer("setMedia",{
