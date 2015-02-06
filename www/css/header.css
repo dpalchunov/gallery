@@ -115,7 +115,7 @@
 
 #outline {
     position: relative;
-    height: 24px;
+    height: 9px;
     width: 100%;
     background-color: #000;
     z-index:9;
@@ -125,8 +125,8 @@
 #inline {
     position: relative;
     height: 3px;
-    width: 70%;
-    background-color: #aa7378;
+    width: 69%;
+    background-color: #860100;
     z-index:11;
     float:right;
     overflow: hidden;
@@ -134,7 +134,7 @@
 }
 
 #inline:hover {
-    height: 15px;
+    height: 9px;
 }
 
 #append {
@@ -149,22 +149,22 @@
 #progress {
     position: relative;
     float:left;
-    height: 15px;
+    height: 9px;
     width: 0%;
-    background-color: #e9b0aa;
+    background-color: #590100;
     overflow: hidden;
     display:block;
 
 }
 
 #progress:hover {
-    height: 15px;
+    height: 9px;
 }
 
 #progress_time {
     position: relative;
     float:right;
-    width:5%;
+    width:3%;
     display: inline-block;
     background-color: #000000;
 }
@@ -181,10 +181,33 @@
     display: block;
     width: 100%;
     height: 12px;
-    text-align: right;
-    font-size: 13px;
+    text-align: center;
+    font-size: 12px;
     color:black;
+}
 
+#track_count {
+    position: relative;
+    float:right;
+    width:3%;
+    display: inline-block;
+    background-color: #000000;
+}
+
+#track_count_line {
+    background-color: #800000;
+    display: block;
+    width: 100%;
+    height: 3px;
+}
+
+#track_count_count {
+    display: block;
+    width: 100%;
+    height: 12px;
+    text-align: center;
+    font-size: 12px;
+    color:black;
 }
 
 

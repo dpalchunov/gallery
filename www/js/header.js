@@ -16,20 +16,24 @@ $(document).ready(function () {
 
 function progressInit() {
     $("#header").bind("mouseenter",function(e) {
-        $("#inline").height(15);
+        $("#inline").height(9);
         $("#progress_time_time").css("color","grey");
+        $("#track_count_count").css("color","grey");
     });
     $("#header").bind("mouseleave",function(e) {
         $("#inline").height(3);
         $("#progress_time_time").css("color","black")
+        $("#track_count_count").css("color","black")
     });
     $("#outline").bind("mouseenter",function(e) {
-        $("#inline").height(15);
+        $("#inline").height(9);
         $("#progress_time_time").css("color","grey")
+        $("#track_count_count").css("color","grey")
     });
     $("#outline").bind("mouseleave",function(e) {
         $("#inline").height(3);
         $("#progress_time_time").css("color","black")
+        $("#track_count_count").css("color","black")
     });
 
 }
