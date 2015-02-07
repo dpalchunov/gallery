@@ -125,7 +125,7 @@
 #inline {
     position: relative;
     height: 3px;
-    width: 69%;
+    width: 64%;
     background-color: #860100;
     z-index:11;
     float:right;
@@ -140,7 +140,7 @@
 #append {
     float:right;
     height: 3px;
-    width:25%;
+    width:30%;
     background-color: #800000;
     display: inline-block;
 

@@ -73,6 +73,10 @@ $(document).ready(function(){
         pause: function(event) {
             $.cookie("paused", "true", {expires:365});
         },
+        ended: function(event){
+            next();
+            my_jPlayer.jPlayer("play");
+        },
         play: function(event) {
             $.cookie("paused", "false",{expires:365});
         },
@@ -102,11 +106,13 @@ $(document).ready(function(){
         }
     })
 
-    $("#next").bind("click",function(e) {
+    $("#next").bind("click",next);
+
+    function next() {
         currentTrack++;
         $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + playList.length + "]");
         playcurrent();
-    });
+    }
 
     $("#prev").bind("click",function(e) {
         if (my_jPlayer.data().jPlayer.status.currentTime < 2) {

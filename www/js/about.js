@@ -41,7 +41,6 @@ function loadAvas() {
         async:false
     }).done(function (data) {
             avas = $.parseJSON(data);
-            console.log(avas);
             avaCount = avas.length;
             avaPosition = 1;
             setup_avas();
