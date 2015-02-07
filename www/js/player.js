@@ -93,7 +93,9 @@ $(document).ready(function(){
                 ($.cookie('paused') != null);
     }
 
-    $("#inline").bind("click",function(event) {
+    $("#inline").bind("click",progress_click_handler);
+
+    function progress_click_handler(event) {
         var x = $("#inline").offset().left;
         var delta = event.clientX - x;
         var w = $("#inline").width();
@@ -104,7 +106,20 @@ $(document).ready(function(){
         } else {
             my_jPlayer.jPlayer("pause").jPlayer("play",new_time);
         }
-    })
+    }
+
+
+    $("#header").bind("click",function(event) {
+        console.log(event.target.id);
+        var left_border = $("#inline").offset().left;
+        var right_border = left_border + $("#inline").width();
+        var t = event.target.id;
+        if ((t == "header"  || t == "nav_menu" || t == "player_controls") && event.clientX > left_border && event.clientX < right_border) {
+            progress_click_handler(event);
+        }
+
+    });
+
 
     $("#next").bind("click",next);
 
