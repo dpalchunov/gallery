@@ -38,6 +38,13 @@ abstract class  Page
         return $template_engine->fetch('head.tpl');
     }
 
+    public function getAdminHeader() {
+        global $template_engine;
+        return $template_engine->fetch('admin_header.tpl');
+    }
+
+
+
     public function getHeadContentAndStyles() {
         return $this -> getHeadContent() . $this -> getAllStyles();
     }
@@ -45,14 +52,17 @@ abstract class  Page
         return $this -> getHeadContent() . $this -> getStylesByArray(array('header.css'));
     }
 
-
-
     public function showPage() {
         global $template_engine;
         $template_engine->assign('meta', $this -> getMeta());
         $template_engine->assign('head', $this -> getHead());
         $template_engine->assign('header', $this -> getPlayer());
         $template_engine->assign('header', $this -> getHeader());
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            $template_engine->assign('a_header', $this -> getAdminHeader());
+        } else {
+            $template_engine->assign('a_header');
+        }
         $template_engine->assign('body', $this -> getBody());
         $template_engine->display('page.tpl');
     }

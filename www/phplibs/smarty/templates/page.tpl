@@ -5,6 +5,7 @@
     </head>
     <body>
         {{{$header}}}
+        {{{$a_header}}}
         {{{$player}}}
         {{{$body}}}
     </body>
