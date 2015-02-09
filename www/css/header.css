@@ -9,9 +9,28 @@
 }
 
 #a_head {
+    position: relative;
+    display: inline-block;
     width:100%;
     height:50px;
-    background-color: white;
+
+}
+
+.a_href {
+    height: 100%;
+    width:110px;
+    display: inline-block;
+    float:right;
+    position: relative;
+    display: inline-block;
+    color: #258524;
+    text-align: center;
+}
+
+
+#out_href {
+    margin-right:150px ;
+    color: red;
 }
 
 #body_wrapper {
@@ -25,7 +44,6 @@
     position: relative;
     height: 40px;
     width: 100%;
-    background-color: blue;
     z-index: 1;
     display: inline-block;
 }

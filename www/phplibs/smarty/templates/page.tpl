@@ -5,8 +5,8 @@
     </head>
     <body>
         {{{$header}}}
-        {{{$a_header}}}
         {{{$player}}}
+        {{{$a_header}}}
         {{{$body}}}
     </body>
 </html>

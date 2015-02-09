@@ -19,28 +19,33 @@
     margin-left:40%;
     top:40%;
     display: inline-block;
+    color: black;
 }
 
-#p_v {
+#p_v  {
     position: relative;
     display: inline-block;
     float:right;
+    color: black;
 }
 #n_v {
     position: relative;
     display: inline-block;
     float:right;
+    color: black;
 }
 
 #p {
     position: relative;
     display: inline-block;
     float:right;
+    color: black
 }
 #n {
     position: relative;
     display: inline-block;
     float:right;
+    color: black
 }
 
 #submit {
@@ -49,6 +54,10 @@
     position: relative;
     display: inline-block;
     float:right;
+    color: black;
+}
+#submit_button {
+    color: black;
 }
 
 #submit_button:hover {
