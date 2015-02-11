@@ -34,7 +34,7 @@
 
 
 
-      public function getBody() {
+      public function getBody($params) {
           global $template_engine;
           $res =  $template_engine->fetch('gallery_body.tpl');
           return $res;

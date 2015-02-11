@@ -27,7 +27,7 @@
           return HeaderGetter::getNavMenuHtml($lang,'contacts');
       }
 
-      public function getBody() {
+      public function getBody($params) {
           global $template_engine,$resourceService;
           $localizator = new Localizator();
           $lang = $resourceService -> getLang();

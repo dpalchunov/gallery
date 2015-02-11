@@ -1,75 +1,26 @@
-@import url('reset.css');
-
-/*General Styles*/
-html {
-    height: 100%;
-}
-
-body {
-    background: #FFFFFF;
-    font-family: Times New Roman, Helvetica, sans-serif;
-    font-size: 18px;
-    color: #ffffff;
-    min-height: 100%;
-    padding-top: 5px;
-    background-color: #eee;
-    /*background-image: url(../images/main_bg.jpg);
-    background-repeat: repeat-x;*/
-
-}
-
-p {
-    font-size: 14px;
-    color: b9b9b9;
-}
-
-a {
-    text-decoration: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 14px;
-}
-
-a:hover {
-    text-decoration: underline;
-    outline: none;
-    color: #FFFFFF;
-    font-size: 14px;
-}
-
-code {
-    font-family: "Courier New", Courier, monospace;
-    color: #000;
-}
-
-blockquote {
-    font-style: italic;
-    background: #ccc;
-    margin-left: 20px;
-}
-
-#wrap {
-    width: 1200px;
-    background: #d2dfe3;
-    margin: 0 auto;
-    position: relative;
-}
-
-
 /*Main content*/
 
+
+#main_content {
+    background-color: #bce5f7;
+
+}
+
 #gallery_editor_content {
-    width: 1300px;
+    width: 90%;
+    margin-left:5%;
     position: relative;
+    display: inline-block;
+    margin-top: 80px;
     background-repeat: no-repeat;
 
 }
 
 #gallery {
-    width: 1180px;
-    height: 100%;
+    width: 100%;
     margin: 0px;
     position: relative;
+    display: inline-block;
 }
 
 .one_element {

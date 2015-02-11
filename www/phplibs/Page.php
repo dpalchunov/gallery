@@ -15,7 +15,7 @@ abstract class  Page
     abstract function getHeadContent();
     abstract function getHeader();
     abstract function getNavMenu();
-    abstract function getBody();
+    abstract function getBody($params);
     abstract function getLabelsArray($label);
 
 
@@ -52,7 +52,7 @@ abstract class  Page
         return $this -> getHeadContent() . $this -> getStylesByArray(array('header.css'));
     }
 
-    public function showPage() {
+    public function showPage($params) {
         global $template_engine;
         $template_engine->assign('meta', $this -> getMeta());
         $template_engine->assign('head', $this -> getHead());
@@ -63,7 +63,7 @@ abstract class  Page
         } else {
             $template_engine->assign('a_header');
         }
-        $template_engine->assign('body', $this -> getBody());
+        $template_engine->assign('body', $this -> getBody($params));
         $template_engine->display('page.tpl');
     }
 
@@ -97,35 +97,35 @@ abstract class  Page
         return $res;
     }
 
-    public function show($post) {
+    public function show($params) {
 
         $result = '';
-        if (isset($post['part'])) {
-            if ($post['part'] == 'body') {
-                $result = $this -> getBody();
-            } elseif ($post['part'] == 'head') {
+        if (isset($params['part'])) {
+            if ($params['part'] == 'body') {
+                $result = $this -> getBody($params);
+            } elseif ($params['part'] == 'head') {
                 $result = $this -> getHead();
-            } elseif ($post['part'] == 'head_content') {
+            } elseif ($params['part'] == 'head_content') {
                 $result = $this -> getHeadContent();
-            } elseif ($post['part'] == 'head_content_and_styles') {
+            } elseif ($params['part'] == 'head_content_and_styles') {
                 $result = $this -> getHeadContentAndStyles();
-            } elseif ($post['part'] == 'head_content_and_header_style') {
+            } elseif ($params['part'] == 'head_content_and_header_style') {
                 $result = $this -> getHeadContentAndHeaderStyle();
-            } elseif ($post['part'] == 'header') {
+            } elseif ($params['part'] == 'header') {
                 $result = $this -> getHeader();
-            } elseif ($post['part'] == 'nav_menu') {
+            } elseif ($params['part'] == 'nav_menu') {
                 $result = $this -> getNavMenu();
-            } elseif ($post['part'] == 'scripts') {
+            } elseif ($params['part'] == 'scripts') {
                 $result = json_encode($this -> getScriptsArray());
-            } elseif ($post['part'] == 'page_styles') {
+            } elseif ($params['part'] == 'page_styles') {
                 $result = json_encode($this -> getPecuilarStylesArray() );
-            } elseif ($post['part'] == 'header_labels') {
+            } elseif ($params['part'] == 'header_labels') {
                 $result = json_encode($this -> getHeaderLabels());
             }
 
             echo $result;
         } else {
-            $this -> showPage();
+            $this -> showPage($params);
         }
     }
 

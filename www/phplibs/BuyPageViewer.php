@@ -31,7 +31,7 @@
           return HeaderGetter::getNavMenuHtml($lang,'contacts');
       }
 
-    public function getBody() {
+    public function getBody($params) {
         global $template_engine, $resourceService; 
         if ($_GET['change_lang'] == 1) {
           $resourceService -> changeLang();

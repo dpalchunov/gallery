@@ -2,9 +2,6 @@
 require_once 'phplibs/ResourceService.php';
 class  GalleryEditor
 {
-    private static $template_engine;
-    private static $resourceService;
-
     public function __construct()
     {
         global $template_engine, $resourceService;
@@ -14,7 +11,7 @@ class  GalleryEditor
 
     public function editGallery($page)
     {
-        global $template_engine, $resourceService;
+        global $template_engine;
 
         $galleryEditHtmlGetter = new GalleryEditHtmlGetter();
         $gallery_edit_html_code = $galleryEditHtmlGetter->getHTMLCode($page);

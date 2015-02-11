@@ -30,7 +30,7 @@ class  AboutPageViewer extends Page
         return HeaderGetter::getNavMenuHtml($lang,'about');
     }
 
-    public function getBody() {
+    public function getBody($params) {
         global $template_engine, $resourceService;
         $lang = $resourceService->getLang();
         $localizator = new Localizator();

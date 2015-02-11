@@ -26,7 +26,7 @@ class  GreetingPageViewer extends Page
         return HeaderGetter::getNavMenuHtml($lang,'about');
     }
 
-    public function getBody() {
+    public function getBody($params) {
         global $template_engine;
         return $template_engine->fetch('greeting_body.tpl');
     }

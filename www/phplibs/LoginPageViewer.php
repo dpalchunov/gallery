@@ -26,7 +26,7 @@ class  LoginPageViewer extends Page
         return HeaderGetter::getNavMenuHtml($lang,'none');
     }
 
-    public function getBody() {
+    public function getBody($params) {
         global $template_engine, $resourceService;
         $lang = $resourceService->getLang();
         $template_engine->assign('lang', $lang);
