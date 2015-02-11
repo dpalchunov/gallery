@@ -1,66 +1,7 @@
-@import url('reset.css');
-
-/*General Styles*/
-html {
-    height: 100%;
-}
-
-body {
-    background: #FFFFFF;
-    font-family: Times New Roman, Helvetica, sans-serif;
-    font-size: 18px;
-    color: #ffffff;
-    min-height: 100%;
-    padding-top: 5px;
-    background-color: #000;
-    /*background-image: url(../images/main_bg.jpg);
-    background-repeat: repeat-x;*/
-
-}
-
-p {
-    font-size: 14px;
-    color: b9b9b9;
-}
-
-a {
-    text-decoration: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 14px;
-}
-
-a:hover {
-    text-decoration: underline;
-    outline: none;
-    color: #FFFFFF;
-    font-size: 14px;
-}
-
-code {
-    font-family: "Courier New", Courier, monospace;
-    color: #000;
-}
-
-blockquote {
-    font-style: italic;
-    background: #000;
-    margin-left: 20px;
-}
-
-#wrap {
-    width: 1200px;
-    background: #000;
-    margin: 0 auto;
+#main_content {
+    background-color: black;
     position: relative;
-}
-
-
-#header_shaddow {
-    height: 58px;
-    width: 1200px;
-    background-repeat: no-repeat;
-
+    display: inline-block;
 }
 
 /*Main content*/
@@ -69,37 +10,41 @@ blockquote {
     width: 1100px;
     position: relative;
     background-repeat: no-repeat;
-
+    position: relative;
+    display: inline-block;
 }
 
 #persisted {
     width: 775px;
     margin: 20px;
     position: relative;
+    position: relative;
+    display: inline-block;
 }
 
 .persisted {
-    height: 301px;
     width: 785px;
     position: relative;
     margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
 }
 
 .image {
-    height: 301px;
     width: 575px;
     position: relative;
     float: left;
     float: left;
     margin-right: 20px;
+    display: inline-block;
 
 }
 
 .persisted_img_controls {
-    height: 301px;
     width: 160px;
     position: relative;
     float: left;
+    display: inline-block;
 }
 
 .control {
@@ -272,27 +217,3 @@ blockquote {
     float: left;
     width: 30px;
 }
-
-/*Footer*/
-#footer {
-    position: relative;
-    top: 0px;
-    left: 0px;
-    height: 80px;
-    width: 100%;
-    color: #FFFFFF;
-    background-color: #000000;
-}
-
-#footer_phrase_name {
-    height: 15px;
-    width: 241px;
-    position: absolute;
-    left: 200px;
-    top: 55px;
-    background-image: url(../images/footer_phrase_name.png);
-    background-repeat: no-repeat;
-}
-
-
-

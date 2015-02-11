@@ -1,7 +1,14 @@
 <?php
 
 require_once 'phplibs/ResourceService.php';
-$galleryViewer = new GalleryEditPageViewer();
-$galleryViewer -> show($_POST);
+
+session_start();
+if ( isset($_SESSION['state'])) {
+    $galleryViewer = new GalleryEditPageViewer();
+    $galleryViewer -> show($_POST);
+} else {
+    echo 'page not found';
+}
+
 
 ?>
