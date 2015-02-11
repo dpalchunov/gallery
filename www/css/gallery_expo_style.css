@@ -1,63 +1,8 @@
-/*
-Основнй стиль сайта Strunkova.ru
-*/
-
-@import url("reset.css");
-
-/*General Styles*/
-html {
-    height: 100%;
-}
-
-body {
-    font-family: Times New Roman, Helvetica, sans-serif;
-    font-size: 18px;
-    color: #000;
-    min-height: 100%;
-    background-color: #000000;
-    /*background-image: url(../images/main_bg.jpg);
-    background-repeat: repeat-x;
-    overflow: scroll;*/
-
-}
-
-.noscrolled_body {
+#main_content {
+    background-color: black;
     position: relative;
-    height: 100%;
-    overflow: hidden;
+    display: inline-block;
 }
-
-p {
-    font-size: 14px;
-    color: #b9b9b9;
-}
-
-a {
-    text-decoration: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 14px;
-}
-
-a:hover {
-    text-decoration: underline;
-    outline: none;
-    color: #FFFFFF;
-    font-size: 14px;
-}
-
-code {
-    font-family: "Courier New", Courier, monospace;
-    color: #000;
-}
-
-blockquote {
-    font-style: italic;
-    background: #ccc;
-    margin-left: 20px;
-}
-
-/*Разметка: фиксированная середина, плавающие колонки*/
 
 #all_space_wrap {
     position: relative;
