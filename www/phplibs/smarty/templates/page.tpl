@@ -4,6 +4,7 @@
         {{{$head}}}
     </head>
     <body>
+    <div id="loader"></div>
         {{{$header}}}
         {{{$player}}}
         {{{$a_header}}}

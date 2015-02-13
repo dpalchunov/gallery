@@ -15,6 +15,7 @@ $(document).ready(function () {
     $('#lang_changer_href').bind('click', change_lang);
     wellcomeInit();
     progressInit();
+    centerLoading();
 });
 
 function progressInit() {
@@ -135,6 +136,11 @@ function reload(hrefObj) {
                             });
                     });
             });
+
+}
+
+function centerLoading() {
+    $('#loader').css('top',$(window).scrollTop());
 
 }
 
