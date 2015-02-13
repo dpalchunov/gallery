@@ -6,8 +6,8 @@ class  AboutEditPageViewer extends Page
     function AboutEditPageViewer() {
         parent::Page();
         global $js_scripts,$styles;
-        $js_scripts = array('gallery_edit.js','cropper.js','jquery.uploadfile.js');
-        $styles = array('uploadfile.css','about_edit_style.css');
+        $js_scripts = array('cropper.js','jquery.uploadfile.js','about_edit.js');
+        $styles = array('cropper.css','uploadfile.css','about_edit_style.css');
     }
 
     public function getHeadContent() {

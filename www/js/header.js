@@ -2,11 +2,14 @@ var routes = {
     greeting_href: {href:"greeting.php",page_name:'greeting.php'},
     about_href: {href:"about.php",page_name:'about.php'},
     gallery_href: {href:"gallery.php",page_name:'gallery.php'},
-    buy_href: {href:"contacts.php",page_name:'contacts.php'}
+    buy_href: {href:"contacts.php",page_name:'contacts.php'},
+    edit_exposition_href: {href:"gallery_expo_edit.php",page_name:'gallery_expo_edit.php'},
+    edit_gallery_href: {href:"gallery_edit.php",page_name:'gallery_edit.php'},
+    edit_about_href: {href:"about_edit.php",page_name:'about_edit.php'}
 };
 
 $(document).ready(function () {
-    $('.menu_href').each(function (i, e) {
+    $('.menu_href,.a_href').each(function (i, e) {
         $(e).bind('click', reloadHandler);
     });
     $('#lang_changer_href').bind('click', change_lang);
