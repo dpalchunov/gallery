@@ -1,12 +1,11 @@
 var cropperHandlerIsActive = true;
-
+var $image;
 
 function initCropper() {
-    $.fn.cropper;
-    var $image = $(".cropper_img");
     $image.cropper({
-        autoCropArea:1,
-        zoomable:false,
+        autoCrop:"auto",
+        autoCropArea: 1,
+        zoomable: false,
         preview: ".cropper-preview",
         done: function (data) {
             //console.log(data);
@@ -23,7 +22,6 @@ function cropperChangeHandler() {
 
 //den_todo does cropperHandlerIsActive works?
 function setPreviewSize() {
-    cropperHandlerIsActive = false;
     var data = $(".cropper_img").cropper("getData");
     var ratio = (data.height) / (data.width);
 
@@ -40,7 +38,6 @@ function setPreviewSize() {
 
 
 function setCropperHandler() {
-    var $image = $(".cropper_img");
     $image.on("dragend.cropper", function () {
         if (cropperHandlerIsActive) {
             cropperChangeHandler();
@@ -50,12 +47,42 @@ function setCropperHandler() {
         if (cropperHandlerIsActive) {
             cropperChangeHandler();
             $(window).scrollTop($(document).height());
+            resizeDragAndDrop($('#cropper_div').height());
+            $('#loader').hide();
+            var i_data  = $image.cropper("getImageData")
+            $image.cropper("setData", {width: i_data.naturalWidth, height: i_data.naturalHeight});
         }
     })
 }
 
+function afterUpload(img_tag_size) {
+    $("#uploaded_left").height(img_tag_height);
+    $("#cropper-preview").height(219);
+    $("#save_cancel").show();
+    $("#cropper-preview").show();
+    $("#cropper_div").show();
+    $("#upload_label").text("+ upload another");
+
+}
+
+
+function calc_img_size(img_w, img_h) {
+    return  img_h * 600 / img_w;
+}
+
+function resizeDragAndDrop(img_tag_height) {
+    if (img_tag_height > 315) {
+        h = img_tag_height - 275;
+    } else {
+        h = 40;
+    }
+
+    $(".ajax-upload-dragdrop").css('height', parseInt(h));
+
+}
+
 $(document).ready(function () {
-    var $image = $(".cropper_img");
+    $image = $(".cropper_img");
     var currentSrc;
     initCropper();
     var savehref = $('#about_save_ava');
@@ -79,11 +106,11 @@ $(document).ready(function () {
             var data = $.parseJSON(json_data);
             var img_w = data[1];
             var img_h = data[2];
+           // destroy_cropper();
+            initCropper();
             changeSrc(data[0]);
-            img_tag_size = calc_img_size(img_w, img_h);
-            afterUpload(img_tag_size);
-            resizeDragAndDrop(img_tag_size);
-
+            img_tag_height = calc_img_size(img_w, img_h);
+            afterUpload(img_tag_height);
         },
         uploadButtonClass: "green ajax-file-upload",
         showDone: false,
@@ -92,10 +119,12 @@ $(document).ready(function () {
     });
 
     function beforeUpload() {
-
+        centerLoading();
+        $('#loader').show();
         $("#cropper-preview").addClass("cropper-preview");
         $("#cropper_div").hide();
         $("#cropper-preview").hide();
+        $("#cropper_image").hide();
     }
 
     function changeSrc(data) {
@@ -106,30 +135,7 @@ $(document).ready(function () {
         $image.cropper("replace", src);
     }
 
-    function afterUpload(img_tag_size) {
-        $("#uploaded_left").height(img_tag_size);
-        $("#cropper-preview").height(219);
-        $("#save_cancel").show();
-        $("#cropper-preview").show();
-        $("#cropper_div").show();
-        $("#upload_label").text("+ upload another");
-    }
 
-
-    function calc_img_size(img_w, img_h) {
-        return  img_h * 600 / img_w;
-    }
-
-    function resizeDragAndDrop(img_tag_size) {
-        if (img_tag_size > 315) {
-            h = img_tag_size - 275;
-        } else {
-            h = 40;
-        }
-
-        $(".ajax-upload-dragdrop").css('height', parseInt(h));
-
-    }
 
     function saveCropHandler() {
         $('#loader').show();
