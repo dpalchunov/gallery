@@ -37,7 +37,6 @@ function slideHandler() {
 }
 
 function setPreviewSize() {
-    cropperHandlerIsActive = false;
     var data = $(".cropper_img").cropper("getData");
     var ratio = (data.height) / (data.width);
 
@@ -55,6 +54,7 @@ function setPreviewSize() {
 function initCropper() {
     $image = $(".cropper_img");
     $image.cropper({
+        zoomable: false,
         data: {
             x: 480,
             y: 60,
@@ -67,15 +67,24 @@ function initCropper() {
         }
     });
 
+
     setCropperHandler();
 
 }
 
 function setCropperHandler() {
     var $image = $(".cropper_img");
-    $image.on("render.cropper", function () {
+    $image.on("dragend.cropper", function () {
         if (cropperHandlerIsActive) {
             cropperChangeHandler();
+        }
+    })
+    $image.on("built.cropper", function () {
+        if (cropperHandlerIsActive) {
+            $('#loader').hide();
+            var i_data  = $image.cropper("getImageData");
+            $(window).scrollTop($(document).height());
+            $image.cropper("setData", {width: i_data.naturalWidth, height: i_data.naturalHeight});
         }
     })
 }
@@ -391,7 +400,8 @@ function sortSourceArray(cl_k_v) {
 }
 
 function beforeUpload() {
-
+    centerLoading();
+    $('#loader').show();
     $("#cropper-preview").addClass("cropper-preview");
     $("#cropper_div").hide();
     $("#cropper-preview").hide();
@@ -403,7 +413,7 @@ function changeSrc(data) {
     currentSrc = "./" + data
     var src = currentSrc + "?" + d.getTime();
     var $image = $(".cropper_img");
-    $image.cropper("setImgSrc", src);
+    $image.cropper("replace", src);
 }
 
 function afterUpload(img_tag_size) {
@@ -433,6 +443,9 @@ function resizeDragAndDrop(img_tag_size) {
 }
 
 function saveCropHandler() {
+    $(window).scrollTop(0,0);
+    centerLoading();
+    $('#loader').show();
     var $image = $(".cropper_img");
     $.ajax({
         type: "POST",
@@ -446,6 +459,7 @@ function saveCropHandler() {
             reloadGallery(active_page);
             reloadPagination(active_page);
             initCropper();
+            $('#loader').hide();
         });
 }
 
@@ -455,7 +469,7 @@ function cancelCropHandler() {
 }
 
 function hideUploadControls() {
-    $image.cropper("setImgSrc", " ");
+    $image.cropper("replace", " ");
     $image.cropper("destroy");
     $("#uploaded_left").height(1);
     $("#cropper-preview").height(1);
