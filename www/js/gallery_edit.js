@@ -157,10 +157,15 @@ function initPagination() {
 };
 
 function pageClickHandler(page) {
+    centerLoading();
+    $('#loader').show();
     var new_active_page = $(page).attr('value');
-    reloadGallery(new_active_page);
-    reloadPagination(new_active_page);
-    document.location.href = "#top";
+    reloadGallery(new_active_page,function() {
+        reloadPagination(new_active_page,function() {
+            $(window).scrollTop($(document).height());
+            $('#loader').hide();
+        })
+    });
 }
 
 function loadAndSetPaths() {
@@ -443,7 +448,6 @@ function resizeDragAndDrop(img_tag_size) {
 }
 
 function saveCropHandler() {
-    $(window).scrollTop(0,0);
     centerLoading();
     $('#loader').show();
     var $image = $(".cropper_img");
@@ -453,11 +457,8 @@ function saveCropHandler() {
         data: { pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
     })
         .done(function (msg) {
-            //console.log(msg);      //den_debug
             hideUploadControls();
-            var active_page = $('.page_href').filter('.active').attr('value');
-            reloadGallery(active_page);
-            reloadPagination(active_page);
+            loadLastPage();
             initCropper();
             $('#loader').hide();
         });
@@ -479,11 +480,28 @@ function hideUploadControls() {
     $("#upload_label").text("+ upload");
 }
 
-function reloadGallery(active_page) {
+
+function reloadGallery(active_page,done_func) {
+    if(arguments.length==1) {
+        reloadGallery1(active_page);
+    }
+    if(arguments.length==2) {
+        reloadGallery2(active_page,done_func);
+    }
+
+}
+
+
+function reloadGallery1(active_page) {
+    reloadGallery(active_page,function() {});
+}
+
+function reloadGallery2(active_page,done_func) {
     $.ajax({
         type: "POST",
         url: "gallery_edit_get_gallery.php",
         data: {active_page: active_page}
+
     })
         .done(function (msg) {
             $("#gallery").html(msg);
@@ -492,19 +510,53 @@ function reloadGallery(active_page) {
             addSubmitHandlers();
             setCurrentHashes();
             loadAndSetPaths();
+            done_func();
+        });
+};
+
+
+
+
+function loadLastPage() {
+    $.ajax({
+        type: "POST",
+        url: "gallery_edit_get_page_count.php"
+    })
+        .done(function (count) {
+            reloadGallery(count,function() {
+                reloadPagination(count,function() {
+                    $(window).scrollTop($(document).height());
+                })
+            });
         });
 }
 
-function reloadPagination(active_page) {
-    $.ajax({
-        type: "POST",
-        url: "gallery_edit_get_pagination.php",
-        data: {active_page: active_page}
-    })
-        .done(function (msg) {
-            $("#pagination").html('<hr>' + msg + '<br><hr>');
-            initPagination();
-        });
+
+function reloadPagination(active_page,done_func) {
+    if(arguments.length==1) {
+        reloadPagination1(active_page);
+    }
+    if(arguments.length==2) {
+        reloadPagination2(active_page,done_func);
+    }
+
+}
+
+function reloadPagination1(active_page) {
+    reloadPagination(active_page,function(){});
+}
+
+function reloadPagination2(active_page,done_func) {
+$.ajax({
+    type: "POST",
+    url: "gallery_edit_get_pagination.php",
+    data: {active_page: active_page}
+})
+    .done(function (msg) {
+        $("#pagination").html('<hr>' + msg + '<br><hr>');
+        initPagination();
+        done_func();
+    });
 }
 
 function removeHandler(src) {

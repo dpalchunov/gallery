@@ -115,14 +115,7 @@ class  GalleryEditHtmlGetter
 
     public function getPaginationHtml($active_page)
     {
-        $pic_man = new PictureObjManager();
-        $pic_per_page = 5;
-        $cnt = $pic_man->getCount();
-        if (($cnt % $pic_per_page) == 0) {
-            $pages_cnt = $cnt / $pic_per_page;
-        } else {
-            $pages_cnt = floor($cnt / $pic_per_page) + 1;
-        }
+        $pages_cnt = $this -> getPageCount();
         $pages = '';
         $pages = $pages . "<div id =\"active_page\" actve_page=\"{$active_page}\"></div>";
         if ($active_page > 1) {
@@ -131,6 +124,7 @@ class  GalleryEditHtmlGetter
         } else {
             $pages = $pages . "<div class=\"page_div\"></div>";
         }
+
         for ($i = 1; $i <= $pages_cnt; $i++) {
             if ($active_page == $i) {
                 $active = ' active';
@@ -145,6 +139,18 @@ class  GalleryEditHtmlGetter
             $pages = $pages . "<div class=\"page_div\"><a class=\"page_href\" value=\"{$page}\" href=\"javascript: void(0)\">>></a></div>";
         }
         return $pages;
+    }
+
+    public function getPageCount(){
+        $pic_man = new PictureObjManager();
+        $pic_per_page = 5;
+        $cnt = $pic_man->getCount();
+        if (($cnt % $pic_per_page) == 0) {
+            $pages_cnt = $cnt / $pic_per_page;
+        } else {
+            $pages_cnt = floor($cnt / $pic_per_page) + 1;
+        }
+        return $pages_cnt;
     }
 }
 
