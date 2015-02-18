@@ -2,6 +2,7 @@
     background-color: black;
     position: relative;
     display: inline-block;
+    margin-top: 0px;
 }
 
 #all_space_wrap {
