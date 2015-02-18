@@ -101,7 +101,7 @@ function cropperChangeHandler() {
 }
 
 $(document).ready(function () {
-
+    destructor =  destructor;
 
     var $image = $(".cropper_img");
     var currentSrc;
@@ -531,6 +531,24 @@ function loadLastPage() {
         });
 }
 
+function reloadCurrentPage() {
+    var cur = $('.page_href').filter('.active').attr('value');
+    var to_load = cur;
+    $.ajax({
+        type: "POST",
+        url: "gallery_edit_get_page_count.php"
+    })
+        .done(function (count) {
+            if (count< cur) {
+                to_load = count;
+            }
+            reloadGallery(to_load,function() {
+                reloadPagination(to_load,function() {
+                })
+            });
+        });
+}
+
 
 function reloadPagination(active_page,done_func) {
     if(arguments.length==1) {
@@ -566,7 +584,7 @@ function removeHandler(src) {
         data: { file_name: src }
     })
         .done(function (msg) {
-            reloadGallery($('.page_href').filter('.active').attr('value'));
+            reloadCurrentPage();
         });
 }
 
@@ -683,9 +701,12 @@ function calcFormHash(hash_holder_id) {
         $content += $(this).attr("value") + $(this).prop("checked");
     });
     var $hash = new String($content).hashCode();
-//        console.log($hash);   //den_debug
     return $hash;
-
 }
+
+function destructor() {
+    $('.cropper-invisible').remove();
+}
+
 
 

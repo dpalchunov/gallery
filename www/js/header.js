@@ -1,3 +1,7 @@
+var destructor = function() {
+
+} ;
+
 var routes = {
     greeting_href: {href:"greeting.php",page_name:'greeting.php'},
     about_href: {href:"about.php",page_name:'about.php'},
@@ -79,6 +83,7 @@ function change_lang() {
 }
 
 function reloadHandler() {
+    destructor();
     reload($(this));
 }
 

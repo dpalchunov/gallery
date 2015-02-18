@@ -82,6 +82,8 @@ function resizeDragAndDrop(img_tag_height) {
 }
 
 $(document).ready(function () {
+    destructor = destructor;
+
     $image = $(".cropper_img");
     var currentSrc;
     initCropper();
@@ -220,6 +222,8 @@ $(document).ready(function () {
             });
         });
     }
-
-
 });
+
+function destructor() {
+    $('.cropper-invisible').remove();
+}
