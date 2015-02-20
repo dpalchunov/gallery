@@ -22,7 +22,6 @@ function cropperChangeHandler() {
     cropperHandlerIsActive = true;
 }
 
-//den_todo does cropperHandlerIsActive works?
 function setPreviewSize() {
     var data = $(".cropper_img").cropper("getData");
     var ratio = (data.height) / (data.width);
@@ -56,7 +55,7 @@ function setCropperHandler() {
     })
 }
 
-function afterUpload(img_tag_size) {
+function afterUpload(img_tag_height) {
     $("#uploaded_left").height(img_tag_height);
     $("#cropper-preview").height(219);
     $("#save_cancel").show();
