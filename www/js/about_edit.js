@@ -17,7 +17,9 @@ function initCropper() {
 }
 
 function cropperChangeHandler() {
+    cropperHandlerIsActive = false;
     setPreviewSize();
+    cropperHandlerIsActive = true;
 }
 
 //den_todo does cropperHandlerIsActive works?
@@ -33,12 +35,11 @@ function setPreviewSize() {
 
     //refresh cropper to recalculate preview
     $(".cropper_img").cropper("setData", data);
-    cropperHandlerIsActive = true;
 }
 
 
 function setCropperHandler() {
-    $image.on("dragend.cropper", function () {
+    $image.on("dragmove.cropper", function () {
         if (cropperHandlerIsActive) {
             cropperChangeHandler();
         }

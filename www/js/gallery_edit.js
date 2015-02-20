@@ -33,22 +33,23 @@ $(function () {
 });
 
 function slideHandler() {
+    cropperHandlerIsActive = false;
     setPreviewSize();
+    cropperHandlerIsActive = true;
 }
 
 function setPreviewSize() {
     var data = $(".cropper_img").cropper("getData");
-    var ratio = (data.height) / (data.width);
 
+    var ratio = (data.height) / (data.width);
     var w = Math.round(350 / 100 * $("#slider").slider("value"));
     var h = Math.round(w * ratio);
     $('#cropper-preview').width(w);
+
+
     $('#cropper-preview').height(h);
-
-
     //refresh cropper to recalculate preview
     $(".cropper_img").cropper("setData", data);
-    cropperHandlerIsActive = true;
 }
 
 function initCropper() {
@@ -74,7 +75,7 @@ function initCropper() {
 
 function setCropperHandler() {
     var $image = $(".cropper_img");
-    $image.on("dragend.cropper", function () {
+    $image.on("dragmove.cropper", function () {
         if (cropperHandlerIsActive) {
             cropperChangeHandler();
         }
