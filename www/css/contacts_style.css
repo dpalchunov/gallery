@@ -9,6 +9,7 @@
 	margin-top: 100px;
     margin-left:10%;
 	background-repeat: no-repeat;
+    color:white;
 
 }
 
@@ -22,7 +23,7 @@
 }
 
 .info {
-    FONT-FAMILY: MainText
+    FONT-FAMILY: MainText;
 	color: white;
 	font-size: 17pt;
 }
@@ -34,8 +35,8 @@
 }
 
 td.comment {
-    FONT-FAMILY: MainText
-	color: black;
+    FONT-FAMILY: MainText;
+	color: white;
 	font-size: 12pt;
 }
 
