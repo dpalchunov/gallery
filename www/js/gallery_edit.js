@@ -434,7 +434,7 @@ function afterUpload(img_tag_height) {
     $("#cropper-preview").height(219);
     $("#save_cancel").show();
     $("#cropper-preview").show();
-    $("#slider").show();
+    //$("#slider").show();
     $("#cropper_div").show();
     $("#upload_label").text("+ upload another");
 }
