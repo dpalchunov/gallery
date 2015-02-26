@@ -7,9 +7,6 @@ var allPicturesLoaded = false;
 var returnedPageData = '';
 var detailsShow;
 var rateShow;
-var img_state_idle = 1,
-    img_state_dragging = 2,
-    img_state_persist_delay = 3
 var fullScreenPics = [];
 var picIterator = 0;
 var nextPictureInWork = 0;
@@ -148,6 +145,7 @@ function mainInit() {
     setWindowScrollHandler();
     turnOffReturner();
     refreshPictures();
+    binds();
 }
 
 function dragAndResize() {
@@ -280,21 +278,18 @@ function changeFullScreenPic(sketch) {
     var p = {path:$(sketch).attr("picpath"),ratio:$(sketch).attr("ratio")};
     replaceCurPictureByNext(p.path);
     picIterator = fullScreenPics.map(function(e) {return e.path;}).indexOf(p.path);
-    getNextPicInfo();
 }
 
 <!--Скрипты полноэкранной галереи-->
-$(function () {
+function binds () {
     $('#fullScreenGalleryRightSide').bind('click', closeFullScreenGalleryClickHandler);
     $('#fullScreenGalleryLeftSide').bind('click', backFullScreenGalleryClickHandler);
     $('.fullScreenGalleryNaviButton').bind('mouseover', fullScreenGalleryNaviButtonMouseOverHandler);
     $('.fullScreenGalleryNaviButton').bind('mouseout', fullScreenGalleryNaviButtonMouseOutHandler);
     $('#fullScreenPicContainer').bind('click', fullScreenPicClickHandler);
     $('#fullScreenPicContainer').bind('load', fullScreenPicLoadHandler);
-    locateFullScreenGallaryControls();
-  //  centerFullScreenPic();
-})
 
+}
 
 $(document).keydown(function (e) {
     switch (e.which) {
@@ -324,6 +319,7 @@ $(document).keydown(function (e) {
 
 
 function fullScreenPicLoadHandler() {
+   alert('works');
     locateFullScreenGallaryControls();
     centerFullScreenPic();
     showfullScreenPicIfNeeded();
@@ -362,8 +358,10 @@ function locateFullScreenGallaryControls() {
 
 function centerFullScreenPic() {
     var winRatio = $(window).height()/($(window).width()*0.80);
-    var imgRatio = (getCurPicInfo().ratio);
+    var imgRatio = (getCur_pics().ratio);
     if (imgRatio > winRatio) {
+
+
         $("#fullScreenPicContainer").height($(window).height());
         $("#fullScreenPicContainer").width($("#fullScreenPicContainer").height()/imgRatio);
     } else {
@@ -387,55 +385,51 @@ function backFullScreenGalleryClickHandler() {
     previousPicture();
 }
 
-function getCurPicInfo() {
-    return getCur(fullScreenPics,picIterator);
-}
 
-function getNextPicInfo() {
-    var res = getNext(fullScreenPics,picIterator);
-    var nextP = res.res;
-    picIterator = res.i;
-    return nextP;
+function getCur_pics() {
+    return fullScreenPics[picIterator];
 }
-function getPrePicInfo() {
-    var res = getPre(fullScreenPics,picIterator);
-    var nextP = res.res;
-    picIterator = res.i;
-    return nextP;
+function fetch_pics() {
+    fwd_pics();
+    return getCur_pics();
 }
-
-function getCur(a,i) {
-    return a[i];
-}
-function getNext(a,i) {
-    var next = getCur(a,i);
-    var new_pos = fwd(a,i);
-    return {res:next,i:new_pos};
-}
-function getPre(a,i) {
-    var new_pos = bkw(a,i);
-    var next = getCur(a,new_pos);
-    return {res:next,i:new_pos};
+function fetch_prev_pics() {
+    bkw_pics();
+    return getCur_pics();
 }
 function fwd(a,i) {
+    var new_pos;
     if(a.length-1 == i) {
-        return 0 ;
+        new_pos =  0 ;
     } else {
         i ++;
-        return i;
+        new_pos =  i;
     }
+    return  new_pos;
 
 }
 
 function bkw(a,iterator) {
+    var res;
     if( 0== iterator) {
         var new_pos = a.length-1
-        return new_pos;
+        res =  new_pos;
     } else {
         iterator --;
-        return iterator;
+        res = iterator;
     }
+
+    return res;
 }
+
+function fwd_pics() {
+    picIterator = fwd(fullScreenPics,picIterator);
+}
+
+function bkw_pics() {
+    picIterator = bkw(fullScreenPics,picIterator);
+}
+
 //функция получает следующую картинку в полноэкранной галерее
 function nextPicture() {
     if (nextPictureInWork == 0) {
@@ -443,7 +437,7 @@ function nextPicture() {
         nextPictureInWork = 1;
         //отображаем указатель загрузки
         $("#upBlock").css('display', 'block');
-        var nextPicPath = getNextPicInfo().path;
+        var nextPicPath = fetch_pics().path;
         replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
 
@@ -457,7 +451,7 @@ function previousPicture() {
         nextPictureInWork = 1;
         //отображаем указатель загрузки
         $("#upBlock").css('display', 'block');
-        var nextPicPath = getPrePicInfo().path;
+        var nextPicPath = fetch_prev_pics().path;
         replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
     }
@@ -465,6 +459,7 @@ function previousPicture() {
 
 function replaceCurPictureByNext(picPath) {
     $("#fullScreenPicContainer").css("background-image","url(" + picPath + ")");
+    centerFullScreenPic();
 }
 
 
