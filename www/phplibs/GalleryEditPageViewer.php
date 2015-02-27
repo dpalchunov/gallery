@@ -6,7 +6,7 @@ class  GalleryEditPageViewer extends Page
     function GalleryEditPageViewer() {
         parent::Page();
         global $js_scripts,$styles;
-        $js_scripts = array('gallery_edit.js','cropper.js','jquery.uploadfile.js');
+        $js_scripts = array('cropper.js','jquery.uploadfile.js','gallery_edit.js');
         $styles = array('uploadfile.css','cropper.css','gallery_edit_style.css');
     }
 

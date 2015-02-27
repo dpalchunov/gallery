@@ -107,11 +107,10 @@ function unCropperHandler() {
 }
 
 
+
 $(document).ready(function () {
     destructor =  destructor;
 
-    var $image = $(".cropper_img");
-    var currentSrc;
     initCropper();
     var savehref = $('#gallery_save_pic');
     savehref.click(function () {
