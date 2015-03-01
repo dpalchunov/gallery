@@ -110,7 +110,6 @@ $(document).ready(function(){
 
 
     $("#header").bind("click",function(event) {
-        console.log(event.target.id);
         var left_border = $("#inline").offset().left;
         var right_border = left_border + $("#inline").width();
         var t = event.target.id;

@@ -107,6 +107,9 @@ function reload(hrefObj) {
                 l.rel = "stylesheet";
                 l.type = "text/css";
                 l.href = "./css/" + e + "?t=" + Date.now();
+                var c = document.createAttribute("class");
+                c.value = "page_style";
+                l.setAttributeNode(c);
                 document.head.appendChild(l);
             });
 

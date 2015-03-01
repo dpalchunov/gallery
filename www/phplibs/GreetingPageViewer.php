@@ -6,7 +6,7 @@ class  GreetingPageViewer extends Page
     function GreetingPageViewer() {
         parent::Page();
         global $js_scripts,$styles;
-        $js_scripts = array("wellcome.js");
+        $js_scripts = array("jquery.cycle2.js","wellcome.js");
         $styles = array("greeting_style.css");
     }
 

@@ -20,5 +20,36 @@
     margin: auto;
 }
 
+#slideshow {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 1;
+    overflow: hidden;
+
+
+}
+
+.slideshow_element img { width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+
+#greet_text {
+    position: fixed;
+    left:5%;
+    top:10%;
+    height: 20%;
+    width: 50%;
+    z-index: 2;
+    FONT-FAMILY: Code BOLD;
+    FONT-SIZE: 80px;
+    text-align: left;
+}
+
+
+
+
 
 
