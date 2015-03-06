@@ -12,6 +12,9 @@
         <div id="edit_about">
             <a id="edit_about_href" class="a_href" href="javascript:void(0)">edit ABOUT</a>
         </div>
+        <div id="edit_about">
+            <a id="edit_welcome_href" class="a_href" href="javascript:void(0)">edit WELCOME</a>
+        </div>
     </div>
 </div>
 
