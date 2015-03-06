@@ -25,7 +25,7 @@ class  AboutPageEditor {
         $template_engine->assign('header', $headerGetter);
         $template_engine->assign('lang',$lang);
         $persistedAvasGetter = new PersistedAvasGetter();
-        $persisted_avas_html_code = $persistedAvasGetter->generateAvasHtml();
+        $persisted_avas_html_code = $persistedAvasGetter->generatePicsHtmlForEdit();
         $template_engine->assign('persisted_avas',$persisted_avas_html_code);
 
         $template_engine->display('about_edit.tpl');

@@ -4,15 +4,15 @@
     $post = $_POST;
     if (isset($post['action'])) {
         if ($post['action'] == 'get_avas_array') {
-            $persistedAvasGetter = new PersistedAvasGetter();
-            $jsArrayHtml = $persistedAvasGetter->getAvasArray();
+            $persistedPicsGetter = new PersistedIntrosGetter();
+            $jsArrayHtml = $persistedPicsGetter->getAvasArray();
             $result = json_encode($jsArrayHtml);
             echo $result;
         }
     } else {
 
-        $persistedAvasGetter = new PersistedAvasGetter();
-        $persisted_avas_html_code = $persistedAvasGetter->generatePicsHtmlForEdit();
+        $persistedPicsGetter = new PersistedIntrosGetter();
+        $persisted_avas_html_code = $persistedPicsGetter->generatePicsHtmlForEdit();
         echo $persisted_avas_html_code;
     }
 

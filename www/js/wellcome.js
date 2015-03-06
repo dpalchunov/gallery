@@ -6,7 +6,7 @@ $(document).ready(function () {
         {
             fx:"scrollHorz",
             speed:500,
-            timeout:10000
+            timeout:3000
         }
 
     );

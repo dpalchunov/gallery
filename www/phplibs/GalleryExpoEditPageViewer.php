@@ -28,9 +28,9 @@ class  GalleryExpoEditPageViewer extends Page
 
     public function getBody($params) {
         global $template_engine;
-        $persistedAvasGetter = new PersistedAvasGetter();
-        $persisted_avas_html_code = $persistedAvasGetter->generateAvasHtml();
-        $template_engine->assign('persisted_avas',$persisted_avas_html_code);
+        $persistedIntrosGetter = new PersistedIntrosGetter();
+        $persisted_intros_html_code = $persistedIntrosGetter->generatePicsHtmlForEdit();
+        $template_engine->assign('persisted_intros',$persisted_intros_html_code);
         return $template_engine->fetch('gallery_expo_edit_body.tpl');
 
     }

@@ -28,6 +28,9 @@ class  GreetingPageViewer extends Page
 
     public function getBody($params) {
         global $template_engine;
+        $persistedIntrosGetter = new PersistedIntrosGetter();
+        $introsHTML = $persistedIntrosGetter->generatePicsHtmlForView();
+        $template_engine->assign('persisted_intros', $introsHTML);
         return $template_engine->fetch('greeting_body.tpl');
     }
 

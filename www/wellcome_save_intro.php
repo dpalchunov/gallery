@@ -1,7 +1,7 @@
 <?php
 require_once 'phplibs/ResourceService.php';
 
-$crop = new AvatarCropper($_POST['avatar_src'], $_POST['avatar_data']);
+$crop = new IntroCropper($_POST['avatar_src'], $_POST['avatar_data']);
 $response = array(
     'state' => 200,
     'message' => $crop->getMsg(),

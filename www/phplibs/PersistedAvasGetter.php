@@ -1,10 +1,21 @@
 <?php
-class  PersistedAvasGetter
+class  PersistedAvasGetter extends PersistedPicsGetter
 {
-    public function  generateAvasHtml()
+
+
+    public function PersistedAvasGetter()
     {
-        $avas_tmp = glob('./images/slider/avas/*.*');
-        $avas = array_reverse($avas_tmp);
+        global $path;
+        $path =  './images/slider/avas/*.*';
+
+    }
+
+
+    public function  generatePicsHtmlForEdit()
+    {
+        global $path;
+        $objs_tmp = glob($path);
+        $avas = array_reverse($objs_tmp);
         $avasHtml = '';
         foreach ($avas as $index => $file) {
             $avasHtml = $avasHtml .
@@ -27,65 +38,6 @@ class  PersistedAvasGetter
         }
         return $avasHtml;
     }
-
-    public function  generateJsArrayHtml()
-    {
-
-        $avas_tmp = glob('./images/slider/avas/*.*');
-        $avas = array_reverse($avas_tmp);
-        $cnt = count($avas);
-        $jsArray = '[';
-        if ($cnt > 0) {
-            foreach ($avas as $index => $file) {
-                $jsArray = $jsArray .
-                    "\"url({$file})\"";
-                if ($index < $cnt - 1) {
-                    $jsArray = $jsArray . ",";
-                }
-            }
-            $jsArray = $jsArray . "]";
-        } else {
-            $jsArray = "[]";
-        }
-
-
-        return $jsArray;
-    }
-
-    public function  generateJsArrayHtml1()
-    {
-
-        $avas_tmp = glob('./images/slider/avas/*.*');
-        $avas = array_reverse($avas_tmp);
-        $cnt = count($avas);
-        $jsArray = '[';
-        if ($cnt > 0) {
-            foreach ($avas as $index => $file) {
-                $jsArray = $jsArray .
-                    "\"{$file}\"";
-                if ($index < $cnt - 1) {
-                    $jsArray = $jsArray . ",";
-                }
-            }
-            $jsArray = $jsArray . "]";
-        } else {
-            $jsArray = "[]";
-        }
-
-
-        return $jsArray;
-    }
-
-    public function  getAvasArray()
-    {
-
-        $avas_tmp = glob('./images/slider/avas/*.*');
-        $avas = array_reverse($avas_tmp);
-        return  $avas;
-    }
-
-
-
 }
 
 ?>

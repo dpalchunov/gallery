@@ -6,7 +6,7 @@
 
 /*Main content*/
 
-#wellcome_editor_content {
+#about_editor_content {
     width: 1100px;
     position: relative;
     background-repeat: no-repeat;
@@ -15,7 +15,7 @@
 }
 
 #persisted {
-    width: 775px;
+    width: 100%;
     margin: 20px;
     position: relative;
     position: relative;
@@ -23,7 +23,7 @@
 }
 
 .persisted {
-    width: 785px;
+    width: 100%;
     position: relative;
     margin-bottom: 20px;
     position: relative;
@@ -31,13 +31,17 @@
 }
 
 .image {
-    width: 575px;
+    width: 80%;
     position: relative;
     float: left;
     float: left;
     margin-right: 20px;
     display: inline-block;
 
+}
+
+.image img {
+    width: 90%;
 }
 
 .persisted_img_controls {
@@ -211,10 +215,4 @@
 .remove {
     display: inline-block;
     float: left;
-}
-
-.st1 {
-    display: inline-block;
-    float: left;
-    width: 30px;
 }

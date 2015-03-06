@@ -38,14 +38,32 @@
 
 #greet_text {
     position: fixed;
-    left:5%;
-    top:10%;
+    left:0%;
+    top:40%;
     height: 20%;
-    width: 50%;
+    width: 100%;
+    z-index: 3;
+    FONT-FAMILY: Code LIGHT;
+    font-weight: bolder;
+    FONT-SIZE: 100px;
+    text-align: center;
+    color: #ffffff;
+    letter-spacing: 20px;
+}
+
+#shaddow {
+    position: fixed;
+    left: 0px;
+    top: 0px;
     z-index: 2;
-    FONT-FAMILY: Code BOLD;
-    FONT-SIZE: 80px;
-    text-align: left;
+    height: 100%;
+    width:100%;
+    opacity: 0.6;
+    background: rgba(0, 0, 0, 0.9); /* фон с полупрозрачностью */
+    filter: alpha(Opacity=90); /* Прозрачность в IE */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000)"; /* все тот же фон с полупрозрачностью, но фильтр для ИЕ8 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000); /* все тот же фон с полупрозрачностью, но фильтр для ИЕ7 и ИЕ6 */
+
 }
 
 

@@ -87,12 +87,12 @@ $(document).ready(function () {
     $image = $(".cropper_img");
     var currentSrc;
     initCropper();
-    var savehref = $('#about_save_ava');
+    var savehref = $('#wellcome_save_ava');
     savehref.click(function () {
         saveCropHandler();
     });
 
-    var cancelhref = $('#about_cancel_ava');
+    var cancelhref = $('#wellcome_cancel_ava');
     cancelhref.click(function () {
         cancelCropHandler();
     });
@@ -100,7 +100,7 @@ $(document).ready(function () {
     addRemoveClickHandlers();
 
     $("#fileuploader").uploadFile({
-        url: "./about_upload_ava.php",
+        url: "./wellcome_upload_ava.php",
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {
 
@@ -145,12 +145,12 @@ $(document).ready(function () {
         centerLoading();
         $.ajax({
             type: "POST",
-            url: "about_save_ava.php",
+            url: "wellcome_save_intro.php",
             data: { avatar_src: currentSrc, avatar_data: JSON.stringify($image.cropper("getData"))}
         })
             .done(function (msg) {
                 hideUploadControls();
-                reloadPersistedAvas();
+                reloadPersistedIntros();
                 initCropper();
                 $('#loader').hide();
             });
@@ -171,10 +171,10 @@ $(document).ready(function () {
         $("#upload_label").text("+ upload");
     }
 
-    function reloadPersistedAvas() {
+    function reloadPersistedIntros() {
         $.ajax({
             type: "POST",
-            url: "about_get_avas.php"
+            url: "wellcome_get_intros.php"
         })
             .done(function (msg) {
                 $("#persisted").html(msg);
@@ -189,24 +189,12 @@ $(document).ready(function () {
             data: { src: src }
         })
             .done(function (msg) {
-                reloadPersistedAvas();
+                reloadPersistedIntros();
             });
     }
-
-    function st1Handler(src) {
-        $.ajax({
-            type: "POST",
-            url: "about_1st_ava.php",
-            data: { avatar_src: src }
-        })
-            .done(function (msg) {
-                reloadPersistedAvas();
-            });
-    }
-
 
     function addRemoveClickHandlers() {
-        var $removeButtons = $(".remove_ava");
+        var $removeButtons = $(".remove_obj");
 
         $removeButtons.each(function () {
             $(this).click(function () {
@@ -214,13 +202,6 @@ $(document).ready(function () {
             });
         });
 
-        var $stButtons = $(".st1_href");
-
-        $stButtons.each(function () {
-            $(this).click(function () {
-                st1Handler($(this).attr("src"))
-            });
-        });
     }
 });
 

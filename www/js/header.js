@@ -47,6 +47,7 @@ function progressInit() {
 }
 
 function headerNameClickHandler() {
+    destructor();
     reload($("#greeting_href"));
     $("#header").hide();
     $("#footer").hide();

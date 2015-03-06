@@ -1,13 +1,13 @@
 <?php
 require_once 'phplibs/ResourceService.php';
-class  AboutEditPageViewer extends Page
+class  WellcomeEditPageViewer extends Page
 {
 
-    function AboutEditPageViewer() {
+    function WellcomeEditPageViewer() {
         parent::Page();
         global $js_scripts,$styles;
-        $js_scripts = array('cropper.js','jquery.uploadfile.js','about_edit.js');
-        $styles = array('cropper.css','uploadfile.css','about_edit_style.css');
+        $js_scripts = array('cropper.js','jquery.uploadfile.js','wellcome_edit.js');
+        $styles = array('cropper.css','uploadfile.css','wellcome_edit_style.css');
     }
 
     public function getHeadContent() {
@@ -28,10 +28,10 @@ class  AboutEditPageViewer extends Page
 
     public function getBody($params) {
         global $template_engine;
-        $persistedAvasGetter = new PersistedAvasGetter();
-        $persisted_avas_html_code = $persistedAvasGetter->generatePicsHtmlForEdit();
+        $persistedIntroGetter = new PersistedIntrosGetter();
+        $persisted_avas_html_code = $persistedIntroGetter->generatePicsHtmlForEdit();
         $template_engine->assign('persisted_avas',$persisted_avas_html_code);
-        return $template_engine->fetch('about_edit_body.tpl');
+        return $template_engine->fetch('wellcome_edit_body.tpl');
 
     }
 
