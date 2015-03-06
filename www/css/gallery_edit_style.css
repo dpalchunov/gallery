@@ -2,7 +2,7 @@
 
 
 #main_content {
-    background-color: #D2DFE3;
+    background-color: #000;
 
 }
 
@@ -348,9 +348,10 @@
 .field_editor_label {
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
-    color: #000000;
+    color: #FFF;
     display: inline-block;
     float: left;
+
 }
 
 .rate_radio_label_label {
