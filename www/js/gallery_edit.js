@@ -616,7 +616,7 @@ function addControlsClickHandlers() {
         $(this).hover(function () {
             $("#" + $(this).attr("area")).css("background-color", "#D16464");
         }, function () {
-            $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
+            $("#" + $(this).attr("area")).css("background-color", "black");
         });
 
     });
@@ -631,7 +631,7 @@ function addControlsClickHandlers() {
         $(this).hover(function () {
             $("#" + $(this).attr("area")).css("background-color", "#5d9f7a");
         }, function () {
-            $("#" + $(this).attr("area")).css("background-color", "#d2dfe3");
+            $("#" + $(this).attr("area")).css("background-color", "black");
         });
 
     });

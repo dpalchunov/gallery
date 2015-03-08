@@ -369,11 +369,12 @@
 
 #pagination {
     width: 1200px;
+    color: white;
 }
 
 #pagination a {
     font-size: 14px;
-    color: black;
+    color: white;
 }
 
 .page_div {
