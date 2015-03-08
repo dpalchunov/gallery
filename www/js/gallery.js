@@ -11,6 +11,7 @@ var fullScreenPics = [];
 var picIterator = 0;
 var nextPictureInWork = 0;
 var needShowPicAfterLoad = false;
+var arrow_color = '#222';
 
 
 
@@ -218,40 +219,55 @@ function onScrollfunct() {
 function turnOnReturner() {
     $('#arrow_pic').css('background-image', "url('../images/returner/arrow.png')");
     //каждый bind - это новый вызов одной и той же функции
-    $('#left_column_wrap').unbind("click")
-    $('#left_column_wrap').bind("click", leftColumnWrapClickHandler)
+    $('#left_column_wrap,#arrow_pic').unbind("click");
+    $('#left_column_wrap,#arrow_pic').bind("click", leftColumnWrapClickHandler)
     if (mouseoverLeftColumnWrap) {
         $('#left_column_wrap').css('opacity', 0);
-        $('#arrow_pic').css('background-color', '#A8A8A8');
+        $('#arrow_pic').css('background-color', arrow_color);
+    } else {
+        $('#left_column_wrap').css('opacity', 1);
+        $('#arrow_pic').css('background-color', '#000');
     }
-    $('#left_column_wrap').hover(function () {
-            $(this).css('opacity', 0);
-            $('#arrow_pic').css('background-color', '#A8A8A8');
-            $('#arrow_pic').css('background-image', "url('../images/returner/arrow.png')");
+    $('#left_column_wrap,#arrow_pic').hover(function () {
 
-            mouseoverLeftColumnWrap = true;
+            showArrow();
         },
         function () {
-            $(this).css('opacity', 1);
-            $('#arrow_pic').css('background-color', '#000');
-
-            mouseoverLeftColumnWrap = false;
+            hideArrow();
         });
+
+}
+
+function showArrow() {
+    $('#left_column_wrap').css('opacity', 0);
+    $('#arrow_pic').css('background-color', arrow_color);
+    $('#arrow_pic').css('background-image', "url('../images/returner/arrow.png')");
+
+    mouseoverLeftColumnWrap = true;
+}
+
+function hideArrow() {
+    $('#left_column_wrap').css('opacity', 1);
+    $('#arrow_pic').css('background-color', '#000');
+
+    mouseoverLeftColumnWrap = false;
 }
 
 function turnOffReturner() {
-    $('#left_column_wrap').unbind('click');
+    $('#left_column_wrap,#arrow_pic').unbind('click');
     $('#left_column_wrap').css('opacity', 1);
     $('#arrow_pic').css('background-color', '#000');
     $('#arrow_pic').css('background-image', 'none');
 
-    $('#left_column_wrap').hover(function () {
+    $('#left_column_wrap,#arrow_pic').hover(function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = true;
+            $('#arrow_pic').css('background-color', '#000');
         },
         function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = false;
+            $('#arrow_pic').css('background-color', '#000');
         });
 }
 
