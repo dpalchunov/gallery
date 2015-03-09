@@ -452,7 +452,8 @@ function nextPicture() {
         //флаг позволяет запускать функцию сключительно последовательно
         nextPictureInWork = 1;
         //отображаем указатель загрузки
-        $("#upBlock").css('display', 'block');
+        centerLoading();
+        $('#loader').show();
         var nextPicPath = fetch_pics().path;
         replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
@@ -466,7 +467,8 @@ function previousPicture() {
         //флаг позволяет запускать функцию сключительно последовательно
         nextPictureInWork = 1;
         //отображаем указатель загрузки
-        $("#upBlock").css('display', 'block');
+        centerLoading();
+        $('#loader').show();
         var nextPicPath = fetch_prev_pics().path;
         replaceCurPictureByNext(nextPicPath);
         nextPictureInWork = 0;
@@ -474,7 +476,9 @@ function previousPicture() {
 }
 
 function replaceCurPictureByNext(picPath) {
-    $("#fullScreenPicContainer").css("background-image","url(" + picPath + ")");
+    //$("#fullScreenPicContainer").css("background-image","url(" + picPath + ")");
+    $("#big_image").attr("src",picPath);
+    resize_image( $( '#big_image' )[0], $( '#resampled_image' )[0] );
     centerFullScreenPic();
 }
 
@@ -540,6 +544,43 @@ function hideFullScreenGallery() {
     $(document.documentElement).css('overflow', 'scroll');
     $('#fullScreenPicContainer').hide();
     $('#fullScreenGallery').hide();
+}
+
+function resize_image( src, dst, type, quality ) {
+    var tmp = new Image(),
+        canvas, context, cW, cH;
+
+    type = type || 'image/jpeg';
+    quality = quality || 0.92;
+
+    cW = src.naturalWidth;
+    cH = src.naturalHeight;
+
+    tmp.src = src.src;
+    tmp.onload = function() {
+
+        canvas = document.createElement( 'canvas' );
+
+        cW /= 2;
+        cH /= 2;
+
+        if ( cW < src.width ) cW = src.width;
+        if ( cH < src.height ) cH = src.height;
+
+        canvas.width = cW;
+        canvas.height = cH;
+        context = canvas.getContext( '2d' );
+        context.drawImage( tmp, 0, 0, cW, cH );
+
+        dst.src = canvas.toDataURL( type, quality );
+
+        if ( cW <= src.width || cH <= src.height ) {
+            $('#loader').hide();
+            return;
+        }
+        tmp.src = dst.src;
+    }
+
 }
 
 

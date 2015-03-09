@@ -1,6 +1,8 @@
     <div id="fullScreenGallery" class="mc_el">
         <div id="fullScreenGalleryLeftSide" class="fullScreenGalleryNaviButton"></div>
         <div id="fullScreenPicContainer">
+            <img id="big_image" />
+            <img id="resampled_image" />
         </div>
         <div id="fullScreenGalleryRightSide" class="fullScreenGalleryNaviButton"></div>
     </div>
