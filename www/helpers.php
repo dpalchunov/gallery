@@ -1,6 +1,9 @@
 <?php
-$output_dir = "uploads/pic_tmp/";
 
+function getmicrotime() {
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
+}
 
 function getGUID(){
     if (function_exists('com_create_guid')){
@@ -19,23 +22,4 @@ function getGUID(){
         return $uuid;
     }
 }
-
-
-if(isset($_FILES["myfile"]))
-{
-
-    require_once 'phplibs/FileLoader.php';
-    $fileLoader = new FileLoader();
-    $files =  $_FILES["myfile"];
-    $files["persist_name"] = "tmp";
-    $ret = $fileLoader -> uploadFiles($files,$output_dir);
-    $size = getimagesize($ret[0]);
-    $w = $size[0];
-    $height = $size[1];
-    $ret[1] = $w;
-    $ret[2] = $height;
-    echo json_encode($ret);
-
-}
-
 ?>

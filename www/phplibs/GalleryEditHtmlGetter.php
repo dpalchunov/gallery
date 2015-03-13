@@ -54,8 +54,9 @@ class  GalleryEditHtmlGetter
                         </div>
                     </div>
                     <div class=\"field_editor_div\">
-                        <form id=\"form_{$file_base}\" class=\"field_editor_form\" action=\"gallery_update_pic.php\">
+                        <form id=\"form_{$file_base}\" class=\"field_editor_form\" action=\"gallery_edit.php\">
                             <input name=\"id\" type=\"hidden\" value=\"{$id}\">
+                            <input name=\"action\" type=\"hidden\" value=\"edit_update_pic\">
                             <div class=\"rus_desc_div\">
                                 <label class=\"field_editor_label\">Desc in russian </label>
                                 <textarea name=\"rus_desc\" class=\"rus_desc_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$rusDesc</textarea>

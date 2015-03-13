@@ -36,7 +36,7 @@ function getPrevAvaPath() {
 function loadAvas() {
     $.ajax({
         type: "POST",
-        url: 'about_get_avas.php',
+        url: "about_edit.php",
         data: {action:'get_avas_array'},
         async:false
     }).done(function (data) {

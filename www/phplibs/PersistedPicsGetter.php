@@ -61,7 +61,7 @@ abstract class  PersistedPicsGetter
         return $jsArray;
     }
 
-    public function  getAvasArray()
+    public function  getPicsArray()
     {
         global $path;
         $avas_tmp = glob($path);

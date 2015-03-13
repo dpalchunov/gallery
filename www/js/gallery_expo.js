@@ -35,7 +35,7 @@ function showFirstPage() {
 }
 
 function setPicturesCountByFilter() {
-    $.post("getPicturesCountByFilter.php", $("#filter_form").serialize(),
+    $.post("pic_helper.php", "action=get_pic_count_by_filter&" + $("#filter_form").serialize(),
         function (data) {
             if (trim(data) != '') {
                 picturesCountByFilter = data;
@@ -144,8 +144,8 @@ function save(e) {
 
     $.ajax({
         type: "POST",
-        url: "gallery_expo_save.php",
-        data: {pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
+        url: "gallery_edit.php",
+        data: {action:"expo_save",pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
     })
         .done(function (msg) {
             //console.log(msg);
@@ -222,7 +222,7 @@ function refreshPictures() {
 
 function rewritePageByPageNum(pageNum) {
     var allParamsString = makePictureGetterParametersStringForPageGet(pageNum);
-    $.post("getPicturePage.php", allParamsString,
+    $.post("pic_helper.php", allParamsString,
         //функция обработки полученных данных
         function (data) {
             if (trim(data) != '') {
@@ -235,7 +235,6 @@ function rewritePageByPageNum(pageNum) {
                 });
             } else {
                 $("#sketches").html("no data");
-                showFooter();
             }
         }
     )
@@ -246,7 +245,7 @@ function makePictureGetterParametersStringForPageGet(pageNum) {
     var checkboxesValueString = $("#filter_form").serialize();
     var pageNumString = "pageNum=" + pageNum;
 
-    var allParamsString = pageNumString + "&" + checkboxesValueString;
+    var allParamsString = pageNumString + "&" +  "action=get_pic_page"+  "&" +  checkboxesValueString;
     return allParamsString;
 }
 

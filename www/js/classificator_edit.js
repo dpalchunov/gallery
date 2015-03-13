@@ -42,7 +42,8 @@ $(document).ready(function () {
     function reloadClassificators() {
         $.ajax({
             type: "POST",
-            url: "classificator_edit_get_html.php"
+            url: "classificator_edit.php",
+            data:"get_html"
         })
             .done(function (msg) {
                 $("#classificator").html(msg);
@@ -57,8 +58,8 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "classificator_del_cl.php",
-            data: { id: id }
+            url: "classificator_edit.php",
+            data: { action:"del_cl", id: id }
         })
             .done(function (msg) {
                 $('#classificator_area_' + id + '_header').remove();
@@ -69,8 +70,8 @@ $(document).ready(function () {
     function removeVlHandler(id) {
         $.ajax({
             type: "POST",
-            url: "classificator_del_v.php",
-            data: { id: id }
+            url: "classificator_edit.php",
+            data: { action:"del_v",  id: id }
         })
             .done(function (msg) {
                 $('#values_area_' + id).remove();
@@ -90,14 +91,14 @@ $(document).ready(function () {
     function addClHandler(addBefore) {
         $.ajax({
             type: "POST",
-            url: "classificator_add_cl.php",
-            data: { eng_name: 'test', rus_name: 'test' }
+            url: "classificator_edit.php",
+            data: { eng_name: 'test', rus_name: 'test',action:"add_cl" }
         })
             .done(function (new_cl_id) {
                 $.ajax({
                     type: "POST",
-                    url: "classificator_edit_get_cl_html.php",
-                    data: { id: new_cl_id }
+                    url: "classificator_edit.php",
+                    data: {action:"get_cl_html", id: new_cl_id }
                 })
                     .done(function (msg) {
                         console.log('start');
@@ -117,8 +118,8 @@ $(document).ready(function () {
     function addClChildHandler(cl_id, values_div) {
         $.ajax({
             type: "POST",
-            url: "classificator_add_cl_child.php",
-            data: { eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
+            url: "classificator_edit.php",
+            data: {action:"add_cl_child", eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
         })
             .done(function (json_data) {
                 var data = $.parseJSON(json_data);
@@ -126,8 +127,8 @@ $(document).ready(function () {
                     new_vl_id = data['res']
                     $.ajax({
                         type: "POST",
-                        url: "classificator_edit_get_vl_html.php",
-                        data: { id: new_vl_id }
+                        url: "classificator_edit.php",
+                        data: {action:"get_vl_html", id: new_vl_id }
                     })
                         .done(function (msg) {
                             console.log('start');
@@ -153,8 +154,8 @@ $(document).ready(function () {
     function addVlChildHandler(parent_id, cl_id, values_div) {
         $.ajax({
             type: "POST",
-            url: "classificator_add_vl_child.php",
-            data: { parent_id: parent_id, eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
+            url: "classificator_edit.php",
+            data: {action:"add_vl_child", parent_id: parent_id, eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
         })
             .done(function (json_data) {
                 var data = $.parseJSON(json_data);
@@ -162,8 +163,8 @@ $(document).ready(function () {
                     new_vl_id = data['res']
                     $.ajax({
                         type: "POST",
-                        url: "classificator_edit_get_vl_html.php",
-                        data: { id: new_vl_id }
+                        url: "classificator_edit.php",
+                        data: {action:"get_vl_html", id: new_vl_id }
                     })
                         .done(function (msg) {
                             console.log('start');

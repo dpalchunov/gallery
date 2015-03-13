@@ -130,10 +130,12 @@ $(document).ready(function () {
     initPagination();
 
     $("#fileuploader").uploadFile({
-        url: "./gallery_upload_pic.php",
+        url: "./gallery_edit.php",
+        method: "POST",
+        formData: { action: "edit_upload_pic"},
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {
-
+            console.log(json_data);
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
@@ -233,8 +235,8 @@ function getClValues() {
     var data;
     $.ajax({
         type: "POST",
-        url: "classificator_get_paths.php",
-        data: {},
+        url: "classificator_edit.php",
+        data: {action:"get_paths"},
         async: false
     })
         .done(function (json_data) {
@@ -285,6 +287,7 @@ function isInt(n) {
 function createNewClValue(cl_id, v_id, new_branch) {
     var created_vid = 0;
     var send_data;
+    send_datap[action] = "add_vl_branch";
     if (isInt(v_id)) {
         send_data = {cl_id: cl_id, v_id: v_id, new_branch: new_branch};
     } else {
@@ -293,7 +296,7 @@ function createNewClValue(cl_id, v_id, new_branch) {
     }
     $.ajax({
         type: "POST",
-        url: "classificator_add_vl_branch.php",
+        url: "classificator_edit.php",
         data: send_data,
         async: false,
         success: function (json_data) {
@@ -460,8 +463,8 @@ function saveCropHandler() {
     var $image = $(".cropper_img");
     $.ajax({
         type: "POST",
-        url: "gallery_save_pic.php",
-        data: { pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
+        url: "gallery_edit.php",
+        data: {action:"edit_save_pic", pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
     })
         .done(function (msg) {
             hideUploadControls();
@@ -506,8 +509,8 @@ function reloadGallery1(active_page) {
 function reloadGallery2(active_page,done_func) {
     $.ajax({
         type: "POST",
-        url: "gallery_edit_get_gallery.php",
-        data: {active_page: active_page}
+        url: "gallery_edit.php",
+        data: {action:"edit_get_gallery",active_page: active_page}
 
     })
         .done(function (msg) {
@@ -527,7 +530,8 @@ function reloadGallery2(active_page,done_func) {
 function loadLastPage() {
     $.ajax({
         type: "POST",
-        url: "gallery_edit_get_page_count.php"
+        url: "gallery_edit.php",
+        data: {action:"edit_get_page_count"}
     })
         .done(function (count) {
             reloadGallery(count,function() {
@@ -543,7 +547,8 @@ function reloadCurrentPage() {
     var to_load = cur;
     $.ajax({
         type: "POST",
-        url: "gallery_edit_get_page_count.php"
+        url: "gallery_edit.php" ,
+        data: {action:"edit_get_page_count"}
     })
         .done(function (count) {
             if (count< cur) {
@@ -574,8 +579,8 @@ function reloadPagination1(active_page) {
 function reloadPagination2(active_page,done_func) {
 $.ajax({
     type: "POST",
-    url: "gallery_edit_get_pagination.php",
-    data: {active_page: active_page}
+    url: "gallery_edit.php",
+    data: {action:"edit_get_pagination",active_page: active_page}
 })
     .done(function (msg) {
         $("#pagination").html('<hr>' + msg + '<br><hr>');
@@ -587,8 +592,8 @@ $.ajax({
 function removeHandler(src) {
     $.ajax({
         type: "POST",
-        url: "gallery_del_pic.php",
-        data: { file_name: src }
+        url: "gallery_edit.php",
+        data: {action:"edit_del_pic", file_name: src }
     })
         .done(function (msg) {
             reloadCurrentPage();
@@ -673,8 +678,8 @@ function addSubmitHandlers() {
             //         console.log($(this).serialize());  //den_debug
             $.ajax({
                 type: "POST",
-                url: "gallery_update_pic.php",
-                data: $(this).serialize(),
+                url: "./gallery_edit.php",
+                data: $.extend($(this),{action:"edit_update_pic"}).serialize(),
                 success: function (data) {
                     //    console.log(data);  //den_debug
                 }

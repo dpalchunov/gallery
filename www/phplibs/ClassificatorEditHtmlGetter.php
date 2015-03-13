@@ -24,8 +24,9 @@ class  ClassificatorEditHtmlGetter
                  </div>
                  <div id=\"classificator_area_{$id}\" class=\"one_element\">
                     <div class=\"field_editor_div\">
-                        <form id=\"classificator_form_{$id}\" class=\"field_editor_form\" action=\"classificator_update.php\">
+                        <form id=\"classificator_form_{$id}\" class=\"field_editor_form\" action=\"classificator_edit.php\">
                             <input name=\"id\" type=\"hidden\" value=\"$id\">
+                            <input name=\"action\" type=\"hidden\" value=\"update\">
                             <div class=\"eng_name_div\">
                                 <input id=\"cl_eng_input_{$id}\" type=\"text\" autocomplete=\"off\" name=\"eng_name\" class=\"eng_value_input field_editor_input\" hash_holder=\"classificator_area_{$id}\"  value=\"{$engName}\"></input>
                                 <label class=\"field_editor_label\">eng </label>
@@ -89,8 +90,9 @@ class  ClassificatorEditHtmlGetter
         $vlHtml =
             "<div id=\"values_area_{$v_id}\" class=\"one_element\">
                     <div class=\"field_editor_div\">
-                        <form id=\"classificator_value_form_{$v_id}\" class=\"field_editor_form\" action=\"classificator_value_update.php\">
+                        <form id=\"classificator_value_form_{$v_id}\" class=\"field_editor_form\" action=\"classificator_edit.php\">
                             <input name=\"id\" type=\"hidden\" value=\"$v_id\">
+                            <input name=\"action\" type=\"hidden\" value=\"value_update\">
                             <div class=\"eng_name_div\">
                                 <input name=\"eng_value\" autocomplete=\"off\" class=\"eng_value_input field_editor_input\" hash_holder=\"values_area_{$v_id}\" value=\"{$engValue}\" ></input>
                                 <label class=\"field_editor_label\">eng </label>

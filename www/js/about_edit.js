@@ -100,10 +100,11 @@ $(document).ready(function () {
     addRemoveClickHandlers();
 
     $("#fileuploader").uploadFile({
-        url: "./about_upload_ava.php",
+        url: "./about_edit.php",
+        formData: {action:"upload_ava"},
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {
-
+            console.log(json_data);
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
@@ -145,8 +146,8 @@ $(document).ready(function () {
         centerLoading();
         $.ajax({
             type: "POST",
-            url: "about_save_ava.php",
-            data: { avatar_src: currentSrc, avatar_data: JSON.stringify($image.cropper("getData"))}
+            url: "about_edit.php",
+            data: { action: "save_ava" ,avatar_src: currentSrc, avatar_data: JSON.stringify($image.cropper("getData"))}
         })
             .done(function (msg) {
                 hideUploadControls();
@@ -174,7 +175,8 @@ $(document).ready(function () {
     function reloadPersistedAvas() {
         $.ajax({
             type: "POST",
-            url: "about_get_avas.php"
+            url: "about_edit.php",
+            data: { action: "get_avas_html" }
         })
             .done(function (msg) {
                 $("#persisted").html(msg);
@@ -185,8 +187,8 @@ $(document).ready(function () {
     function removeHandler(src) {
         $.ajax({
             type: "POST",
-            url: "del.php",
-            data: { src: src }
+            url: "edit_helper.php",
+            data: {action:"del_file", src: src }
         })
             .done(function (msg) {
                 reloadPersistedAvas();
@@ -196,8 +198,8 @@ $(document).ready(function () {
     function st1Handler(src) {
         $.ajax({
             type: "POST",
-            url: "about_1st_ava.php",
-            data: { avatar_src: src }
+            url: "about_edit.php",
+            data: { avatar_src: src,action: "first_ava" }
         })
             .done(function (msg) {
                 reloadPersistedAvas();
