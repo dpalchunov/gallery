@@ -101,6 +101,7 @@ $(document).ready(function () {
 
     $("#fileuploader").uploadFile({
         url: "./about_edit.php",
+        method: "POST",
         formData: {action:"upload_ava"},
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {

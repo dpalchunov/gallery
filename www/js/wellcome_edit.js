@@ -100,6 +100,7 @@ $(document).ready(function () {
     addRemoveClickHandlers();
 
     $("#fileuploader").uploadFile({
+        method: "POST",
         url: "./wellcome_edit.php",
         fileName: "myfile",
         formData: {action:"edit_upload_ava"},
@@ -175,7 +176,7 @@ $(document).ready(function () {
     function reloadPersistedIntros() {
         $.ajax({
             type: "POST",
-            url: "wellcome_edit.php",
+            url: "./wellcome_edit.php",
             data: {action:"get_intros"}
         })
             .done(function (msg) {
