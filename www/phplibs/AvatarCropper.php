@@ -7,13 +7,16 @@ class AvatarCropper extends PicCropper
         $this->srcDir = 'uploads/ava_tmp';
         $this->dstDir = 'images/slider/avas';
         parent::PicCropper($src,$data);
-        $this->crop($this->src, $this->dst, $this->data);
+        $this->crop();
     }
 
 
 
-    public function crop($src, $dst, $data)
+    public function crop()
     {
+        $src  = $this -> src;
+        $dst  = $this -> dst;
+        $data = $this -> data;
         if (!empty($src) && !empty($dst) && !empty($data)) {
             switch ($this->type) {
                 case IMAGETYPE_GIF:

@@ -1,34 +1,21 @@
 <?php
 
 require_once 'phplibs/ResourceService.php';
+require_once './helpers.php';
 
-session_start();
-if ( isset($_SESSION['state'])) {
-    if ( isset($_POST['action'])) {
-        $action = $_POST['action'];
-        if ($action == 'del_file') {
-            $res =unlink($_POST['src']);
-            echo json_encode($res);
-        }   else if ($action == '') {
+$actions = array(
+    "common_action_" => array ("type" => "super_role"),
+    "del_file" => array ("type" => "super_role")
+);
 
-
-
-        }   else if ($action == '') {
-
-        }
-           else if ($action == '') {
-
-        }   else if ($action == '') {
-
-
-            }
-    } else {
-        $viewer = new AboutEditPageViewer();
-        $viewer -> show($_POST);
-    }
-}
-else {
-    echo 'page not found';
+function common_action_handler() {
+    return;
 }
 
+function del_file_handler() {
+    $res =unlink($_POST['src']);
+    echo json_encode($res);
+}
+
+require_once './router.php';
 ?>

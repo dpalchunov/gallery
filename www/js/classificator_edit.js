@@ -58,7 +58,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "classificator_edit.php",
+            url: "./classificator_edit.php",
             data: { action:"del_cl", id: id }
         })
             .done(function (msg) {
@@ -70,7 +70,7 @@ $(document).ready(function () {
     function removeVlHandler(id) {
         $.ajax({
             type: "POST",
-            url: "classificator_edit.php",
+            url: "./classificator_edit.php",
             data: { action:"del_v",  id: id }
         })
             .done(function (msg) {
@@ -91,7 +91,7 @@ $(document).ready(function () {
     function addClHandler(addBefore) {
         $.ajax({
             type: "POST",
-            url: "classificator_edit.php",
+            url: "./classificator_edit.php",
             data: { eng_name: 'test', rus_name: 'test',action:"add_cl" }
         })
             .done(function (new_cl_id) {
@@ -118,7 +118,7 @@ $(document).ready(function () {
     function addClChildHandler(cl_id, values_div) {
         $.ajax({
             type: "POST",
-            url: "classificator_edit.php",
+            url: "./classificator_edit.php",
             data: {action:"add_cl_child", eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
         })
             .done(function (json_data) {
@@ -154,7 +154,7 @@ $(document).ready(function () {
     function addVlChildHandler(parent_id, cl_id, values_div) {
         $.ajax({
             type: "POST",
-            url: "classificator_edit.php",
+            url: "./classificator_edit.php",
             data: {action:"add_vl_child", parent_id: parent_id, eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
         })
             .done(function (json_data) {

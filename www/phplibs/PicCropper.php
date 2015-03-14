@@ -11,7 +11,7 @@ abstract class PicCropper
     public $dstDir;
     public $msg;
 
-    abstract public function crop($src, $dst, $data);
+    abstract public function crop();
 
 
     function PicCropper($src, $data)
@@ -42,7 +42,7 @@ abstract class PicCropper
     }
 
 
-    private function setDst()
+    public function setDst()
     {
         $dir = $this->dstDir;
 

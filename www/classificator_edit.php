@@ -1,116 +1,139 @@
 <?php
 
 require_once 'phplibs/ResourceService.php';
+require_once './helpers.php';
 
-session_start();
-if ( isset($_SESSION['state'])) {
-    if ( isset($_POST['action'])) {
-        $action = $_POST['action'];
-        if ($action == 'add_cl') {
-            $man = new ClassificatorManager();
-            $cl = new Classificator($_POST["rus_name"], $_POST["eng_name"]);
+$actions = array(
+    "add_cl" => array ("type" => "super_role"),
+    "add_cl_child" => array ("type" => "super_role"),
+    "add_vl_branch" => array ("type" => "super_role"),
+    "add_vl_child" => array ("type" => "super_role"),
+    "del_cl" => array ("type" => "super_role"),
+    "del_v" => array ("type" => "super_role"),
+    "get_cl_html" => array ("type" => "super_role"),
+    "get_html" => array ("type" => "super_role"),
+    "get_vl_html" => array ("type" => "super_role"),
+    "get_paths" => array ("type" => "everyone"),
+    "update" => array ("type" => "super_role"),
+    "value_update" => array ("type" => "super_role")
+);
 
-            $res = $man->insertCl($cl);
-            echo $res;
-        }   else if ($action == 'add_cl_child') {
-            $man = new ClassificatorManager();
+function common_action_handler() {
+    $galleryEditor = new ClassificatorEditor();
+    $galleryEditor-> editClassificator();
+}
 
-            $vl = new ClassificatorValue($_POST["rus_value"], $_POST["eng_value"], null, $_POST["classificator_id"]);
+function add_cl_handler() {
+    $man = new ClassificatorManager();
+    $cl = new Classificator($_POST["rus_name"], $_POST["eng_name"]);
 
+    $res = $man->insertCl($cl);
+    echo $res;
+}
+function add_cl_child_handler() {
+    $man = new ClassificatorManager();
+
+    $vl = new ClassificatorValue($_POST["rus_value"], $_POST["eng_value"], null, $_POST["classificator_id"]);
+
+    $res = $man->insertVl($vl);
+    echo json_encode($res);
+}
+function add_vl_branch_handler() {
+    $man = new ClassificatorManager();
+    $cl_id = $_POST['cl_id'];
+    $v_id = $_POST['v_id'];
+    $new_branch = $_POST['new_branch'];
+    $ret_code = 0;
+    $eng_values = explode('/', $new_branch);
+    $error = '';
+    $res;
+    foreach ($eng_values as $eng_value) {
+        if ($ret_code == 0) {
+            $vl = new ClassificatorValue($eng_value, $eng_value, $v_id, $cl_id);
             $res = $man->insertVl($vl);
-            echo json_encode($res);
+            $v_id = $res['res'];
+            $ret_code = $res['return_code'];
+            $error = $res['error_message'];
 
-
-        }   else if ($action == 'add_vl_branch') {
-            $man = new ClassificatorManager();
-            $cl_id = $_POST['cl_id'];
-            $v_id = $_POST['v_id'];
-            $new_branch = $_POST['new_branch'];
-            $ret_code = 0;
-            $eng_values = explode('/', $new_branch);
-            $error = '';
-            $res;
-            foreach ($eng_values as $eng_value) {
-                if ($ret_code == 0) {
-                    $vl = new ClassificatorValue($eng_value, $eng_value, $v_id, $cl_id);
-                    $res = $man->insertVl($vl);
-                    $v_id = $res['res'];
-                    $ret_code = $res['return_code'];
-                    $error = $res['error_message'];
-
-                }
-            };
-
-            echo json_encode($res);
         }
-           else if ($action == 'add_vl_child') {
-               $man = new ClassificatorManager();
-               $vl = new ClassificatorValue($_POST["rus_value"], $_POST["eng_value"], $_POST["parent_id"], $_POST["classificator_id"]);
-               $res = $man->insertVl($vl);
-               echo json_encode($res);
-        }   else if ($action == 'del_cl') {
-               require_once 'phplibs/ClassificatorManager.php';
-               $man = new ClassificatorManager();
+    };
 
-               $res = $man->removeClByID($_POST["id"]);
-               echo $res;
-        }   else if ($action == 'get_cl_html') {
-               $getter = new ClassificatorEditHtmlGetter();
-               $m = new ClassificatorManager();
-               $cl = $m->selectClByID($_POST['id']);
-               $html_code = $getter->getClHtmlCode($cl);
-               echo $html_code;
-        }   else if ($action == 'get_html') {
-               $getter = new ClassificatorEditHtmlGetter();
-               $html_code = $getter->getHTMLCode();
-               echo $html_code;
-        }   else if ($action == 'get_vl_html') {
-               $getter = new ClassificatorEditHtmlGetter();
-               $m = new ClassificatorManager();
-               $vl = $m->selectVlByID($_POST['id']);
-               $html_code = $getter->getVlHtmlCode($vl);
-               echo $html_code;
-        }   else if ($action == 'get_paths') {
-               require_once 'phplibs/ClassificatorManager.php';
-               $man = new ClassificatorManager();
-               $res = $man->getValuesPaths();
-               echo json_encode($res);
+    echo json_encode($res);
+}
+function add_vl_child_handler() {
+    $man = new ClassificatorManager();
+    $vl = new ClassificatorValue($_POST["rus_value"], $_POST["eng_value"], $_POST["parent_id"], $_POST["classificator_id"]);
+    $res = $man->insertVl($vl);
+    echo json_encode($res);
+}
+function del_cl_handler() {
+    $man = new ClassificatorManager();
 
-        }   else if ($action == 'update') {
-               $man = new ClassificatorManager();
+    $res = $man->removeClByID($_POST["id"]);
+    echo $res;
+}
+function del_v_handler() {
+    $man = new ClassificatorManager();
 
-               $cl = $man->selectClByID($_POST["id"]);
-               if ($cl != null) {
-                   $cl->setRusName($_POST["rus_name"]);
-                   $cl->setEngName($_POST["eng_name"]);
+    $res = $man->removeVlByID($_POST["id"]);
+    echo $res;
+}
+function get_cl_html_handler() {
+    $getter = new ClassificatorEditHtmlGetter();
+    $m = new ClassificatorManager();
+    $cl = $m->selectClByID($_POST['id']);
+    $html_code = $getter->getClHtmlCode($cl);
+    echo $html_code;
+}
 
-                   $res = $man->updateCl($cl);
-               } else {
-                   $res = 'No cl with submitted id';
-               }
-               echo $res;
-        }   else if ($action == 'value_update') {
-               $man = new ClassificatorManager();
+function get_html_handler() {
+    $getter = new ClassificatorEditHtmlGetter();
+    $html_code = $getter->getHTMLCode();
+    echo $html_code;
+}
+function get_vl_html_handler() {
+    $getter = new ClassificatorEditHtmlGetter();
+    $m = new ClassificatorManager();
+    $vl = $m->selectVlByID($_POST['id']);
+    $html_code = $getter->getVlHtmlCode($vl);
+    echo $html_code;
+}
+function get_paths_handler() {
+    require_once 'phplibs/ClassificatorManager.php';
+    $man = new ClassificatorManager();
+    $res = $man->getValuesPaths();
+    echo json_encode($res);
+}
+function update_handler() {
+    $man = new ClassificatorManager();
 
-               $vl = $man->selectVlByID($_POST["id"]);
-               if ($vl != null) {
-                   $vl->setRusName($_POST["rus_value"]);
-                   $vl->setEngName($_POST["eng_value"]);
+    $cl = $man->selectClByID($_POST["id"]);
+    if ($cl != null) {
+        $cl->setRusName($_POST["rus_name"]);
+        $cl->setEngName($_POST["eng_name"]);
 
-
-                   $res = $man->updateVl($vl);
-               } else {
-                   $res = 'No classifier value with submitted id';
-               }
-               echo $res;
-        }
+        $res = $man->updateCl($cl);
     } else {
-        $galleryEditor = new ClassificatorEditor();
-        $galleryEditor-> editClassificator();
+        $res = 'No cl with submitted id';
     }
+    echo $res;
 }
-else {
-    echo 'page not found';
+function value_update_handler() {
+    $man = new ClassificatorManager();
+
+    $vl = $man->selectVlByID($_POST["id"]);
+    if ($vl != null) {
+        $vl->setRusName($_POST["rus_value"]);
+        $vl->setEngName($_POST["eng_value"]);
+
+
+        $res = $man->updateVl($vl);
+    } else {
+        $res = 'No classifier value with submitted id';
+    }
+    echo $res;
 }
 
+
+require_once './router.php';
 ?>
