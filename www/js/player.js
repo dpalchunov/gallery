@@ -1,23 +1,23 @@
 $(document).ready(function(){
 	var playList = [{
                         title:"1.mp3",
-                        mp3: './mp3/1.mp3'
+                        mp3: './player/mp3/1.mp3'
                     },
                     {
                         title:"2.mp3",
-                        mp3: './mp3/2.mp3'
+                        mp3: './player/mp3/2.mp3'
                     },
                     {
                         title:"3.mp3",
-                        mp3: './mp3/3.mp3'
+                        mp3: './player/mp3/3.mp3'
                     },
                     {
                         title:"4.mp3",
-                        mp3: './mp3/4.mp3'
+                        mp3: './player/mp3/4.mp3'
                     },
                     {
                         title:"5.mp3",
-                        mp3: './mp3/5.mp3'
+                        mp3: './player/mp3/5.mp3'
                     }];
     var currentTrack = 0;
 	// Local copy of jQuery selectors, for performance.
@@ -80,7 +80,7 @@ $(document).ready(function(){
         play: function(event) {
             $.cookie("paused", "false",{expires:365});
         },
-		swfPath: "./swf",
+		swfPath: "./player/swf",
 		cssSelectorAncestor: "#player_controls",
 		supplied: "mp3",
 		wmode: "window",
