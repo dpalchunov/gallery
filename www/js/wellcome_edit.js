@@ -210,4 +210,5 @@ $(document).ready(function () {
 
 function destructor() {
     $('.cropper-invisible').remove();
+    $(".mc_el").remove();
 }

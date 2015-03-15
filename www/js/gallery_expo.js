@@ -76,6 +76,7 @@ $(document).ready(function () {
     /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
+    destructor = destructor;
 });
 
 function dragAndResize() {
@@ -247,6 +248,11 @@ function makePictureGetterParametersStringForPageGet(pageNum) {
 
     var allParamsString = pageNumString + "&" +  "action=get_pic_page"+  "&" +  checkboxesValueString;
     return allParamsString;
+}
+
+function destructor() {
+    $('.cropper-invisible').remove();
+    $(".mc_el").remove();
 }
 
 

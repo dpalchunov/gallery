@@ -104,49 +104,64 @@ function reload(hrefObj) {
         async: false
     }).done(function (data) {
             var links = $.parseJSON(data);
-            $.each(links, function (i, e) {
-                var l = document.createElement("link");
-                l.rel = "stylesheet";
-                l.type = "text/css";
-                l.href = "./css/" + e + "?t=" + Date.now();
-                var c = document.createAttribute("class");
-                c.value = "page_style";
-                l.setAttributeNode(c);
-                document.head.appendChild(l);
-            });
+            var len = links.length;
+            if (len == 0) {
+                load_body_and_scripts(id);
+            }  else {
+                var loaded_cnt = 0;
+                $.each(links, function (i, e) {
+                    var l = document.createElement("link");
+                    l.rel = "stylesheet";
+                    l.type = "text/css";
+                    l.href = "./css/" + e + "?t=" + Date.now();
+                    var c = document.createAttribute("class");
+                    c.value = "page_style";
+                    l.setAttributeNode(c);
+                    document.head.appendChild(l);
+                    $(l).load(function() {
+                        loaded_cnt ++;
+                        if (loaded_cnt == len) {
+                            load_body_and_scripts(id);
+                        }
+                    });
+                });
 
+            }
+     });
+
+}
+
+function load_body_and_scripts(id) {
+    $.ajax({
+        type: "POST",
+        url: routes[id].href,
+        data: {part: "body"},
+        async: false
+    }).done(function (body) {
+            $(".mc_el").remove();
+
+            $("body").append(body);
+            //load scripts
             $.ajax({
                 type: "POST",
                 url: routes[id].href,
-                data: {part: "body"},
+                data: {part: "scripts"},
                 async: false
-            }).done(function (body) {
-                        $(".mc_el").remove();
-
-                        $("body").append(body);
-                        //load scripts
+            }).done(function (data) {
+                    var scripts = $.parseJSON(data);
+                    $.each(scripts, function (i, e) {
+                        var s = document.createElement("script");
+                        s.type = "text/javascript";
+                        var src =  "./js/" + e + "?t=" + Date.now();
                         $.ajax({
-                            type: "POST",
-                            url: routes[id].href,
-                            data: {part: "scripts"},
+                            type: "GET",
+                            url: src,
                             async: false
-                        }).done(function (data) {
-                                var scripts = $.parseJSON(data);
-                                $.each(scripts, function (i, e) {
-                                    var s = document.createElement("script");
-                                    s.type = "text/javascript";
-                                    var src =  "./js/" + e + "?t=" + Date.now();
-                                        $.ajax({
-                                            type: "GET",
-                                            url: src,
-                                            async: false
-                                        });
-                                });
-
-                            });
+                        });
                     });
-            });
 
+                });
+        });
 }
 
 function centerLoading() {

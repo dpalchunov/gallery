@@ -5,7 +5,7 @@
       function ContactsPageViewer() {
           parent::Page();
           global $js_scripts,$styles;
-          $js_scripts = array();
+          $js_scripts = array("contacts.js");
           $styles = array('contacts_style.css');
       }
 

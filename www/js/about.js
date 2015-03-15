@@ -59,6 +59,7 @@ function avaAnimation() {
 
 $(document).ready(function () {
     loadAvas();
+    destructor = destructor;
 
 });
 
@@ -85,5 +86,8 @@ function setup_avas() {
         $("#slider").hide();
     }
 }
-<!--Конец скрптов отвечающих за слайдер аватарок на главной странице-->
+
+function destructor() {
+    $(".mc_el").remove();
+}
 

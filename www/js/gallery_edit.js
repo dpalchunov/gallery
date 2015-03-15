@@ -718,6 +718,7 @@ function calcFormHash(hash_holder_id) {
 
 function destructor() {
     $('.cropper-invisible').remove();
+    $(".mc_el").remove();
 }
 
 

@@ -137,8 +137,8 @@ function leftColumnWrapClickHandler() {
 }
 
 $(document).ready(function () {
-//    alert('gallery_ready');
     mainInit();
+    destructor = destructor;
 
 });
 
@@ -581,6 +581,11 @@ function resize_image( src, dst, type, quality ) {
     }
 
 }
+
+function destructor() {
+    $(".mc_el").remove();
+}
+
 
 
 
