@@ -5,8 +5,9 @@ class  AboutEditPageViewer extends Page
 
     function AboutEditPageViewer() {
         parent::Page();
-        global $js_scripts,$styles;
-        $js_scripts = array('cropper.js','jquery.uploadfile.js','about_edit.js');
+        global $js_scripts,$styles,$emp;
+        $emp = $this ->emp;
+        $js_scripts = array($emp.'cropper.min.js',$emp.'jquery.uploadfile.min.js','about_edit.js');
         $styles = array('cropper.css','uploadfile.css','about_edit_style.css');
     }
 

@@ -5,8 +5,9 @@ class  GalleryExpoEditPageViewer extends Page
 
     function GalleryExpoEditPageViewer() {
         parent::Page();
-        global $js_scripts,$styles;
-        $js_scripts = array('gallery_expo.js','jquery.uploadfile.js');
+        global $js_scripts,$styles,$emp;
+        $emp = $this -> emp;
+        $js_scripts = array('gallery_expo.js',$emp.'jquery.uploadfile.min.js');
         $styles = array('uploadfile.css','gallery_expo_style.css');
     }
 

@@ -5,8 +5,9 @@ class  WellcomeEditPageViewer extends Page
 
     function WellcomeEditPageViewer() {
         parent::Page();
-        global $js_scripts,$styles;
-        $js_scripts = array('cropper.js','jquery.uploadfile.js','wellcome_edit.js');
+        global $js_scripts,$styles,$emp;
+        $emp = $this ->emp;
+        $js_scripts = array($emp.'cropper.min.js',$emp.'jquery.uploadfile.min.js','wellcome_edit.js');
         $styles = array('cropper.css','uploadfile.css','wellcome_edit_style.css');
     }
 

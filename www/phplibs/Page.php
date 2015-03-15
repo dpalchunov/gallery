@@ -3,12 +3,16 @@ require_once 'phplibs/ResourceService.php';
 abstract class  Page
 {
 
+    public $emp = './external/min/';
+    public $ep = './external/';
     public function Page()
     {
         global $template_engine, $resourceService,$js_common_scripts,$common_styles;
         $resourceService = new ResourceService();
         $template_engine = $resourceService->getTemplateEngine();
-        $js_common_scripts = array('jquery.js','jquery-ui.js','jquery.cookie.js','header.js','jquery.jplayer.min.js','player.js');
+        $emp = $this ->emp;
+        $ep = $this ->ep;
+        $js_common_scripts = array($emp.'jquery.min.js',$emp.'jquery-ui.min.js',$ep.'jquery.cookie.js','header.js',$emp.'jquery.jplayer.min.js','player.js');
         $common_styles = array('nav_menu.css','header.css','jquery-ui.css','general.css');
     }
 
