@@ -1,5 +1,11 @@
 /*Main content*/
-	
+
+
+@font-face {
+    font-family: MainText; /* Имя шрифта */
+    src: url(../fonts/Code%20Pro%20Light%20LC.otf); /* хороший */
+}
+
 #contacts_table {
     display: inline-block;
     float:left;
@@ -20,6 +26,7 @@
     FONT-FAMILY: MainText;
 	color: white;
 	font-size: 20pt;
+    color: #b0b0b0;
 }
 
 .info {
@@ -38,6 +45,7 @@ td.comment {
     FONT-FAMILY: MainText;
 	color: white;
 	font-size: 12pt;
+    color: #b0b0b0;
 }
 
 .empty {
@@ -95,6 +103,7 @@ object#skypedetectionswf {
     display: inline-block;
     float:left;
     margin-top:0px;
+
 
 
 }

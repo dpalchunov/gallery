@@ -9,12 +9,13 @@ class  Localizator
         global $rus, $eng;
         $rus = array(
             'about_main_text' =>
-'Родилась в городе Тарту в 1989 году.
-В 2005 году поступила в Московское государственное академическое
-художественное училище памяти 1905 года.
-С 2010 года по настоящее время является студенткой МГАХИ им. Сурикова,
-мастерской народного художника, академика РАХ, профессора Татьяны Назаренко.
-В 2014 году награждена золотой медалью Российской Академии Художеств.',
+'РОДИЛАСЬ В ГОРОДЕ ТАРТУ В 1989 ГОДУ.
+В 2005 ГОДУ ПОСТУПИЛА В МОСКОВСКОЕ ГОСУДАРСТВЕННОЕ АКАДЕМИЧЕСКОЕ
+ХУДОЖЕСТВЕННОЕ УЧИЛИЩЕ ПАМЯТИ 1905 ГОДА.
+С 2010 ГОДА ПО НАСТОЯЩЕЕ ВРЕМЯ ЯВЛЯЕТСЯ СТУДЕНТКОЙ МГАХИ ИМ. СУРИКОВА,
+МАСТЕРСКОЙ НАРОДНОГО ХУДОЖНИКА, АКАДЕМИКА РАХ, ПРОФЕССОРА ТАТЬЯНЫ НАЗАРЕНКО.
+В 2014 ГОДУ НАГРАЖДЕНА ЗОЛОТОЙ МЕДАЛЬЮ РОССИЙСКОЙ АКАДЕМИИ ХУДОЖЕСТВ.
+',
             'change_lang_label' => 'eng',
             'contacts_call_comment' => 'Звоните на мой мобильный телефон в Москве.',
             'contacts_mail_comment' => 'Пишите на электронную почту.',
@@ -35,13 +36,13 @@ class  Localizator
         );
         $eng = array(
             'about_main_text' =>
-'Strunkova Kristina. Was born in Tartu in 1989.
-Kristina studied art at school in Tambov. In 2005 began studying at
-Moscow State Art College by name 1905 year and finished it in 2009.
-In the same year she began studying at Moscow State Art Institute
-by name of V.Surikov in the faculty of painting and this continues
-at this moment.She took part in several exhibitions in Moscow and
-Tambov in Russia and England.',
+'STRUNKOVA KRISTINA. WAS BORN IN TARTU IN 1989.
+KRISTINA STUDIED ART AT SCHOOL IN TAMBOV. IN 2005 BEGAN STUDYING AT
+MOSCOW STATE ART COLLEGE BY NAME 1905 YEAR AND FINISHED IT IN 2009.
+IN THE SAME YEAR SHE BEGAN STUDYING AT MOSCOW STATE ART INSTITUTE
+BY NAME OF V.SURIKOV IN THE FACULTY OF PAINTING AND THIS CONTINUES
+AT THIS MOMENT.SHE TOOK PART IN SEVERAL EXHIBITIONS IN MOSCOW AND
+TAMBOV IN RUSSIA AND ENGLAND.',
             'change_lang_label' => 'рус',
             'contacts_call_comment' => 'Call to mobile phone in Moscow.',
             'contacts_mail_comment' => 'Mail to electronic mail.',

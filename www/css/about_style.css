@@ -29,18 +29,13 @@
 
 @font-face {
     font-family: MainText; /* Имя шрифта */
-    src: url(../fonts/OpenSans-Light.ttf); /* Путь к файлу со шрифтом */
-    src: url(../fonts/SourceSansPro-Light.ttf); /* Путь к файлу со шрифтом */
-    src: url(../fonts/JournalSansC.otf); /* Путь к файлу со шрифтом */
-    src: url(../fonts/CourierC.otf); /* Путь к файлу со шрифтом */
-    src: url(../fonts/BauhausC-Light.otf); /* Путь к файлу со шрифтом */
-    src: url(../fonts/HeliosExtThin-Italic.otf); /* Путь к файлу со шрифтом */
+    src: url(../fonts/Code%20Pro%20Light%20LC.otf); /* хороший */
 }
 
 #main_text pre {
     FONT-FAMILY: MainText;
-    font-size: 24px;
-    color: white;
+    font-size: 18px;
+    color: #b0b0b0;
     display:inline-block;
     float:left;
     position:relative;

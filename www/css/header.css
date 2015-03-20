@@ -1,5 +1,10 @@
 /*Header*/
 
+@font-face {
+    font-family: MainText; /* Имя шрифта */
+    src: url(../fonts/Capture_it.ttf); /* хороший */
+}
+
 #header {
     position: relative;
     height: 130px;
