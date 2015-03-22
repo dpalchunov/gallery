@@ -378,7 +378,7 @@ function centerFullScreenPic() {
     if (imgRatio > winRatio) {
 
 
-        $("#fullScreenPicContainer").height($(window).height());
+        $("#fullScreenPicContainer").height($(window).height()*0.95);
         $("#fullScreenPicContainer").width($("#fullScreenPicContainer").height()/imgRatio);
     } else {
         $("#fullScreenPicContainer").width($(window).width()*0.80);
