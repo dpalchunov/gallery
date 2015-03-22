@@ -64,8 +64,8 @@ class  ResourceService
 
         if ($_COOKIE['lang'] == '') {
             $expireDate = mktime(0, 0, 0, 1, 1, 2020);
-            setcookie('lang', 'rus', $expireDate);
-            return 'rus';
+            setcookie('lang', 'eng', $expireDate);
+            return 'eng';
         } else {
             return $_COOKIE['lang'];
         }
