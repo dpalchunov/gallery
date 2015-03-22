@@ -49,13 +49,28 @@ class  Localizator
         );
         $eng = array(
             'about_main_text' =>
-'STRUNKOVA KRISTINA. WAS BORN IN TARTU IN 1989.
-KRISTINA STUDIED ART AT SCHOOL IN TAMBOV. IN 2005 BEGAN STUDYING AT
-MOSCOW STATE ART COLLEGE BY NAME 1905 YEAR AND FINISHED IT IN 2009.
-IN THE SAME YEAR SHE BEGAN STUDYING AT MOSCOW STATE ART INSTITUTE
-BY NAME OF V.SURIKOV IN THE FACULTY OF PAINTING AND THIS CONTINUES
-AT THIS MOMENT.SHE TOOK PART IN SEVERAL EXHIBITIONS IN MOSCOW AND
-TAMBOV IN RUSSIA AND ENGLAND.',
+'BIOGRAPHY
+
+Born in Tartu Estonia in 1989.
+2005-entered Moscow Art School by memory of 1905.
+2010- present-student at the Surikov State Institute of Fine Arts
+(Studio under the guidance of  People’s Artist, Member of the Russian Academy of Arts, Professor Tatyana Nazarenko)
+2012- awarded by the diploma of the Russian Academy of Fine Arts for the portrait work.
+2014- awarded by the gold medal of the Russian Academy of Fine Arts.
+
+2014 Project «Parallels» EAST MEETS WEST GALLERY, Artplay, Moscow (catalog).
+2014 The Yong Artists exhibition, Moscow Union of Artists, Moscow
+2013 The Yong Artists exhibition, Moscow Union of Artists, Moscow.
+2013 The Yong Artists exhibition, Moscow Union of Artists, Moscow.
+2013 Project «From school to school «Krisha» Gallery, Moscow.
+2013 Moscow Art Saloon, Central House of Artists, Moscow.
+2012 Personal Exhibition, Regional picture gallery, Tambov.
+2011 Student exhibition MGAHU by memory of 1905, Moscow
+2010 «Hastings as seen by the Russian artists», Baker Mamonova Gallery, Hastings, England.
+
+Kristina’s pictures are in private collections in Russia and in Evrope.
+
+',
             'change_lang_label' => 'рус',
             'contacts_call_comment' => 'Call to mobile phone in Moscow.',
             'contacts_mail_comment' => 'Mail to electronic mail.',
