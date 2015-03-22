@@ -476,8 +476,8 @@ function previousPicture() {
 }
 
 function replaceCurPictureByNext(picPath) {
-    //$("#fullScreenPicContainer").css("background-image","url(" + picPath + ")");
     $("#big_image").attr("src",picPath);
+    $('#resampled_image').hide();
     resize_image( $( '#big_image' )[0], $( '#resampled_image' )[0] );
     centerFullScreenPic();
 }
@@ -575,6 +575,7 @@ function resize_image( src, dst, type, quality ) {
 
         if ( cW <= src.width || cH <= src.height ) {
             $('#loader').hide();
+            $('#resampled_image').show();
             return;
         }
         tmp.src = dst.src;
