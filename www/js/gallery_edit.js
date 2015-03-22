@@ -710,7 +710,7 @@ function calcFormHash(hash_holder_id) {
     var $fields = $("[hash_holder='" + hash_holder_id + "']");
     var $content = '';
     $fields.each(function () {
-        $content += $(this).attr("value") + $(this).prop("checked");
+        $content += $(this).val() + $(this).attr("value") + $(this).prop("checked");
     });
     var $hash = new String($content).hashCode();
     return $hash;
