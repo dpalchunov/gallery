@@ -1,15 +1,7 @@
-/*Main content*/
-
-
-@font-face {
-    font-family: MainText; /* Имя шрифта */
-    src: url(../fonts/Code%20Pro%20Light%20LC.otf); /* хороший */
-}
-
 #contacts_table {
     display: inline-block;
     float:left;
-	height: 282px;
+	height: 350px;
 	width: 90%;
 	position: relative;
 	margin-top: 100px;
@@ -19,10 +11,7 @@
 
 }
 
-
-
 .head {
-
     FONT-FAMILY: MainText;
 	color: white;
 	font-size: 20pt;
@@ -53,8 +42,6 @@ td.comment {
 	height: 8pt;
 }
 
-
-
 .container {
 	margin-top: 10px;
 	height: 64px;
@@ -64,33 +51,9 @@ td.comment {
 }
 
 .container:hover img{
-
 	margin-top: -64px;
 }
 
-
-/*Footer*/
-#footer {
-    display:inline-block;
-    float:left;
-    position: relative;
-    height: 80px;
-    width: 100%;
-    color: #FFFFFF;
-    background-color: black;
-    margin-top: 125px
-}
-
-
-#footer_phrase_name {
-    height: 15px;
-    width: 241px;
-    position: relative;
-    left: 200px;
-    top: 55px;
-    background-image: url(../images/footer_phrase_name.png);
-    background-repeat: no-repeat;
-}
 
 object#skypedetectionswf {
     display:none;
@@ -103,10 +66,4 @@ object#skypedetectionswf {
     display: inline-block;
     float:left;
     margin-top:0px;
-
-
-
 }
-
-
-

@@ -19,7 +19,3 @@
                 </table>
             </div><!--end contacts_table-->
 	    </div><!--end main_content-->
-	    <div id="footer" class="mc_el">
-            <div id="footer_phrase_name">
-            </div><!--end footer_phrase_name-->
-	    </div><!--end footer-->

@@ -12,7 +12,7 @@
 /*оборачивает хидер контекнт и футер*/
 #page_wrap {
     width: 95%;
-    background: #000;
+    background: white;
     position: relative;
     height: 100%;
     float:left;
@@ -39,7 +39,7 @@
     width: 50%;
     float:left;
     height:100%;
-    background-color: #000;
+    background-color: white;
     z-index: 1;
     overflow: hidden;
 }
@@ -61,14 +61,14 @@
 
 #arrow_pic p {
     font-size: 16px;
-    color: #000;
+    color: #FFF;
 }
 
 #arrow_pic p:hover {
     font-size: 16px;
     font-weight: 500;
     font-weight: bold;
-    color: #000;
+    color: #FFF;
 }
 
 /*Конец самого верхнего уровня разметки*/
@@ -76,7 +76,7 @@
 /*Header*/
 
 #page_wrap_padding {
-    background-color: #000;
+    background-color: #FFF;
     height: 5px;
     position: relative;
 }
@@ -87,7 +87,7 @@
     width: 100%;
     display: block;
     position: relative;
-    background-color: #000000;
+    background-color: #FFF;
     background-repeat: no-repeat;
     margin-top: 0px;
 }
@@ -165,33 +165,11 @@
     position: fixed;
     bottom: 15px;
     right: 15px;
-    color: #000000;
+    color: #FFF;
     padding: 6px;
     text-align: center;
     z-index: 9999999999;
     display: none;
-}
-
-/*Footer*/
-#footer {
-    position: relative;
-    left: 0px;
-    height: 80px;
-    width: 100%;
-    color: #FFFFFF;
-    background-color: #000000;
-    display: block;
-    z-index: 10;
-}
-
-#footer_phrase_name {
-    height: 15px;
-    width: 241px;
-    position: absolute;
-    left: 200px;
-    top: 55px;
-    background-image: url(../images/footer_phrase_name.png);
-    background-repeat: no-repeat;
 }
 
 /*Панелька настроек*/

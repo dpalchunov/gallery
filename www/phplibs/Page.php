@@ -70,7 +70,15 @@ abstract class  Page
             $template_engine->assign('a_header', '');
         }
         $template_engine->assign('body', $this -> getBody($params));
+        $template_engine->assign('footer', $this -> getFooter());
         $template_engine->display('page.tpl');
+    }
+
+    public function getFooter() {
+        global $template_engine;
+        $footer = $template_engine ->  fetch('footer.tpl');
+        return $footer;
+
     }
 
     public function getPlayer() {
@@ -109,6 +117,10 @@ abstract class  Page
         if (isset($params['part'])) {
             if ($params['part'] == 'body') {
                 $result = $this -> getBody($params);
+            } elseif ($params['part'] == 'body_and_footer') {
+                $body = $this -> getBody($params);
+                $footer = $this -> getFooter();
+                $result = $body . $footer;
             } elseif ($params['part'] == 'head') {
                 $result = $this -> getHead();
             } elseif ($params['part'] == 'head_content') {

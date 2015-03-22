@@ -227,26 +227,6 @@
     display: none;
 }
 
-/*Footer*/
-#footer {
-    position: relative;
-    top: 0px;
-    left: 0px;
-    height: 80px;
-    width: 100%;
-    color: #FFFFFF;
-    background-color: #000000;
-}
-
-#footer_phrase_name {
-    height: 15px;
-    width: 241px;
-    position: absolute;
-    left: 200px;
-    top: 55px;
-    background-image: url(../images/footer_phrase_name.png);
-    background-repeat: no-repeat;
-}
 
 .field_editor_div {
     width: 600px;

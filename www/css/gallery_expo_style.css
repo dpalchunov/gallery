@@ -179,28 +179,6 @@
     display: none;
 }
 
-/*Footer*/
-#footer {
-    position: relative;
-    left: 0px;
-    height: 80px;
-    width: 100%;
-    color: #FFFFFF;
-    background-color: #000000;
-    display: none;
-    z-index: 10;
-}
-
-#footer_phrase_name {
-    height: 15px;
-    width: 241px;
-    position: absolute;
-    left: 200px;
-    top: 55px;
-    background-image: url(../images/footer_phrase_name.png);
-    background-repeat: no-repeat;
-}
-
 /*Панелька настроек*/
 .panel {
     left: 10000;

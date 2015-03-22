@@ -9,5 +9,6 @@
         {{{$player}}}
         {{{$a_header}}}
         {{{$body}}}
+        {{{$footer}}}
     </body>
 </html>

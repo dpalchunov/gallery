@@ -135,7 +135,7 @@ function load_body_and_scripts(id) {
     $.ajax({
         type: "POST",
         url: routes[id].href,
-        data: {part: "body"},
+        data: {part: "body_and_footer"},
         async: false
     }).done(function (body) {
             $(".mc_el").remove();

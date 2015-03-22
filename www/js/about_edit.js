@@ -231,3 +231,123 @@ function destructor() {
     $('.cropper-invisible').remove();
     $(".mc_el").remove();
 }
+
+
+
+
+
+
+function saveHandler(formID, hashHolderID) {
+    saveValuesRelations(hashHolderID, formID);
+    $("#" + formID).submit();
+    $(".save_pic[area='" + hashHolderID + "']").hide();
+    loadAndSetPaths();
+    refreshHashByID(hashHolderID);
+}
+
+
+function addControlsClickHandlers() {
+    var $removeButtons = $(".remove_href");
+
+    $removeButtons.each(function () {
+        $(this).click(function () {
+            removeHandler($(this).attr("file_name"))
+        });
+
+        $(this).hover(function () {
+            $("#" + $(this).attr("area")).css("background-color", "#D16464");
+        }, function () {
+            $("#" + $(this).attr("area")).css("background-color", "black");
+        });
+
+    });
+
+    var $saveButtons = $(".save_href");
+
+    $saveButtons.each(function () {
+        $(this).click(function () {
+            saveHandler($(this).attr("form_id"), $(this).attr("area"))
+        });
+
+        $(this).hover(function () {
+            $("#" + $(this).attr("area")).css("background-color", "#5d9f7a");
+        }, function () {
+            $("#" + $(this).attr("area")).css("background-color", "black");
+        });
+
+    });
+
+}
+
+
+function addFieldsHandlers() {
+    var inputs = $(".field_editor_input");
+    addFieldsChangeHandlers(inputs);
+}
+
+function addFieldsChangeHandlers(inputs) {
+    $(inputs).each(function () {
+        $(this).keyup(function () {
+            checkPicHash($(this));
+        });
+    });
+}
+
+function checkPicHash(input) {
+    var $hashHolderID = $(input).attr("hash_holder");
+    var $oldHash = $("#" + $hashHolderID).attr("hash");
+    var $newHash = calcFormHash($hashHolderID);
+    if ($oldHash != $newHash) {
+        $(".save_pic[area='" + $hashHolderID + "']").show();
+    } else {
+        $(".save_pic[area='" + $hashHolderID + "']").hide();
+    }
+}
+
+
+function addSubmitHandlers() {
+    var $forms = $(".field_editor_form");
+
+    $forms.each(function () {
+        $(this).submit(function (e) {
+            e.preventDefault();
+            //         console.log($(this).serialize());  //den_debug
+            $.ajax({
+                type: "POST",
+                url: "./gallery_edit.php",
+                data: $.extend($(this),{action:"edit_update_pic"}).serialize(),
+                success: function (data) {
+                    //    console.log(data);  //den_debug
+                }
+            })
+        });
+    });
+}
+
+function setCurrentHashes() {
+    var $areas = $(".one_element");
+    $areas.each(function () {
+        $hash = calcFormHash($(this).attr('id'));
+        $(this).attr('hash', $hash);
+    });
+}
+
+
+function refreshHashByID(ID) {
+    refreshHash($('#' + ID));
+}
+
+function refreshHash(hash_holder) {
+    var hash = calcFormHash($(hash_holder).attr('id'));
+    $(hash_holder).attr('hash', hash);
+}
+
+function calcFormHash(hash_holder_id) {
+    var $fields = $("[hash_holder='" + hash_holder_id + "']");
+    var $content = '';
+    $fields.each(function () {
+        $content += $(this).attr("value") + $(this).prop("checked");
+    });
+    var $hash = new String($content).hashCode();
+    return $hash;
+}

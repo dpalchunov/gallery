@@ -20,12 +20,6 @@
                 <div id="sketches"></div>
             </div>
             <!--end main_content-->
-            <div id="footer">
-                <div id="footer_phrase_name">
-                </div>
-                <!--end footer_phrase_name-->
-            </div>
-            <!--end footer-->
         </div>
         <!--end page_wrap-->
     </div>

@@ -37,7 +37,7 @@ class AvatarCropper extends PicCropper
                 return;
             }
 
-            $dst_w = 400;
+            $dst_w = 1440;
             $ratio = ($data->width) / ($data->height);
             $dst_h = $dst_w / $ratio;
 

@@ -1,4 +1,9 @@
 @import url('reset.css');
+@font-face {
+    font-family: MainText; /* Имя шрифта */
+    src: url(../fonts/Code%20Pro%20Light%20LC.otf); /* хороший */
+}
+
 
 /*General Styles*/
 html {
@@ -6,12 +11,12 @@ html {
 }
 
 body {
-    background: #000;
+    height: 100%;
     font-family: Times New Roman, Helvetica, sans-serif;
     font-size: 18px;
     color: #ffffff;
-    background-color: #000;
     width: 100%;
+    background-color: white;
 }
 
 .noscrolled_body {
@@ -64,4 +69,28 @@ blockquote {
     width: 100%;
     height: 100%;
     z-index: 1999;
+}
+
+/*Footer*/
+#footer {
+    display:inline-block;
+    float:left;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    color: #000000;
+    background-color: black;
+    margin-top: 145px
+}
+
+#footer_phrase_name {
+    height: 15px;
+    width: 541px;
+    position: relative;
+    left: 200px;
+    top: 10px;
+    color: white;
+    background-color:#000000;
+    font-family: MainText;
+    font-size: 14px;
 }

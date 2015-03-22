@@ -9,7 +9,7 @@
     position: relative;
     height: 130px;
     width: 100%;
-    background: #000000;
+    background: #FFF;
     z-index: 10;
 }
 
@@ -132,7 +132,7 @@
     background-repeat: no-repeat;
     FONT-FAMILY: Code LIGHT;
     FONT-SIZE: 60px;
-    color: #ffffff;
+    color: #000;
     letter-spacing: 10px;
 
 }
@@ -145,7 +145,7 @@
     position: relative;
     height: 9px;
     width: 100%;
-    background-color: #000;
+    background-color: white;
     z-index:9;
     display:block;
 }
@@ -194,7 +194,7 @@
     float:right;
     width:3%;
     display: inline-block;
-    background-color: #000000;
+    background-color: #FFF;
 }
 
 #progress_time_line {
@@ -219,7 +219,7 @@
     float:right;
     width:3%;
     display: inline-block;
-    background-color: #000000;
+    background-color: #FFF;
 }
 
 #track_count_line {

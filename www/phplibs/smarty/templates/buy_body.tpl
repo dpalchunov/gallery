@@ -35,8 +35,5 @@
 		    </table>			    
 		</div><!--end contacts_table-->
 	    </div><!--end main_content-->
-	    <div id="footer">
-		<div id="footer_phrase_name"> 	    
-		</div><!--end footer_phrase_name-->		
-	    </div><!--end footer-->
+
 	</div><!--end wrap-->

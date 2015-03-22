@@ -22,27 +22,29 @@
 
 /*Navigation menu -about*/
 div.menu_button {
-    border: 1px double #333339;
+    border: 1px double white;
     text-align:center;
     vertical-align: middle;
-    FONT-FAMILY: Code bold;
+    FONT-FAMILY: MainText;
     FONT-SIZE: 16px;
+
 
 }
 
 div.menu_button.active {
-    border: 1px double #ffffff;
+    border: 1px double #000000;
 }
 
 div.menu_button:hover {
-    border: 1px double #ffffff;
-    background-color: black;
+    border: 1px double #000000;
+    background-color: white;
 }
 
 div.menu_button a {
     display: block;
     height: 100%;
     text-decoration: none;
+    color: black;
 }
 
 

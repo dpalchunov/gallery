@@ -12,6 +12,7 @@ function common_action_handler() {
     } else {
         $page = new GreetingPageViewer();
     }
+
     $page -> show($_POST);
 }
 
