@@ -74,16 +74,22 @@ function setup_avas() {
                     //по окончании анимации исчезновения
                     //установка нового background-image
                     $("#ava_img").attr("src", nextAvaPath);
+                    $("#ava").css("background-image",'url("' +  nextAvaPath + '")');
 
                 }
             );
             avaAnimation();
         });
         $("#ava_img").attr("src", getCurAvaPath());
+        $("#ava").css("background-image",'url("' +  getCurAvaPath() + '")');
     } else if (avaCount == 1) {
         $("#ava_img").attr("src", getCurAvaPath());
+        $("#ava").css("background-image",'url("' +  getCurAvaPath() + '")');
+
     } else {
         $("#slider").hide();
+        $("#ava").css("background-image",'none');
+
     }
 }
 

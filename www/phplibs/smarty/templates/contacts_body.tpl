@@ -1,21 +1,56 @@
+<div id="main_content" class="mc_el">
+    <div id="main_phrase">
+        {{{$contacts_main_phrase}}}
+    </div>
 
-	    <div id="main_content" class="mc_el">
-            <div id="contacts_table">
-                <table border=0>
-                  <tr><td colspan=2 id="contacts_main_phrase" class="head">{{{$contacts_main_phrase}}}</td></tr>
-                  <tr><td colspan=2 height=20></td></tr>
-                  <tr  class="empty"><td   rowspan=3  width=100 ><img  src="../images/contacts/phone.png"/></td><td></td></tr>
-                  <tr><td class="info">+7(926)-033-39-31</td></tr>
-                  <tr><td id="contacts_call_comment" class="comment">{{{$contacts_call_comment}}}</td></tr>
+    <div id="content_bg">
+        <div id="content">
+            <div class="tr_empty">
+                <div class="tc_empty"></div>
+                <div class="tc_empty"></div>
+            </div>
+            <div id="phone" class="tr">
+                <div id="phone_img" class="tc image_tc">
 
-                  <tr  class="empty"><td rowspan=3 ><a class="container" href="mailto:kristina-8989@mail.ru"><img src="../images/contacts/mail_black.png"/></a></td><td></td></tr>
-                  <tr><td class="info"><a href="mailto:kristina-8989@mail.ru">kristina-8989@mail.ru</a></td></tr>
-                  <tr><td id="contacts_mail_comment" class="comment">{{{$contacts_mail_comment}}}</td></tr>
+                </div>
+                <div id="phone_text" class="tc">
+                    <a href="tel:+7(926)-033-39-31">+7(926)-033-39-31</a>
 
-                  <tr  class="empty"><td rowspan=3><a class="container" href="skype:kristina_551?call"><img  src="../images/contacts/skype.png"/></a></td><td></td></tr>
-                  <tr><td class="info"><a href="skype:kristina_551?call">kristina_571</a></td></tr>
-                  <tr><td id="contacts_skype_comment" class="comment">{{{$contacts_skype_comment}}}</td></tr>
+                </div>
+            </div>
 
-                </table>
-            </div><!--end contacts_table-->
-	    </div><!--end main_content-->
+            <div class="tr_empty">
+                <div class="tc_empty"></div>
+                <div class="tc_empty"></div>
+            </div>
+            <div id="mail" class="tr">
+                <div id="mail_img" class="tc image_tc">
+
+                </div>
+                <div id="mail_text" class="tc">
+                    <a href="mailto:kristina-8989@mail.ru">kristina-8989@mail.ru</a>
+                </div>
+            </div>
+            <div class="tr_empty">
+                <div class="tc_empty"></div>
+                <div class="tc_empty"></div>
+            </div>
+            <div id="fb" class="tr">
+                <div id="fb_img" class="tc image_tc">
+
+                </div>
+
+                <div id="fb_text" class="tc">
+                    <a href="https://www.facebook.com/kristina.strunkova?fref=ts">www.facebook.com/kristina.strunkova</a>
+                </div>
+
+            </div>
+            <div class="tr_empty">
+                <div class="tc_empty"></div>
+                <div class="tc_empty"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!--end main_content-->

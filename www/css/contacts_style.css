@@ -1,69 +1,135 @@
-#contacts_table {
-    display: inline-block;
-    float:left;
-	height: 350px;
-	width: 90%;
-	position: relative;
-	margin-top: 100px;
-    margin-left:10%;
-	background-repeat: no-repeat;
-    color:white;
-
-}
-
-.head {
-    FONT-FAMILY: MainText;
-	color: white;
-	font-size: 20pt;
-    color: #b0b0b0;
-}
-
-.info {
-    FONT-FAMILY: MainText;
-	color: white;
-	font-size: 17pt;
-}
-
-.info a{
-    FONT-FAMILY: MainText
-	color: white;
-	font-size: 17pt;
-}
-
-td.comment {
-    FONT-FAMILY: MainText;
-	color: white;
-	font-size: 12pt;
-    color: #b0b0b0;
-}
-
-.empty {
-
-	height: 8pt;
-}
-
-.container {
-	margin-top: 10px;
-	height: 64px;
-	width: 64px;
-	overflow: hidden;
-	display: inline-block;
-}
-
-.container:hover img{
-	margin-top: -64px;
-}
-
-
-object#skypedetectionswf {
-    display:none;
-}
-
 #main_content {
+    margin-left: 0px;
     width: 100%;
     position: relative;
-    background-color: black;
+    background-color: white;
     display: inline-block;
     float:left;
-    margin-top:0px;
+    margin-top:50px;
+}
+
+#main_phrase {
+    display: block;
+    margin-left: 200px;
+    margin-top: 40px;
+    font-family: MainText;
+    font-size: 30px;
+    color: #444a4d;
+
+}
+
+#content{
+    margin-left: 280px;
+    margin-top: 50px;
+    display: table;
+    width:800px;
+
+}
+
+#content_bg {
+    background-color: #000000;
+    width:100%;
+}
+
+.tr {
+    display: table-row;
+    text-align: left;
+
+}
+.tr_empty {
+    display: table-row;
+    height: 20px;
+    text-align: left;
+}
+
+.tc_empty {
+    display: table-cell;
+    height: 20px;
+}
+
+.tc {
+    display: table-cell;
+
+    height: 40px;
+    width: 300px;
+    vertical-align: bottom;
+    font-family: MainText;
+    color: grey;
+    font-size: 25px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: left;
+
+}
+
+.image_tc {
+    width:40px;
+}
+
+.tc a {
+    font-family: MainText;
+    font-size: 25px;
+    color: #000000;
+    color: grey;
+
+}
+
+.tc a:hover {
+    font-family: MainText;
+    font-size: 25px;
+    color: #000000;
+    color: white;
+}
+
+
+#phone{
+    display: table-row;
+}
+
+#mail{
+    display: table-row;
+}
+#phone_img{
+    background-image: url("../images/contacts/p_grey.svg");
+    background-repeat: repeat-x;
+    background-position: left;
+}
+#mail_img{
+    background-image: url("../images/contacts/m_grey.svg");
+    width: 50px;
+}
+#phone_img:hover{
+    background-image: url("../images/contacts/p_w.svg");
+    cursor: pointer;
+}
+#mail_img:hover{
+    background-image: url("../images/contacts/m_w.svg");
+    cursor: pointer;
+
+
+}
+#phone_text{
+    text-align: left;
+
+}
+
+
+#mail_text{
+    text-align: left;
+}
+
+#fb_img {
+    background-image: url("../images/contacts/f_grey.svg");
+    width: 50px;
+}
+
+#fb_img:hover {
+    background-image: url("../images/contacts/f_w.svg");
+    width: 50px;
+    cursor: pointer;
+
+}
+
+#fb_text {
+    text-align: left;
 }

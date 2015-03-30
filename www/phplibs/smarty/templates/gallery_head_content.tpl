@@ -1,1 +1,1 @@
-<title>Галерея</title>
+<title>Gallery</title>

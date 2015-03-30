@@ -49,7 +49,6 @@
     position: fixed;
     width: 60px;
     height: 100%;
-    background-image: url("../images/returner/arrow.png");
     background-color: #ffffff;
     background-repeat: no-repeat;
     background-position: center 3%;
@@ -118,7 +117,7 @@
     position: absolute;
     bottom: 0px;
     opacity: 0.9;
-    background: rgba(0, 0, 0, 0.9); /* фон с полупрозрачностью */
+    background: rgba(0, 0, 0, 0.4); /* фон с полупрозрачностью */
     filter: alpha(Opacity=90); /* Прозрачность в IE */
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000)"; /* все тот же фон с полупрозрачностью, но фильтр для ИЕ8 */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000); /* все тот же фон с полупрозрачностью, но фильтр для ИЕ7 и ИЕ6 */

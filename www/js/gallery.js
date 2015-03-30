@@ -11,7 +11,7 @@ var fullScreenPics = [];
 var picIterator = 0;
 var nextPictureInWork = 0;
 var needShowPicAfterLoad = false;
-var arrow_color = '#222';
+var arrow_color = '#EEE';
 
 
 
@@ -217,14 +217,16 @@ function onScrollfunct() {
 
 
 function turnOnReturner() {
-    $('#arrow_pic').css('background-image', "url('../images/returner/arrow.png')");
     //каждый bind - это новый вызов одной и той же функции
     $('#left_column_wrap,#arrow_pic').unbind("click");
     $('#left_column_wrap,#arrow_pic').bind("click", leftColumnWrapClickHandler)
     if (mouseoverLeftColumnWrap) {
+        $('#arrow_pic').css('background-image', "url('../images/returner/up77.svg')");
+
         $('#left_column_wrap').css('opacity', 0);
         $('#arrow_pic').css('background-color', arrow_color);
     } else {
+        $('#arrow_pic').css('background-image', "url()");
         $('#left_column_wrap').css('opacity', 1);
         $('#arrow_pic').css('background-color', '#FFF');
     }
@@ -241,7 +243,7 @@ function turnOnReturner() {
 function showArrow() {
     $('#left_column_wrap').css('opacity', 0);
     $('#arrow_pic').css('background-color', arrow_color);
-    $('#arrow_pic').css('background-image', "url('../images/returner/arrow.png')");
+    $('#arrow_pic').css('background-image', "url('../images/returner/up77.svg')");
 
     mouseoverLeftColumnWrap = true;
 }

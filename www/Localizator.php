@@ -51,7 +51,7 @@ class  Localizator
             'about_main_text' =>
 'BIOGRAPHY
 
-Born in Tartu Estonia in 1989.
+Born in Tartu in 1989.
 2005-entered Moscow Art School by memory of 1905.
 2010- present-student at the Surikov State Institute of Fine Arts
 (Studio under the guidance of  People’s Artist, Member of the Russian Academy of Arts, Professor Tatyana Nazarenko)
@@ -68,14 +68,14 @@ Born in Tartu Estonia in 1989.
 2011 Student exhibition MGAHU by memory of 1905, Moscow
 2010 «Hastings as seen by the Russian artists», Baker Mamonova Gallery, Hastings, England.
 
-Kristina’s pictures are in private collections in Russia and in Evrope.
+Kristina’s pictures are in private collections in Russia and in Europe.
 
 ',
             'change_lang_label' => 'рус',
             'contacts_call_comment' => 'Call to mobile phone in Moscow.',
             'contacts_mail_comment' => 'Mail to electronic mail.',
             'contacts_skype_comment' => 'Call in Skype.',
-            'contacts_main_phrase' => 'To explore the possibilities for cooperation or art works purchase contact me',
+            'contacts_main_phrase' => 'To explore the possibilities for cooperation or art works purchase contact:',
             'buy_pic' => 'Order any of your favorite painting, near price is:',
             'buy_pic_price1' => 'less than two thousand dollars.',
             'buy_pic_price2' => 'less than five thousand dollars.',

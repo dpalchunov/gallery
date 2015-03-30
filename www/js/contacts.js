@@ -3,6 +3,8 @@
 $(document).ready(function () {
     destructor = destructor;
 
+    $("")
+
 });
 
 function destructor() {
