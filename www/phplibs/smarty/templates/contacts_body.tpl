@@ -46,8 +46,8 @@
 
             </div>
             <div class="tr_empty">
-                <div class="tc_empty"></div>
-                <div class="tc_empty"></div>
+                <div class="tc_last"></div>
+                <div class="tc_last"></div>
             </div>
         </div>
     </div>
