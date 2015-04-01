@@ -47,6 +47,12 @@
     height: 20px;
 }
 
+
+.tc_last {
+    display: table-cell;
+    height: 200px;
+}
+
 .tc {
     display: table-cell;
 
@@ -132,4 +138,8 @@
 
 #fb_text {
     text-align: left;
+}
+
+#footer {
+    margin-top:0px;
 }
