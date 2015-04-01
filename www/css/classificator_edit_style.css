@@ -286,10 +286,6 @@ blockquote {
     position: relative;
 }
 
-@font-face {
-    font-family: Garamond; /* ��������� ������ */
-    src: url("../fonts/GaramondPremrPro-It.otf");/* ���� � ����� �� ������� */
-}
 
 .head {
 
