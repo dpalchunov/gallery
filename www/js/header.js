@@ -26,6 +26,7 @@ $(document).ready(function () {
     progressInit();
     centerLoading();
     load_style_arrays();
+    load_scripts_arrays();
 });
 
 function progressInit() {
@@ -147,11 +148,29 @@ function load_style_arrays() {
             type: "POST",
             url: route.href,
             data: {part: "page_styles"},
-            async: false
+            async: true
         }).done(function (data) {
                 try {
                     var styles = $.parseJSON(data);
                     route.styles =  styles;
+                }  catch(e) {
+
+                }
+            })
+    });
+}
+
+function load_scripts_arrays() {
+    $.each(routes,function(route_i,route) {
+        $.ajax({
+            type: "POST",
+            url: route.href,
+            data: {part: "scripts"},
+            async: true
+        }).done(function (data) {
+                try {
+                    var scripts = $.parseJSON(data);
+                    route.scripts =  scripts;
                 }  catch(e) {
 
                 }
@@ -164,7 +183,7 @@ function load_body(id) {
         type: "POST",
         url: routes[id].href,
         data: {part: "body_and_footer"},
-        async: false
+        async: true
     }).done(function (body) {
             body_loaded = true;
             loaded_body = body;
@@ -174,26 +193,20 @@ function load_body(id) {
 }
 
 function load_scripts(id) {
-    //load scripts
-    $.ajax({
-        type: "POST",
-        url: routes[id].href,
-        data: {part: "scripts"},
-        async: false
-    }).done(function (data) {
-            var scripts = $.parseJSON(data);
-            $.each(scripts, function (i, e) {
-                var s = document.createElement("script");
-                s.type = "text/javascript";
-                var src =  "./js/" + e + "?t=" + Date.now();
-                $.ajax({
-                    type: "GET",
-                    url: src,
-                    async: false
-                });
-            });
-
+    var scripts = routes[id].scripts;
+    $.each(scripts, function (i, e) {
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        var src =  "./js/" + e + "?t=" + Date.now();
+        $.ajax({
+            type: "GET",
+            url: src,
+            async: false
         });
+    });
+
+
+
 }
 
 function replace_body_load_scripts(id) {
