@@ -1,9 +1,5 @@
 /*Header*/
 
-@font-face {
-    font-family: MainText; /* Имя шрифта */
-    src: url(../fonts/Capture_it.ttf); /* хороший */
-}
 
 #header {
     position: relative;
@@ -132,7 +128,7 @@
     left: 95px;
     top: 75px;
     background-repeat: no-repeat;
-    FONT-FAMILY: Code LIGHT;
+    FONT-FAMILY:  MainText;;
     FONT-SIZE: 60px;
     color: #000;
     letter-spacing: 10px;

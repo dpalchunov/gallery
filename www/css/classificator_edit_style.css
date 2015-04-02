@@ -7,7 +7,7 @@ html {
 
 body {
     background: #FFFFFF;
-    font-family: Times New Roman, Helvetica, sans-serif;
+    font-family: MainText;;
     font-size: 18px;
     color: #ffffff;
     min-height: 100%;
@@ -19,7 +19,7 @@ body {
 }
 
 #dialog {
-    font-family: Times New Roman, Helvetica, sans-serif;
+    font-family: MainText;
     font-size: 14px;
 }
 
@@ -43,7 +43,7 @@ a:hover {
 }
 
 code {
-    font-family: "Courier New", Courier, monospace;
+    font-family: MainText;
     color: #000;
 }
 
@@ -289,28 +289,28 @@ blockquote {
 
 .head {
 
-    font-family: Garamond, 'Garamond Premier Pro';
+    font-family: MainText;
     color: black;
     font-size: 20pt;
 }
 
 .info {
 
-    font-family: Garamond, 'Garamond Premier Pro';
+    font-family: MainText;
     color: black;
     font-size: 17pt;
 }
 
 .info a {
 
-    font-family: Garamond, 'Garamond Premier Pro';
+    font-family: MainText;
     color: black;
     font-size: 17pt;
 }
 
 .comment {
 
-    font-family: Garamond, 'Garamond Premier Pro';
+    font-family: MainText;
     color: black;
     font-size: 12pt;
 }
@@ -407,13 +407,13 @@ blockquote {
 
 .field_editor_input {
     background-color: #e9e9ed;
-    font-family: Times New Roman, Helvetica, sans-serif;
+    font-family: MainText;
     font-size: 14px;
     color: black;
 }
 
 .field_editor_label {
-    font-family: Times New Roman, Helvetica, sans-serif;
+    font-family: MainText;
     font-size: 18px;
     color: #000000;
     display: inline-block;

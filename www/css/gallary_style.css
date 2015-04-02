@@ -179,7 +179,7 @@
     width: 400px;
     height: 1200px;
     border: #282828 2px solid;
-    font-family: Georgia;
+    font-family: MainText;
     z-index: 20;
     background-image: url(../images/panel/bg.png);
     background-repeat: repeat;

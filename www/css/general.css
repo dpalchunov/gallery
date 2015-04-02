@@ -4,6 +4,11 @@
     src: url(../fonts/font.otf); /* хороший */
 }
 
+@font-face {
+    font-family: Greet; /* Имя шрифта */
+    src: url(../fonts/greet.otf); /* хороший */
+}
+
 
 /*General Styles*/
 html {
@@ -12,7 +17,7 @@ html {
 
 body {
     height: 100%;
-    font-family: Times New Roman, Helvetica, sans-serif;
+    font-family: MainText;
     font-size: 18px;
     color: #ffffff;
     width: 100%;
@@ -45,7 +50,7 @@ a:hover {
 }
 
 code {
-    font-family: "Courier New", Courier, monospace;
+    font-family: MainText;
     color: #000;
 }
 
