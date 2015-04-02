@@ -21,6 +21,7 @@ $(document).ready(function () {
     wellcomeInit();
     progressInit();
     centerLoading();
+    load_style_arrays();
 });
 
 function progressInit() {
@@ -96,38 +97,30 @@ function reload(hrefObj) {
     hrefObj.parent().addClass('active');
     //unload current style
     $('link[class="page_style"]').remove();
-    //load opened page styles
-    $.ajax({
-        type: "POST",
-        url: routes[id].href,
-        data: {part: "page_styles"},
-        async: false
-    }).done(function (data) {
-            var links = $.parseJSON(data);
-            var len = links.length;
-            if (len == 0) {
-                load_body_and_scripts(id);
-            }  else {
-                var loaded_cnt = 0;
-                $.each(links, function (i, e) {
-                    var l = document.createElement("link");
-                    l.rel = "stylesheet";
-                    l.type = "text/css";
-                    l.href = "./css/" + e + "?t=" + Date.now();
-                    var c = document.createAttribute("class");
-                    c.value = "page_style";
-                    l.setAttributeNode(c);
-                    document.head.appendChild(l);
-                    $(l).load(function() {
-                        loaded_cnt ++;
-                        if (loaded_cnt == len) {
-                            load_body_and_scripts(id);
-                        }
-                    });
-                });
+    var styles = routes[id].styles;
+    var len = styles.length;
+    if (len == 0) {
+        load_body_and_scripts(id);
+    }  else {
+        var loaded_cnt = 0;
+        $.each(styles, function (i, e) {
+            var l = document.createElement("link");
+            l.rel = "stylesheet";
+            l.type = "text/css";
+            l.href = "./css/" + e + "?t=" + Date.now();
+            var c = document.createAttribute("class");
+            c.value = "page_style";
+            l.setAttributeNode(c);
+            document.head.appendChild(l);
+            $(l).load(function() {
+                loaded_cnt ++;
+                if (loaded_cnt == len) {
+                    load_body_and_scripts(id);
+                }
+            });
+        });
 
-            }
-     });
+    }
 
 }
 
@@ -169,3 +162,20 @@ function centerLoading() {
 
 }
 
+function load_style_arrays() {
+    $.each(routes,function(route_i,route) {
+        $.ajax({
+            type: "POST",
+            url: route.href,
+            data: {part: "page_styles"},
+            async: false
+        }).done(function (data) {
+                try {
+                    var styles = $.parseJSON(data);
+                    route.styles =  styles;
+                }  catch(e) {
+
+                }
+            })
+    });
+}
