@@ -13,6 +13,10 @@ var routes = {
     edit_welcome_href: {href:"wellcome_edit.php",page_name:'wellcome_edit.php'}
 };
 
+var loaded_body = "";
+var body_loaded = null;
+var styles_loaded = null;
+
 $(document).ready(function () {
     $('.menu_href,.a_href').each(function (i, e) {
         $(e).bind('click', reloadHandler);
@@ -91,16 +95,22 @@ function reloadHandler() {
 }
 
 function reload(hrefObj) {
+    loaded_body = "";
+    body_loaded = false;
+    styles_loaded = false;
     var id = hrefObj.attr("id");
     history.pushState({},'',routes[id].page_name);
     $('.menu_button.active').removeClass('active');
     hrefObj.parent().addClass('active');
     //unload current style
     $('link[class="page_style"]').remove();
+
+    load_body(id);
     var styles = routes[id].styles;
     var len = styles.length;
     if (len == 0) {
-        load_body_and_scripts(id);
+        styles_loaded = true;
+        replace_body_load_scripts(id);
     }  else {
         var loaded_cnt = 0;
         $.each(styles, function (i, e) {
@@ -115,7 +125,8 @@ function reload(hrefObj) {
             $(l).load(function() {
                 loaded_cnt ++;
                 if (loaded_cnt == len) {
-                    load_body_and_scripts(id);
+                    styles_loaded = true;
+                    replace_body_load_scripts(id);
                 }
             });
         });
@@ -124,38 +135,6 @@ function reload(hrefObj) {
 
 }
 
-function load_body_and_scripts(id) {
-    $.ajax({
-        type: "POST",
-        url: routes[id].href,
-        data: {part: "body_and_footer"},
-        async: false
-    }).done(function (body) {
-            $(".mc_el").remove();
-
-            $("body").append(body);
-            //load scripts
-            $.ajax({
-                type: "POST",
-                url: routes[id].href,
-                data: {part: "scripts"},
-                async: false
-            }).done(function (data) {
-                    var scripts = $.parseJSON(data);
-                    $.each(scripts, function (i, e) {
-                        var s = document.createElement("script");
-                        s.type = "text/javascript";
-                        var src =  "./js/" + e + "?t=" + Date.now();
-                        $.ajax({
-                            type: "GET",
-                            url: src,
-                            async: false
-                        });
-                    });
-
-                });
-        });
-}
 
 function centerLoading() {
     $('#loader').css('top',$(window).scrollTop());
@@ -178,4 +157,52 @@ function load_style_arrays() {
                 }
             })
     });
+}
+
+function load_body(id) {
+    $.ajax({
+        type: "POST",
+        url: routes[id].href,
+        data: {part: "body_and_footer"},
+        async: false
+    }).done(function (body) {
+            body_loaded = true;
+            loaded_body = body;
+            replace_body_load_scripts(id);
+        });
+
+}
+
+function load_scripts(id) {
+    //load scripts
+    $.ajax({
+        type: "POST",
+        url: routes[id].href,
+        data: {part: "scripts"},
+        async: false
+    }).done(function (data) {
+            var scripts = $.parseJSON(data);
+            $.each(scripts, function (i, e) {
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                var src =  "./js/" + e + "?t=" + Date.now();
+                $.ajax({
+                    type: "GET",
+                    url: src,
+                    async: false
+                });
+            });
+
+        });
+}
+
+function replace_body_load_scripts(id) {
+    if (body_loaded && styles_loaded)  {
+        $(".mc_el").remove();
+
+        $("body").append(loaded_body);
+        load_scripts(id);
+        body_loaded = null;
+        styles_loaded = null;
+    }
 }
