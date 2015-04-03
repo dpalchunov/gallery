@@ -13,7 +13,8 @@ $(document).ready(function () {
 
 });
 function greetingClickHandler() {
-    $('.cycle-slideshow').cycle('destroy');
+    $('.slideshow_element').cycle('destroy');
+    $('.slideshow_element').remove();
     reload($("#about_href"));
     $("#header").show();
 }
