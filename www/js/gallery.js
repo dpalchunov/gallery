@@ -479,9 +479,9 @@ function previousPicture() {
 
 function replaceCurPictureByNext(picPath) {
     $("#big_image").attr("src",picPath);
+    centerFullScreenPic();
     $('#resampled_image').hide();
     resize_image( $( '#big_image' )[0], $( '#resampled_image' )[0] );
-    centerFullScreenPic();
 }
 
 
@@ -524,7 +524,8 @@ function setImagesClickhandler() {
 
 
 function smallImageClickHandler() {
-
+    centerLoading();
+    $('#loader').show();
     changeFullScreenPic(this);
     showFullScreenGallery();
 }
@@ -545,6 +546,8 @@ function hideFullScreenGallery() {
     $(document.documentElement).css('overflow', 'scroll');
     $('#fullScreenPicContainer').hide();
     $('#fullScreenGallery').hide();
+    $('#resampled_image').attr("src",'');
+    $('#big_image').attr("src",'');
 }
 
 function resize_image( src, dst, type, quality ) {
@@ -572,12 +575,12 @@ function resize_image( src, dst, type, quality ) {
         canvas.height = cH;
         context = canvas.getContext( '2d' );
         context.drawImage( tmp, 0, 0, cW, cH );
-
+        $('#resampled_image').show();
         dst.src = canvas.toDataURL( type, quality );
 
         if ( cW <= src.width || cH <= src.height ) {
             $('#loader').hide();
-            $('#resampled_image').show();
+
             return;
         }
         tmp.src = dst.src;
