@@ -13,7 +13,8 @@ class  Localizator
 
 Родилась в городе Тарту в 1989 году.
 В 2005 году поступила в Московское государственное академическое художественное училище памяти 1905 года.
-С 2010 года по настоящее время является студенткой МГАХИ им. Сурикова, мастерской народного художника, академика РАХ, профессора Татьяны Назаренко.
+С 2010 года по настоящее время является студенткой МГАХИ им. Сурикова,
+ мастерской народного художника, академика РАХ, профессора Татьяны Назаренко.
 В 2012 году награждена дипломом им. Коровина  РАХ за портрет на пленере.
 В 2014 году награждена золотой медалью Российской Академии Художеств.
 
@@ -53,7 +54,8 @@ class  Localizator
 Born in Tartu in 1989.
 2005-entered Moscow Art School by memory of 1905.
 2010- present-student at the Surikov State Institute of Fine Arts
-(Studio under the guidance of  People’s Artist, Member of the Russian Academy of Arts, Professor Tatyana Nazarenko)
+(Studio under the guidance of  People’s Artist, Member of the Russian Academy of Arts,
+ Professor Tatyana Nazarenko)
 2012- awarded by the diploma of the Russian Academy of Fine Arts for the portrait work.
 2014- awarded by the gold medal of the Russian Academy of Fine Arts.
 
