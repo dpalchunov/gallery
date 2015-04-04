@@ -66,7 +66,6 @@
     float: right;
     height: 30px;
     width: 30px;
-    background-image: url(../images/header_bg_01.png);
     background-repeat: repeat-x;
     z-index: 1;
     cursor: pointer;
@@ -81,7 +80,7 @@
 }
 
 #prev:hover {
-    background-image: url(../images/player/prev_a.svg);
+    background-image: url(../images/player/prev_d.svg);
 }
 
 #next {
@@ -91,7 +90,7 @@
     background-size: 100% auto;
 }
 #next:hover {
-    background-image: url(../images/player/next_a.svg);
+    background-image: url(../images/player/next_d.svg);
 }
 
 #pause {
@@ -104,7 +103,7 @@
 }
 
 #pause:hover {
-    background-image: url(../images/player/pause_a.svg);
+    background-image: url(../images/player/pause_d.svg);
 }
 
 #play {
@@ -118,7 +117,7 @@
 }
 
 #play:hover {
-    background-image: url(../images/player/play_a.svg);
+    background-image: url(../images/player/play_d.svg);
 }
 
 
