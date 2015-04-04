@@ -35,6 +35,18 @@
                 <div class="tc_empty"></div>
                 <div class="tc_empty"></div>
             </div>
+            <div id="inst" class="tr">
+                <div id="inst_img" class="tc image_tc">
+
+                </div>
+                <div id="inst_text" class="tc">
+                    <a href="instagram.ru">instagram.ru</a>
+                </div>
+            </div>
+            <div class="tr_empty">
+                <div class="tc_empty"></div>
+                <div class="tc_empty"></div>
+            </div>
             <div id="fb" class="tr">
                 <div id="fb_img" class="tc image_tc">
 

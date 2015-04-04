@@ -88,16 +88,17 @@
 }
 
 
-#phone{
-    display: table-row;
+#inst_img{
+    background-image: url("../images/contacts/inst_grey.svg");
+    background-position: left;
 }
 
-#mail{
-    display: table-row;
+#inst_img:hover{
+    background-image: url("../images/contacts/inst_w.svg");
 }
+
 #phone_img{
     background-image: url("../images/contacts/p_grey.svg");
-    background-repeat: repeat-x;
     background-position: left;
 }
 #mail_img{
