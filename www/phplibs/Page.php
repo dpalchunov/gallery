@@ -20,7 +20,7 @@ abstract class  Page
     abstract function getHeader();
     abstract function getNavMenu();
     abstract function getBody($params);
-    abstract function getLabelsArray($label);
+    abstract function getLabelsArray($lang);
 
 
     public function getHeaderLabels() {

@@ -1,5 +1,5 @@
 <div id="main_content" class="mc_el">
-    <div id="main_phrase">
+    <div id="contacts_main_phrase">
         {{{$contacts_main_phrase}}}
     </div>
 
