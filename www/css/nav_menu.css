@@ -96,11 +96,14 @@ div.menu_button a {
     top:50px;
     width: 20px;
     margin-right: 50px;
+    font-family: "Times New Roman";
+    color: black;
 }
 #lang_changer a {
     font-family: MainText;
     font-size: 10pt;
-    color: #e6e6e6;
+    font-family: "Times New Roman";
+    color: darkgray;
 }
 
 #lang_changer a:hover {

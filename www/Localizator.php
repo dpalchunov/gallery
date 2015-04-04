@@ -24,7 +24,6 @@ class  Localizator
 2013 Проект «От школы к школе», Галерея «Крыша», Москва.
 2013  Проект «Наши первые впечатления» Арт-Салон, ЦДХ, Москва.
 2012 Персональная выставка, Областная картинная галерея (катаог), Тамбов.
-2011 Пленер-2011 Дом Озерова, Коломна.
 2010 «Гастингс глазами русских художников» BAKER MAMONOVA GALLERY, Гастингс, Англия.
 
 Работы художницы имеются в частных коллекциях России и за рубежом.
@@ -65,7 +64,6 @@ Born in Tartu in 1989.
 2013 Project «From school to school «Krisha» Gallery, Moscow.
 2013 Moscow Art Saloon, Central House of Artists, Moscow.
 2012 Personal Exhibition, Regional picture gallery, Tambov.
-2011 Student exhibition MGAHU by memory of 1905, Moscow
 2010 «Hastings as seen by the Russian artists», Baker Mamonova Gallery, Hastings, England.
 
 Kristina’s pictures are in private collections in Russia and in Europe.
