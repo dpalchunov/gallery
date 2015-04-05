@@ -7,12 +7,7 @@ $actions = array(
 );
 
 function common_action_handler() {
-    if ($_COOKIE['greetingWasShown'] == 'true') {
-        $page = new AboutPageViewer();
-    } else {
-        $page = new GreetingPageViewer();
-    }
-
+    $page = new AboutPageViewer();
     $page -> show($_POST);
 }
 
