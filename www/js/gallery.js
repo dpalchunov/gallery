@@ -139,6 +139,7 @@ function leftColumnWrapClickHandler() {
 $(document).ready(function () {
     mainInit();
     destructor = destructor;
+    $(window).resize(function() {dragAndResize();});
 
 });
 
@@ -167,40 +168,19 @@ function dragAndResize() {
             sk_h = h+t
         }
         $(v).height(h);
-        $(v).position({
-                my: "left top",
-                at: "left+" + l_percent*100 + "% top+" + t,
-                of: "#sketches",
-                collision: "none"
-            });
+        var l = Math.round(l);
+        var t = Math.round(t);
+        $(v).css("position","absolute");
+        $(v).css("left",l_percent*100 + "%");
+        $(v).css("top",t);
     });
+
+
     var footer_h = 80;
     $(sk).height(sk_h + footer_h);
     $("#all_space_wrap").height(Math.round(sk_h + footer_h));
-  //  console.log(sk_h + footer_h);
 
-}
 
-function save(e) {
-    var sk = e.parent();
-    var h = e.height();
-    var t = e.offset().top - sk.offset().top;
-    var l = e.offset().left - sk.offset().left;
-    var w = e.width();
-    var l_percent = l/sk.width();
-    var w_percent = w/sk.width()*100;
-    var t_ratio = t/l;
-    var r = h/w;
-    var pic_id = e.attr("pic_id");
-
-    $.ajax({
-        type: "POST",
-        url: "gallery_edit.php",
-        data: {action:"expo_save", pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
-    })
-        .done(function (msg) {
-          //  console.log(msg);
-        });
 }
 
 function onScrollfunct() {
