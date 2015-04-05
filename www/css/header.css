@@ -167,7 +167,7 @@
 #append {
     float:right;
     height: 3px;
-    width:64%;
+    width:63%;
     background-color: #800000;
     display: inline-block;
 
@@ -193,7 +193,7 @@
 #progress_time {
     position: relative;
     float:right;
-    width:3%;
+    width:4%;
     display: inline-block;
     background-color: #FFF;
 }

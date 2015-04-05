@@ -83,10 +83,10 @@ div.menu_button a {
     display: block;
     float:right;
     top:50px;
-    width: 20px;
-    margin-right: 10%;
+    width: 50px;
     font-family: "Times New Roman";
     color: black;
+    margin-left: -30px;
 }
 #lang_changer a {
     font-family: MainText;
