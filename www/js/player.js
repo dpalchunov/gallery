@@ -19,6 +19,17 @@ $(document).ready(function(){
                         title:"5.mp3",
                         mp3: './player/mp3/5.mp3'
                     }];
+
+    $("#music_ask_yes").click(function() {
+        $("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
+        $("#player").jPlayer("play");
+    });
+
+
+    $("#music_ask_no").click(function() {
+        $("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
+    });
+
     var currentTrack = 0;
 	// Local copy of jQuery selectors, for performance.
 	var	my_jPlayer = $("#player"),
@@ -40,6 +51,7 @@ $(document).ready(function(){
                         $(this).jPlayer("pause",time)
                     } else {
                         $(this).jPlayer("play",time );
+                        setTimeout(function() {check_is_playng();},300);
                     }
                 } catch(e) {
                     console.error('audio player cookies load failure');
@@ -47,6 +59,7 @@ $(document).ready(function(){
                         title:playList[currentTrack].title,
                         mp3: playList[currentTrack].mp3
                     }).jPlayer("play");
+                    setTimeout(function() {check_is_playng();},300);
                 }
 
             } else {
@@ -54,6 +67,7 @@ $(document).ready(function(){
                     title:playList[currentTrack].title,
                     mp3: playList[currentTrack].mp3
                 }).jPlayer("play");
+                setTimeout(function() {check_is_playng();},300);
             }
 
             $.cookie("track_number", getCurrentInd(), {expires:365});
@@ -69,6 +83,7 @@ $(document).ready(function(){
             $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             progress.width(v);
+            $("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
 		},
         pause: function(event) {
             $.cookie("paused", "true", {expires:365});
@@ -157,5 +172,13 @@ $(document).ready(function(){
         var ind = movedCurrent%l;
         return ind;
     }
+
+    function check_is_playng() {
+        var paused = my_jPlayer.data().jPlayer.status.paused;
+        if (paused) {
+            $("#music_ask_yes,#music_ask_no,#music_ask_q").show();
+        }
+    }
+
 
 });
