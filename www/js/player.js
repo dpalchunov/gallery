@@ -21,13 +21,13 @@ $(document).ready(function(){
                     }];
 
     $("#music_ask_yes").click(function() {
-        $("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
+        $("#dialog").hide();
         $("#player").jPlayer("play");
     });
 
 
     $("#music_ask_no").click(function() {
-        $("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
+        $("#dialog").hide();
     });
 
     var currentTrack = 0;
@@ -51,7 +51,6 @@ $(document).ready(function(){
                         $(this).jPlayer("pause",time)
                     } else {
                         $(this).jPlayer("play",time );
-                        setTimeout(function() {check_is_playng();},300);
                     }
                 } catch(e) {
                     console.error('audio player cookies load failure');
@@ -59,7 +58,6 @@ $(document).ready(function(){
                         title:playList[currentTrack].title,
                         mp3: playList[currentTrack].mp3
                     }).jPlayer("play");
-                    setTimeout(function() {check_is_playng();},300);
                 }
 
             } else {
@@ -67,11 +65,12 @@ $(document).ready(function(){
                     title:playList[currentTrack].title,
                     mp3: playList[currentTrack].mp3
                 }).jPlayer("play");
-                setTimeout(function() {check_is_playng();},300);
+                setTimeout(function() {check_is_tablet();},300);
             }
 
             $.cookie("track_number", getCurrentInd(), {expires:365});
             $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + playList.length + "]");
+            check_is_tablet();
 		},
         loadeddata: function(event){ // calls after setting the song duration
             songDuration = event.jPlayer.status.duration;
@@ -83,7 +82,6 @@ $(document).ready(function(){
             $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             progress.width(v);
-            //$("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
 		},
         pause: function(event) {
             $.cookie("paused", "true", {expires:365});
@@ -173,11 +171,18 @@ $(document).ready(function(){
         return ind;
     }
 
-    function check_is_playng() {
-        var paused = my_jPlayer.data().jPlayer.status.paused;
-        if (paused) {
-            $("#music_ask_yes,#music_ask_no,#music_ask_q").show();
-        }
+    function check_is_tablet() {
+            if (navigator.userAgent.match(/Android/i) ||
+                navigator.userAgent.match(/webOS/i) ||
+                navigator.userAgent.match(/iPhone/i) ||
+                navigator.userAgent.match(/iPad/i) ||
+                navigator.userAgent.match(/iPod/i) ||
+                navigator.userAgent.match(/BlackBerry/i) ||
+                navigator.userAgent.match(/Windows Phone/i) ||
+                navigator.userAgent.match(/ZuneWP7/i)
+            ) {
+                $("#music_ask_yes,#music_ask_no,#music_ask_q").show();
+             }
     }
 
 
