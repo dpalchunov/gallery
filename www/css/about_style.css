@@ -10,17 +10,6 @@
 
 
 }
-#ava {
-    position: relative;
-    display: inline-block;
-    float: left;
-    margin-left: 0px;
-    overflow: hidden;
-    width:100%;
-    background-repeat: repeat-x;
-
-
-}
 
 #main_text {
     position: relative;
@@ -52,7 +41,20 @@
 }
 
 #ava_img {
+    width:100%;
+    height: auto;
+}
+
+#ava {
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin-left: 0px;
     overflow: hidden;
+    width:100%;
+    background-repeat: repeat-x;
+
+
 }
 
 
