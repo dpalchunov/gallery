@@ -139,7 +139,7 @@ function leftColumnWrapClickHandler() {
 $(document).ready(function () {
     mainInit();
     destructor = destructor;
-    $(window).resize(function() {dragAndResize();});
+    $(window).resize(function() {closeAllAnnotations(); dragAndResize();});
 
 });
 
