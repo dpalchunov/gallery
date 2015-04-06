@@ -30,6 +30,7 @@ $(document).ready(function () {
 
 });
 
+
 function initMenuHandlers() {
     if (script_arrays_loaded && styles_arrays_loaded) {
         wellcomeInit();
@@ -110,6 +111,8 @@ function reloadHandler() {
 }
 
 function reload(hrefObj) {
+    centerLoading();
+    $("#loader").show();
     var id = hrefObj.attr("id");
     loaded_body = "";
     body_loaded = false;
@@ -230,6 +233,7 @@ function replace_body_load_scripts(id) {
         $(".mc_el").remove();
 
         $("body").append(loaded_body);
+        $("#loader").hide();
         load_scripts(id);
         body_loaded = null;
         styles_loaded = null;
