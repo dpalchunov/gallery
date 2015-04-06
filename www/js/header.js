@@ -16,18 +16,32 @@ var routes = {
 var loaded_body = "";
 var body_loaded = null;
 var styles_loaded = null;
+var script_arrays_loaded = false;
+var styles_arrays_loaded = false;
 
 $(document).ready(function () {
-    $('.menu_href,.a_href').each(function (i, e) {
-        $(e).bind('click', reloadHandler);
-    });
-    $('#lang_changer_href').bind('click', change_lang);
-    wellcomeInit();
-    progressInit();
-    centerLoading();
     load_style_arrays();
     load_scripts_arrays();
+
+    progressInit();
+    centerLoading();
+    initMenuHandlers();
+
+
 });
+
+function initMenuHandlers() {
+    if (script_arrays_loaded && styles_arrays_loaded) {
+        wellcomeInit();
+        $('.menu_href,.a_href').each(function (i, e) {
+            $(e).bind('click', reloadHandler);
+        });
+        $('#lang_changer_href').bind('click', change_lang);
+    } else {
+        setTimeout(initMenuHandlers,500);
+    }
+
+}
 
 function progressInit() {
     $("#header").bind("mouseenter",function(e) {
@@ -84,7 +98,7 @@ function change_lang() {
             var labels = $.parseJSON(data);
 
             $.each(labels,function (k,v) {
-                $('#' + k).text(v);
+                $('#' + k).html(v);
             })
         });
 
@@ -96,10 +110,10 @@ function reloadHandler() {
 }
 
 function reload(hrefObj) {
+    var id = hrefObj.attr("id");
     loaded_body = "";
     body_loaded = false;
     styles_loaded = false;
-    var id = hrefObj.attr("id");
     history.pushState({},'',routes[id].page_name);
     $('.menu_button.active').removeClass('active');
     hrefObj.parent().addClass('active');
@@ -156,6 +170,7 @@ function load_style_arrays() {
                 }  catch(e) {
 
                 }
+                styles_arrays_loaded = true;
             })
     });
 }
@@ -174,6 +189,7 @@ function load_scripts_arrays() {
                 }  catch(e) {
 
                 }
+                script_arrays_loaded = true;
             })
     });
 }
