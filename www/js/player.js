@@ -83,7 +83,7 @@ $(document).ready(function(){
             $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             progress.width(v);
-            $("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
+            //$("#music_ask_yes,#music_ask_no,#music_ask_q").hide();
 		},
         pause: function(event) {
             $.cookie("paused", "true", {expires:365});

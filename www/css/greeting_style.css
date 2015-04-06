@@ -70,62 +70,6 @@
 }
 
 
-#music_ask_q {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    z-index: 3999;
-    position: fixed;
-    background-color: #444a4d;
-    width: 40%;
-    height: 10%;
-    top: 40%;
-    left:30%;
-    font-size: 18pt;
-    font-weight: bold;
-    font-family: arial;
-    display: none;
-
-}
-
-#music_ask_yes {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    z-index: 3999;
-    position: fixed;
-    background-color: #444a4d;
-    width: 20%;
-    height: 10%;
-    top:50% ;
-    left:30%;
-    font-size: 18pt;
-    display: none;
-}
-
-#music_ask_yes:hover {
-    background-color: black;
-    cursor: pointer;
-}
-#music_ask_no {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    z-index: 3999;
-    position: fixed;
-    background-color: #444a4d;
-    width: 20%;
-    height: 10%;
-    top: 50%;
-    left: 50%;
-    font-size: 18pt;
-    display: none;
-}
-#music_ask_no:hover {
-    background-color: black;
-    cursor: pointer;
-}
-
 
 
 

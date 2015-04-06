@@ -99,3 +99,72 @@ blockquote {
     font-family: MainText;
     font-size: 14px;
 }
+
+
+/*dialog*/
+
+#dialog {
+    display: table;
+    vertical-align: middle;
+    text-align: center;
+    text-align: center;
+    z-index: 3999;
+    position: fixed;
+    background-color: #444a4d;
+    width: 500px;
+    height: 100px;
+    top: 40%;
+    left:20%;
+    display: none;
+
+}
+
+
+#music_ask_q {
+    display: table-row;
+    width: 100%;
+
+}
+
+
+#music_ask_q1 {
+    display: table-cell;
+    width: 60%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+
+}
+
+
+#music_ask_yes {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    z-index: 3999;
+    background-color: #444a4d;
+    width: 20%;
+    height:100%;
+    top:50% ;
+    font-size: 18pt;
+}
+
+#music_ask_yes:hover {
+    background-color: black;
+    cursor: pointer;
+}
+#music_ask_no {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    z-index: 3999;
+    background-color: #444a4d;
+    width: 20%;
+    height:100%;
+    font-size: 18pt;
+}
+#music_ask_no:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
