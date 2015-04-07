@@ -181,7 +181,7 @@ $(document).ready(function(){
                 navigator.userAgent.match(/Windows Phone/i) ||
                 navigator.userAgent.match(/ZuneWP7/i)
             ) {
-                $("#music_ask_yes,#music_ask_no,#music_ask_q").show();
+                $("#dialog").show();
              }
     }
 
