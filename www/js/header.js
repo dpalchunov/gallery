@@ -160,6 +160,8 @@ function centerLoading() {
 }
 
 function load_style_arrays() {
+    var len = routes.length;
+    var loaded_cnt = 0;
     $.each(routes,function(route_i,route) {
         $.ajax({
             type: "POST",
@@ -173,12 +175,16 @@ function load_style_arrays() {
                 }  catch(e) {
 
                 }
-                styles_arrays_loaded = true;
+                if (loaded_cnt == len) {
+                    styles_arrays_loaded = true;
+                }
             })
     });
 }
 
 function load_scripts_arrays() {
+    var len = routes.length;
+    var loaded_cnt = 0;
     $.each(routes,function(route_i,route) {
         $.ajax({
             type: "POST",
@@ -192,7 +198,9 @@ function load_scripts_arrays() {
                 }  catch(e) {
 
                 }
-                script_arrays_loaded = true;
+                if (loaded_cnt == len) {
+                    script_arrays_loaded = true;
+                }
             })
     });
 }
