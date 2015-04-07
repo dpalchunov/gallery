@@ -16,6 +16,8 @@ var routes = {
 var loaded_body = "";
 var body_loaded = null;
 var styles_loaded = null;
+var styles_arrays_loaded_cnt=0;
+var script_arrays_loaded_cnt=0;
 var script_arrays_loaded = false;
 var styles_arrays_loaded = false;
 
@@ -160,8 +162,14 @@ function centerLoading() {
 }
 
 function load_style_arrays() {
-    var len = routes.length;
-    var loaded_cnt = 0;
+    var key,len = 0;
+    for(key in routes) {
+        if(routes.hasOwnProperty(key)) {
+            len++;
+        }
+    }
+
+
     $.each(routes,function(route_i,route) {
         $.ajax({
             type: "POST",
@@ -169,13 +177,14 @@ function load_style_arrays() {
             data: {part: "page_styles"},
             async: true
         }).done(function (data) {
+                styles_arrays_loaded_cnt ++;
                 try {
                     var styles = $.parseJSON(data);
                     route.styles =  styles;
                 }  catch(e) {
 
                 }
-                if (loaded_cnt == len) {
+                if (styles_arrays_loaded_cnt == len) {
                     styles_arrays_loaded = true;
                 }
             })
@@ -183,8 +192,12 @@ function load_style_arrays() {
 }
 
 function load_scripts_arrays() {
-    var len = routes.length;
-    var loaded_cnt = 0;
+    var key,len = 0;
+    for(key in routes) {
+        if(routes.hasOwnProperty(key)) {
+            len++;
+        }
+    }
     $.each(routes,function(route_i,route) {
         $.ajax({
             type: "POST",
@@ -192,13 +205,14 @@ function load_scripts_arrays() {
             data: {part: "scripts"},
             async: true
         }).done(function (data) {
+                script_arrays_loaded_cnt ++;
                 try {
                     var scripts = $.parseJSON(data);
                     route.scripts =  scripts;
                 }  catch(e) {
 
                 }
-                if (loaded_cnt == len) {
+                if (script_arrays_loaded_cnt == len) {
                     script_arrays_loaded = true;
                 }
             })
