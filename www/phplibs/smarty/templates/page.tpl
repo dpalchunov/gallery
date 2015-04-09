@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {{{$meta}}}
 <html>
     <head>
