@@ -1,11 +1,12 @@
 @import url('reset.css');
 @font-face {
     font-family: MainText;
+    src: url('../fonts/font.otf');
     src: url('../fonts/font.eot');
     src: url('../fonts/font.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/font.otf') format('truetype'),
     url('../fonts/font.woff2') format('woff2'),
     url('../fonts/font.woff') format('woff'),
-    url('../fonts/font.ttf') format('truetype'),
     url('../fonts/font.svg#code_pro_light_lcregular') format('svg');
     font-weight: normal;
     font-style: normal;
@@ -14,11 +15,12 @@
 
 @font-face {
     font-family: Greet;
+    src: url('../fonts/greet.otf');
     src: url('../fonts/greet.eot');
     src: url('../fonts/greet.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/greet.otf') format('truetype'),
     url('../fonts/greet.woff2') format('woff2'),
     url('../fonts/greet.woff') format('woff'),
-    url('../fonts/greet.ttf') format('truetype'),
     url('../fonts/greet.svg#code-lightregular') format('svg');
     font-weight: normal;
     font-style: normal;
