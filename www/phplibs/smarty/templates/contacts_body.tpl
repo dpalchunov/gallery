@@ -14,7 +14,7 @@
 
                 </div>
                 <div id="phone_text" class="tc text_tc" >
-                    <a id="phone_cont_href" class="cont_href" bro="phone_img" href="tel:+7(926)-033-39-31">+7(926)-033-39-31</a>
+                    <a id="phone_cont_href" class="cont_href" bro="phone_img" target="blank" href="tel:+7(926)-033-39-31">+7(926)-033-39-31</a>
 
                 </div>
             </div>
@@ -28,7 +28,7 @@
 
                 </div>
                 <div id="mail_text" class="tc text_tc">
-                    <a id="mail_cont_href" class="cont_href" bro="mail_img" href="mailto:kristina-8989@mail.ru">kristina-8989@mail.ru</a>
+                    <a id="mail_cont_href" class="cont_href" bro="mail_img" target="blank" href="mailto:kristina-8989@mail.ru">kristina-8989@mail.ru</a>
                 </div>
             </div>
             <div class="tr_empty">
@@ -40,7 +40,7 @@
 
                 </div>
                 <div id="inst_text" class="tc text_tc">
-                    <a id="inst_cont_href" class="cont_href" bro="inst_img" href="instagram.ru">instagram.ru</a>
+                    <a id="inst_cont_href" class="cont_href" bro="inst_img" target="blank" href="http://instagram.com/kristina_strunkova">instagram.com/kristina_strunkova</a>
                 </div>
             </div>
             <div class="tr_empty">
@@ -53,7 +53,7 @@
                 </div>
 
                 <div id="fb_text" class="tc text_tc">
-                    <a id="fb_cont_href" class="cont_href" bro="fb_img" href="https://www.facebook.com/kristina.strunkova?fref=ts">www.facebook.com/kristina.strunkova</a>
+                    <a id="fb_cont_href" class="cont_href" bro="fb_img" target="blank" href="https://www.facebook.com/kristina.strunkova?fref=ts">facebook.com/kristina.strunkova</a>
                 </div>
 
             </div>
