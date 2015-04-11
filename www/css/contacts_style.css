@@ -59,89 +59,36 @@
     display: table-cell;
     height: 40px;
     vertical-align: bottom;
-    font-family: MainText;
     color: grey;
     font-size: 25px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    text-align: left;
-
 }
 
 .image_tc {
+    height: 40px;
     width:70px;
 }
 
 .tc a {
-    font-family: MainText;
     font-size: 25px;
-    color: #000000;
     color: grey;
-
 }
 
 .tc a:hover {
-    font-family: MainText;
-    font-size: 25px;
-    color: #000000;
     color: white;
 }
 
 
-#inst_img{
-    background-image: url("../images/contacts/inst_grey_w.svg");
-    background-position: left top;
-    background-repeat: no-repeat;
-}
+#inst_img{background: url("../images/contacts/inst_grey_w.svg") no-repeat 0 0;}
+#phone_img{background: url("../images/contacts/p_grey_w.svg") no-repeat 0 0;}
+#mail_img{background: url("../images/contacts/m_grey_w.svg") no-repeat 0 0;}
+#fb_img {background: url("../images/contacts/f_grey_w.svg") no-repeat 0 0;}
+#inst_img:hover{ background-position: 0 -40px;cursor:pointer}
+#phone_img:hover{ background-position: 0 -40px;cursor:pointer}
+#mail_img:hover{ background-position: 0 -40px;cursor:pointer}
+#fb_img:hover{ background-position: 0 -40px;cursor:pointer}
 
-#inst_img:hover{
-    background-image: url("../images/contacts/inst_w.svg");
-}
-
-#phone_img{
-    background-image: url("../images/contacts/p_grey.svg");
-    background-position: left;
-}
-#mail_img{
-    background-image: url("../images/contacts/m_grey.svg");
-    width: 50px;
-}
-#phone_img:hover{
-    background-image: url("../images/contacts/p_w.svg");
-    cursor: pointer;
-}
-#mail_img:hover{
-    background-image: url("../images/contacts/m_w.svg");
-    cursor: pointer;
-
-
-}
-#phone_text{
-    text-align: left;
-
-}
-
-
-#mail_text{
-    text-align: left;
-}
-
-#fb_img {
-    background-image: url("../images/contacts/f_grey.svg");
-    width: 50px;
-}
-
-#fb_img:hover {
-    background-image: url("../images/contacts/f_w.svg");
-    width: 50px;
-    cursor: pointer;
-
-}
-
-#fb_text {
-    text-align: left;
-}
+.text_tc{text-align: left;}
 
 #footer {
-    margin-top:0px;
+    margin-top:0;
 }
