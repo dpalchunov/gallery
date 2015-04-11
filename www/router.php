@@ -10,6 +10,34 @@ function execute_action_handler($action) {
     }
 }
 
+function is_under_ie9() {
+    preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'], $matches);
+    if(count($matches)<2){
+        preg_match('/Trident\/\d{1,2}.\d{1,2}; rv:([0-9]*)/', $_SERVER['HTTP_USER_AGENT'], $matches);
+    }
+
+    if (count($matches)>1){
+        //Then we're using IE
+        $version = $matches[1];
+
+        switch(true){
+            case ($version<=8):
+                //IE 8 or under!
+                return true;
+                break;
+            default:
+                return false;
+        }
+    }
+
+    return false;
+}
+
+if (is_under_ie9()) {
+    echo 'do not work';
+    return;
+}
+
 session_start();
 if ( isset($_POST['action'])) {
     $action = $_POST['action'];
