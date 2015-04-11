@@ -147,7 +147,7 @@ function reload(hrefObj) {
             var c = document.createAttribute("class");
             c.value = "page_style";
             l.setAttributeNode(c);
-            document.head.appendChild(l);
+            document.getElementsByTagName('head')[0].appendChild(l);
             $(l).load(function() {
                 loaded_cnt ++;
                 if (loaded_cnt == len) {
