@@ -34,7 +34,7 @@ $(document).ready(function () {
 
 
 function initMenuHandlers() {
-    if (script_arrays_loaded && styles_arrays_loaded) {
+    if (window.script_arrays_loaded && window.styles_arrays_loaded) {
         wellcomeInit();
         $('.menu_href,.a_href').each(function (i, e) {
             $(e).bind('click', reloadHandler);
@@ -116,10 +116,16 @@ function reload(hrefObj) {
     centerLoading();
     $("#loader").show();
     var id = hrefObj.attr("id");
-    loaded_body = "";
-    body_loaded = false;
-    styles_loaded = false;
-    history.pushState({},'',routes[id].page_name);
+    window.loaded_body = "";
+    window.body_loaded = false;
+    window.styles_loaded = false;
+
+    try {
+        history.pushState({},'',routes[id].page_name);
+    } catch(e) {
+        console.log(e.message);
+    }
+
     $('.menu_button.active').removeClass('active');
     hrefObj.parent().addClass('active');
     //unload current style
@@ -129,7 +135,7 @@ function reload(hrefObj) {
     var styles = routes[id].styles;
     var len = styles.length;
     if (len == 0) {
-        styles_loaded = true;
+        window.styles_loaded = true;
         replace_body_load_scripts(id);
     }  else {
         var loaded_cnt = 0;
@@ -145,7 +151,7 @@ function reload(hrefObj) {
             $(l).load(function() {
                 loaded_cnt ++;
                 if (loaded_cnt == len) {
-                    styles_loaded = true;
+                    window.styles_loaded = true;
                     replace_body_load_scripts(id);
                 }
             });
@@ -177,15 +183,15 @@ function load_style_arrays() {
             data: {part: "page_styles"},
             async: true
         }).done(function (data) {
-                styles_arrays_loaded_cnt ++;
+                window.styles_arrays_loaded_cnt ++;
                 try {
                     var styles = $.parseJSON(data);
                     route.styles =  styles;
                 }  catch(e) {
 
                 }
-                if (styles_arrays_loaded_cnt == len) {
-                    styles_arrays_loaded = true;
+                if (window.styles_arrays_loaded_cnt == len) {
+                    window.styles_arrays_loaded = true;
                 }
             })
     });
@@ -205,15 +211,15 @@ function load_scripts_arrays() {
             data: {part: "scripts"},
             async: true
         }).done(function (data) {
-                script_arrays_loaded_cnt ++;
+                window.script_arrays_loaded_cnt ++;
                 try {
                     var scripts = $.parseJSON(data);
                     route.scripts =  scripts;
                 }  catch(e) {
 
                 }
-                if (script_arrays_loaded_cnt == len) {
-                    script_arrays_loaded = true;
+                if (window.script_arrays_loaded_cnt == len) {
+                    window.script_arrays_loaded = true;
                 }
             })
     });
@@ -226,8 +232,8 @@ function load_body(id) {
         data: {part: "body_and_footer"},
         async: true
     }).done(function (body) {
-            body_loaded = true;
-            loaded_body = body;
+            window.body_loaded = true;
+            window.loaded_body = body;
             replace_body_load_scripts(id);
         });
 
@@ -236,8 +242,6 @@ function load_body(id) {
 function load_scripts(id) {
     var scripts = routes[id].scripts;
     $.each(scripts, function (i, e) {
-        var s = document.createElement("script");
-        s.type = "text/javascript";
         var src =  "./js/" + e + "?t=" + Date.now();
         $.ajax({
             type: "GET",
@@ -245,19 +249,16 @@ function load_scripts(id) {
             async: false
         });
     });
-
-
-
 }
 
 function replace_body_load_scripts(id) {
-    if (body_loaded && styles_loaded)  {
+    if (window.body_loaded && window.styles_loaded)  {
         $(".mc_el").remove();
 
-        $("body").append(loaded_body);
+        $("body").append(window.loaded_body);
         $("#loader").hide();
         load_scripts(id);
-        body_loaded = null;
-        styles_loaded = null;
+        window.body_loaded = null;
+        window.styles_loaded = null;
     }
 }

@@ -40,9 +40,9 @@ function loadAvas() {
         data: {action:'get_avas_array'},
         async:false
     }).done(function (data) {
-            avas = $.parseJSON(data);
-            avaCount = avas.length;
-            avaPosition = 1;
+            window.avas = $.parseJSON(data);
+            window.avaCount = avas.length;
+            window.avaPosition = 1;
             setup_avas();
         });
 }
@@ -68,11 +68,9 @@ function setup_avas() {
         $("#ava_img").click(function () {
             var nextAvaPath = getNextAvaPath();
             //сначала убираем DIV
-            $("#ava_img").animate({width: 'toggle'},
+            $("#ava_img").animate({height: 'toggle'},
                 animateTime,
                 function () {
-                    //по окончании анимации исчезновения
-                    //установка нового background-image
                     $("#ava_img").attr("src", nextAvaPath);
 
                 }

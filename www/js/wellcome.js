@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     $.cookie("greetingWasShown", "true");
     $("#header").hide();
+    $("#outline").hide();
     $(".slideshow_element").cycle(
         {
             fx:"scrollHorz",
@@ -27,4 +28,5 @@ function greetingClickHandler() {
     $('.slideshow_element').remove();
     reload($("#about_href"));
     $("#header").show();
+    $("#outline").show();
 }

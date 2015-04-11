@@ -89,8 +89,9 @@
 
 
 #inst_img{
-    background-image: url("../images/contacts/inst_grey.svg");
-    background-position: left;
+    background-image: url("../images/contacts/inst_grey_w.svg");
+    background-position: left top;
+    background-repeat: no-repeat;
 }
 
 #inst_img:hover{

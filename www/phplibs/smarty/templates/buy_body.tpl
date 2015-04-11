@@ -1,7 +1,6 @@
 
     <div id="wrap">
 	    <div id="main_content">
-		<div id="header_shaddow"></div>
 		<div id="contacts_table">
 		    <table border=0>
 			<tr><td colspan=2><hr></td></tr>

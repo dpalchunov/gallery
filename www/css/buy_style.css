@@ -91,15 +91,6 @@ blockquote {
 	width: 875px;
 }
 
-#header_shaddow {
-	height: 58px;
-	width: 1200px;
-	background-image: url(../images/header_shaddow.png);
-	background-repeat: no-repeat;
-
-}
-
-
 /*Main content*/
 	
 #contacts_table {

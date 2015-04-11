@@ -7,7 +7,6 @@
         <div id="page_wrap">
             <div id="page_wrap_padding"></div>
             <div id="main_content">
-                <div id="header_shaddow"></div>
                 <div id="sketches"></div>
             </div>
         </div>

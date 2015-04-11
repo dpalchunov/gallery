@@ -33,7 +33,7 @@ function smallImageMouseOverHandler() {
 
     }
     detailsShow = window.setTimeout(function () {
-        closeAllAnnotations();
+        closeAllAnnotations(400);
     }, 3000);
 
 
@@ -48,36 +48,36 @@ function smallImageMouseOverHandler() {
 
     }
     rateShow = window.setTimeout(function () {
-        closeAllAnnotations();
+        closeAllAnnotations(400);
     }, 3000);
 }
 
-    function closeAllAnnotations() {
-    $('[class=details]').each(function (index, element) {
-        if ($(element).height() > 0) {
-            $(element).fadeOut(400);
-        }
+function closeAllAnnotations(ms) {
+$('[class=details]').each(function (index, element) {
+    if ($(element).height() > 0) {
+        $(element).fadeOut(ms);
+    }
+});
+}
+
+function setAllDetailsPlace() {
+    var details = $('*').filter(function (index) {
+        var itIsDetails = $(this).hasClass('details');
+        var heightBiggerZero = ($(this).height() > 0);
+        return (itIsDetails && heightBiggerZero);
+    })
+    setDetailsPlace(details);
+}
+
+function setDetailsPlace(details_array) {
+    details_array.each(function (index, element) {
+        var all_td_space = $(element).parent();
+        var pic_width = all_td_space.find('img[class1=small_image]').width();
+        var all_td_space_width = all_td_space.width();
+        $(element).width(pic_width - 50);
+        $(element).css('left', (all_td_space_width - pic_width + 50) / 2 + 'px');
     });
-    }
-
-    function setAllDetailsPlace() {
-        var details = $('*').filter(function (index) {
-            var itIsDetails = $(this).hasClass('details');
-            var heightBiggerZero = ($(this).height() > 0);
-            return (itIsDetails && heightBiggerZero);
-        })
-        setDetailsPlace(details);
-    }
-
-    function setDetailsPlace(details_array) {
-        details_array.each(function (index, element) {
-            var all_td_space = $(element).parent();
-            var pic_width = all_td_space.find('img[class1=small_image]').width();
-            var all_td_space_width = all_td_space.width();
-            $(element).width(pic_width - 50);
-            $(element).css('left', (all_td_space_width - pic_width + 50) / 2 + 'px');
-        });
-    }
+}
 
 //функция получает следующую страницу
 function getNextP() {
@@ -139,7 +139,7 @@ function leftColumnWrapClickHandler() {
 $(document).ready(function () {
     mainInit();
     destructor = destructor;
-    $(window).resize(function() {closeAllAnnotations(); dragAndResize();});
+    $(window).resize(function() {closeAllAnnotations(0); dragAndResize();});
 
 });
 
@@ -264,6 +264,7 @@ function refreshPictures() {
 
 function closeFullScreenGalleryClickHandler() {
     hideFullScreenGallery();
+    $('#loader').hide();
 }
 
 function hideFullScreenGallery() {
@@ -558,9 +559,11 @@ function resize_image( src, dst, type, quality ) {
         $('#resampled_image').show();
         dst.src = canvas.toDataURL( type, quality );
 
-        if ( cW <= src.width || cH <= src.height ) {
-            $('#loader').hide();
 
+        if ( cW <= src.width || cH <= src.height ) {
+            $(dst).load(function() {
+                $('#loader').hide();
+            });
             return;
         }
         tmp.src = dst.src;

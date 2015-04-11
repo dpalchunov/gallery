@@ -72,10 +72,6 @@ $(document).ready(function(){
             $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + playList.length + "]");
             check_is_tablet();
 		},
-        loadeddata: function(event){ // calls after setting the song duration
-            songDuration = event.jPlayer.status.duration;
-
-        },
 		timeupdate: function(event) {
             var cur_time = event.jPlayer.status.currentTime;
             $.cookie("track_time", cur_time, {expires:365});
@@ -83,14 +79,14 @@ $(document).ready(function(){
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             progress.width(v);
 		},
-        pause: function(event) {
+        pause: function() {
             $.cookie("paused", "true", {expires:365});
         },
-        ended: function(event){
+        ended: function(){
             next();
             my_jPlayer.jPlayer("play");
         },
-        play: function(event) {
+        play: function() {
             $.cookie("paused", "false",{expires:365});
         },
 		swfPath: "./player/swf",
@@ -167,8 +163,7 @@ $(document).ready(function(){
         var l = playList.length;
         var offset = Math.floor(currentTrack/l)*l;
         var movedCurrent = currentTrack - offset;
-        var ind = movedCurrent%l;
-        return ind;
+        return movedCurrent%l;
     }
 
     function check_is_tablet() {
@@ -181,6 +176,8 @@ $(document).ready(function(){
                 navigator.userAgent.match(/Windows Phone/i) ||
                 navigator.userAgent.match(/ZuneWP7/i)
             ) {
+
+                $("#dialog").css('display','table');
                 $("#dialog").show();
              }
     }
