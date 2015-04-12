@@ -5,7 +5,7 @@
         Пожалуйста установите браузер из&nbsp;списка ниже.
     </div>
     <div id="contacts_main_phrase_en">
-        Sorry, your browser is not supported yet.
+        Sorry, your browser is not supported.
         <br>
         Please get one of the listed bellow.
     </div>
@@ -21,7 +21,7 @@
 
                 </div>
                 <div id="chrome_text" class="tc text_tc" >
-                    <a id="chrome_cont_href" class="cont_href" bro="chrome_img" target="blank" href="./images/errors/chrome.png">Google Chrome</a>
+                    <a id="chrome_cont_href" class="cont_href" bro="chrome_img" target="blank" href="https://www.google.com/chrome/browser/desktop/index.html">Google Chrome</a>
 
                 </div>
             </div>
