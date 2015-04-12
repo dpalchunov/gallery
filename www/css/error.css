@@ -1,25 +1,98 @@
-/*Main content*/
-
-body {
-    color: black;
-}
-
-a {
-    color: #000000;
-}
-
-a:hover {
-    color: #000000
-}
-
 #main_content {
-    margin-left: 20%;
-    width: 80%;
+    margin-left: 0px;
+    width: 100%;
     position: relative;
-    background-color: #ffffff;
+    background-color: white;
     display: inline-block;
-    margin-top: 70px;
     float:left;
+    margin-top:50px;
+}
+
+#contacts_main_phrase_ru {
+    display: block;
+    margin-left: 200px;
+    margin-top: 40px;
+    font-family: MainText;
+    font-size: 25px;
+    color: #444a4d;
+
+}
+#contacts_main_phrase_en {
+    display: block;
+    margin-left: 200px;
+    margin-top: 40px;
+    font-family: MainText;
+    font-size: 25px;
+    color: #444a4d;
+}
+
+#content{
+    margin-left: 20%;
+    margin-top: 50px;
+    display: table;
+    width:80%;
+
+}
+
+#content_bg {
+    background-color: #000000;
+    width:100%;
+}
+
+.tr {
+    display: table-row;
+    text-align: left;
+    width: 100%;
+
+}
+.tr_empty {
+    display: table-row;
+    height: 20px;
+    text-align: left;
+    width:100%
+}
+
+.tc_empty {
+    display: table-cell;
+    height: 20px;
+}
 
 
+.tc_last {
+    display: table-cell;
+    height: 200px;
+}
+
+.tc {
+    display: table-cell;
+    height: 60px;
+    vertical-align: middle;
+    color: grey;
+    font-size: 25px;
+}
+
+.image_tc {
+    height: 60px;
+    width:100px;
+}
+
+.tc a {
+    font-size: 25px;
+    color: grey;
+}
+
+.tc a:hover {
+    color: white;
+}
+
+
+#opera_img{background: url("../images/errors/opera.png") no-repeat 0 0;}
+#chrome_img{background: url("../images/errors/chrome.png") no-repeat 0 0;}
+#ie_img{background: url("../images/errors/ie.png") no-repeat 0 0;}
+#ff_img {background: url("../images/errors/ff.png") no-repeat 0 0;}
+
+.text_tc{text-align: left;}
+
+#footer {
+    margin-top:0;
 }
