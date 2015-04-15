@@ -2,6 +2,8 @@
 
 require_once 'phplibs/ResourceService.php';
 require_once './helpers.php';
+require_once './helpers.php';
+actionHeader();
 
 $actions = array(
     "get_avas_array" => array ("type" => "everyone"),

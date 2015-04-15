@@ -32,16 +32,17 @@ function getPrevAvaPath() {
 }
 
 function loadAvas() {
-    var data = "action=get_avas_array";
+    var action = "get_avas_array";
     $.ajax({
         method: "POST",
-        beforeSend: function(xhr){
-            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        },
         url: "about_edit.php",
-        data: "action=get_avas_array",
+         data: {action:action},
         async:false
-    }).done(function (data) {
+    }).done(function(data,y,jqXHR) {
+            if (action != jqXHR.getResponseHeader('action')) {
+                loadAvas();
+                return;
+            }
             try {
                 window.avas = $.parseJSON(data);
                 console.log('all good');

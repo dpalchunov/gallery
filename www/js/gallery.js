@@ -100,8 +100,13 @@ function showFirstPage() {
 }
 
 function setPicturesCountByFilter() {
-    $.post("pic_helper.php", "action=get_pic_count_by_filter&" + $("#filter_form").serialize(),
-        function (data) {
+    var action = "get_pic_count_by_filter";
+    $.post("pic_helper.php", "action=" + action + "&" + $("#filter_form").serialize(),
+        function (data,x,jqXHR) {
+            if (action != jqXHR.getResponseHeader('action')) {
+                setPicturesCountByFilter();
+                return;
+            }
             if (trim(data) != '') {
                 picturesCountByFilter = data;
             }
@@ -464,10 +469,15 @@ function replaceCurPictureByNext(picPath) {
 
 
 function rewritePageByPageNum(pageNum) {
-    var allParamsString = makePictureGetterParametersStringForPageGet(pageNum);
+    var action = "get_pic_page";
+    var allParamsString = makePictureGetterParametersStringForPageGet(pageNum,action);
     $.post("pic_helper.php", allParamsString,
         //функция обработки полученных данных
-        function (data) {
+        function (data,x,jqXHR) {
+            if (action != jqXHR.getResponseHeader('action')) {
+                rewritePageByPageNum(pageNum);
+                return;
+            }
             if (trim(data) != '') {
                 $("#sketches").html(data);
                 $(".sketch").each(function(i,e) {
@@ -486,11 +496,11 @@ function rewritePageByPageNum(pageNum) {
     nextPageNum++;
 }
 
-function makePictureGetterParametersStringForPageGet(pageNum) {
+function makePictureGetterParametersStringForPageGet(pageNum,action) {
     var checkboxesValueString = $("#filter_form").serialize();
     var pageNumString = "pageNum=" + pageNum;
 
-    var allParamsString = pageNumString + "&" +  "action=get_pic_page"+  "&" +  checkboxesValueString;
+    var allParamsString = pageNumString + "&" +  "action="+ action +  "&" +  checkboxesValueString;
     return allParamsString;
 };
 

@@ -86,19 +86,25 @@ function change_lang() {
         type: "POST",
         url: 'change_lang.php',
         data: {},
-        success:function(output, status, xhr) {
-            //reload($('.menu_button.active').children().first());
-        },
         async:false,
         cache:false
     });
+    change_labels();
+}
+
+function change_labels() {
     var href =routes[$('.menu_button.active').children().first().attr('id')].href;
+    var part = "header_labels";
     $.ajax({
         type: "POST",
         url: href,
-        data: {part: "header_labels"},
+        data: {part: part},
         async:false
     }).done(function (data) {
+            if (part != jqXHR.getResponseHeader('part')) {
+                change_labels();
+                return;
+            }
             try {
                 var labels = $.parseJSON(data);
             } catch(e) {
@@ -108,7 +114,6 @@ function change_lang() {
                 $('#' + k).html(v);
             })
         });
-
 }
 
 function reloadHandler() {
@@ -178,28 +183,36 @@ function load_style_arrays() {
             len++;
         }
     }
-
-
     $.each(routes,function(route_i,route) {
-        $.ajax({
-            type: "POST",
-            url: route.href,
-            data: {part: "page_styles"},
-            async: true
-        }).done(function (data) {
-                window.styles_arrays_loaded_cnt ++;
-                try {
-                    var styles = $.parseJSON(data);
-                    route.styles =  styles;
-                }  catch(e) {
-                     console.error("parse error on " + route.href + " " + data);
-
-                }
-                if (window.styles_arrays_loaded_cnt == len) {
-                    window.styles_arrays_loaded = true;
-                }
-            })
+        load_style_array(route,len);
     });
+}
+
+function load_style_array(route,len) {
+    var part = "page_styles";
+    $.ajax({
+        type: "POST",
+        url: route.href,
+        data: {part: part},
+        async: true
+    }).done(function (data,y,jqXHR) {
+            if (part != jqXHR.getResponseHeader('part')) {
+                load_style_array(route,len);
+                return;
+            }
+
+            window.styles_arrays_loaded_cnt ++;
+            try {
+                var styles = $.parseJSON(data);
+                route.styles =  styles;
+            }  catch(e) {
+                console.error("parse error on " + route.href + " " + data);
+
+            }
+            if (window.styles_arrays_loaded_cnt == len) {
+                window.styles_arrays_loaded = true;
+            }
+        })
 }
 
 function load_scripts_arrays() {
@@ -210,33 +223,47 @@ function load_scripts_arrays() {
         }
     }
     $.each(routes,function(route_i,route) {
-        $.ajax({
-            type: "POST",
-            url: route.href,
-            data: {part: "scripts"},
-            async: true
-        }).done(function (data) {
-                window.script_arrays_loaded_cnt ++;
-                try {
-                    var scripts = $.parseJSON(data);
-                    route.scripts =  scripts;
-                }  catch(e) {
-
-                }
-                if (window.script_arrays_loaded_cnt == len) {
-                    window.script_arrays_loaded = true;
-                }
-            })
+        load_scripts_array(route,len);
     });
 }
 
+function load_scripts_array(route,len) {
+    var part = "scripts";
+    $.ajax({
+        type: "POST",
+        url: route.href,
+        data: {part: "scripts"},
+        async: true
+    }).done(function (data,y,jqXHR) {
+            if (part != jqXHR.getResponseHeader('part')) {
+                load_scripts_array(route,len);
+                return;
+            }
+            window.script_arrays_loaded_cnt ++;
+            try {
+                var scripts = $.parseJSON(data);
+                route.scripts =  scripts;
+            }  catch(e) {
+
+            }
+            if (window.script_arrays_loaded_cnt == len) {
+                window.script_arrays_loaded = true;
+            }
+        })
+}
+
 function load_body(id) {
+    var part = "body_and_footer";
     $.ajax({
         type: "POST",
         url: routes[id].href,
         data: {part: "body_and_footer"},
         async: true
-    }).done(function (body) {
+    }).done(function (body,y,jqXHR) {
+            if (part != jqXHR.getResponseHeader('part')) {
+                load_body(id);
+                return;
+            }
             window.body_loaded = true;
             window.loaded_body = body;
             replace_body_load_scripts(id);
@@ -259,7 +286,6 @@ function load_scripts(id) {
 function replace_body_load_scripts(id) {
     if (window.body_loaded && window.styles_loaded)  {
         $(".mc_el").remove();
-
         $("body").append(window.loaded_body);
         $("#loader").hide();
         load_scripts(id);

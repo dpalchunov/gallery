@@ -5,6 +5,23 @@ function getmicrotime() {
     return ((float)$usec + (float)$sec);
 }
 
+function actionHeader() {
+    if ( isset($_POST['action'])) {
+        $action = $_POST['action'];
+    } else {
+        $action = "undefined_action";
+    }
+
+    if ( isset($_POST['part'])) {
+        $part = $_POST['part'];
+    } else {
+        $part = "undefined_part";
+    }
+
+    header('action:'.$action);
+    header('part:'.$part);
+}
+
 function getGUID(){
     if (function_exists('com_create_guid')){
         return com_create_guid();
