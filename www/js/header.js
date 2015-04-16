@@ -100,7 +100,7 @@ function change_labels() {
         url: href,
         data: {part: part},
         async:false
-    }).done(function (data) {
+    }).done(function (data,y,jqXHR) {
             if (part != jqXHR.getResponseHeader('part')) {
                 change_labels();
                 return;
