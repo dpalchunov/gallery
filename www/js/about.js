@@ -35,6 +35,7 @@ function loadAvas() {
     var action = "get_avas_array";
     $.ajax({
         method: "POST",
+        shouldRetry: 3,
         url: "about_edit.php",
          data: {action:action},
         async:false
@@ -45,9 +46,8 @@ function loadAvas() {
             }
             try {
                 window.avas = $.parseJSON(data);
-                console.log('all good');
             } catch(e) {
-                console.error("response parse error while post about_edit.php:get_avas_array");
+                //console.error("response parse error while post about_edit.php:get_avas_array");
             }
             window.avaCount = window.avas.length;
             window.avaPosition = 1;

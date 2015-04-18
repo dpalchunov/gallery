@@ -13,13 +13,13 @@ var routes = {
     edit_welcome_href: {href:"wellcome_edit.php",page_name:'wellcome_edit.php'}
 };
 
-var loaded_body = "";
-var body_loaded = null;
-var styles_loaded = null;
-var styles_arrays_loaded_cnt=0;
-var script_arrays_loaded_cnt=0;
-var script_arrays_loaded = false;
-var styles_arrays_loaded = false;
+window.loaded_body = "";
+window.body_loaded = null;
+window.styles_loaded = null;
+window.styles_arrays_loaded_cnt=0;
+window.script_arrays_loaded_cnt=0;
+window.script_arrays_loaded = false;
+window.styles_arrays_loaded = false;
 
 $(document).ready(function () {
     load_style_arrays();
@@ -84,6 +84,7 @@ function wellcomeInit() {
 function change_lang() {
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: 'change_lang.php',
         data: {},
         async:false,
@@ -97,6 +98,7 @@ function change_labels() {
     var part = "header_labels";
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: href,
         data: {part: part},
         async:false
@@ -108,7 +110,7 @@ function change_labels() {
             try {
                 var labels = $.parseJSON(data);
             } catch(e) {
-                console.error(href + ":" + header_labels + " " + e.message);
+                //console.error(href + ":" + header_labels + " " + e.message);
             }
             $.each(labels,function (k,v) {
                 $('#' + k).html(v);
@@ -122,6 +124,7 @@ function reloadHandler() {
 }
 
 function reload(hrefObj) {
+    //console.log('start_reload');
     centerLoading();
     $("#loader").show();
     var id = hrefObj.attr("id");
@@ -132,7 +135,7 @@ function reload(hrefObj) {
     try {
         history.pushState({},'',routes[id].page_name);
     } catch(e) {
-        console.log(e.message);
+        //console.log(e.message);
     }
 
     $('.menu_button.active').removeClass('active');
@@ -192,6 +195,7 @@ function load_style_array(route,len) {
     var part = "page_styles";
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: route.href,
         data: {part: part},
         async: true
@@ -206,7 +210,7 @@ function load_style_array(route,len) {
                 var styles = $.parseJSON(data);
                 route.styles =  styles;
             }  catch(e) {
-                console.error("parse error on " + route.href + " " + data);
+                //console.error("parse error on " + route.href + " " + data);
 
             }
             if (window.styles_arrays_loaded_cnt == len) {
@@ -231,6 +235,7 @@ function load_scripts_array(route,len) {
     var part = "scripts";
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: route.href,
         data: {part: "scripts"},
         async: true
@@ -253,17 +258,21 @@ function load_scripts_array(route,len) {
 }
 
 function load_body(id) {
+    //console.log('start_load_body');
     var part = "body_and_footer";
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: routes[id].href,
         data: {part: "body_and_footer"},
         async: true
     }).done(function (body,y,jqXHR) {
             if (part != jqXHR.getResponseHeader('part')) {
+                //console.log(' ie fail');
                 load_body(id);
                 return;
             }
+            //console.log(' ie good')
             window.body_loaded = true;
             window.loaded_body = body;
             replace_body_load_scripts(id);
@@ -277,6 +286,7 @@ function load_scripts(id) {
         var src =  "./js/" + e + "?t=" + Date.now();
         $.ajax({
             type: "GET",
+            shouldRetry: 3,
             url: src,
             async: false
         });

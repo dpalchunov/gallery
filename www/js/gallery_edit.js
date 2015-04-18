@@ -84,7 +84,7 @@ function setCropperHandler() {
     var $image = $(".cropper_img");
     $image.on("dragmove.cropper", function () {
         if (cropperHandlerIsActive) {
-            console.log('move');
+            //console.log('move');
             cropperChangeHandler();
         }
     })
@@ -135,7 +135,7 @@ $(document).ready(function () {
         formData: { action: "edit_upload_pic"},
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {
-            console.log(json_data);
+            //console.log(json_data);
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
@@ -235,6 +235,7 @@ function getClValues() {
     var data;
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "classificator_edit.php",
         data: {action:"get_paths"},
         async: false
@@ -296,6 +297,7 @@ function createNewClValue(cl_id, v_id, new_branch) {
     }
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "classificator_edit.php",
         data: send_data,
         async: false,
@@ -463,6 +465,7 @@ function saveCropHandler() {
     var $image = $(".cropper_img");
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "gallery_edit.php",
         data: {action:"edit_save_pic", pic_src: currentSrc, pic_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
     })
@@ -509,6 +512,7 @@ function reloadGallery1(active_page) {
 function reloadGallery2(active_page,done_func) {
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "gallery_edit.php",
         data: {action:"edit_get_gallery",active_page: active_page}
 
@@ -530,6 +534,7 @@ function reloadGallery2(active_page,done_func) {
 function loadLastPage() {
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "gallery_edit.php",
         data: {action:"edit_get_page_count"}
     })
@@ -547,6 +552,7 @@ function reloadCurrentPage() {
     var to_load = cur;
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "gallery_edit.php" ,
         data: {action:"edit_get_page_count"}
     })
@@ -579,6 +585,7 @@ function reloadPagination1(active_page) {
 function reloadPagination2(active_page,done_func) {
 $.ajax({
     type: "POST",
+    shouldRetry: 3,
     url: "gallery_edit.php",
     data: {action:"edit_get_pagination",active_page: active_page}
 })
@@ -592,6 +599,7 @@ $.ajax({
 function removeHandler(src) {
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "gallery_edit.php",
         data: {action:"edit_del_pic", file_name: src }
     })
@@ -678,6 +686,7 @@ function addSubmitHandlers() {
             //         console.log($(this).serialize());  //den_debug
             $.ajax({
                 type: "POST",
+                shouldRetry: 3,
                 url: "./gallery_edit.php",
                 data: $.extend($(this),{action:"edit_update_pic"}).serialize(),
                 success: function (data) {

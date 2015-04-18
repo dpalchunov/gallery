@@ -145,6 +145,7 @@ function save(e) {
 
     $.ajax({
         type: "POST",
+        shouldRetry: 3,
         url: "gallery_edit.php",
         data: {action:"expo_save",pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
     })

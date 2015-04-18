@@ -105,7 +105,7 @@ $(document).ready(function () {
         formData: {action:"upload_ava"},
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {
-            console.log(json_data);
+            //console.log(json_data);
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
@@ -176,6 +176,7 @@ $(document).ready(function () {
     function reloadPersistedAvas() {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "about_edit.php",
             data: { action: "get_avas_html" }
         })
@@ -188,6 +189,7 @@ $(document).ready(function () {
     function removeHandler(src) {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "edit_helper.php",
             data: {action:"del_file", src: src }
         })
@@ -199,6 +201,7 @@ $(document).ready(function () {
     function st1Handler(src) {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "about_edit.php",
             data: { avatar_src: src,action: "first_ava" }
         })
@@ -314,6 +317,7 @@ function addSubmitHandlers() {
             //         console.log($(this).serialize());  //den_debug
             $.ajax({
                 type: "POST",
+                shouldRetry: 3,
                 url: "./gallery_edit.php",
                 data: $.extend($(this),{action:"edit_update_pic"}).serialize(),
                 success: function (data) {

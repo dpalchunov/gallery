@@ -1,5 +1,7 @@
 $(document).ready(function(){
-	var playList = [{
+    window.songDuration = 0;
+    
+    window.playList = [{
                         title:"1.mp3",
                         mp3: './player/mp3/1.mp3'
                     },
@@ -44,8 +46,8 @@ $(document).ready(function(){
                     var time = Math.floor(parseFloat($.cookie('track_time')));
                     currentTrack = $.cookie('track_number');
                     $(this).jPlayer("setMedia",{
-                        title:playList[currentTrack].title,
-                        mp3: playList[currentTrack].mp3
+                        title:window.playList[currentTrack].title,
+                        mp3: window.playList[currentTrack].mp3
                     });
                     if (($.cookie('paused') == "true")) {
                         $(this).jPlayer("pause",time)
@@ -53,25 +55,28 @@ $(document).ready(function(){
                         $(this).jPlayer("play",time );
                     }
                 } catch(e) {
-                    console.error('audio player cookies load failure');
+                    //console.error('audio player cookies load failure');
                     $(this).jPlayer("setMedia",{
-                        title:playList[currentTrack].title,
-                        mp3: playList[currentTrack].mp3
+                        title:window.playList[currentTrack].title,
+                        mp3: window.playList[currentTrack].mp3
                     }).jPlayer("play");
                 }
 
             } else {
                 $(this).jPlayer("setMedia",{
-                    title:playList[currentTrack].title,
-                    mp3: playList[currentTrack].mp3
+                    title:window.playList[currentTrack].title,
+                    mp3: window.playList[currentTrack].mp3
                 }).jPlayer("play");
                 setTimeout(function() {check_is_tablet();},300);
             }
 
             $.cookie("track_number", getCurrentInd(), {expires:365});
-            $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + playList.length + "]");
+            $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
             check_is_tablet();
 		},
+        loadeddata: function(event){ // calls after setting the song duration
+            window.songDuration = event.jPlayer.status.duration;
+        },
 		timeupdate: function(event) {
             var cur_time = event.jPlayer.status.currentTime;
             $.cookie("track_time", cur_time, {expires:365});
@@ -109,7 +114,7 @@ $(document).ready(function(){
         var delta = event.clientX - x;
         var w = $("#inline").width();
         var pos = delta/w;
-        var new_time = pos*songDuration;
+        var new_time = pos*window.songDuration;
         if (my_jPlayer.data().jPlayer.status.paused) {
             my_jPlayer.jPlayer("pause",new_time);
         } else {
@@ -133,14 +138,14 @@ $(document).ready(function(){
 
     function next() {
         currentTrack++;
-        $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + playList.length + "]");
+        $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
         playcurrent();
     }
 
     $("#prev").bind("click",function(e) {
         if (my_jPlayer.data().jPlayer.status.currentTime < 2) {
             currentTrack--;
-            $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + playList.length + "]");
+            $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
         }
         playcurrent();
     });
@@ -150,8 +155,8 @@ $(document).ready(function(){
         var wasPaused = my_jPlayer.data().jPlayer.status.paused;
         var cur = getCurrentInd();
         var p = my_jPlayer.jPlayer("setMedia",{
-            title:playList[cur].title,
-            mp3: playList[cur].mp3
+            title:window.playList[cur].title,
+            mp3: window.playList[cur].mp3
         });
         if (!wasPaused) {
             p.jPlayer("play");
@@ -160,7 +165,7 @@ $(document).ready(function(){
     }
 
     function getCurrentInd() {
-        var l = playList.length;
+        var l = window.playList.length;
         var offset = Math.floor(currentTrack/l)*l;
         var movedCurrent = currentTrack - offset;
         return movedCurrent%l;

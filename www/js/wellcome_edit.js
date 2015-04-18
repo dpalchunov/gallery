@@ -105,7 +105,7 @@ $(document).ready(function () {
         fileName: "myfile",
         formData: {action:"edit_upload_ava"},
         onSuccess: function (files, json_data, xhr) {
-            console.log(json_data);
+            //console.log(json_data);
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
@@ -147,6 +147,7 @@ $(document).ready(function () {
         centerLoading();
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "wellcome_edit.php",
             data: {action:"edit_save_intro", avatar_src: currentSrc, avatar_data: JSON.stringify($image.cropper("getData"))}
         })
@@ -176,6 +177,7 @@ $(document).ready(function () {
     function reloadPersistedIntros() {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "./wellcome_edit.php",
             data: {action:"get_intros"}
         })
@@ -188,6 +190,7 @@ $(document).ready(function () {
     function removeHandler(src) {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "edit_helper.php",
             data: {action:"del_file", src: src }
         })

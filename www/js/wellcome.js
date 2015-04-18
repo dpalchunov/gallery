@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $.cookie("greetingWasShown", "true");
     $("#header").hide();
     $("#outline").hide();
@@ -15,7 +14,7 @@ $(document).ready(function () {
 });
 
 function initHandlers() {
-    if (script_arrays_loaded && styles_arrays_loaded) {
+    if (window.script_arrays_loaded && window.styles_arrays_loaded) {
         $('#greeting').bind('click', greetingClickHandler);
     } else {
         setTimeout(initHandlers,500);

@@ -320,7 +320,6 @@ $(document).keydown(function (e) {
 
 
 function fullScreenPicLoadHandler() {
-   alert('works');
     locateFullScreenGallaryControls();
     centerFullScreenPic();
     showfullScreenPicIfNeeded();

@@ -22,7 +22,7 @@ $(document).ready(function () {
     $("#dialog").dialog({ autoOpen: false });
     addControlsClickHandlers('*');
     addFieldsChangeHandlers('*');
-    console.log('start handlers');
+    //console.log('start handlers');
     addSubmitHandlers('*');
     setCurrentHashes('*');
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
         var $areas = $(".one_element");
         $areas.each(function () {
             var delta_color = Math.round(Math.random() * 20);
-            console.log(delta_color);
+            //console.log(delta_color);
             var x = 210 + delta_color;
             var y = 223 + delta_color;
             var z = 227 + delta_color;
@@ -42,6 +42,7 @@ $(document).ready(function () {
     function reloadClassificators() {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "classificator_edit.php",
             data:"get_html"
         })
@@ -58,6 +59,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "./classificator_edit.php",
             data: { action:"del_cl", id: id }
         })
@@ -70,6 +72,7 @@ $(document).ready(function () {
     function removeVlHandler(id) {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "./classificator_edit.php",
             data: { action:"del_v",  id: id }
         })
@@ -84,26 +87,28 @@ $(document).ready(function () {
         $(".save[area='" + hashHolderID + "']").hide();
         refreshHashByID(hashHolderID);
 
-        console.log('submit');  //den_debug
+        //console.log('submit');  //den_debug
     }
 
 
     function addClHandler(addBefore) {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "./classificator_edit.php",
             data: { eng_name: 'test', rus_name: 'test',action:"add_cl" }
         })
             .done(function (new_cl_id) {
                 $.ajax({
                     type: "POST",
+                    shouldRetry: 3,
                     url: "classificator_edit.php",
                     data: {action:"get_cl_html", id: new_cl_id }
                 })
                     .done(function (msg) {
-                        console.log('start');
-                        console.log(msg);
-                        console.log(addBefore)
+                        //console.log('start');
+                        //console.log(msg);
+                        //console.log(addBefore)
                         $('#' + addBefore).before(msg);
                         addControlsClickHandlers("*[target='classificator_area_" + new_cl_id + "']");
                         addFieldsChangeHandlers("*[hash_holder='classificator_area_" + new_cl_id + "']");
@@ -118,6 +123,7 @@ $(document).ready(function () {
     function addClChildHandler(cl_id, values_div) {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "./classificator_edit.php",
             data: {action:"add_cl_child", eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
         })
@@ -127,12 +133,13 @@ $(document).ready(function () {
                     new_vl_id = data['res']
                     $.ajax({
                         type: "POST",
+                        shouldRetry: 3,
                         url: "classificator_edit.php",
                         data: {action:"get_vl_html", id: new_vl_id }
                     })
                         .done(function (msg) {
-                            console.log('start');
-                            console.log(msg);
+                            //console.log('start');
+                            //console.log(msg);
                             values_div.prepend(msg);
                             addControlsClickHandlers("*[target='values_area_" + new_vl_id + "']");
                             addFieldsChangeHandlers("*[hash_holder='values_area_" + new_vl_id + "']");
@@ -154,6 +161,7 @@ $(document).ready(function () {
     function addVlChildHandler(parent_id, cl_id, values_div) {
         $.ajax({
             type: "POST",
+            shouldRetry: 3,
             url: "./classificator_edit.php",
             data: {action:"add_vl_child", parent_id: parent_id, eng_value: 'test', rus_value: 'test', classificator_id: cl_id }
         })
@@ -163,12 +171,13 @@ $(document).ready(function () {
                     new_vl_id = data['res']
                     $.ajax({
                         type: "POST",
+                        shouldRetry: 3,
                         url: "classificator_edit.php",
                         data: {action:"get_vl_html", id: new_vl_id }
                     })
                         .done(function (msg) {
-                            console.log('start');
-                            console.log(msg);
+                            //console.log('start');
+                            //console.log(msg);
                             values_div.prepend(msg);
                             addControlsClickHandlers("*[target='values_area_" + new_vl_id + "']");
                             addFieldsChangeHandlers("*[hash_holder='values_area_" + new_vl_id + "']");
@@ -258,7 +267,7 @@ $(document).ready(function () {
                 var clID = $(this).attr('cl_id');
                 var areaID = $(this).attr('area');
                 var values_div = $('#' + areaID).find('.values');
-                console.log('found div');
+                //console.log('found div');
                 addVlChildHandler(valueID, clID, values_div);
             });
         });
@@ -269,16 +278,16 @@ $(document).ready(function () {
     function addFieldsChangeHandlers(filterString) {
         var $inputs = $(".field_editor_input").filter(filterString);
 
-        console.log(filterString);
+        //console.log(filterString);
         $inputs.each(function () {
             $(this).keyup(function () {
-                console.log('fire');
+                //console.log('fire');
 
                 var hashHolderID = $(this).attr("hash_holder");
                 var oldHash = $("#" + hashHolderID).attr("hash");
                 var newHash = calcFormHash(hashHolderID);
 
-                console.log(oldHash + '  ' + newHash);
+                //console.log(oldHash + '  ' + newHash);
                 if (oldHash != newHash) {
                     $(".save[area='" + hashHolderID + "']").show();
                 } else {
@@ -296,22 +305,23 @@ $(document).ready(function () {
     }
 
     function addSubmitHandlers(filter) {
-        console.log('submit handler work');  //den_debug
+        //console.log('submit handler work');  //den_debug
         var $forms = $(".field_editor_form").filter(filter);
-        console.log(filter);
+        //console.log(filter);
         $forms.each(function () {
-            console.log('qwe');
+            //console.log('qwe');
 
             $(this).submit(function (e) {
                 e.preventDefault();
-                console.log('fire');  //den_debug
-                console.log($(this).serialize());  //den_debug
+                //console.log('fire');  //den_debug
+                //console.log($(this).serialize());  //den_debug
                 $.ajax({
                     type: "POST",
+                    shouldRetry: 3,
                     url: $(this).attr("action"),
                     data: $(this).serialize(),
                     success: function (data) {
-                        console.log(data);  //den_debug
+                        //console.log(data);  //den_debug
                     }
                 })
             });
