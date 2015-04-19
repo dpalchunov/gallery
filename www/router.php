@@ -39,13 +39,14 @@ if (is_under_ie9()) {
     return;
 }
 
+
 session_start();
 if ( isset($_POST['action'])) {
     $action = $_POST['action'];
 } else {
     $action = "common_action";
 }
-if ( isset($_SESSION['state']) or $actions[$action]["type"] == "everyone"  ) {
+if ( isset($_SESSION['state']) or  (isset($actions[$action]) && $actions[$action]["type"] == "everyone")  ) {
     execute_action_handler($action);
     return;
 } else {

@@ -92,14 +92,18 @@ function change_lang() {
         async:false,
         cache:false
     });
+    var href =routes[$('.menu_button.active').children().first().attr('id')].href;
     $.ajax({
         type: "POST",
-        url: routes[$('.menu_button.active').children().first().attr('id')].href,
+        url: href,
         data: {part: "header_labels"},
         async:false
     }).done(function (data) {
-            var labels = $.parseJSON(data);
-
+            try {
+                var labels = $.parseJSON(data);
+            } catch(e) {
+                console.error(href + ":" + header_labels + " " + e.message);
+            }
             $.each(labels,function (k,v) {
                 $('#' + k).html(v);
             })
@@ -188,6 +192,7 @@ function load_style_arrays() {
                     var styles = $.parseJSON(data);
                     route.styles =  styles;
                 }  catch(e) {
+                     console.error("parse error on " + route.href + " " + data);
 
                 }
                 if (window.styles_arrays_loaded_cnt == len) {

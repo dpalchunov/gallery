@@ -1,5 +1,3 @@
-<!--Скрпты отвечающие за слайдер аватарок на главной странице-->
-
 //объявляем глобальные переменные
 //количество фотографий , которые можно перебирать на аватарке
 var avas;
@@ -11,37 +9,46 @@ var animateTime = 120;
 
 
 function getCurAvaPath() {
-    return avas[avaPosition - 1];
+    return avas[window.avaPosition - 1];
 }
 
 function getNextAvaPath() {
 
-    if (avaPosition == avaCount) {
-        avaPosition = 1;
+    if (window.avaPosition == window.avaCount) {
+        window.avaPosition = 1;
     } else {
-        avaPosition++;
+        window.avaPosition++;
     }
-    return avas[avaPosition - 1];
+    return window.avas[window.avaPosition - 1];
 }
 
 function getPrevAvaPath() {
-    if (avaPosition == 1) {
-        avaPosition = avaCount;
+    if (window.avaPosition == 1) {
+        window.avaPosition = window.avaCount;
     } else {
-        avaPosition--;
+        window.avaPosition--;
     }
-    return avas[avaPosition - 1];
+    return window.avas[window.avaPosition - 1];
 }
 
 function loadAvas() {
+    var data = "action=get_avas_array";
     $.ajax({
-        type: "POST",
+        method: "POST",
+        beforeSend: function(xhr){
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        },
         url: "about_edit.php",
-        data: {action:'get_avas_array'},
+        data: "action=get_avas_array",
         async:false
     }).done(function (data) {
-            window.avas = $.parseJSON(data);
-            window.avaCount = avas.length;
+            try {
+                window.avas = $.parseJSON(data);
+                console.log('all good');
+            } catch(e) {
+                console.error("response parse error while post about_edit.php:get_avas_array");
+            }
+            window.avaCount = window.avas.length;
             window.avaPosition = 1;
             setup_avas();
         });
@@ -64,7 +71,7 @@ $(document).ready(function () {
 });
 
 function setup_avas() {
-    if (avaCount > 1) {
+    if (window.avaCount > 1) {
         $("#ava_img").click(function () {
             var nextAvaPath = getNextAvaPath();
             //сначала убираем DIV
@@ -78,7 +85,7 @@ function setup_avas() {
             avaAnimation();
         });
         $("#ava_img").attr("src", getCurAvaPath());
-    } else if (avaCount == 1) {
+    } else if (window.avaCount == 1) {
         $("#ava_img").attr("src", getCurAvaPath());
 
     } else {

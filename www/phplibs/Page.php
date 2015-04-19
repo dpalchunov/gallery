@@ -62,8 +62,11 @@ abstract class  Page
         $template_engine->assign('head', $this -> getHead());
         $template_engine->assign('header', $this -> getPlayer());
         $template_engine->assign('header', $this -> getHeader());
-        session_start();
-        if ($_SESSION['state'] == 'ok') {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (isset($_SESSION['state']) && $_SESSION['state'] == 'ok') {
             $template_engine->assign('a_header', $this -> getAdminHeader());
 
         } else {

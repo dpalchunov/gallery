@@ -1,5 +1,3 @@
-<!--Скрпты отвечающие за догрузку нжней части страницы-->
-
 var mouseoverLeftColumnWrap = false;
 var nextPageNum = 1;
 var getNextPInWork = 0;
@@ -279,7 +277,6 @@ function changeFullScreenPic(sketch) {
     picIterator = fullScreenPics.map(function(e) {return e.path;}).indexOf(p.path);
 }
 
-<!--Скрипты полноэкранной галереи-->
 function binds () {
     $('#fullScreenGalleryRightSide').bind('click', closeFullScreenGalleryClickHandler);
     $('#fullScreenGalleryLeftSide').bind('click', backFullScreenGalleryClickHandler);
@@ -462,7 +459,7 @@ function replaceCurPictureByNext(picPath) {
     $("#big_image").attr("src",picPath);
     centerFullScreenPic();
     $('#resampled_image').hide();
-    resize_image( $( '#big_image' )[0], $( '#resampled_image' )[0] );
+    resize_image( $( '#big_image' )[0],$("#fullScreenPicContainer").width(),$("#fullScreenPicContainer").height(), $( '#resampled_image' )[0] );
 }
 
 
@@ -531,7 +528,7 @@ function hideFullScreenGallery() {
     $('#big_image').attr("src",'');
 }
 
-function resize_image( src, dst, type, quality ) {
+function resize_image( src, dst_w,dst_h,dst, type, quality ) {
     var tmp = new Image(),
         canvas, context, cW, cH;
 
@@ -542,6 +539,9 @@ function resize_image( src, dst, type, quality ) {
     cH = src.naturalHeight;
 
     tmp.src = src.src;
+    $(dst).load(function() {
+        $('#resampled_image').show();
+    });
     tmp.onload = function() {
 
         canvas = document.createElement( 'canvas' );
@@ -549,18 +549,18 @@ function resize_image( src, dst, type, quality ) {
         cW /= 2;
         cH /= 2;
 
-        if ( cW < src.width ) cW = src.width;
-        if ( cH < src.height ) cH = src.height;
+        if ( cW < dst_w ) cW = dst_w;
+        if ( cH < dst_h ) cH = dst_h;
 
         canvas.width = cW;
         canvas.height = cH;
         context = canvas.getContext( '2d' );
         context.drawImage( tmp, 0, 0, cW, cH );
-        $('#resampled_image').show();
+
         dst.src = canvas.toDataURL( type, quality );
 
 
-        if ( cW <= src.width || cH <= src.height ) {
+        if ( cW <= dst_w || cH <= dst_h ) {
             $(dst).load(function() {
                 $('#loader').hide();
             });
