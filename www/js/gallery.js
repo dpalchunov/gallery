@@ -278,8 +278,8 @@ function hideFullScreenGallery() {
 
 function changeFullScreenPic(sketch) {
     var p = {path:$(sketch).attr("picpath"),ratio:$(sketch).attr("ratio")};
-    replaceCurPictureByNext(p.path);
     picIterator = fullScreenPics.map(function(e) {return e.path;}).indexOf(p.path);
+    replaceCurPictureByNext(p.path);
 }
 
 function binds () {
@@ -357,7 +357,7 @@ function locateFullScreenGallaryControls() {
 }
 
 function centerFullScreenPic() {
-    var winRatio = $(window).height()/($(window).width()*0.80);
+    var winRatio = $(window).height()*0.95/($(window).width()*0.80);
     var imgRatio = (getCur_pics().ratio);
     if (imgRatio > winRatio) {
 
@@ -482,7 +482,6 @@ function rewritePageByPageNum(pageNum) {
                 $(".sketch").each(function(i,e) {
                     fullScreenPics.push( {path:$(e).attr("picPath"),ratio:$(e).attr("ratio")});
                 });
-               //  console.log(getCurPicInfo());
                 dragAndResize();
                 setImagesMousehandler();
                 setImagesClickhandler();
@@ -552,9 +551,7 @@ function resize_image( src, dst_w,dst_h,dst, type, quality ) {
         $('#resampled_image').show();
     });
     tmp.onload = function() {
-
         canvas = document.createElement( 'canvas' );
-
         cW /= 2;
         cH /= 2;
 
@@ -567,7 +564,6 @@ function resize_image( src, dst_w,dst_h,dst, type, quality ) {
         context.drawImage( tmp, 0, 0, cW, cH );
 
         dst.src = canvas.toDataURL( type, quality );
-
 
         if ( cW <= dst_w || cH <= dst_h ) {
             $(dst).load(function() {

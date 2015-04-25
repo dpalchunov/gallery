@@ -12,7 +12,7 @@ abstract class  Page
         $template_engine = $resourceService->getTemplateEngine();
         $emp = $this ->emp;
         $ep = $this ->ep;
-        $js_common_scripts = array($emp.'jquery.min.js',$ep.'jquery.ajax-retry.js',$emp.'jquery-ui.min.js',$ep.'jquery.cookie.js','header.js',$emp.'jquery.jplayer.min.js','player.js');
+        $js_common_scripts = array($emp.'jquery.min.js',$emp.'jquery.ajax-retry.min.js',$emp.'jquery-ui.min.js',$ep.'jquery.cookie.js','header.js',$emp.'jquery.jplayer.min.js','player.js');
         $common_styles = array('nav_menu.css','header.css','jquery-ui.css','general.css');
     }
 
