@@ -22,29 +22,29 @@
 
 /*Navigation menu -about*/
 div.menu_button {
-    border: 1px double white;
+    border: 1px double black;
     text-align:center;
     vertical-align: middle;
-    FONT-FAMILY: MainText;
+    FONT-FAMILY: 'Exo 2',sans-serif;
     FONT-SIZE: 16px;
 
 
 }
 
 div.menu_button.active {
-    border: 1px double #000000;
+    border: 1px double #fff;
 }
 
 div.menu_button:hover {
-    border: 1px double #000000;
-    background-color: white;
+    border: 1px double #fff;
+    background-color: black;
 }
 
 div.menu_button a {
     display: block;
     height: 100%;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 
@@ -89,7 +89,7 @@ div.menu_button a {
     margin-left: -30px;
 }
 #lang_changer a {
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     font-size: 10pt;
     font-family: "Times New Roman";
     color: #5c5c5c;

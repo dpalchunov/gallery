@@ -3,7 +3,7 @@
 #main_content {
     width: 100%;
     position: relative;
-    background-color: #ffffff;
+    background-color: black;
     display: inline-block;
     margin-top: 70px;
     float:left;
@@ -23,9 +23,9 @@
 
 
 #main_text_pre {
-    FONT-FAMILY: MainText;
+    FONT-FAMILY: 'Exo 2',sans-serif;
     font-size: 16px;
-    color: #212121;
+    color: #fff;
     display:inline-block;
     float:left;
     position:relative;

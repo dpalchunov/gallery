@@ -7,7 +7,7 @@ html {
 
 body {
     background: #FFFFFF;
-    font-family: MainText;;
+    font-family: 'Exo 2',sans-serif;;
     font-size: 18px;
     color: #ffffff;
     min-height: 100%;
@@ -19,7 +19,7 @@ body {
 }
 
 #dialog {
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     font-size: 14px;
 }
 
@@ -43,7 +43,7 @@ a:hover {
 }
 
 code {
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     color: #000;
 }
 
@@ -281,28 +281,28 @@ blockquote {
 
 .head {
 
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     color: black;
     font-size: 20pt;
 }
 
 .info {
 
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     color: black;
     font-size: 17pt;
 }
 
 .info a {
 
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     color: black;
     font-size: 17pt;
 }
 
 .comment {
 
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     color: black;
     font-size: 12pt;
 }
@@ -399,13 +399,13 @@ blockquote {
 
 .field_editor_input {
     background-color: #e9e9ed;
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     font-size: 14px;
     color: black;
 }
 
 .field_editor_label {
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     font-size: 18px;
     color: #000000;
     display: inline-block;

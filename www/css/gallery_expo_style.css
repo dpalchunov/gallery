@@ -56,7 +56,7 @@
     position: fixed;
     width: 60px;
     height: 100%;
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     background-image: url("../images/returner/arrow.png");
     background-color: #7e7e7e;
     background-repeat: no-repeat;
@@ -187,7 +187,7 @@
     width: 400px;
     height: 1200px;
     border: #282828 2px solid;
-    font-family: MainText;
+    font-family: 'Exo 2',sans-serif;
     z-index: 20;
     background-image: url(../images/panel/bg.png);
     background-repeat: repeat;

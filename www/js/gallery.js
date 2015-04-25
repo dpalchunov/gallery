@@ -211,7 +211,7 @@ function turnOnReturner() {
     } else {
         $('#arrow_pic').css('background-image', "url()");
         $('#left_column_wrap').css('opacity', 1);
-        $('#arrow_pic').css('background-color', '#FFF');
+        $('#arrow_pic').css('background-color', '#000');
     }
     $('#left_column_wrap,#arrow_pic').hover(function () {
 
@@ -233,7 +233,7 @@ function showArrow() {
 
 function hideArrow() {
     $('#left_column_wrap').css('opacity', 1);
-    $('#arrow_pic').css('background-color', '#FFF');
+    $('#arrow_pic').css('background-color', '#000');
 
     mouseoverLeftColumnWrap = false;
 }
@@ -241,18 +241,18 @@ function hideArrow() {
 function turnOffReturner() {
     $('#left_column_wrap,#arrow_pic').unbind('click');
     $('#left_column_wrap').css('opacity', 1);
-    $('#arrow_pic').css('background-color', '#FFF');
+    $('#arrow_pic').css('background-color', '#000');
     $('#arrow_pic').css('background-image', 'none');
 
     $('#left_column_wrap,#arrow_pic').hover(function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = true;
-            $('#arrow_pic').css('background-color', '#FFF');
+            $('#arrow_pic').css('background-color', '#000');
         },
         function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = false;
-            $('#arrow_pic').css('background-color', '#FFF');
+            $('#arrow_pic').css('background-color', '#000');
         });
 }
 

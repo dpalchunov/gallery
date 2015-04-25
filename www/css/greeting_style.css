@@ -43,10 +43,10 @@
     height: 20%;
     width: 100%;
     z-index: 3;
-    FONT-FAMILY: Greet;
+    FONT-FAMILY: 'Martel', serif;
     FONT-SIZE: 100px;
     text-align: center;
-    color: #ffffff;
+    color: #FFF;
     letter-spacing: 20px;
 }
 

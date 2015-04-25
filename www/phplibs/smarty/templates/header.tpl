@@ -7,8 +7,7 @@
         <div class="player_control" id="prev"></div>
     </div>
     <div id="header_name">
-        <div id="first_name">Kristina</div>
-        <div id="last_name">Strunkova</div>
+        <div id="first_name">Stadium[R]</div>
     </div>
     <div id="nav_menu_wrapper">
         {{{$nav_menu}}}
