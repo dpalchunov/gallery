@@ -11,15 +11,11 @@ $(document).ready(function(){
                     },
                     {
                         title:"3.mp3",
-                        mp3: './player/mp3/3.mp3'
+                        mp3: './player/mp3/3.m4a'
                     },
                     {
                         title:"4.mp3",
-                        mp3: './player/mp3/4.mp3'
-                    },
-                    {
-                        title:"5.mp3",
-                        mp3: './player/mp3/5.mp3'
+                        mp3: './player/mp3/4.m4a'
                     }];
 
     $("#music_ask_yes").click(function() {
