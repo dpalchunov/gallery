@@ -22,6 +22,7 @@ class ExpositionManager
         foreach ($db_objs as $db_obj) {
             $id = (int)$db_obj['expoid'];
             $pictureID = (int)$db_obj['pictureid'];
+            $songID = (int)$db_obj['songid'];
 
 
             $left = $db_obj['left'];
@@ -29,7 +30,7 @@ class ExpositionManager
             $ratio = $db_obj['ratio'];
             $top = $db_obj['top'];
 
-            $obj = new Exposition($id,$pictureID,$left, $width,$top, $ratio);
+            $obj = new Exposition($id,$pictureID,$songID,$left, $width,$top, $ratio);
             $objArray[] = $obj;
         }
         return $objArray;
@@ -59,7 +60,7 @@ class ExpositionManager
         global $db;
 
         try {
-            if ($objs = $db->query("SELECT expoid, pictureid,`left`,width,ratio,top FROM strunkovadb.texpo where pictureid = ?", array($picID), 'assoc') ) {
+            if ($objs = $db->query("SELECT expoid, pictureid,songid,`left`,width,ratio,top FROM strunkovadb.texpo where pictureid = ?", array($picID), 'assoc') ) {
                 $res = $this->toExpoObjects($objs);
                 return $res[0];
             } else {
@@ -70,7 +71,27 @@ class ExpositionManager
             echo $e->getMessage();
             return null;
         }
-    }    
+    }
+
+    public function selectExpositionBySongID($songID)
+    {
+        global $db;
+
+        try {
+            if ($objs = $db->query("SELECT expoid, pictureid,songid,`left`,width,ratio,top FROM strunkovadb.texpo where songid = ?", array($songID), 'assoc') ) {
+                $res = $this->toExpoObjects($objs);
+                return $res[0];
+            } else {
+                echo 'error';
+                return null;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+
 
     public function updateObject(Exposition $obj)
     {
@@ -125,29 +146,29 @@ class ExpositionManager
 
     private function prepareQueryData(Exposition $obj)
     {
-        return array($obj-> getPicID(),$obj ->getLeft(),$obj ->getWidth(),$obj ->getRatio(),$obj ->getTop() );
+        return array($obj-> getPicID(),$obj-> getSongID(),$obj ->getLeft(),$obj ->getWidth(),$obj ->getRatio(),$obj ->getTop() );
     }
 
     private function prepareUpdateQueryData(Exposition $obj)
     {
-        return array($obj-> getPicID(),$obj ->getLeft(),$obj ->getWidth(),$obj ->getRatio(),$obj ->getTop(), $obj->getId() );
+        return array($obj-> getPicID(),$obj-> getSongID(),$obj ->getLeft(),$obj ->getWidth(),$obj ->getRatio(),$obj ->getTop(), $obj->getId() );
     }
 
     private function preparePattern()
     {
-        return "INSERT INTO strunkovadb.texpo (pictureid,`left`,width,ratio,top) VALUES (?,?,?,?,?)";
+        return "INSERT INTO strunkovadb.texpo (pictureid,songid,`left`,width,ratio,top) VALUES (?INT-NULL,?INT-NULL,?,?,?,?)";
 
     }
 
     private function prepareExpoSelectPattern()
     {
-        return "SELECT pictureid,`left`,width,ratio,top FROM strunkovadb.texpo where expoid = ?";
+        return "SELECT pictureid,songid,`left`,width,ratio,top FROM strunkovadb.texpo where expoid = ?";
 
     }
 
     private function prepareUpdatePattern()
     {
-        return "UPDATE strunkovadb.texpo SET pictureid = ?,`left` = ?,width = ?,ratio = ?,top = ? WHERE expoid = ? ";
+        return "UPDATE strunkovadb.texpo SET pictureid = ?INT-NULL,songid = ?INT-NULL,`left` = ?,width = ?,ratio = ?,top = ? WHERE expoid = ? ";
 
     }
 

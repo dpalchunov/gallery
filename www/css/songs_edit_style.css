@@ -1,0 +1,378 @@
+/*Main content*/
+
+
+#main_content {
+    background-color: #000;
+
+}
+
+#songs_editor_content {
+    width: 90%;
+    margin-left:5%;
+    position: relative;
+    display: inline-block;
+    margin-top: 80px;
+    background-repeat: no-repeat;
+
+}
+
+#songs {
+    width: 100%;
+    margin: 0px;
+    position: relative;
+    display: inline-block;
+}
+
+.one_element {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.pic {
+    left: 50px;
+    position: relative;
+    float: left;
+    display: inline-block;
+    margin-right: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.controls {
+    display: inline-block;
+    width: 600px;
+    float: left;
+    margin-left: 10px;
+}
+
+.control {
+    margin-left: 10px;
+}
+
+.fileuploader_wrapper {
+    display: inline-block;
+    float: left;
+}
+
+.controls a {
+    text-decoration: none;
+    outline: none;
+    color: #000000;
+    font-size: 20px;
+}
+
+.controls a:hover {
+    text-decoration: underline;
+    outline: none;
+    color: #000000;
+    font-size: 20px;
+}
+
+.green a {
+    color: #006200;
+}
+
+.green a:hover {
+    color: #006200;
+}
+
+.red a:hover {
+    color: #620000;
+}
+
+.red a {
+    color: #620000;
+}
+
+#uploaded {
+    width: 1100px;
+    margin: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+#uploaded_left {
+    left: 0px;
+    top: 0px;
+    width: 600px;
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+}
+
+#uploaded_right {
+    width: 440px;
+    position: relative;
+    display: inline-block;
+    float: left;
+}
+
+#save_cancel {
+    display: none;
+}
+
+.uploaded_img {
+    display: inline-block;
+}
+
+.cropper_div {
+    margin-bottom: 20px;
+}
+
+.cropper {
+    width: 675px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#cropper_image {
+    overflow: hidden;
+}
+
+.cropper-preview {
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    height: 219px;
+    width: 440px;
+    float: left;
+    margin-right: 20px;
+
+}
+
+#add_new {
+    height: 50px;
+    width: 675px;
+    margin: 20px;
+    position: relative;
+}
+
+#add_new_controls {
+    left: 575px;
+    height: 10px;
+    width: 200px;
+    margin: 20px;
+    position: relative;
+}
+
+
+.head {
+
+    font-family: 'Exo 2',sans-serif;
+    color: black;
+    font-size: 20pt;
+}
+
+.info {
+
+    font-family: 'Exo 2',sans-serif;
+    color: black;
+    font-size: 17pt;
+}
+
+.info a {
+
+    font-family: 'Exo 2',sans-serif;
+    color: black;
+    font-size: 17pt;
+}
+
+.comment {
+
+    font-family: 'Exo 2',sans-serif;
+    color: black;
+    font-size: 12pt;
+}
+
+.empty {
+
+    height: 8pt;
+}
+
+.container {
+    margin-top: 10px;
+    height: 64px;
+    width: 64px;
+    overflow: hidden;
+    display: block;
+}
+
+.container:hover img {
+
+    margin-top: -64px;
+}
+
+.remove_pic {
+    display: inline-block;
+    float: right;
+}
+
+.save_pic {
+    display: inline-block;
+    float: right;
+    display: none;
+}
+
+#slider {
+    margin-bottom: 10px;
+    display: none;
+}
+
+
+.field_editor_div {
+    width: 600px;
+    float: left;
+    margin-left: 10px;
+}
+
+.classification_div {
+    width: 600px;
+    float: left;
+    margin-top: 20px;
+    display: none;
+}
+
+.field_editor_form {
+    width: 600px;
+
+    display: inline-block;
+}
+
+.rus_desc_div {
+    width: 600px;
+    display: inline-block;
+    resize: both;
+}
+
+.rus_desc_input {
+    margin-left: 10px;
+    float: right;
+    width: 350px;
+    resize: vertical;
+    height: 60px;
+}
+
+.eng_desc_div {
+    width: 600px;
+    display: inline-block;
+    resize: both;
+}
+
+.cl_ref {
+    width: 600px;
+    display: inline-block;
+}
+
+.eng_desc_input {
+    margin-left: 10px;
+    float: right;
+    width: 350px;
+    resize: vertical;
+    height: 60px;
+}
+
+.rate {
+    width: 600px;
+    height: 30px;
+    display: none;
+}
+
+.rate_radio_group {
+    float: right;
+    height: 30px;
+    width: 350px;
+
+}
+
+.rate_input {
+    width: 25px;
+    height: 20px;
+    float: left;
+    vertical-align: middle;
+}
+
+.position {
+    width: 600px;
+    height: 20px;
+    align: left;
+    display: none;
+}
+
+.position_input {
+    float: right;
+    width: 340px;
+}
+
+.cl_text_edit {
+    margin-left: 10px;
+    float: right;
+    width: 340px;
+}
+
+.field_editor_input {
+    background-color: #e9e9ed;
+    font-family: 'Exo 2',sans-serif;
+    font-size: 14px;
+    color: black;
+}
+
+.field_editor_label {
+    font-family: 'Exo 2',sans-serif;
+    font-size: 18px;
+    color: #FFF;
+    display: inline-block;
+    float: left;
+
+}
+
+.rate_radio_label_label {
+    font-family: 'Exo 2',sans-serif;
+    font-size: 18px;
+    color: #000000;
+    display: inline-block;
+    float: left;
+}
+
+.ui-autocomplete.ui-widget {
+    font-family: 'Exo 2',sans-serif;
+    font-size: 14px;
+}
+
+#pagination {
+    width: 1200px;
+    color: white;
+}
+
+#pagination a {
+    font-size: 14px;
+    color: white;
+}
+
+.page_div {
+    width: 20px;
+    margin-left: 20px;
+    display: inline-block;
+    float: left;
+}
+
+#pagination .active {
+    font-weight: bold;
+}
+
+#active_page {
+    display: none;
+}
+
+.page_div {
+    width: 15px;
+    height: 15px;
+}
+
+
+
+

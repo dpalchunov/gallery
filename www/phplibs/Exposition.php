@@ -4,6 +4,7 @@ class  Exposition
 
     var $id;
     var $pic_id;
+    var $song_id;
     var $left;
     var $width;
     var $ratio;
@@ -33,12 +34,22 @@ class  Exposition
         $this->pic_id = $pic_id;
     }
 
+    public function setSongId($song_id)
+    {
+        $this->song_id = $song_id;
+    }
+
     /**
      * @return mixed
      */
     public function getPicId()
     {
         return $this->pic_id;
+    }
+
+    public function getSongId()
+    {
+        return $this->song_id;
     }
 
 
@@ -54,10 +65,11 @@ class  Exposition
 
 
 
-    public function __construct6($id,$pic_id,$left, $width,$top, $ratio)
+    public function __construct7($id,$pic_id,$song_id,$left, $width,$top, $ratio)
     {
         $this -> setId($id);
         $this -> setPicId($pic_id);
+        $this -> setSongId($song_id);
         $this -> setLeft($left);
         $this -> setWidth($width);
         $this -> setRatio($ratio);
