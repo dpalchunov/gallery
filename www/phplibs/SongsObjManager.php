@@ -190,7 +190,7 @@ class SongsObjManager
     private function prepareUpdateQueryData(Song $song)
     {
         $descriptions = $song->getMultilangDescription();
-        return array($song->getFileName(), $song->getID());
+        return array($song->getFileName(),$descriptions['rus'], $descriptions['eng'], $song->getID());
     }
 
 
@@ -202,7 +202,7 @@ class SongsObjManager
 
     private function prepareUpdatePattern()
     {
-        return "UPDATE strunkovadb.tsongs SET filename = ?,rate = ?,rusname = ?,engname = ?  WHERE songid = ? ";
+        return "UPDATE strunkovadb.tsongs SET filename = ?,rusname = ?,engname = ?  WHERE songid = ? ";
 
     }
 

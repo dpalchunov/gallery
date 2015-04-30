@@ -31,13 +31,14 @@ $(document).ready(function () {
         formData: { action: "edit_upload_song"},
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {
+            console.log(files);
             loadLastPage();
 
         },
         uploadButtonClass: "green ajax-file-upload",
         showDone: false,
         showProgress: false,
-        allowedTypes: "mp3,mp4"
+        allowedTypes: "mp3,mp4,wav"
     });
 
 });
@@ -190,10 +191,8 @@ function removeHandler(src) {
 
 
 function saveHandler(formID, hashHolderID) {
-    saveValuesRelations(hashHolderID, formID);
-    $("#" + formID).submit();
+    $(jq(formID)).submit();
     $(".save_song[area='" + hashHolderID + "']").hide();
-    loadAndSetPaths();
     refreshHashByID(hashHolderID);
 }
 
@@ -207,9 +206,9 @@ function addControlsClickHandlers() {
         });
 
         $(this).hover(function () {
-            $("#" + $(this).attr("area")).css("background-color", "#D16464");
+            $(jq($(this).attr("area"))).css("background-color", "#D16464");
         }, function () {
-            $("#" + $(this).attr("area")).css("background-color", "black");
+            $(jq($(this).attr("area"))).css("background-color", "black");
         });
 
     });
@@ -222,9 +221,9 @@ function addControlsClickHandlers() {
         });
 
         $(this).hover(function () {
-            $("#" + $(this).attr("area")).css("background-color", "#5d9f7a");
+            $(jq($(this).attr("area"))).css("background-color", "#5d9f7a");
         }, function () {
-            $("#" + $(this).attr("area")).css("background-color", "black");
+            $(jq($(this).attr("area"))).css("background-color", "black");
         });
 
     });
@@ -245,9 +244,14 @@ function addFieldsChangeHandlers(inputs) {
     });
 }
 
+function jq(myid) {
+    return "#" + myid.replace(/(:|\.|\[|\]|,)/g, "\\$1");
+
+}
+
 function checkSongHash(input) {
     var $hashHolderID = $(input).attr("hash_holder");
-    var $oldHash = $("#" + $hashHolderID).attr("hash");
+    var $oldHash = $(jq($hashHolderID)).attr("hash");
     var $newHash = calcFormHash($hashHolderID);
     if ($oldHash != $newHash) {
         $(".save_song[area='" + $hashHolderID + "']").show();

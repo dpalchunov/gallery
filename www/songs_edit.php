@@ -21,6 +21,11 @@ function common_action_handler() {
 }
 
 
+function removeSpecChar($str) {
+    return  preg_replace("/[^a-zA-Z0-9._]/","_",$str);
+
+}
+
 function edit_upload_song_handler() {
     if(isset($_FILES["myfile"]))
     {
@@ -28,10 +33,12 @@ function edit_upload_song_handler() {
         $output_dir = "player/mp3/";
         $fileLoader = new FileLoader();
         $files =  $_FILES["myfile"];
-        $files["persist_name"] = $_FILES["myfile"]["name"];
+        $files["persist_name"] = date('Y.m.d.His') . "." . pathinfo($_FILES["myfile"]["name"], PATHINFO_EXTENSION);;
         $ret = $fileLoader -> uploadFiles($files,$output_dir);
 
         $song = new Song($files["persist_name"]);
+        $song -> setEngDescription($_FILES["myfile"]["name"]);
+        $song -> setRusDescription($_FILES["myfile"]["name"]);
         $man = new SongsObjManager();
         $id = $man->saveSong($song);
         if ($id != null) {

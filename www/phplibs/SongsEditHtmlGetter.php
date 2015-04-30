@@ -23,7 +23,7 @@ class  SongsEditHtmlGetter
             $objsHtml = $objsHtml .
                 "<div id=\"area_{$file_base}\" class=\"one_element\">
                     <div class=\"song\"\">
-                        <img src=\"{$path}\"/>
+                        <p> \"{$file_name}\"<p/>
                     </div>
                      <div class=\"controls\">
                         <div class=\"control remove_song red\" area=\"area_{$file_base}\">
@@ -39,11 +39,11 @@ class  SongsEditHtmlGetter
                             <input name=\"action\" type=\"hidden\" value=\"edit_update_song\">
                             <div class=\"rusname_div\">
                                 <label class=\"field_editor_label\">Desc in russian </label>
-                                <textarea name=\"rus_desc\" class=\"rusname_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$runame</textarea>
+                                <textarea name=\"rusname\" class=\"rusname_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$runame</textarea>
                             </div>
                             <div class=\"engname_div\">
                                 <label class=\"field_editor_label\">Desc in english </label>
-                                <textarea name=\"eng_desc\" class=\"engname_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$engame</textarea>
+                                <textarea name=\"engname\" class=\"engname_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$engame</textarea>
                             </div>
                 </form>
         </div>

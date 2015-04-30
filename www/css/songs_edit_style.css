@@ -31,12 +31,14 @@
     padding: 10px;
 }
 
-.pic {
-    left: 50px;
+.song {
+    left: 0px;
+    height: 100px;
+    width: 30%;
     position: relative;
     float: left;
     display: inline-block;
-    margin-right: 50px;
+    margin-right: 0px;
     background-repeat: no-repeat;
     background-position: center;
 
@@ -44,9 +46,8 @@
 
 .controls {
     display: inline-block;
-    width: 600px;
+    width: 70%;
     float: left;
-    margin-left: 10px;
 }
 
 .control {
@@ -207,12 +208,12 @@
     margin-top: -64px;
 }
 
-.remove_pic {
+.remove_song {
     display: inline-block;
     float: right;
 }
 
-.save_pic {
+.save_song {
     display: inline-block;
     float: right;
     display: none;
@@ -243,13 +244,13 @@
     display: inline-block;
 }
 
-.rus_desc_div {
+.rusname_div {
     width: 600px;
     display: inline-block;
     resize: both;
 }
 
-.rus_desc_input {
+.rusname_input {
     margin-left: 10px;
     float: right;
     width: 350px;
@@ -257,7 +258,7 @@
     height: 60px;
 }
 
-.eng_desc_div {
+.engname_div {
     width: 600px;
     display: inline-block;
     resize: both;
@@ -268,7 +269,7 @@
     display: inline-block;
 }
 
-.eng_desc_input {
+.engname_input {
     margin-left: 10px;
     float: right;
     width: 350px;
