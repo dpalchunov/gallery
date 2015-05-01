@@ -3,12 +3,21 @@ require_once 'phplibs/ResourceService.php';
 class  SongsGetter
 {
 
-    public function getPicExposition($lang)
+    public function __construct($language)
     {
-        $pm = new PictureObjManager();
-        $pictureObjectArray = $pm -> selectAllPics();
-        if ($pictureObjectArray != null) {
-            $expoHTML = $this->getPicturesHTML($pictureObjectArray, $lang);
+        global $template_engine, $db, $lang;
+        $resourceService = new ResourceService();
+        $template_engine = $resourceService->getTemplateEngine();
+        $db = $resourceService->getDBConnection();
+        $lang = $language;
+    }
+
+    public function getSongsExposition($lang)
+    {
+        $pm = new SongsObjManager();
+        $objectArray = $pm -> selectAllSongs();
+        if ($objectArray != null) {
+            $expoHTML = $this->getSongsHTML($objectArray, $lang);
             return $expoHTML;
         } else {
             return '';
@@ -16,43 +25,38 @@ class  SongsGetter
     }
 
 
-    private function getPicturesHTML($pictures, $lang)
+    private function getSongsHTML($objs, $lang)
     {
-        global $template_engine;
-        if (!(sizeof($pictures) > 0)) {
+        if (!(sizeof($objs) > 0)) {
             return '';
         };
 
-        $pictureHtmls = '';
-        foreach ($pictures as $i => $picture) {
-            $picHtml = $this -> getSketchHTMLCode($picture,$lang,$i);
-            $pictureHtmls .= $picHtml;
+        $songsHtmls = '';
+        foreach ($objs as $obj) {
+            $songHtml = $this -> getSketchHTMLCode($obj,$lang);
+            $songsHtmls .= $songHtml;
         }
 
-        return $pictureHtmls;
+        return $songsHtmls;
     }
 
 
-    private function getSketchHTMLCode($pictureObject, $lang, $zindex)
+    private function getSketchHTMLCode($obj, $lang)
     {
         global $template_engine;
 
-        $pictureSketchPath = $pictureObject->getSketchPath();
-        $picturePath = $pictureObject->getPicPath();
-        $pictureSequenceNumber = $pictureObject->getPosition() + 1;
-        $picDescription = $pictureObject->getDescription($lang);
-        $picRate = $pictureObject->getRate();
-        $picExpo = $pictureObject->getExpoPosition();
-        $id = $pictureObject->getID();
-        $template_engine->assign('pic_id', $id);
-        $template_engine->assign('pic_desc_id', $id.'_desc');
-        $template_engine->assign('zindex', 0);
-        if ($picExpo != null){
+        $desc = $obj->getDescription($lang);
+        $expo = $obj->getExpoPosition();
+        $filename = $obj -> getFileName();
+        $id = $obj->getID();
+        $template_engine->assign('song_id', $id);
+        $template_engine->assign('song_desc_id', $id.'_desc');
+        if ($expo != null){
 
-            $left = $picExpo ->getLeft();
-            $top = $picExpo ->getTop();
-            $width = $picExpo ->getWidth();
-            $ratio = $picExpo ->getRatio();
+            $left = $expo ->getLeft();
+            $top = $expo ->getTop();
+            $width = $expo ->getWidth();
+            $ratio = $expo ->getRatio();
 
 
             $template_engine->assign('css_left', $left."%");
@@ -67,42 +71,38 @@ class  SongsGetter
 
         }
 
-        $picRateHtml = $this->makePicRateHtml($picRate);
-        $template_engine->assign('picRate', $picRateHtml);
-        $template_engine->assign('picDescription', $picDescription);
-        $template_engine->assign('pictureSketchPath', $pictureSketchPath);
-        $template_engine->assign('picPath', $picturePath);
-        $template_engine->assign('sequenceNumber', $pictureSequenceNumber);
+        $template_engine->assign('songDescription', $desc);
+        $template_engine->assign('filename', $filename);
 
-        $picHTMLCode = $template_engine->fetch('sketch.tpl');
-        return $picHTMLCode;
+        $htmlCode = $template_engine->fetch('sketch_song.tpl');
+        return $htmlCode;
 
     }
 
 
     public function getLabelsArray($lang)
     {
-        $pm = new PictureObjManager();
-        $pictureObjectArray = $pm -> selectAllPics();
-        if ($pictureObjectArray != null) {
-            $res = $this->getPicturesLabels($pictureObjectArray, $lang);
+        $pm = new SongsObjManager();
+        $objArray = $pm -> selectAllSongs();
+        if ($objArray != null) {
+            $res = $this->getLabels($objArray, $lang);
         } else {
             $res = array();
         }
         return $res;
     }
 
-    private function getPicturesLabels($pictures, $lang)
+    private function getLabels($objs, $lang)
     {
-        if (!(sizeof($pictures) > 0)) {
+        if (!(sizeof($objs) > 0)) {
             return '';
         };
 
         $all_labels = array();
-        foreach ($pictures as $picture) {
-            $id = $picture->getID();
-            $picDescription = $picture->getDescription($lang);
-            $all_labels[$id.'_desc'] = $picDescription;
+        foreach ($objs as $obj) {
+            $id = $obj->getID();
+            $desc = $obj->getDescription($lang);
+            $all_labels[$id.'_desc'] = $desc;
         }
 
         return $all_labels;

@@ -7,6 +7,7 @@ actionHeader();
 $actions = array(
     "common_action_" => array ("type" => "everyone"),
     "get_pic_page" => array ("type" => "everyone"),
+    "get_song_page" => array ("type" => "everyone"),
     "get_pic_count_by_filter" => array ("type" => "everyone")
 );
 
@@ -25,6 +26,17 @@ function get_pic_page_handler() {
     unset($filter['action']);
     echo $picturesGetter->getPicExposition($lang);
 }
+
+function get_song_page_handler() {
+    $resourceService = new ResourceService();
+    $lang = $resourceService -> getLang();
+    $getter = new SongsGetter($lang);
+    $filter = $_POST;
+    unset($filter['lang']);
+    unset($filter['action']);
+    echo $getter->getSongsExposition($lang);
+}
+
 
 function get_pic_count_by_filter() {
     $resourceService = new ResourceService();

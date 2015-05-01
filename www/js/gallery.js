@@ -101,7 +101,7 @@ function showFirstPage() {
 
 function setPicturesCountByFilter() {
     var action = "get_pic_count_by_filter";
-    $.post("pic_helper.php", "action=" + action + "&" + $("#filter_form").serialize(),
+    $.post("content_helper.php", "action=" + action + "&" + $("#filter_form").serialize(),
         function (data,x,jqXHR) {
             if (action != jqXHR.getResponseHeader('action')) {
                 setPicturesCountByFilter();
@@ -470,7 +470,7 @@ function replaceCurPictureByNext(picPath) {
 function rewritePageByPageNum(pageNum) {
     var action = "get_pic_page";
     var allParamsString = makePictureGetterParametersStringForPageGet(pageNum,action);
-    $.post("pic_helper.php", allParamsString,
+    $.post("content_helper.php", allParamsString,
         //функция обработки полученных данных
         function (data,x,jqXHR) {
             if (action != jqXHR.getResponseHeader('action')) {

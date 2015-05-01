@@ -19,7 +19,7 @@ function showFirstPage() {
 }
 
 function setPicturesCountByFilter() {
-    $.post("pic_helper.php", "action=get_pic_count_by_filter&" + $("#filter_form").serialize(),
+    $.post("content_helper.php", "action=get_pic_count_by_filter&" + $("#filter_form").serialize(),
         function (data) {
             if (trim(data) != '') {
                 picturesCountByFilter = data;
@@ -126,12 +126,13 @@ function save(e) {
     var t_ratio = t/l;
     var r = h/w;
     var pic_id = e.attr("pic_id");
+    var song_id = e.attr("song_id");
 
     $.ajax({
         type: "POST",
         shouldRetry: 3,
         url: "gallery_edit.php",
-        data: {action:"expo_save",pic_id:pic_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
+        data: {action:"expo_save",pic_id:pic_id,song_id:song_id,ratio:r,width:w_percent,left:l_percent,top:t_ratio}
     })
         .done(function (msg) {
             //console.log(msg);
@@ -201,21 +202,29 @@ function refreshPictures() {
 
 function rewritePageByPageNum(pageNum) {
     var allParamsString = makePictureGetterParametersStringForPageGet(pageNum);
-    $.post("pic_helper.php", allParamsString,
+    $.post("content_helper.php", allParamsString,
         //функция обработки полученных данных
-        function (data) {
-            console.log(data);
-            if (trim(data) != '') {
-                $("#sketches").html(data);
-                dragAndResize();
-                var s_images = $(".small_image");
-                $.each(s_images, function(i,v) {
-                    $(v).hide();
+        function (pic_data) {
+            $.ajax({
+                type: "POST",
+                shouldRetry: 3,
+                url: 'content_helper.php',
+                data: {action:"get_song_page"}
+            }).done(function (song_data) {
+                    console.log(song_data);
+                    var data =  pic_data + song_data;
+                    if (trim(data) != '') {
+                        $("#sketches").html(data);
+                        dragAndResize();
+                        var s_images = $(".small_image");
+                        $.each(s_images, function(i,v) {
+                            $(v).hide();
 
-                });
-            } else {
-                $("#sketches").html("no data");
-            }
+                        });
+                    } else {
+                        $("#sketches").html("no data");
+                    }
+                })
         }
     )
     nextPageNum++;

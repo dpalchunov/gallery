@@ -119,19 +119,24 @@ function edit_save_pic_handler() {
 function expo_save_handler() {
 
     $man = new ExpositionManager();
-    $res = 'pic_id not setted up';
+    $res = 'pic_id and song_id not setted up';
 
-    if (isset($_POST["pic_id"]))  {
-        $exp = $man->selectExpositionByPicID($_POST["pic_id"]);
-
-
-        if ($exp == null) {
-            $exp = new Exposition();
-            $exp -> setPicId($_POST["pic_id"]);
-            $man -> save($exp);
+    if (isset($_POST["pic_id"]) or isset($_POST["song_id"]) )  {
+        if (isset($_POST["pic_id"])) {
+            $exp = $man->selectExpositionByPicID($_POST["pic_id"]);
+            if ($exp == null) {
+                $exp = new Exposition();
+                $exp -> setPicId($_POST["pic_id"]);
+                $man -> save($exp);
+            }
+        }  else {
+            $exp = $man->selectExpositionBySongID($_POST["song_id"]);
+            if ($exp == null) {
+                $exp = new Exposition();
+                $exp -> setSongId($_POST["song_id"]);
+                $man -> save($exp);
+            }
         }
-
-
 
         if (isset($_POST["left"])) {
             $exp->setLeft($_POST["left"]);
