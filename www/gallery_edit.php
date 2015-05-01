@@ -117,16 +117,21 @@ function edit_save_pic_handler() {
 
 }
 function expo_save_handler() {
+
     $man = new ExpositionManager();
     $res = 'pic_id not setted up';
 
     if (isset($_POST["pic_id"]))  {
         $exp = $man->selectExpositionByPicID($_POST["pic_id"]);
+
+
         if ($exp == null) {
             $exp = new Exposition();
             $exp -> setPicId($_POST["pic_id"]);
             $man -> save($exp);
         }
+
+
 
         if (isset($_POST["left"])) {
             $exp->setLeft($_POST["left"]);

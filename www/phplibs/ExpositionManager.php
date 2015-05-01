@@ -20,9 +20,10 @@ class ExpositionManager
     {
         $objArray = array();
         foreach ($db_objs as $db_obj) {
+
             $id = (int)$db_obj['expoid'];
-            $pictureID = (int)$db_obj['pictureid'];
-            $songID = (int)$db_obj['songid'];
+            $pictureID = $db_obj['pictureid'];
+            $songID = $db_obj['songid'];
 
 
             $left = $db_obj['left'];
@@ -61,6 +62,7 @@ class ExpositionManager
 
         try {
             if ($objs = $db->query("SELECT expoid, pictureid,songid,`left`,width,ratio,top FROM strunkovadb.texpo where pictureid = ?", array($picID), 'assoc') ) {
+
                 $res = $this->toExpoObjects($objs);
                 return $res[0];
             } else {
@@ -98,8 +100,11 @@ class ExpositionManager
         global $db;
         $pattern = $this->prepareUpdatePattern();
         $data = $this->prepareUpdateQueryData($obj);
+        var_dump($data);
         try {
             if ($objs = $db->query($pattern, $data)) {
+                var_dump($obj);
+                error_log($objs);
                 return 'ok';
             } else {
                 return null;
@@ -168,7 +173,7 @@ class ExpositionManager
 
     private function prepareUpdatePattern()
     {
-        return "UPDATE strunkovadb.texpo SET pictureid = ?INT-NULL,songid = ?INT-NULL,`left` = ?,width = ?,ratio = ?,top = ? WHERE expoid = ? ";
+        return "UPDATE strunkovadb.texpo SET pictureid = ?n,songid = ?n,`left` = ?,width = ?,ratio = ?,top = ? WHERE expoid = ? ";
 
     }
 

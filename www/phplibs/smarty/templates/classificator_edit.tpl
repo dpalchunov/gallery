@@ -8,21 +8,6 @@
     <link rel="stylesheet" type="text/css" href="/css/uploadfile.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
 
-
-    <!--[if IE]>
-    <link href='http://fonts.googleapis.com/css?family=Bad+Script|Marck+Script&subset=latin,cyrillic' rel='stylesheet'
-          type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Marck+Script' rel='stylesheet' type='text/css'>
-
-    <style>
-        #main_text pre {
-            font-family: 'Marck Script', cursive;
-            /*font-family: Garamond, 'Garamond Premier Pro';*/
-            color: black;
-            font-size: 17pt;
-        }
-    </style>
-    <![endif]-->
     <meta charset="utf-8"/>
 
 

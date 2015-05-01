@@ -5,28 +5,12 @@ var nextPageNum = 1;
 var getNextPInWork = 0;
 var allPicturesLoaded = false;
 var returnedPageData = '';
-var img_state_idle = 1,
-    img_state_dragging = 2,
-    img_state_persist_delay = 3
 
 
-
-
-//функция получает следующую страницу
-function getNextP() {
-    if (getNextPInWork == 0) {
-        //флаг позволяет запускать функцию сключительно последовательно
-        getNextPInWork = 1;
-        returnedPageData = '';
-        appendPageByPageNum(nextPageNum);
-        getNextPInWork = 0;
-    }
-}
 
 function showFirstPage() {
     if (getNextPInWork == 0) {
         //флаг позволяет запускать функцию сключительно последовательно
-        getNextPInWork = 1;
         returnedPageData = '';
         rewritePageByPageNum(nextPageNum);
         setPicturesCountByFilter();
@@ -207,13 +191,6 @@ function turnOffReturner() {
         });
 }
 
-function setLeftColumnWrapHeightEquilToMain() {
-    if ((typeof $('#page_wrap').css("height")) != "undefined") {
-        pageWrapHeight = $("#page_wrap").css('height');
-        pageWrapHeight.replace(/[^-\d\.]/g, '');
-        $("#left_column_wrap").css('height', parseInt(pageWrapHeight));
-    }
-}
 
 function refreshPictures() {
     allPicturesLoaded = false;
@@ -227,6 +204,7 @@ function rewritePageByPageNum(pageNum) {
     $.post("pic_helper.php", allParamsString,
         //функция обработки полученных данных
         function (data) {
+            console.log(data);
             if (trim(data) != '') {
                 $("#sketches").html(data);
                 dragAndResize();

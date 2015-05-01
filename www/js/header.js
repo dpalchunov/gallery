@@ -9,6 +9,7 @@ var routes = {
     buy_href: {href:"contacts.php",page_name:'contacts.php'},
     edit_exposition_href: {href:"gallery_expo_edit.php",page_name:'gallery_expo_edit.php'},
     edit_gallery_href: {href:"gallery_edit.php",page_name:'gallery_edit.php'},
+    edit_songs_href: {href:"songs_edit.php",page_name:'songs_edit.php'},
     edit_about_href: {href:"about_edit.php",page_name:'about_edit.php'},
     edit_welcome_href: {href:"wellcome_edit.php",page_name:'wellcome_edit.php'}
 };

@@ -9,6 +9,9 @@
         <div id="edit_gallery">
             <a id="edit_gallery_href" class="a_href" href="javascript:void(0)">edit GALLERY</a>
         </div>
+        <div id="edit_songs">
+            <a id="edit_songs_href" class="a_href" href="javascript:void(0)">edit SONGS</a>
+        </div>
         <div id="edit_about">
             <a id="edit_about_href" class="a_href" href="javascript:void(0)">edit ABOUT</a>
         </div>
