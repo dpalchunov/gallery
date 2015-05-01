@@ -242,6 +242,16 @@
     color:black;
 }
 
+.song_title {
+    height: 100%;
+    width: 350px;
+    text-align: right;
+    margin-top: 25px;
+    margin-right: 200px;
+    display: inline-block;
+    float: right;
+}
+
 
 
 

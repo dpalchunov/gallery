@@ -420,6 +420,28 @@
 
 
 
+.song_controls {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+    float:left;
+    background-color: red;
+    text-align: center;
+}
+
+
+.song_desc {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: 75%;
+    float:left;
+    background-color: black;
+
+}
+
+
+
 
 
 

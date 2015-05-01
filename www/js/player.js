@@ -1,22 +1,9 @@
 $(document).ready(function(){
+    loadPlayList();
     window.songDuration = 0;
-    
-    window.playList = [{
-                        title:"1.mp3",
-                        mp3: './player/mp3/1.mp3'
-                    },
-                    {
-                        title:"2.mp3",
-                        mp3: './player/mp3/2.mp3'
-                    },
-                    {
-                        title:"3.mp3",
-                        mp3: './player/mp3/3.m4a'
-                    },
-                    {
-                        title:"4.mp3",
-                        mp3: './player/mp3/4.m4a'
-                    }];
+    window.currentTrack = 0;
+
+
 
     $("#music_ask_yes").click(function() {
         $("#dialog").hide();
@@ -28,22 +15,22 @@ $(document).ready(function(){
         $("#dialog").hide();
     });
 
-    var currentTrack = 0;
+
 	// Local copy of jQuery selectors, for performance.
-	var	my_jPlayer = $("#player"),
-        progress = $("#progress");
+	window.my_jPlayer = $("#player"),
+    window.progress = $("#progress");
 	// Initialize the play state text
 	// Instance jPlayer
-	my_jPlayer.jPlayer({
+	window.my_jPlayer.jPlayer({
 		ready: function () {
             var track_number = 0;
             if (check_audio_cookies()) {
                 try {
                     var time = Math.floor(parseFloat($.cookie('track_time')));
-                    currentTrack = $.cookie('track_number');
+                    window.currentTrack = $.cookie('track_number');
                     $(this).jPlayer("setMedia",{
-                        title:window.playList[currentTrack].title,
-                        mp3: window.playList[currentTrack].mp3
+                        title:window.playList[window.currentTrack].title,
+                        mp3: window.playList[window.currentTrack].mp3
                     });
                     if (($.cookie('paused') == "true")) {
                         $(this).jPlayer("pause",time)
@@ -53,15 +40,15 @@ $(document).ready(function(){
                 } catch(e) {
                     //console.error('audio player cookies load failure');
                     $(this).jPlayer("setMedia",{
-                        title:window.playList[currentTrack].title,
-                        mp3: window.playList[currentTrack].mp3
+                        title:window.playList[window.currentTrack].title,
+                        mp3: window.playList[window.currentTrack].mp3
                     }).jPlayer("play");
                 }
 
             } else {
                 $(this).jPlayer("setMedia",{
-                    title:window.playList[currentTrack].title,
-                    mp3: window.playList[currentTrack].mp3
+                    title:window.playList[window.currentTrack].title,
+                    mp3: window.playList[window.currentTrack].mp3
                 }).jPlayer("play");
                 setTimeout(function() {check_is_tablet();},300);
             }
@@ -78,14 +65,14 @@ $(document).ready(function(){
             $.cookie("track_time", cur_time, {expires:365});
             $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
-            progress.width(v);
+            window.progress.width(v);
 		},
         pause: function() {
             $.cookie("paused", "true", {expires:365});
         },
         ended: function(){
             next();
-            my_jPlayer.jPlayer("play");
+            window.my_jPlayer.jPlayer("play");
         },
         play: function() {
             $.cookie("paused", "false",{expires:365});
@@ -97,26 +84,6 @@ $(document).ready(function(){
         smoothPlayBar:true
 	});
 
-    function check_audio_cookies() {
-        return  ( $.cookie('track_number') != null) &&
-            ($.cookie('track_time') != null) &&
-                ($.cookie('paused') != null);
-    }
-
-    $("#inline").bind("click",progress_click_handler);
-
-    function progress_click_handler(event) {
-        var x = $("#inline").offset().left;
-        var delta = event.clientX - x;
-        var w = $("#inline").width();
-        var pos = delta/w;
-        var new_time = pos*window.songDuration;
-        if (my_jPlayer.data().jPlayer.status.paused) {
-            my_jPlayer.jPlayer("pause",new_time);
-        } else {
-            my_jPlayer.jPlayer("pause").jPlayer("play",new_time);
-        }
-    }
 
 
     $("#header").bind("click",function(event) {
@@ -132,56 +99,101 @@ $(document).ready(function(){
 
     $("#next").bind("click",next);
 
-    function next() {
-        currentTrack++;
-        $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
-        playcurrent();
-    }
 
     $("#prev").bind("click",function(e) {
-        if (my_jPlayer.data().jPlayer.status.currentTime < 2) {
-            currentTrack--;
-            $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
+        if (window.my_jPlayer.data().jPlayer.status.currentTime < 2) {
+            window.currentTrack--;
+            setCounterText();
         }
         playcurrent();
     });
 
-    function playcurrent() {
-        $.cookie("track_number", getCurrentInd(), {expires:365});
-        var wasPaused = my_jPlayer.data().jPlayer.status.paused;
-        var cur = getCurrentInd();
-        var p = my_jPlayer.jPlayer("setMedia",{
-            title:window.playList[cur].title,
-            mp3: window.playList[cur].mp3
-        });
-        if (!wasPaused) {
-            p.jPlayer("play");
-        }
-
-    }
-
-    function getCurrentInd() {
-        var l = window.playList.length;
-        var offset = Math.floor(currentTrack/l)*l;
-        var movedCurrent = currentTrack - offset;
-        return movedCurrent%l;
-    }
-
-    function check_is_tablet() {
-            if (navigator.userAgent.match(/Android/i) ||
-                navigator.userAgent.match(/webOS/i) ||
-                navigator.userAgent.match(/iPhone/i) ||
-                navigator.userAgent.match(/iPad/i) ||
-                navigator.userAgent.match(/iPod/i) ||
-                navigator.userAgent.match(/BlackBerry/i) ||
-                navigator.userAgent.match(/Windows Phone/i) ||
-                navigator.userAgent.match(/ZuneWP7/i)
-            ) {
-
-                $("#dialog").css('display','table');
-                $("#dialog").show();
-             }
-    }
 
 
 });
+
+function next() {
+    window.currentTrack++;
+    setCounterText();
+    playcurrent();
+}
+
+function check_audio_cookies() {
+    return  ( $.cookie('track_number') != null) &&
+        ($.cookie('track_time') != null) &&
+        ($.cookie('paused') != null);
+}
+
+$("#inline").bind("click",progress_click_handler);
+
+function progress_click_handler(event) {
+    var x = $("#inline").offset().left;
+    var delta = event.clientX - x;
+    var w = $("#inline").width();
+    var pos = delta/w;
+    var new_time = pos*window.songDuration;
+    if (window.my_jPlayer.data().jPlayer.status.paused) {
+        window.my_jPlayer.jPlayer("pause",new_time);
+    } else {
+        window.my_jPlayer.jPlayer("pause").jPlayer("play",new_time);
+    }
+}
+
+function loadPlayList() {
+    $.ajax({
+        type: "POST",
+        shouldRetry: 3,
+        url: "content_helper.php",
+        data: {action: "get_play_list"},
+        async:false
+    }).done(function (data) {
+            try {
+                console.log(data);
+                window.playList = $.parseJSON(data);
+            } catch(e) {
+                //console.error(href + ":" + header_labels + " " + e.message);
+            }
+        });
+}
+
+
+function setCounterText() {
+    $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
+}
+
+function playcurrent() {
+    $.cookie("track_number", getCurrentInd(), {expires:365});
+    var wasPaused = window.my_jPlayer.data().jPlayer.status.paused;
+    var cur = getCurrentInd();
+    var p = window.my_jPlayer.jPlayer("setMedia",{
+        title:window.playList[cur].title,
+        mp3: window.playList[cur].mp3
+    });
+    if (!wasPaused) {
+        p.jPlayer("play");
+    }
+
+}
+
+function getCurrentInd() {
+    var l = window.playList.length;
+    var offset = Math.floor(window.currentTrack/l)*l;
+    var movedCurrent = window.currentTrack - offset;
+    return movedCurrent%l;
+}
+
+function check_is_tablet() {
+    if (navigator.userAgent.match(/Android/i) ||
+        navigator.userAgent.match(/webOS/i) ||
+        navigator.userAgent.match(/iPhone/i) ||
+        navigator.userAgent.match(/iPad/i) ||
+        navigator.userAgent.match(/iPod/i) ||
+        navigator.userAgent.match(/BlackBerry/i) ||
+        navigator.userAgent.match(/Windows Phone/i) ||
+        navigator.userAgent.match(/ZuneWP7/i)
+        ) {
+
+        $("#dialog").css('display','table');
+        $("#dialog").show();
+    }
+}

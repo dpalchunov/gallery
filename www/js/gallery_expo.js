@@ -60,8 +60,21 @@ $(document).ready(function () {
     /* чтобы сразу правильно была выставлена переменная mouseoverLeftColumnWrap*/
     turnOffReturner();
     refreshPictures();
+
     destructor = destructor;
 });
+
+function setSongsHandlers()  {
+    var songs =  $(".song_controls");
+    $.each(songs, function(i,v) {
+        $(v).bind("click",function() {
+            window.currentTrack  = window.playList.map(function(e) {return e.mp3;}).indexOf($(this).attr("song_path"));
+            setCounterText();
+            playcurrent();
+
+        });
+    });
+}
 
 function dragAndResize() {
     var images = $(".ui-widget-content");
@@ -211,11 +224,12 @@ function rewritePageByPageNum(pageNum) {
                 url: 'content_helper.php',
                 data: {action:"get_song_page"}
             }).done(function (song_data) {
-                    console.log(song_data);
+                    //console.log(song_data);
                     var data =  pic_data + song_data;
                     if (trim(data) != '') {
                         $("#sketches").html(data);
                         dragAndResize();
+                        setSongsHandlers();
                         var s_images = $(".small_image");
                         $.each(s_images, function(i,v) {
                             $(v).hide();

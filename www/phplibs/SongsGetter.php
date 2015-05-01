@@ -25,6 +25,7 @@ class  SongsGetter
     }
 
 
+
     private function getSongsHTML($objs, $lang)
     {
         if (!(sizeof($objs) > 0)) {
@@ -48,9 +49,11 @@ class  SongsGetter
         $desc = $obj->getDescription($lang);
         $expo = $obj->getExpoPosition();
         $filename = $obj -> getFileName();
+        $path = $obj -> getPath();;
         $id = $obj->getID();
         $template_engine->assign('song_id', $id);
         $template_engine->assign('song_desc_id', $id.'_desc');
+        $template_engine->assign('song_path', $path);
         if ($expo != null){
 
             $left = $expo ->getLeft();
