@@ -26,7 +26,7 @@ function smallImageMouseOverHandler() {
         pic_width = $(this).width();
         all_td_space_width = $(all_td_space).width();
         details.width(pic_width);
-        details.css('height', '25%');
+        details.css('height', '80px');
         details.slideDown(400);
 
     }

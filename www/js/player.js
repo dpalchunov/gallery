@@ -10,10 +10,6 @@ $(document).ready(function(){
                         mp3: './player/mp3/2.mp3'
                     },
                     {
-                        title:"3.mp3",
-                        mp3: './player/mp3/3.mp3'
-                    },
-                    {
                         title:"4.mp3",
                         mp3: './player/mp3/4.mp3'
                     },
