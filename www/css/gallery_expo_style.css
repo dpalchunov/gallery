@@ -420,13 +420,27 @@
 
 
 
-.song_controls {
+.song_control {
     display: inline-block;
     height: 100%;
-    width: 25%;
+    width: 50px;
     float:left;
-    background-color: red;
     text-align: center;
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.song_control:hover {
+    background-image: url(../images/player/play_na.svg);
+}
+
+.song_control.active {
+    background-image: url(../images/player/progress.gif);
+}
+
+.song_control.active:hover {
+    background-image: url(../images/player/pause_na.svg);
 }
 
 

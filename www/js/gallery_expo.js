@@ -65,16 +65,37 @@ $(document).ready(function () {
 });
 
 function setSongsHandlers()  {
-    var songs =  $(".song_controls");
+    var songs =  $(".song_control");
     $.each(songs, function(i,v) {
         $(v).bind("click",function() {
-            window.currentTrack  = window.playList.map(function(e) {return e.mp3;}).indexOf($(this).attr("song_path"));
-            setCounterText();
-            playcurrent();
+            var cur_is_active = $(this).hasClass("active");
+            setCurrentPassive();
+            if (cur_is_active) {
+                window.my_jPlayer.jPlayer("pause");
+            } else {
+                window.currentTrack  = window.playList.map(function(e) {return e.mp3;}).indexOf($(this).attr("song_path"));
+                setCounterText();
+                changeToCurrent();
+                setCurrentActive();
+                window.my_jPlayer.jPlayer("play");
+            }
+
+
 
         });
     });
 }
+
+function setRefsToSongs() {
+    var song_controls = $(".song_control");
+    $.each(window.playList, function(i,v) {
+        var song = song_controls.filter(function() {
+                        return $(this).attr('song_path') == v.mp3;
+                    });
+        v.songRef = song;
+    });
+}
+
 
 function dragAndResize() {
     var images = $(".ui-widget-content");
@@ -230,6 +251,7 @@ function rewritePageByPageNum(pageNum) {
                         $("#sketches").html(data);
                         dragAndResize();
                         setSongsHandlers();
+                        setRefsToSongs();
                         var s_images = $(".small_image");
                         $.each(s_images, function(i,v) {
                             $(v).hide();

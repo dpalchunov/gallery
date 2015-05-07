@@ -29,8 +29,8 @@ $(document).ready(function(){
                     var time = Math.floor(parseFloat($.cookie('track_time')));
                     window.currentTrack = $.cookie('track_number');
                     $(this).jPlayer("setMedia",{
-                        title:window.playList[window.currentTrack].title,
-                        mp3: window.playList[window.currentTrack].mp3
+                        title:window.playList[getCurrentInd()].title,
+                        mp3: window.playList[getCurrentInd()].mp3
                     });
                     if (($.cookie('paused') == "true")) {
                         $(this).jPlayer("pause",time)
@@ -40,15 +40,15 @@ $(document).ready(function(){
                 } catch(e) {
                     //console.error('audio player cookies load failure');
                     $(this).jPlayer("setMedia",{
-                        title:window.playList[window.currentTrack].title,
-                        mp3: window.playList[window.currentTrack].mp3
+                        title:window.playList[getCurrentInd()].title,
+                        mp3: window.playList[getCurrentInd()].mp3
                     }).jPlayer("play");
                 }
 
             } else {
                 $(this).jPlayer("setMedia",{
-                    title:window.playList[window.currentTrack].title,
-                    mp3: window.playList[window.currentTrack].mp3
+                    title:window.playList[getCurrentInd()].title,
+                    mp3: window.playList[getCurrentInd()].mp3
                 }).jPlayer("play");
                 setTimeout(function() {check_is_tablet();},300);
             }
@@ -68,6 +68,8 @@ $(document).ready(function(){
             window.progress.width(v);
 		},
         pause: function() {
+            console.log("pause_event");
+            setCurrentPassive();
             $.cookie("paused", "true", {expires:365});
         },
         ended: function(){
@@ -75,7 +77,11 @@ $(document).ready(function(){
             window.my_jPlayer.jPlayer("play");
         },
         play: function() {
+            console.log("play_event");
+            window.start_playing = false;
             $.cookie("paused", "false",{expires:365});
+            setCurrentActive();
+
         },
 		swfPath: "./player/swf",
 		cssSelectorAncestor: "#player_controls",
@@ -83,6 +89,7 @@ $(document).ready(function(){
 		wmode: "window",
         smoothPlayBar:true
 	});
+
 
 
 
@@ -102,10 +109,11 @@ $(document).ready(function(){
 
     $("#prev").bind("click",function(e) {
         if (window.my_jPlayer.data().jPlayer.status.currentTime < 2) {
+            setCurrentPassive();
             window.currentTrack--;
             setCounterText();
         }
-        playcurrent();
+        changeToCurrent();
     });
 
 
@@ -113,9 +121,11 @@ $(document).ready(function(){
 });
 
 function next() {
+    setCurrentPassive();
     window.currentTrack++;
     setCounterText();
-    playcurrent();
+    changeToCurrent();
+
 }
 
 function check_audio_cookies() {
@@ -148,7 +158,6 @@ function loadPlayList() {
         async:false
     }).done(function (data) {
             try {
-                console.log(data);
                 window.playList = $.parseJSON(data);
             } catch(e) {
                 //console.error(href + ":" + header_labels + " " + e.message);
@@ -161,7 +170,7 @@ function setCounterText() {
     $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
 }
 
-function playcurrent() {
+function changeToCurrent() {
     $.cookie("track_number", getCurrentInd(), {expires:365});
     var wasPaused = window.my_jPlayer.data().jPlayer.status.paused;
     var cur = getCurrentInd();
@@ -169,7 +178,8 @@ function playcurrent() {
         title:window.playList[cur].title,
         mp3: window.playList[cur].mp3
     });
-    if (!wasPaused) {
+    if (!wasPaused || window.start_playing) {
+        window.start_playing = true;
         p.jPlayer("play");
     }
 
@@ -196,4 +206,12 @@ function check_is_tablet() {
         $("#dialog").css('display','table');
         $("#dialog").show();
     }
+}
+
+function setCurrentActive() {
+    window.playList[getCurrentInd()].songRef.addClass("active");
+}
+
+function setCurrentPassive() {
+    window.playList[getCurrentInd()].songRef.removeClass("active");
 }
