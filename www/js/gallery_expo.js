@@ -65,7 +65,7 @@ $(document).ready(function () {
 });
 
 function setSongsHandlers()  {
-    var songs =  $(".song_control");
+    var songs =  $(".song");
     $.each(songs, function(i,v) {
         $(v).bind("click",function() {
             var cur_is_active = $(this).hasClass("active");
@@ -87,7 +87,7 @@ function setSongsHandlers()  {
 }
 
 function setRefsToSongs() {
-    var song_controls = $(".song_control");
+    var song_controls = $(".song");
     $.each(window.playList, function(i,v) {
         var song = song_controls.filter(function() {
                         return $(this).attr('song_path') == v.mp3;
