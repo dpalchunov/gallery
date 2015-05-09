@@ -430,7 +430,7 @@
 }
 
 .song:hover {
-    background-color: lightslategrey;
+    background-color: #282828;
     background-image: url(../images/player/play_na.svg);
     background-size:  auto 100%;
     cursor: pointer;

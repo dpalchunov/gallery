@@ -98,7 +98,7 @@ function setRefsToSongs() {
 
 
 function dragAndResize() {
-    var images = $(".ui-widget-content");
+    var images = $(".sketch");
     var sk = $("#sketches");
     var sk_w = sk.width();
     var sk_h = 0;
@@ -117,25 +117,27 @@ function dragAndResize() {
             sk_h = h+t
         }
 
+
+        var aspect = !$(v).hasClass('song');
         $(v).resizable({
                // containment: "parent",
-                aspectRatio: true,
+                aspectRatio: aspect,
                 stop:function( event, ui ) {
                     save($(v));
                 }
-
-            }).draggable({
-                    containment:"parent",
-                    stop:function( event, ui ) {
-                            save($(v));
-                    },
-                    scroll:true
-            }).position({
-                my: "left top",
-                at: "left+" + l_percent*100 + "% top+" + t,
-                of: "#sketches",
-                collision: "none"
-            });
+        });
+        $(v).draggable({
+                containment:"parent",
+                stop:function( event, ui ) {
+                        save($(v));
+                },
+                scroll:true
+        }).position({
+            my: "left top",
+            at: "left+" + l_percent*100 + "% top+" + t,
+            of: "#sketches",
+            collision: "none"
+        });
         $(v).css("position","absolute");
     });
 
