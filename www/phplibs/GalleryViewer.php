@@ -42,7 +42,8 @@
 
       public function getLabelsArray($lang) {
           $pg = new PicturesGetter($lang);
-          return $pg -> getLabelsArray($lang);
+          $sg = new SongsGetter($lang);
+          return array_merge($pg -> getLabelsArray($lang),$sg -> getLabelsArray($lang));
       }
   }
 ?>

@@ -45,6 +45,11 @@
     height: auto;
 }
 
+#ava_img:hover {
+    cursor:pointer;
+
+}
+
 #ava {
     position: relative;
     display: inline-block;
