@@ -14,8 +14,8 @@ var arrow_color = '#EEE';
 
 
 function setImagesMousehandler() {
-    $('.sketch').unbind('mouseover');
-    $('.sketch').bind('mouseover', smallImageMouseOverHandler);
+    $('.picture').unbind('mouseover');
+    $('.picture').bind('mouseover', smallImageMouseOverHandler);
 }
 
 function smallImageMouseOverHandler() {
@@ -145,6 +145,40 @@ $(document).ready(function () {
     $(window).resize(function() {closeAllAnnotations(0); dragAndResize();});
 
 });
+
+
+
+function setSongsHandlers()  {
+    var songs =  $(".song");
+    $.each(songs, function(i,v) {
+        $(v).bind("click",function() {
+            var cur_is_active = $(this).hasClass("active");
+            setCurrentPassive();
+            if (cur_is_active) {
+                window.my_jPlayer.jPlayer("pause");
+            } else {
+                window.currentTrack  = window.playList.map(function(e) {return e.mp3;}).indexOf($(this).attr("song_path"));
+                setCounterText();
+                changeToCurrent();
+                setCurrentActive();
+                window.my_jPlayer.jPlayer("play");
+            }
+
+
+
+        });
+    });
+}
+
+function setRefsToSongs() {
+    var song_controls = $(".song");
+    $.each(window.playList, function(i,v) {
+        var song = song_controls.filter(function() {
+            return $(this).attr('song_path') == v.mp3;
+        });
+        v.songRef = song;
+    });
+}
 
 function mainInit() {
     setWindowScrollHandler();
@@ -472,27 +506,38 @@ function rewritePageByPageNum(pageNum) {
     var allParamsString = makePictureGetterParametersStringForPageGet(pageNum,action);
     $.post("content_helper.php", allParamsString,
         //функция обработки полученных данных
-        function (data,x,jqXHR) {
+        function (pic_data,x,jqXHR) {
             if (action != jqXHR.getResponseHeader('action')) {
                 rewritePageByPageNum(pageNum);
                 return;
             }
-            if (trim(data) != '') {
-                $("#sketches").html(data);
-                $(".sketch").each(function(i,e) {
-                    fullScreenPics.push( {path:$(e).attr("picPath"),ratio:$(e).attr("ratio")});
-                });
-                dragAndResize();
-                setImagesMousehandler();
-                setImagesClickhandler();
-
-            } else {
-                $("#sketches").html("no data");
-            }
+            $.ajax({
+                type: "POST",
+                shouldRetry: 3,
+                url: 'content_helper.php',
+                data: {action:"get_song_page"}
+            }).done(function (song_data) {
+                    var data =  pic_data + song_data;
+                    if (trim(data) != '') {
+                        $("#sketches").html(data);
+                        $(".picture").each(function(i,e) {
+                            fullScreenPics.push( {path:$(e).attr("picPath"),ratio:$(e).attr("ratio")});
+                        });
+                        dragAndResize();
+                        setSongsHandlers();
+                        setRefsToSongs();
+                        setImagesMousehandler();
+                        setImagesClickhandler();
+                    } else {
+                        $("#sketches").html("no data");
+                    }
+                })
         }
     )
     nextPageNum++;
 }
+
+
 
 function makePictureGetterParametersStringForPageGet(pageNum,action) {
     var checkboxesValueString = $("#filter_form").serialize();
@@ -504,8 +549,8 @@ function makePictureGetterParametersStringForPageGet(pageNum,action) {
 
 
 function setImagesClickhandler() {
-    $('.sketch').unbind('click');
-    $('.sketch').bind('click', smallImageClickHandler);
+    $('.picture').unbind('click');
+    $('.picture').bind('click', smallImageClickHandler);
 }
 
 

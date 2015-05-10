@@ -236,6 +236,46 @@
     height: 100%;
 }
 
+.sketch {
+    border: 1px solid #aaaaaa;
+}
+
+.sketch {
+    cursor: pointer;
+}
+
+.song {
+    border: 1px solid;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:  auto 100%;
+}
+
+.song:hover {
+    background-color: #282828;
+    background-image: url(../images/player/play_na.svg);
+    background-size:  auto 100%;
+    cursor: pointer;
+}
+
+
+.song.active {
+    background-image: url(../images/player/progress.gif);
+    background-size:  auto 30%;
+}
+
+.song.active:hover {
+    background-image: url(../images/player/pause_na.svg);
+    background-size:  auto 100%;
+    cursor: pointer;
+}
+
+
+.song_desc {
+    height: 100%;
+    width: 100%;
+
+}
 
 
 

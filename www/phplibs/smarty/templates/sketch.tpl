@@ -1,4 +1,4 @@
-    <div class="sketch ui-widget-content"
+    <div class="sketch ui-widget-content picture"
          ratio="{{{$ratio}}}" pic_id="{{{$pic_id}}}"
          left ="{{{$left}}}" top ="{{{$top}}}" width= "{{{$width}}}"
          picPath="{{{$picPath}}}"

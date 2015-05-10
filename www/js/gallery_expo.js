@@ -79,9 +79,6 @@ function setSongsHandlers()  {
                 setCurrentActive();
                 window.my_jPlayer.jPlayer("play");
             }
-
-
-
         });
     });
 }
