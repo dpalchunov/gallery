@@ -60,7 +60,7 @@ blockquote {
     display: block;
     display: none;
     position: absolute;
-    background: #ffffff url('../images/loader.gif') center center no-repeat;
+    background: #1a1a1a url('../images/loader.gif') center center no-repeat;
     background-size: 100px;
     opacity: 0.7;
     width: 100%;

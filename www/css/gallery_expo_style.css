@@ -425,7 +425,7 @@
 .song {
     border: 1px solid;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: right;
     background-size:  auto 100%;
 }
 
