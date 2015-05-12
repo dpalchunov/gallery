@@ -11,7 +11,16 @@ class  Localizator
             'about_main_text' =>
             'Рассказть о группу ну совсем нечего
             </br>
-
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
             ',
             'change_lang_label' => 'eng',
             'contacts_call_comment' => 'Звоните на мой мобильный телефон в Москве.',
@@ -33,10 +42,18 @@ class  Localizator
         );
         $eng = array(
             'about_main_text' =>
-            'There is nothing to say about the band<br/>
-            <br/>
-
-
+            'There is nothing to say about the band
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
             ',
             'change_lang_label' => 'рус',
             'contacts_call_comment' => 'Call to mobile phone in Moscow.',

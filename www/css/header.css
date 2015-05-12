@@ -1,14 +1,16 @@
 /*Header*/
 
 
-
 #header {
     position: relative;
     height: 130px;
     width: 100%;
+
     background: #000;
     z-index: 10;
 }
+
+
 
 #a_head {
     position: relative;
@@ -16,7 +18,7 @@
     width:100%;
     height:50px;
     z-index: 2;
-    background-color: black;
+    background-color: #9f9a7c;
 
 }
 
@@ -145,7 +147,7 @@
     position: relative;
     height: 9px;
     width: 100%;
-    background-color: #000;
+    background-color: #000000;
     z-index: 9;
     display:block;
 }
@@ -154,7 +156,7 @@
     position: relative;
     height: 3px;
     width: 30%;
-    background-color: #860100;
+    background-color: #f1c908;
     z-index:11;
     float:right;
     overflow: hidden;
@@ -169,7 +171,9 @@
     float:right;
     height: 3px;
     width:63%;
-    background-color: #800000;
+
+    background-color: #f1c908;
+
     display: inline-block;
 
 }
@@ -179,7 +183,7 @@
     float:left;
     height: 9px;
     width: 0%;
-    background-color: #590100;
+    background-color: #f1c908;
     overflow: hidden;
     display:block;
 
@@ -196,11 +200,11 @@
     float:right;
     width:4%;
     display: inline-block;
-    background-color: #000;
+    background-color: #141313;
 }
 
 #progress_time_line {
-    background-color: #800000;
+    background-color: #f1c908;
     display: block;
     width: 100%;
     height: 3px;
@@ -222,12 +226,12 @@
     float:right;
     width:3%;
     display: inline-block;
-    background-color: #000;
+    background-color: #141313;
     font-family: "Times New Roman";
 }
 
 #track_count_line {
-    background-color: #800000;
+    background-color: #f1c908;
     display: block;
     width: 100%;
     height: 3px;
@@ -250,6 +254,7 @@
     margin-right: 200px;
     display: inline-block;
     float: right;
+    font-family: 'Frijole', cursive;
 }
 
 

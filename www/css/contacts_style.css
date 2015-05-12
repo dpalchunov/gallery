@@ -1,8 +1,12 @@
+body {
+    background-color: black;
+}
+
 #main_content {
     margin-left: 0px;
     width: 100%;
     position: relative;
-    background-color: #0f0f0f;
+    background-color: #1A1A1A;
     display: inline-block;
     float:left;
     margin-top:50px;

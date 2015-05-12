@@ -19,7 +19,7 @@ String.prototype.hashCode = function () {
 }
 
 $(function () {
-    $("#slider").slider({ max: 150,
+    $("#slider").slider({ max: 1000,
         min: 150,
         step: 1,
         value: 150,
@@ -438,7 +438,7 @@ function afterUpload(img_tag_height) {
     $("#cropper-preview").height(219);
     $("#save_cancel").show();
     $("#cropper-preview").show();
-    //$("#slider").show();
+    $("#slider").show();
     $("#cropper_div").show();
     $("#upload_label").text("+ upload another");
 }

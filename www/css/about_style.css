@@ -1,9 +1,15 @@
 /*Main content*/
 
+
+body {
+    background-color: black;
+}
+
+
 #main_content {
     width: 100%;
     position: relative;
-    background-color: black;
+    background-color: #1a1a1a;
     display: inline-block;
     margin-top: 70px;
     float:left;
@@ -25,7 +31,7 @@
 #main_text_pre {
     FONT-FAMILY: 'Exo 2',sans-serif;
     font-size: 16px;
-    color: #fff;
+    color: grey;
     display:inline-block;
     float:left;
     position:relative;
@@ -43,6 +49,7 @@
 #ava_img {
     width:100%;
     height: auto;
+    margin-top: 0px;
 }
 
 #ava_img:hover {
@@ -60,6 +67,11 @@
     background-repeat: repeat-x;
 
 
+
+}
+
+#footer {
+    margin-top:0;
 }
 
 

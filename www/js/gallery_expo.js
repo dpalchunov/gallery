@@ -124,7 +124,6 @@ function dragAndResize() {
                 }
         });
         $(v).draggable({
-                containment:"parent",
                 stop:function( event, ui ) {
                         save($(v));
                 },
