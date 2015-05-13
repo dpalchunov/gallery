@@ -32,7 +32,7 @@ class  ResourceService
             $db = goDB::getDB('StrunkovaDB');
         } catch (goDBExceptionDBNotFound $e) {
             $config = array(
-                'name' => 'StrunkovaDB',
+                'name' => 'strunkovadb',
                 'host' => '127.0.0.1',
                 'port' => 3306,
                 'username' => 'root',

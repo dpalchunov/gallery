@@ -25,7 +25,7 @@ function initHandlers() {
 function greetingClickHandler() {
     $('.slideshow_element').cycle('destroy');
     $('.slideshow_element').remove();
-    reload($("#about_href"));
+    reload($("#gallery_href"));
     $("#header").show();
     $("#outline").show();
 }

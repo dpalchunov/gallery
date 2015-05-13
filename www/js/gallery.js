@@ -9,7 +9,8 @@ var fullScreenPics = [];
 var picIterator = 0;
 var nextPictureInWork = 0;
 var needShowPicAfterLoad = false;
-var arrow_color = '#EEE';
+var arrow_color = '#121212';
+var bg_color = '#464646';
 
 
 
@@ -238,14 +239,14 @@ function turnOnReturner() {
     $('#left_column_wrap,#arrow_pic').unbind("click");
     $('#left_column_wrap,#arrow_pic').bind("click", leftColumnWrapClickHandler)
     if (mouseoverLeftColumnWrap) {
-        $('#arrow_pic').css('background-image', "url('../images/returner/up77.svg')");
+        //$('#arrow_pic').css('background-image', "url('../images/returner/up77.svg')");
 
         $('#left_column_wrap').css('opacity', 0);
         $('#arrow_pic').css('background-color', arrow_color);
     } else {
         $('#arrow_pic').css('background-image', "url()");
         $('#left_column_wrap').css('opacity', 1);
-        $('#arrow_pic').css('background-color', '#eee');
+        $('#arrow_pic').css('background-color', bg_color);
     }
     $('#left_column_wrap,#arrow_pic').hover(function () {
 
@@ -260,14 +261,14 @@ function turnOnReturner() {
 function showArrow() {
     $('#left_column_wrap').css('opacity', 0);
     $('#arrow_pic').css('background-color', arrow_color);
-    $('#arrow_pic').css('background-image', "url('../images/returner/up77.svg')");
+ //   $('#arrow_pic').css('background-image', "url('../images/returner/up77.svg')");
 
     mouseoverLeftColumnWrap = true;
 }
 
 function hideArrow() {
     $('#left_column_wrap').css('opacity', 1);
-    $('#arrow_pic').css('background-color', '#eee');
+    $('#arrow_pic').css('background-color', bg_color);
 
     mouseoverLeftColumnWrap = false;
 }
@@ -275,18 +276,18 @@ function hideArrow() {
 function turnOffReturner() {
     $('#left_column_wrap,#arrow_pic').unbind('click');
     $('#left_column_wrap').css('opacity', 1);
-    $('#arrow_pic').css('background-color', '#eee');
+    $('#arrow_pic').css('background-color', bg_color);
     $('#arrow_pic').css('background-image', 'none');
 
     $('#left_column_wrap,#arrow_pic').hover(function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = true;
-            $('#arrow_pic').css('background-color', '#eee');
+            $('#arrow_pic').css('background-color', bg_color);
         },
         function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = false;
-            $('#arrow_pic').css('background-color', '#eee');
+            $('#arrow_pic').css('background-color', bg_color);
         });
 }
 

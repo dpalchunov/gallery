@@ -53,7 +53,7 @@
                 </div>
 
                 <div id="fb_text" class="tc text_tc">
-                    <a id="fb_cont_href" class="cont_href" bro="fb_img" target="blank" href="https://www.facebook.com/kristina.strunkova?fref=ts">facebook.com/stadiumR</a>
+                    <a id="fb_cont_href" class="cont_href" bro="fb_img" target="blank" href="https://www.facebook.com">facebook.com/stadiumR</a>
                 </div>
 
             </div>
