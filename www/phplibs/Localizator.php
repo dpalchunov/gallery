@@ -27,6 +27,11 @@ class  Localizator
                                                                              <br/>
                                                                              <br/>
                                                                              <br/>
+            <br>
+            2015 награждена дипломом российско-китайского выставочного проекта "ПОБЕДЕ ПОСВЯЩАЕМ"</br>
+            при Министерстве культуры Российской Федерации, посольстве КНР в РФ и Российской академии художеств <br/>
+            в честь семидесятилетия победы в ВОВ и войне сопротивления японским захватчикам в Китае, ЦДХ, Москва.<br/>
+            <br/>
             2015 Молодежная выставка МСХ, Москва.<br/>
             <br/>
             2014 Проект «Параллели» EAST MEETS WEST GALLERY, Artplay, Москва (каталог).  <br/>
@@ -88,15 +93,24 @@ class  Localizator
             <br/>
             <br/>
             <br/>
+
+
+
+            2015 Awarded a diploma of the Russian-Chinese exhibition project "of Victory"
+            by the Ministry of Culture of the Russian Federation, <br/>
+            Embassy of China in the Russian Federation and<br/>
+            the Russian Academy of Arts in honor of the seventieth anniversary of the victory in the Great Patriotic War and<br/>
+            the War of Resistance Against Japanese Aggression in China, the Central House of Artists, Moscow.<br/>
+            <br/>
             2015 The Young Artists exhibition, Moscow Union of Artists, Moscow.<br/>
             <br/>
             2014 Project «Parallels» EAST MEETS WEST GALLERY, ARTPLAY, Moscow (catalog).<br/>
             <br/>
-            2014 The Yong Artists exhibition, Moscow Union of Artists, Moscow.<br/>
+            2014 The Young Artists exhibition, Moscow Union of Artists, Moscow.<br/>
             <br/>
-            2013 The Yong Artists exhibition, Moscow Union of Artists, Moscow.<br/>
+            2013 The Young Artists exhibition, Moscow Union of Artists, Moscow.<br/>
             <br/>
-            2013 The Yong Artists exhibition, Moscow Union of Artists, Moscow.<br/>
+            2013 The Young Artists exhibition, Moscow Union of Artists, Moscow.<br/>
             <br/>
             2013 Project «From school to school «Krisha» Gallery, Moscow.<br/>
             <br/>

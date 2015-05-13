@@ -111,9 +111,14 @@ blockquote {
     margin-top: 145px
 }
 
+#footer a {
+    color: #d3d3d3;
+    text-decoration: underline;
+}
+
 #footer_phrase_name {
     height: 15px;
-    width: 541px;
+    width: 300px;
     position: relative;
     left: 200px;
     top: 10px;
@@ -122,6 +127,21 @@ blockquote {
     font-family: MainText;
     font-size: 14px;
 }
+
+#constructor {
+    display: inline-block;
+    float: right;
+    height: 15px;
+    width: 300px;
+    position: relative;
+    top: 10px;
+    color: white;
+    background-color:#000000;
+    font-family: MainText;
+    font-size: 14px;
+}
+
+
 
 
 /*dialog*/
