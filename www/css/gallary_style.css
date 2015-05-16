@@ -2,10 +2,14 @@
 
 body {
     background-color: #464646;
+    background-image: url(../images/bg.png);
+    background-repeat: repeat;
 }
 
 html {
     background-color: #464646;
+    background-image: url(../images/bg.png);
+    background-repeat: repeat;
 }
 
 
@@ -51,6 +55,8 @@ html {
     height:100%;
     z-index: 1;
     overflow: hidden;
+    background-image: url(../images/bg.png);
+    background-repeat: repeat;
 }
 
 
@@ -58,7 +64,7 @@ html {
     position: fixed;
     width: 60px;
     height: 100%;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center 3%;
     position: fixed;
     z-index: 0;
@@ -84,6 +90,7 @@ html {
 
 #page_wrap_padding {
     background-color: #464646;
+
     height: 5px;
     position: relative;
 }
@@ -96,15 +103,16 @@ html {
     position: relative;
 
     background-color: #464646;
+    background-image: url(../images/bg.png);
+    background-repeat: repeat;
 
-    background-repeat: no-repeat;
     margin-top: 0px;
 }
 
 #sketches {
     position: relative;
     top: 0px;
-    border: 0px solid black;
+    border: 0px solid white;
     width: 94.44%;
     display: block;
     height: 100%;
@@ -245,11 +253,12 @@ html {
 }
 
 .sketch {
-    border: 1px solid #000000;
+    border: 1px solid #8c8c8c;
 }
 
-.sketch {
+.sketch:hover {
     cursor: pointer;
+    border: 1px solid #fff;
 }
 
 .song {
@@ -258,6 +267,7 @@ html {
     background-repeat: no-repeat;
     background-position: right;
     background-size:  auto 100%;
+    border: 1px solid #8c8c8c;
 }
 
 .song:hover {
@@ -265,6 +275,7 @@ html {
     background-image: url(../images/player/play_na.svg);
     background-size:  auto 100%;
     cursor: pointer;
+    border: 2px solid #fff;
 }
 
 

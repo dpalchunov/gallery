@@ -10,6 +10,7 @@ body {
     display: inline-block;
     float:left;
     margin-top:50px;
+    background-image: url(../images/bg.png);
 }
 
 #contacts_main_phrase {

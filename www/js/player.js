@@ -91,16 +91,13 @@ $(document).ready(function(){
 	});
 
 
-
-
-    $("#header").bind("click",function(event) {
+    $("#header,#inline").bind("click",function(event) {
         var left_border = $("#inline").offset().left;
         var right_border = left_border + $("#inline").width();
         var t = event.target.id;
-        if ((t == "header"  || t == "nav_menu" || t == "player_controls") && event.clientX > left_border && event.clientX < right_border) {
+        if ((t == "header"  || t == "nav_menu" || t == "player_controls" || t == "inline"  || t == "progress") && event.clientX > left_border && event.clientX < right_border) {
             progress_click_handler(event);
-        }
-
+        };
     });
 
 

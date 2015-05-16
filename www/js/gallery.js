@@ -247,6 +247,7 @@ function turnOnReturner() {
         $('#arrow_pic').css('background-image', "url()");
         $('#left_column_wrap').css('opacity', 1);
         $('#arrow_pic').css('background-color', bg_color);
+        $('#arrow_pic').css('background-image', 'url(../images/bg.png)');
     }
     $('#left_column_wrap,#arrow_pic').hover(function () {
 
@@ -269,6 +270,7 @@ function showArrow() {
 function hideArrow() {
     $('#left_column_wrap').css('opacity', 1);
     $('#arrow_pic').css('background-color', bg_color);
+    $('#arrow_pic').css('background-image', 'url(../images/bg.png)');
 
     mouseoverLeftColumnWrap = false;
 }
@@ -283,11 +285,13 @@ function turnOffReturner() {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = true;
             $('#arrow_pic').css('background-color', bg_color);
+            $('#arrow_pic').css('background-image', 'url(../images/bg.png)');
         },
         function () {
             $(this).css('opacity', 1);
             mouseoverLeftColumnWrap = false;
             $('#arrow_pic').css('background-color', bg_color);
+            $('#arrow_pic').css('background-image', 'url(../images/bg.png)');
         });
 }
 
