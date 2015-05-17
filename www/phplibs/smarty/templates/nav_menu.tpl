@@ -3,8 +3,8 @@
         <div id="nav_contacts" class="menu_button {{{$contacts_active}}}">
             <a id="buy_href" class="menu_href" href="javascript:void 0">{{{$contacts}}}</a>
         </div>
-        <div id="nav_gallary" class="menu_button {{{$lyrics_active}}}">
-            <a id="gallery_href" class="menu_href" href="javascript:void 0">{{{$lyrics}}}</a>
+        <div id="nav_lyrics" class="menu_button {{{$lyrics_active}}}">
+            <a id="lyrics_href" class="menu_href" href="javascript:void 0">{{{$lyrics}}}</a>
         </div>
         <div id="nav_photo" class="menu_button {{{$photo_active}}}">
             <a id="photo_href" class="menu_href" href="javascript:void 0">{{{$photo}}}</a>

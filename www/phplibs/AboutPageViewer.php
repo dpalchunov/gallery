@@ -6,7 +6,8 @@ class  AboutPageViewer extends Page
     function AboutPageViewer() {
         parent::Page();
         global $js_scripts,$styles;
-        $js_scripts = array('about.js');
+        $emp = $this ->emp;
+        $js_scripts = array($emp."jquery.cycle2.min.js",'about.js');
         $styles = array('about_style.css');
     }
 
@@ -36,6 +37,10 @@ class  AboutPageViewer extends Page
         $localizator = new Localizator();
 
         $template_engine->assign('lang', $lang);
+
+        $persistedIntrosGetter = new PersistedIntrosGetter();
+        $introsHTML = $persistedIntrosGetter->generatePicsHtmlForView();
+        $template_engine->assign('persisted_intros', $introsHTML);
         $template_engine->assign('main_text', $localizator->getText($lang, 'about_main_text'));
 
         return $template_engine->fetch('about_body.tpl');

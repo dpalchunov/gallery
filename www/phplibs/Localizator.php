@@ -67,11 +67,11 @@ class  Localizator
             'buy_portret' => 'Furthermore, you can order portret, landscape maked in oil on canvas or in charcoal on paper:',
             'buy_portret_price' => 'contractual conditions.',
             'no_results' => 'There is no results. Change filter options.',
-            'about_label' => 'ABOUT',
+            'about_label' => 'BAND',
             'contacts_label' => 'CONTACTS',
             'music_label' => 'MUSIC',
             'photo_label' => 'PHOTO',
-            'photos_lyrics' => 'LYRICS',
+            'lyrics_label' => 'LYRICS',
             'order_label' => 'Buy'
 
         );

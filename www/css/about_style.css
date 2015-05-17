@@ -11,7 +11,6 @@ body {
     position: relative;
     background-color: #1a1a1a;
     display: inline-block;
-    margin-top: 70px;
     float:left;
     background-image: url(../images/bg.png);
     background-repeat: repeat;
@@ -74,6 +73,46 @@ body {
 #footer {
     margin-top:0;
 }
+
+
+#greeting {
+    background-color: #000;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#greeting img {
+    position: relative;
+    top: 10px;
+    margin: 0 auto;
+}
+
+#greeting img:hover {
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    margin: auto;
+}
+
+#slideshow {
+    height: 500px;
+    width: 100%;
+    background-color: yellow;
+    z-index: 1;
+    overflow: hidden;
+
+
+}
+
+.slideshow_element img { width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+
 
 
 

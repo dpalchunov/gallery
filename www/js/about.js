@@ -67,6 +67,16 @@ function avaAnimation() {
 
 $(document).ready(function () {
     loadAvas();
+
+    $(".slideshow_element").cycle(
+        {
+            fx:"scrollHorz",
+            speed:500,
+            timeout:4000
+        }
+
+    );
+
     destructor = destructor;
 
 });
@@ -98,4 +108,6 @@ function setup_avas() {
 function destructor() {
     $(".mc_el").remove();
 }
+
+
 

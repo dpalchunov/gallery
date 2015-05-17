@@ -1,4 +1,7 @@
 <div id="main_content" class="mc_el">
+    <div id="slideshow" class="slideshow_element">
+        {{{$persisted_intros}}}
+    </div>
     <div class="band home_social">
         <div class="container">
             <div class="home_social_links">
@@ -12,9 +15,5 @@
             </div>
         </div>
     </div>
-    <img id="ava_img"/>
-        <div id="main_text">
-            <div id="main_text_pre" >{{{$main_text}}}</div>
-         </div>
 </div>
 <!--end main_content-->
