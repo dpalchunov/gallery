@@ -15,6 +15,10 @@
     font-family: GothamRegular;
     src: url(../fonts/GothamProRegular/GothamProRegular.ttf) format("opentype");
 }
+@font-face {
+    font-family: GothamMedium;
+    src: url(../fonts/GothamProMedium/GothamProMedium.ttf) format("opentype");
+}
 
 /*General Styles*/
 html {

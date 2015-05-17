@@ -1,4 +1,3 @@
-<div id="lang_changer"><a id="lang_changer_href" href="javascript:void 0">{{{$change_lang}}}</a></div>
     <div id="nav_menu">
 
         <div id="nav_contacts" class="menu_button {{{$contacts_active}}}">
