@@ -1,17 +1,10 @@
-<div id="header">
-    <div id="player_controls" class="jp-jplayer">
-
-        <div class="player_control" id="next"></div>
-        <div class="jp-pause player_control" id="pause"></div>
-        <div class="jp-play player_control" id="play"></div>
-        <div class="player_control" id="prev"></div>
-        <div class="jp-title song_title" id="prev"></div>
+<div id="header" >
+    <div class="container">
+        <div id="header_name">
+            STADIUM[R]
+        </div>
+        <div id="nav_menu_wrapper">
+            {{{$nav_menu}}}
+         </div>
     </div>
-    <div id="header_name">
-        <div id="first_name">Stadium[R]</div>
-    </div>
-    <div id="nav_menu_wrapper">
-        {{{$nav_menu}}}
-     </div>
-    <!--end nav_menu-->
 </div>

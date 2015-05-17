@@ -1,6 +1,21 @@
 @import url('reset.css');
     @import url(http://fonts.googleapis.com/css?family=Frijole);
 
+@font-face {
+    font-family: GothamBold;
+    src: url(../fonts/GothamProBold/GothamProBold.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: GothamLight;
+    src: url(../fonts/GothamProLight/GothamProLight.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: GothamRegular;
+    src: url(../fonts/GothamProRegular/GothamProRegular.ttf) format("opentype");
+}
+
 /*General Styles*/
 html {
     height: 100%;
@@ -150,5 +165,45 @@ blockquote {
 #music_ask_no:hover {
     background-color: black;
     cursor: pointer;
+}
+
+
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: middle;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.container::before {
+    display: inline-block;
+    content: " ";
+    height: 100%;
+    vertical-align: middle;
+    width: 3px;
+    background-color: red;
+}
+
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
 }
 

@@ -1,50 +1,47 @@
 /*Navigation menu*/
 
-#nav_menu_wrapper {
-    position: relative;
-    float: right;
-    height: 37px;
-    line-height: 37px;
-    width: 340px;
-    display: block;
-    margin-top: 30px;
 
+
+#nav_menu_wrapper {
+
+    height: 15px;
+    width: 340px;
+    display: inline-block;
+     vertical-align: middle;
 }
 
 
 #nav_menu {
+
     position: relative;
     width:100%;
     height: 100%;
-
+    font-family: GothamRegular ,sans-serif;
 
 }
 
 /*Navigation menu -about*/
 div.menu_button {
-    border: 1px double black;
     text-align:center;
     vertical-align: middle;
-    FONT-FAMILY: 'Exo 2',sans-serif;
-    FONT-SIZE: 16px;
+    margin-left: 20px;
+
 
 
 }
 
-div.menu_button.active {
-    border: 1px double #fff;
-}
 
-div.menu_button:hover {
-    border: 1px double #fff;
-    background-color: black;
+div.menu_button:hover a {
+    color: white;
+
 }
 
 div.menu_button a {
     display: block;
     height: 100%;
     text-decoration: none;
-    color: white;
+    color: rgb(149, 147, 145);
+    font-size: 15px;
 }
 
 
@@ -52,27 +49,21 @@ div.menu_button a {
 #nav_about {
     position: relative;
     float: right;
-    height: 37px;
-    width: 81px;
-    top:0px;
+    height: 20px;
     display: inline-block;
 }
 /*Navigation menu -galary*/
 #nav_gallary {
     position: relative;
     float: right;
-    height: 37px;
-    width: 82px;
-    top:0px;
+    height: 20px;
     display: inline-block;
 }
 /*Navigation menu -contacts*/
 #nav_contacts {
     position: relative;
     float: right;
-    height: 37px;
-    width: 96px;
-    top:0px;
+    height: 20px;
     display: inline-block;
 }
 

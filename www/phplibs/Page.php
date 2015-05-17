@@ -60,7 +60,7 @@ abstract class  Page
         global $template_engine;
         $template_engine->assign('meta', $this -> getMeta());
         $template_engine->assign('head', $this -> getHead());
-        $template_engine->assign('header', $this -> getPlayer());
+        //$template_engine->assign('header', $this -> getPlayer());
         $template_engine->assign('header', $this -> getHeader());
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
