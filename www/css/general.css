@@ -211,3 +211,93 @@ blockquote {
     }
 }
 
+
+
+.footer_social_links {
+    display: block;
+    margin-left: 40px;
+    float: left;
+}
+
+.home_social_links {
+    text-align: center;
+}
+
+.footer_social_links_list {
+    display: inline;
+}
+
+.footer_social_links_list li {
+    float: left;
+    padding-right: 5px;
+}
+
+.home_social_links_list {
+    display: inline-table;
+}
+
+.home_social_links_list li {
+    float: left;
+    padding-right: 5px;
+}
+
+.footer_social_icon {
+    display: block;
+    height: 31px;
+    width: 31px;
+    text-indent: -9999px;
+    background: url("http://cdn.u2.com/non_secure/images/bootstrap/logo_footer.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+}
+
+.home_social_icon {
+    display: block;
+    height: 40px;
+    width: 40px;
+    text-indent: -9999px;
+    float: left;
+}
+
+.social_facebook {
+    background: url(../images/social/f_off) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+.social_twitter {
+    background: url(../images/social/t_off) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+.social_instagram {
+    background: url(../images/social/inst_off) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+.social_youtube {
+    background: url(../images/social/y_off) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+
+
+.social_facebook:hover {
+    background: url(../images/social/f_on) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+.social_twitter:hover {
+    background: url(../images/social/t_on) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+.social_instagram:hover {
+    background: url(../images/social/inst_on) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+.social_youtube:hover {
+    background: url(../images/social/y_on) no-repeat scroll 0 0 transparent;
+    background-size: cover;
+}
+
+
