@@ -69,7 +69,9 @@ class  Localizator
             'no_results' => 'There is no results. Change filter options.',
             'about_label' => 'ABOUT',
             'contacts_label' => 'CONTACTS',
-            'gallery_label' => 'MUSIC',
+            'music_label' => 'MUSIC',
+            'photo_label' => 'PHOTO',
+            'photos_lyrics' => 'LYRICS',
             'order_label' => 'Buy'
 
         );

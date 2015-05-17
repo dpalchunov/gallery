@@ -5,9 +5,10 @@
 #nav_menu_wrapper {
 
     height: 15px;
-    width: 340px;
+    width: 540px;
     display: inline-block;
      vertical-align: middle;
+    white-space: nowrap;
 }
 
 
@@ -25,6 +26,9 @@ div.menu_button {
     text-align:center;
     vertical-align: middle;
     margin-left: 20px;
+    float :right;
+    position: relative;
+    display: inline-block;
 
 
 
@@ -47,24 +51,12 @@ div.menu_button a {
 
 
 #nav_about {
-    position: relative;
-    float: right;
-    height: 20px;
-    display: inline-block;
 }
 /*Navigation menu -galary*/
 #nav_gallary {
-    position: relative;
-    float: right;
-    height: 20px;
-    display: inline-block;
 }
 /*Navigation menu -contacts*/
 #nav_contacts {
-    position: relative;
-    float: right;
-    height: 20px;
-    display: inline-block;
 }
 
 /*end of Navigation menu*/

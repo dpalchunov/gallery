@@ -28,7 +28,9 @@
 
 
           $template_engine->assign('about', $localizator->getText($lang, 'about_label'));
-          $template_engine->assign('gallery',$localizator->getText($lang, 'gallery_label'));
+          $template_engine->assign('music',$localizator->getText($lang, 'music_label'));
+          $template_engine->assign('photo',$localizator->getText($lang, 'photo_label'));
+          $template_engine->assign('lyrics',$localizator->getText($lang, 'lyrics_label'));
           $template_engine->assign('contacts',$localizator->getText($lang, 'contacts_label'));
           $template_engine->assign('buy',$localizator->getText($lang, 'order_label'));
 
