@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+    vertical-align: middle;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.container::before {
+    display: inline-block;
+    content: " ";
+    height: 100%;
+    vertical-align: middle;
+    width: 0px;
+}
+
+.band {
+    display: block;
+    text-align: center;
+    width:100%;
+}
+
+.band_cnt {
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+}
+
+.band_title {
+    width: 100%;
+    height: 20%;
+}
+
+.band_body {
+    width: 100%;
+    height: 80%;
+}
+
+.l {
+    float: left;
+    height: 100%;
+
+}
+
+.r {
+    float: right;
+    height: 100%;
+}
+
+.white {
+    background-color: white;
+
+}
+
+.black {
+    background-color: black;
+
+}
+.red {
+    background-color: red;
+
+}
+.yellow {
+    background-color: yellow;
+
+}
+.blue {
+    background-color: blue;
+
+}
+
+.band_title_l {
+    width: 20%;
+}
+
+.band_title_r {
+    width: 20%;
+}
+
+#menu {
+    display: inline-block;
+    background-color: white;
+    vertical-align: middle;
+
+}
+
+#menu ul {
+  margin: 0px;
+    padding: 0px;
+}
+
+#menu li {
+    display: block;
+    float:left;
+    border-color: #000000;
+    border: solid 2px;
+    margin: 0px;
+}
+
+#header {
+    height: 100px;
+}
+
+#header_left {
+    float: left;
+    width: 20%
+}
+#header_right {
+    float: right;
+    width: 20%
+}
+#header_center {
+    float: left;
+    width: 60%
+}
+
+
+
+
+
+
+#band1,#band2,#band3 {
+    height: 300px;
+}
