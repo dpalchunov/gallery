@@ -93,10 +93,33 @@ blockquote {
     display:inline-block;
     float:left;
     position: relative;
-    height: 50px;
+    height: 150px;
     width: 100%;
     color: #000000;
     background-color: black;
+    text-align: center;
+}
+
+#footer_top {
+
+    height: 50px;
+    margin-top: 50px;
+
+}
+#footer_bottom {
+
+    border-top: 1px solid darkgray;
+    height: 50px;
+    padding: 0;
+    color: #434343;
+    font-family: GOTHAM-LIGHTGOTHAM-LIGHT;
+    text-align: center;
+}
+
+#rights {
+    display: inline-block;
+    height: 30px;
+    vertical-align: middle;
 }
 
 #footer_phrase_name {
@@ -109,6 +132,29 @@ blockquote {
     background-color:#000000;
     font-family: 'Exo 2',sans-serif;
     font-size: 14px;
+}
+
+#footer_address{
+    display: block;
+    float: left;
+    color: white;
+    font-family: gotham-thingotham-thin,sans-serif;
+    font-size: 40px;
+}
+#footer_social_links{
+    display: block;
+    float: left;
+    margin-left: 50px;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+}
+#footer_nav_menu{
+    height: 30px;
+    width: 420px;
+    display: block;
+    float: right;
+    margin-top: 20px;
 }
 
 
@@ -188,8 +234,7 @@ blockquote {
     content: " ";
     height: 100%;
     vertical-align: middle;
-    width: 3px;
-    background-color: red;
+    width: 0px;
 }
 
 
@@ -207,7 +252,7 @@ blockquote {
 
 @media (min-width: 1200px) {
     .container {
-        width: 1170px;
+        width: 1200px;
     }
 }
 

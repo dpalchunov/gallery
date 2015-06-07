@@ -5,15 +5,18 @@
 #nav_menu_wrapper {
 
     height: 15px;
-    width: 540px;
+    width: 420px;
     display: inline-block;
      vertical-align: middle;
     white-space: nowrap;
+    text-align: center;
+    margin-left: -60px;
 }
 
 
 #nav_menu {
-
+    display: inline-block;
+    margin-top: -30px;
     position: relative;
     width:100%;
     height: 100%;
@@ -62,17 +65,17 @@ div.menu_button a {
 /*end of Navigation menu*/
 
 #lang_changer  {
-    margin-top: 20px;
-    height: 40px;
+    margin-top:40px;
+    margin-right: 0px;
+    height: 35px;
     position: relative;
     display: inline-block;
     vertical-align: middle;
     float:right;
-    width: 100px;
+    width: 90px;
     font-family: GothamBold, sans-serif;
     background-color: white;
     color: black;
-    margin-left: -30px;
 }
 #lang_changer a {
     font-size: 15px;

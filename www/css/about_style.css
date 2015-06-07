@@ -2,14 +2,15 @@
 
 
 body {
-    background-color: white;
+    background-color: black;
+    color: black;
 }
 
 
 #main_content {
     width: 100%;
     position: relative;
-    background-color: #1a1a1a;
+    background-color: #3d3d3d;
     display: inline-block;
     float:left;
     background-image: url(../images/bg.png);
@@ -31,8 +32,8 @@ body {
 
 #main_text_pre {
     font-size: 16px;
-    color: grey;
-    display:inline-block;
+    color: #3d3d3d;
+    display:#-block;
     float:left;
     position:relative;
 }
@@ -111,6 +112,312 @@ body {
     height: auto;
     overflow: hidden;
 }
+
+
+/* Home */
+.band {
+    width: 100%; }
+
+.band.home_header {
+    background-color: #000000;
+    height: 80px; }
+
+.band.home_promo {
+    background-color: #141414; }
+
+.band.home_social {
+    background-color: #141414; }
+
+.band.home_news {
+    background-color: #141414;
+    padding-bottom: 110px; }
+
+.band.home_watch {
+    padding-top: 80px;
+    background-color: #FFFFFF;
+    padding-bottom: 110px; }
+
+.band.home_listen {
+    padding-top: 80px;
+    background-color: #212121;
+    padding-bottom: 110px;
+}
+
+.view_more a, .view_more a:link, .view_more a:hover {
+    float: right;
+    color: #A69364;
+    font-family: "gotham-mediumgotham-medium", sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+/* #Typography
+
+================================================== */
+a:link, a:visited, a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #B3B6BD;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+h4 {
+    font-size: 38px;
+    font-family: "gotham-thingotham-thin", sans-serif;
+    text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "gotham-lightgotham-light", sans-serif;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-size: 38px;
+    font-family: GothamLight, sans-serif;
+}
+
+#about_video {
+    display: inline-block;
+    height: 100%;
+    width:100%;
+    background-color: #000000;
+}
+
+/* home watch */
+#home_video {
+    height: 860px;
+    max-height: 860px;
+    overflow: hidden;
+}
+
+#home_video_dimensions {
+    height: 860px;
+    text-align: center;
+}
+
+#home_video_large_dimensions {
+    width:60%;
+    height: 860px;
+
+}
+
+#home_video h4 {
+    color: #000000;
+    background: transparent;
+    margin-bottom: 20px;
+}
+
+
+.section_title {
+    text-align: left ;
+    color: white;
+    font-family: gotham-thingotham-thin;
+}
+
+#playlist {
+    margin-top: 20px;
+    background-color: #fff;
+    height: 500px;
+    width: 70%;
+}
+
+#playlist_head {
+    background-color: #fff;
+    height: 40%;
+    width: 100%;
+}
+
+#playlist_body {
+    margin-top: 5px;
+    background-color: #fff;
+    height: 60%;
+    width: 100%;
+}
+
+#album_logo {
+    height: 200px;
+    width: 200px;
+    padding: 3px;
+    display: inline-block;
+}
+
+.song_item {
+    position: relative;
+    padding: 4px 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom:1px solid #d9d9d9;
+}
+
+.song_item_image {
+    float:left;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    background-image: url("../images/gallary/20150425101034.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    background-position: center;
+    margin-right: 5px;
+
+}
+
+.album2 {
+    background-image: url("../images/gallary/20150425101131.jpeg");
+}
+.song_item_control {
+    float:right;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+}
+
+#player_mini_controls {
+    display: block;
+    height: 100px;
+    width: 100px;
+}
+
+#player_mini_controls_img {
+    height: 100px;
+    width: 100px;
+    background-image: url("../images/player/play_na.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    line-height: 30px;
+}
+
+
+.song_item_name {
+    float:left;
+    font-family: GothamLight,sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 11px;
+    line-height: 40px;
+}
+
+#grid_list {
+    width:100%;
+    height: 400px;
+    white-space: normal;
+}
+
+.grid_list_cell {
+    width: 16%;
+    display: block;
+    position: relative;
+    float:left;
+    margin: 5px;
+    background-color: grey;
+    background-position: center;
+    background-size: cover;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+}
+
+#grid_list_cell_1 {
+    background-image: url("../images/tmp/_JyxrLooRzU.jpg");
+}
+#grid_list_cell_2 {
+    background-image: url("../images/tmp/1uF_uYjb96U.jpg");
+}
+#grid_list_cell_3 {
+    background-image: url("../images/tmp/eaSde_hjBTw.jpg");
+}
+#grid_list_cell_4 {
+    background-image: url("../images/tmp/kGP_SWXEsiw.jpg");
+}
+#grid_list_cell_5 {
+    background-image: url("../images/tmp/R_67w181P6U.jpg");
+}
+#grid_list_cell_6 {
+    background-image: url("../images/tmp/uIv_R77APPQ.jpg");
+}
+#grid_list_cell_7 {
+    background-image: url("../images/tmp/W7S1I6v_P1o.jpg");
+}
+#grid_list_cell_8 {
+    background-image: url("../images/tmp/aP2o5WCTEVE.jpg");
+}
+#grid_list_cell_9 {
+    background-image: url("../images/tmp/--tjAWOZob0.jpg");
+}
+#grid_list_cell_10 {
+    background-image: url("../images/tmp/-jZP9yJw2dA.jpg");
+}
+#grid_list_cell_11 {
+    background-image: url("../images/tmp/DVBeQrIJPr8.jpg");
+}
+#grid_list_cell_12 {
+    background-image: url("../images/tmp/eaSde_hjBTw.jpg");
+}
+#grid_list_cell_13 {
+    background-image: url("../images/tmp/RqIQNBp17NY.jpg");
+}
+#grid_list_cell_14 {
+    background-image: url("../images/tmp/1uF_uYjb96U.jpg");
+}
+#grid_list_cell_15 {
+    background-image: url("../images/tmp/AhkRWwVBJCo.jpg");
+}
+
+.grid_list_cell:after {
+    display: block;
+    content: '';
+    padding-bottom: 100%;
+}
+
+
+
+
+.img-responsive {
+    position:absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    min-width:100%;
+    min-height:100%;
+}
+
+.wrapper {
+    width: 50%;
+    /* whatever width you want */
+    display: inline-block;
+    position: relative;
+}
+.wrapper:after {
+    padding-top: 56.25%;
+    /* 16:9 ratio */
+    display: block;
+    content: '';
+}
+.main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    /* fill parent */
+    background-color: deepskyblue;
+    /* let's see it! */
+    color: white;
+}
+
 
 
 

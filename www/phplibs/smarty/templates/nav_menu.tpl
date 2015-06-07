@@ -1,4 +1,4 @@
-    <div id="nav_menu">
+
 
         <div id="nav_contacts" class="menu_button {{{$contacts_active}}}">
             <a id="buy_href" class="menu_href" href="javascript:void 0">{{{$contacts}}}</a>
@@ -19,4 +19,3 @@
         <div id="nav_greeting"  style="display:none">
             <a id="greeting_href" style="display:none"></a>
         </div>
-    </div>

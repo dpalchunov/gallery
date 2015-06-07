@@ -79,6 +79,16 @@ $(document).ready(function () {
 
     destructor = destructor;
 
+    var $window = $(window),
+        $stickyEl = $('#outline'),
+        elTop = $stickyEl.offset().top;
+
+    $window.scroll(function() {
+        $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+    });
+
+    init_video();
+
 });
 
 function setup_avas() {
@@ -108,6 +118,26 @@ function setup_avas() {
 function destructor() {
     $(".mc_el").remove();
 }
+
+function init_video() {
+    $("#about_video").jPlayer({
+        size: {height:"auto",width:"100%"},
+        ready: function () {
+
+            $(this).jPlayer("setMedia",{
+
+                title:"first_video",
+                m4v: "./video/Now or never.m4v",
+
+            }).jPlayer("play").jPlayer("pause");
+        },
+        swfPath: "./player/swf",
+        supplied: "m4v",
+        wmode: "window",
+        smoothPlayBar:true
+    });
+}
+
 
 
 

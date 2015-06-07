@@ -42,6 +42,8 @@ class  AboutPageViewer extends Page
         $introsHTML = $persistedIntrosGetter->generatePicsHtmlForView();
         $template_engine->assign('persisted_intros', $introsHTML);
         $template_engine->assign('main_text', $localizator->getText($lang, 'about_main_text'));
+        $player = $template_engine -> fetch('player_mini.tpl');
+        $template_engine->assign('player_mini',$player);
 
         return $template_engine->fetch('about_body.tpl');
     }
