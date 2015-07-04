@@ -1,5 +1,32 @@
+@import url('reset.css');
+@import url(http://fonts.googleapis.com/css?family=Frijole);
+
+@font-face {
+    font-family: GothamBold;
+    src: url(../fonts/GothamProBold/GothamProBold.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: GothamLight;
+    src: url(../fonts/GothamProLight/GothamProLight.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: GothamRegular;
+    src: url(../fonts/GothamProRegular/GothamProRegular.ttf) format("opentype");
+}
+@font-face {
+    font-family: GothamMedium;
+    src: url(../fonts/GothamProMedium/GothamProMedium.ttf) format("opentype");
+}
 body {
     margin: 0;
+    font-family: GothamMedium, sans-serif;
+}
+
+.text_wrap {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .container {
@@ -35,8 +62,26 @@ body {
 }
 
 .band_title {
+   height: 80px;
+}
+
+.band_title_l {
+    font-family: GothamLight, sans-serif;
+    font-size: 38px;
     width: 100%;
     height: 50px;
+    text-align: left;
+}
+
+
+.band_title_r {
+    text-align: right;
+    font-family: gotham-mediumgotham-medium, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    width: 100%;
+    height: 50px;
+    color: #a69364;
 }
 
 .band_body {
@@ -78,16 +123,17 @@ body {
 }
 
 .band_title_l {
-    width: 20%;
+    width: 40%;
 }
 
 .band_title_r {
-    width: 20%;
+    width: 40%;
 }
 
 #menu {
+    font-size: 15px;
+    color: #959391;
     display: inline-block;
-    background-color: white;
     vertical-align: middle;
 
 }
@@ -101,17 +147,26 @@ body {
     display: block;
     float:left;
     border-color: #000000;
-    border: solid 2px;
+    border: none;
     margin: 0px;
+    padding: 5px;
 }
 
 #header {
-    height: 100px;
+    height: 120px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }
 
 #header_left {
     float: left;
-    width: 20%
+    width: 20%;
+    background-image: url(./images/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+
 }
 
 #logo {
@@ -128,8 +183,16 @@ body {
 #lang_button    {
     display: inline-block;
     vertical-align: middle;
-    height: 20%;
-    width: 50%;
+    height: 30%;
+    width: 70%;
+    text-align: center;
+
+}
+
+#lang_text_wrap {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
 }
 #header_center {
     float: left;
@@ -142,7 +205,12 @@ body {
 
 
 #band1 {
-    height: 300px;
+    height: 500px;
+}
+
+#band2 {
+    height: 500px;
+    background-color: #212121;
 }
 
 #band3 {
@@ -231,17 +299,24 @@ body {
 
 #player {
     width: 70%;
-    height:400px
+    height:400px;
+    background-color: white;
+
 }
 
 #player_top {
     width: 100%;
-    height: 35%;
+    height: 45%;
+    padding: 2px;
 }
 
 #player_bottom  {
-    height: 65%;
+    width: 100%;
+    height: 55%;
     overflow-y: scroll;
+    padding: 2px;
+    background-color: white;
+
 }
 
 #player_bottom ul {
@@ -253,17 +328,19 @@ body {
 #player_bottom li {
     width: 100%;
     display: block;
-    border-color: #000000;
-    border: solid 2px;
     margin: 0px;
     height: 20%;
+    border-bottom: solid 7px;
 }
 
 
 
-
+#songs_band_title_l{
+    color: white;
+}
 
 .song {
+    padding: 3px;
     display: block;
     width: 100%;
     height: 100%;
@@ -275,6 +352,8 @@ body {
     float:left;
     height: 100%;
     width: 10%;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .song_name {
@@ -283,7 +362,14 @@ body {
     height: 100%;
     width: 40%;
     text-align: left;
-    margin-left: 40px;
+    margin-left: 10px;
+
+    font-family: GothamLight,sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+
 }
 
 .song_control {
@@ -291,12 +377,22 @@ body {
     float: right;
     height: 100%;
     width: 10%;
+
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-image: url(./images/player/play_na.svg);
 }
 
 
 #player_icon {
-    width: 25%;
+    width: 35%;
     height: 100%;
+    background-image: url(http://strunkova:8080/images/gallary/20150425101034.jpeg);
+    background-color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+
 }
 
 
