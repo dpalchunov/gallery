@@ -3,21 +3,23 @@ body {
 }
 
 .container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 0px;
-    padding-right: 0px;
+    margin:0;
+    padding: 0;
     vertical-align: middle;
     height: 100%;
     white-space: nowrap;
 }
 
-.container::before {
+.container::after {
     display: inline-block;
-    content: " ";
+    content: "";
+    height: 100%;
     height: 100%;
     vertical-align: middle;
-    width: 0px;
+    width: 0;
+    border: 0;
+    margin:0;
+    padding:0;
 }
 
 .band {
@@ -136,6 +138,87 @@ body {
 }
 
 #band3 {
+}
+
+#band4 {
+    height: 200px;
+}
+
+#footer_container {
+    display: inline-block;
+    width: 100%;
+    height: 80%;
+    margin-left: 0px;
+}
+
+#footer_top{
+    border: none;
+    border-bottom: 2px solid;
+    border-color: antiquewhite;
+    height: 50%;
+}
+
+#footer_url{
+    width:20%;
+    height: 100%;
+    float: left;
+    vertical-align: middle;
+}
+
+#footer_social{
+    width:20%;
+    height: 100%;
+    float: left;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#footer_social_buttons {
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+#footer_menu_buttons{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#footer_social ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+#footer_social li {
+    display: block;
+    float:left;
+    border-color: #000000;
+    border: solid 2px;
+    margin: 0px;
+}
+
+#footer_menu{
+    width:20%;
+    height: 100%;
+    float: right;
+}
+
+#footer_menu ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+#footer_menu li {
+    display: block;
+    float:left;
+    border-color: #000000;
+    border: solid 2px;
+    margin: 0px;
+}
+
+#footer_bottom{
+    border: none;
+    height: 50%;
 }
 
 #player {
