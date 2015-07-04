@@ -34,7 +34,7 @@ body {
 
 .band_title {
     width: 100%;
-    height: 20%;
+    height: 50px;
 }
 
 .band_body {
@@ -111,6 +111,12 @@ body {
     float: left;
     width: 20%
 }
+
+#logo {
+    max-width: 100%;
+    max-height: 100%;
+    float: left;
+}
 #header_right {
     float: right;
     width: 20%
@@ -125,6 +131,112 @@ body {
 
 
 
-#band1,#band2,#band3 {
+#band1 {
     height: 300px;
+}
+
+#band3 {
+}
+
+#player {
+    width: 70%;
+    height:400px
+}
+
+#player_top {
+    width: 100%;
+    height: 35%;
+}
+
+#player_bottom  {
+    height: 65%;
+}
+
+#player_bottom ul {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+#player_bottom li {
+    width: 100%;
+    display: block;
+    border-color: #000000;
+    border: solid 2px;
+    margin: 0px;
+    height: 20%;
+}
+
+
+
+
+
+.song {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+.song_ico          {
+    display: block;
+    float:left;
+    height: 100%;
+    width: 10%;
+}
+
+.song_name {
+    display: block;
+    float: left;
+    height: 100%;
+    width: 40%;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.song_control {
+    display: block;
+    float: right;
+    height: 100%;
+    width: 10%;
+}
+
+
+#player_icon {
+    width: 25%;
+    height: 100%;
+}
+
+
+.grid_list_cell:after {
+    display: block;
+    content: '';
+    padding-bottom: 100%;
+
+}
+
+.grid_list_cell {
+    display: inline-block;
+  width: 18%;
+    background-color: white;
+    border: solid 1px green;
+    margin: 0px;
+    padding: 2px;
+}
+
+@media screen and (max-width: 800px){
+    .grid_list_cell {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .grid_list_cell {
+        width: 45%;
+    }
+}
+@media screen and (max-width: 100px){
+    .grid_list_cell {
+        width: 98%;
+    }
 }
