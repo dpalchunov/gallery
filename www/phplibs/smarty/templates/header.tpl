@@ -1,16 +1,27 @@
-<div id="header" >
-    <div class="container">
-        <div id="header_name">
-            <img id="logo" src="./images/logo.png"/>
+<div id="header" class="band black">
+    <div class="band_cnt  black">
+        <div id="header_left" class="container l">
+
         </div>
-        <div id="nav_menu_wrapper">
-            <div id="nav_menu">
-                {{{$nav_menu}}}
+        <div id="header_center" class="container">
+            <div id="menu" class="black">
+                <ul>
+                    <li>HOME</li>
+                    <li>BAND</li>
+                    <li>MUSIC</li>
+                    <li>VIDEO</li>
+                    <li>PHOTO</li>
+                    <li>LYRICS</li>
+                    <li>CONTACT</li>
+                </ul>
             </div>
-         </div>
-        <div id="lang_changer" class="container">
-            <a id="lang_changer_href" href="javascript:void 0">ENG</a> /
-            <a id="lang_changer_href" href="javascript:void 0">РУС</a>
+        </div>
+        <div id="header_right" class="container r">
+            <div id="lang_button" class="container white">
+                <div id="lang_text_wrap">
+                    RUS/ENG
+                </div>
+            </div>
         </div>
     </div>
 </div>

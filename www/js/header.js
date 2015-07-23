@@ -48,23 +48,30 @@ function initMenuHandlers() {
 }
 
 function progressInit() {
+    var h = 12;
+    var l = 6;
+
     $("#header").bind("mouseenter",function(e) {
-        $("#inline").height(9);
+        $("#inline").height(h);
+        $("#progress").height(h);
         $("#progress_time_time").css("color","grey");
         $("#track_count_count").css("color","grey");
     });
     $("#header").bind("mouseleave",function(e) {
-        $("#inline").height(3);
+        $("#inline").height(l);
+        $("#progress").height(l);
         $("#progress_time_time").css("color","black")
         $("#track_count_count").css("color","black")
     });
     $("#outline").bind("mouseenter",function(e) {
-        $("#inline").height(9);
+        $("#inline").height(h);
+        $("#progress").height(h);
         $("#progress_time_time").css("color","grey")
         $("#track_count_count").css("color","grey")
     });
     $("#outline").bind("mouseleave",function(e) {
-        $("#inline").height(3);
+        $("#inline").height(l);
+        $("#progress").height(l);
         $("#progress_time_time").css("color","black")
         $("#track_count_count").css("color","black")
     });
