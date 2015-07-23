@@ -4,6 +4,8 @@ var destructor = function() {
 
 var routes = {
     greeting_href: {href:"greeting.php",page_name:'greeting.php'},
+    video_href: {href:"video.php",page_name:'video.php'},
+    home_href: {href:"home.php",page_name:'home.php'},
     about_href: {href:"about.php",page_name:'about.php'},
     gallery_href: {href:"gallery.php",page_name:'gallery.php'},
     buy_href: {href:"contacts.php",page_name:'contacts.php'},
