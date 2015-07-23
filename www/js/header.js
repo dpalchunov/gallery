@@ -5,6 +5,12 @@ var destructor = function() {
 var routes = {
     greeting_href: {href:"greeting.php",page_name:'greeting.php'},
     video_href: {href:"video.php",page_name:'video.php'},
+
+    band_href: {href:"band.php",page_name:'band.php'},
+    music_href: {href:"music.php",page_name:'music.php'},
+    lyrics_href: {href:"lyrics.php",page_name:'lyrics.php'},
+    photo_href: {href:"photo.php",page_name:'photo.php'},
+
     home_href: {href:"home.php",page_name:'home.php'},
     about_href: {href:"about.php",page_name:'about.php'},
     gallery_href: {href:"gallery.php",page_name:'gallery.php'},
@@ -16,6 +22,7 @@ var routes = {
     edit_welcome_href: {href:"wellcome_edit.php",page_name:'wellcome_edit.php'}
 };
 
+
 window.loaded_body = "";
 window.body_loaded = null;
 window.styles_loaded = null;
@@ -25,15 +32,27 @@ window.script_arrays_loaded = false;
 window.styles_arrays_loaded = false;
 
 $(document).ready(function () {
+
+
     load_style_arrays();
     load_scripts_arrays();
 
     progressInit();
     centerLoading();
     initMenuHandlers();
-
+    sticky_player();
 
 });
+
+function sticky_player() {
+    var $window = $(window),
+        $stickyEl = $('#outline'),
+        elTop = $stickyEl.offset().top;
+
+    $window.scroll(function() {
+        $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+    });
+}
 
 
 function initMenuHandlers() {
