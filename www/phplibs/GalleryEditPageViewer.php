@@ -34,8 +34,8 @@ class  GalleryEditPageViewer extends Page
         } else {
             $page = 1;
         }
-        $galleryEditHtmlGetter = new GalleryEditHtmlGetter();
-        $gallery_edit_html_code = $galleryEditHtmlGetter->getHTMLCode($page);
+        $galleryEditHtmlGetter = new GalleryHelper();
+        $gallery_edit_html_code = $galleryEditHtmlGetter->getGalleryEditHTMLCode($page);
         $pagination = $galleryEditHtmlGetter->getPaginationHtml($page);
         $template_engine->assign('pagination', $pagination);
         $template_engine->assign('gallery', $gallery_edit_html_code);

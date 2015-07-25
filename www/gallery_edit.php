@@ -158,24 +158,24 @@ function expo_save_handler() {
     echo $res;
 }
 function edit_get_gallery_handler() {
-    $galleryEditHtmlGetter = new GalleryEditHtmlGetter();
+    $galleryEditHtmlGetter = new GalleryHelper();
     if (isset($_POST['active_page'])) {
         $page = $_POST['active_page'];
     } else {
         $page = 1;
     }
-    $gallery_html_code = $galleryEditHtmlGetter->getHTMLCode($page);
+    $gallery_html_code = $galleryEditHtmlGetter->getGalleryEditHTMLCode($page);
     echo $gallery_html_code;
 }
 
 function edit_get_page_count_handler() {
-    $galleryEditHtmlGetter = new GalleryEditHtmlGetter();
+    $galleryEditHtmlGetter = new GalleryHelper();
     $count = $galleryEditHtmlGetter->getPageCount();
     echo $count;
 }
 
 function edit_get_pagination_handler() {
-    $galleryEditHtmlGetter = new GalleryEditHtmlGetter();
+    $galleryEditHtmlGetter = new GalleryHelper();
     if (isset($_POST['active_page'])) {
         $page = $_POST['active_page'];
     } else {

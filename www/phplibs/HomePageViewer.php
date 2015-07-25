@@ -31,10 +31,19 @@ class  HomePageViewer extends Page
     public function getBody($params) {
         global $template_engine, $resourceService;
         $lang = $resourceService->getLang();
-        $localizator = new Localizator();
 
         $template_engine->assign('lang', $lang);
 
+        $galleryHelper = new GalleryHelper();
+        $picPaths = $galleryHelper -> getPhotosArray();
+        $template_engine->assign('photos', $picPaths);
+        $template_engine->assign('count', sizeof($picPaths));
+
+
+        $songsHelper = new SongsObjManager();
+        $songs = $songsHelper -> selectAllSongs();
+        $template_engine->assign('songs', $songs);
+        $template_engine->assign('count', sizeof($songs));
         return $template_engine->fetch('home_body.tpl');
     }
 

@@ -29,13 +29,13 @@ class  PhotoPageViewer extends Page
     }
 
     public function getBody($params) {
-        global $template_engine, $resourceService;
-        $lang = $resourceService->getLang();
-        $localizator = new Localizator();
-
-        $template_engine->assign('lang', $lang);
-
+        global $template_engine;
+        $galleryHelper = new GalleryHelper();
+        $picPaths = $galleryHelper -> getPhotosArray();
+        $template_engine->assign('photos', $picPaths);
+        $template_engine->assign('count', sizeof($picPaths));
         return $template_engine->fetch('photo_body.tpl');
+
     }
 
     public function getLabelsArray($lang) {

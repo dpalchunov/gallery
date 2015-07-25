@@ -54,57 +54,17 @@
 
 
                         <ul>
+                            {{{for $i = 0 to $count-1 }}}
                             <li>
-                                <div class="song white">
+                                <div class="song white" song_path="{{{$songs[$i] -> getPath()}}}">
                                     <div class="song_ico"
                                          style="background-image: url('./images/gallary/20150425101131.jpeg')"></div>
                                     <div class="song_name container ">
-                                        Stadium[R] - Now or never
+                                        Stadium[R] - {{{$songs[$i] -> getDescription($lang)}}}
                                     </div>
-                                    <div class="song_control"></div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="song white">
-                                    <div class="song_ico"
-                                         style="background-image: url('./images/gallary/20150425101131.jpeg')"></div>
-                                    <div class="song_name container ">
-                                        Stadium[R] - Now or never
-                                    </div>
-                                    <div class="song_control"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="song white">
-                                    <div class="song_ico"
-                                         style="background-image: url('./images/gallary/20150425101131.jpeg')"></div>
-                                    <div class="song_name container ">
-                                        Stadium[R] - Now or never
-                                    </div>
-                                    <div class="song_control"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="song white">
-                                    <div class="song_ico"
-                                         style="background-image: url('./images/gallary/20150425101131.jpeg')"></div>
-                                    <div class="song_name container ">
-                                        Stadium[R] - Now or never
-                                    </div>
-                                    <div class="song_control"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="song white">
-                                    <div class="song_ico"
-                                         style="background-image: url('./images/gallary/20150425101131.jpeg')"></div>
-                                    <div class="song_name container ">
-                                        Stadium[R] - Now or never
-                                    </div>
-                                    <div class="song_control"></div>
-                                </div>
-                            </li>
-
+                             {{{/for}}}
                         </ul>
                     </div>
                 </div>
@@ -123,26 +83,9 @@
                 </div>
             </div>
             <div class="band_body">
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/_JyxrLooRzU.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/6H5dXFeWjQ8.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/6R8DHntqJlM.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/9Lbc8-dwnWQ.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/--tjAWOZob0.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/-jZP9yJw2dA.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/_JyxrLooRzU.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/AhkRWwVBJCo.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/aP2o5WCTEVE.jpg')">
-                </div>
-                <div class="grid_list_cell" style="background-image: url('./images/tmp/C-wZ4KfwFfQ.jpg')">
-                </div>
+                {{{for $i = 0 to $count-1 }}}
+                <div class="grid_list_cell" style="background-image: url('{{{$photos[$i]}}}')"></div>
+                {{{/for}}}
 
             </div>
         </div>

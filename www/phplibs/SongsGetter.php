@@ -12,6 +12,7 @@ class  SongsGetter
         $lang = $language;
     }
 
+
     public function getSongsExposition($lang)
     {
         $pm = new SongsObjManager();

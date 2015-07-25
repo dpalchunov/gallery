@@ -27,6 +27,12 @@
     padding: 5px;
 }
 
+#menu li:hover {
+    color: white;
+    cursor: pointer;
+
+}
+
 #header {
     height: 120px;
     padding-top: 10px;

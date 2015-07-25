@@ -1,10 +1,10 @@
 <?php
 require_once 'phplibs/PictureObjManager.php';
 
-class  GalleryEditHtmlGetter
+class  GalleryHelper
 {
 
-    public function  getHTMLCode($active_page)
+    public function  getGalleryEditHTMLCode($active_page)
     {
         $pic_man = new PictureObjManager();
         $cl_man = new ClassificatorManager();
@@ -86,6 +86,27 @@ class  GalleryEditHtmlGetter
     </div>";
         }
         return $picsHtml;
+    }
+
+    public function  getPhotosArray()
+    {
+        $pic_man = new PictureObjManager();
+        $pics = $pic_man->selectAllPics();
+        $picPaths = array();
+        foreach ($pics as $picObj) {
+            $id = $picObj->getID();
+            $sketchPath = $picObj->getSketchPath();
+            $rusDesc = $picObj->getDescription('rus');
+            $engDesc = $picObj->getDescription('eng');
+
+            array_push($picPaths,$sketchPath);
+            $info = pathinfo($sketchPath);
+            $file_name = basename($sketchPath);
+
+            $file_base = basename($sketchPath, '.' . $info['extension']);
+
+        }
+        return $picPaths;
     }
 
     public function getClsHTMLCode($cls, $cl_path, $file_base)
