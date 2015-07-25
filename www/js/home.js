@@ -12,9 +12,23 @@ $(document).ready(function () {
         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
     });
     setSongsHandlers();
+    setPlayButtonHandler();
     setRefsToSongs();
 
 });
+
+function setPlayButtonHandler() {
+    $("#player_mini_button").bind("click",function() {
+        if ($("#player_mini_button").hasClass("playing") ) {
+            window.my_jPlayer.jPlayer("play");
+        }  else {
+            window.my_jPlayer.jPlayer("pause");
+        }
+
+    });
+}
+
+
 
 function setSongsHandlers()  {
     var songs =  $(".song");

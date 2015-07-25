@@ -81,7 +81,7 @@
 
 }
 
-#inline {
+#mini_inline {
     position: relative;
     height: 6px;
     width: 100%;
@@ -92,11 +92,16 @@
     display:block;
 }
 
-#progress {
+#mini_inline:hover {
+    cursor: pointer;
+}
+
+#mini_progress {
     position: relative;
     float:left;
     height: 6px;
     width: 0%;
+    height: 100%;
     background-color: #4f1c07;
     overflow: hidden;
     display:block;
@@ -264,6 +269,18 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    background-image: url(../images/player/play_na.svg);
+}
+
+#player_mini_button:hover{
+    cursor: pointer;
+}
+
+#player_mini_button.paused {
+    background-image: url(../images/player/pause_na.svg);
+}
+
+#player_mini_button.playing {
     background-image: url(../images/player/play_na.svg);
 }
 

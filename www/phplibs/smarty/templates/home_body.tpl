@@ -43,8 +43,8 @@
                             </div>
 
                             <div id="player_outline_mini" class="">
-                                <div id="inline">
-                                    <div id="progress"></div>
+                                <div id="mini_inline">
+                                    <div id="mini_progress"></div>
                                 </div>
 
                             </div>

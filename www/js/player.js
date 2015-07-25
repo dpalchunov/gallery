@@ -19,6 +19,10 @@ $(document).ready(function(){
 	// Local copy of jQuery selectors, for performance.
 	window.my_jPlayer = $("#player"),
     window.progress = $("#progress");
+    window.mini_progress = $("#mini_progress");
+    window.inline = $("#inline");
+    window.mini_inline = $("#mini_inline");
+    window.player_mini_button = $("#player_mini_button");
 	// Initialize the play state text
 	// Instance jPlayer
 	window.my_jPlayer.jPlayer({
@@ -66,11 +70,15 @@ $(document).ready(function(){
             $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             window.progress.width(v);
+            window.mini_progress.width(v);
+
 		},
         pause: function() {
             console.log("pause_event");
             setCurrentPassive();
             $.cookie("paused", "true", {expires:365});
+            window.player_mini_button.addClass("playing");
+            window.player_mini_button.removeClass("paused");
         },
         ended: function(){
             next();
@@ -81,6 +89,9 @@ $(document).ready(function(){
             window.start_playing = false;
             $.cookie("paused", "false",{expires:365});
             setCurrentActive();
+
+            window.player_mini_button.addClass("paused");
+            window.player_mini_button.removeClass("playing");
 
         },
 		swfPath: "./player/swf",
@@ -96,8 +107,12 @@ $(document).ready(function(){
         var right_border = left_border + $("#inline").width();
         var t = event.target.id;
         if ((t == "header"  || t == "nav_menu" || t == "player_controls" || t == "inline"  || t == "progress") && event.clientX > left_border && event.clientX < right_border) {
-            progress_click_handler(event);
+            progress_click_handler(window.inline,event);
         };
+    });
+
+    $("#mini_inline").bind("click",function(event) {
+        progress_click_handler(window.mini_inline,event);
     });
 
 
@@ -133,10 +148,10 @@ function check_audio_cookies() {
 
 $("#inline").bind("click",progress_click_handler);
 
-function progress_click_handler(event) {
-    var x = $("#inline").offset().left;
+function progress_click_handler(obj,event) {
+    var x = $(obj).offset().left;
     var delta = event.clientX - x;
-    var w = $("#inline").width();
+    var w = $(obj).width();
     var pos = delta/w;
     var new_time = pos*window.songDuration;
     if (window.my_jPlayer.data().jPlayer.status.paused) {
