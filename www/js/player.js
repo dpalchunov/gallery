@@ -76,9 +76,9 @@ $(document).ready(function(){
         pause: function() {
             console.log("pause_event");
             setCurrentPassive();
+            setMiniPlayerButtonPaused();
             $.cookie("paused", "true", {expires:365});
-            window.player_mini_button.addClass("playing");
-            window.player_mini_button.removeClass("paused");
+
         },
         ended: function(){
             next();
@@ -89,9 +89,9 @@ $(document).ready(function(){
             window.start_playing = false;
             $.cookie("paused", "false",{expires:365});
             setCurrentActive();
+            setMiniPlayerButtonPlaying();
 
-            window.player_mini_button.addClass("paused");
-            window.player_mini_button.removeClass("playing");
+
 
         },
 		swfPath: "./player/swf",
@@ -222,6 +222,15 @@ function check_is_tablet() {
 
 function setCurrentActive() {
     window.playList[getCurrentInd()].songRef.addClass("active");
+}
+function setMiniPlayerButtonPlaying(){
+    window.player_mini_button.addClass("paused");
+    window.player_mini_button.removeClass("playing");
+}
+
+function setMiniPlayerButtonPaused(){
+    window.player_mini_button.addClass("playing");
+    window.player_mini_button.removeClass("paused");
 }
 
 function setCurrentPassive() {

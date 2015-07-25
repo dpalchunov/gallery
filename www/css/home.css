@@ -68,38 +68,58 @@
     background-color: white;
     padding: 0;
 
+
+}
+
+#player_buttons {
+    width: 82%;
+    height: 60%;
+    margin-left:9%;
 }
 
 #player_outline_mini {
-    top:30%;
     position: relative;
-    height: 30px;
+    height: 405;
     width: 82%;
     z-index: 9;
     display:block;
     margin-left:9%;
-
+    margin-top: 3%;
 }
+
+#progress_time_time{
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 10%;
+}
+
+#track_count_count{
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 10%;
+}
+
 
 #mini_inline {
     position: relative;
+    display: inline-block;
     height: 6px;
-    width: 100%;
+    width: 70%;
     background-color: #ae0212;
     z-index:11;
-    float:right;
-    overflow: hidden;
-    display:block;
 }
 
 #mini_inline:hover {
     cursor: pointer;
 }
 
+
+
 #mini_progress {
     position: relative;
     float:left;
-    height: 6px;
     width: 0%;
     height: 100%;
     background-color: #4f1c07;
@@ -261,28 +281,101 @@
 }
 
 #player_mini_button{
+    float:left;
     position: relative;
     top: 15%;
     left: 0%;
-    width: 20%;
-    height: 50%;
+    width: 15%;
+    height: 100%;
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-image: url(../images/player/play_na.svg);
+
 }
 
 #player_mini_button:hover{
     cursor: pointer;
+    background-image: url(../images/player/play_d.svg);
 }
 
 #player_mini_button.paused {
     background-image: url(../images/player/pause_na.svg);
 }
 
+#player_mini_button.paused:hover {
+    background-image: url(../images/player/pause_d.svg);
+}
+
+#player_mini_button.playing:hover {
+    background-image: url(../images/player/play_d.svg);
+}
 #player_mini_button.playing {
     background-image: url(../images/player/play_na.svg);
 }
+
+
+
+#prev {
+    float:left;
+    position: relative;
+    top: 15%;
+    left: 0%;
+    width: 10%;
+    height: 100%;
+    background-image: url(../images/player/prev_na.svg);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+}
+
+#prev:hover {
+    background-image: url(../images/player/prev_d.svg);
+}
+
+#next {
+    float:left;
+    position: relative;
+    top: 15%;
+    left: 0%;
+    width: 10%;
+    height: 100%;
+    margin-right:20px;
+    background-image: url(../images/player/next_na.svg);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+}
+#next:hover {
+    background-image: url(../images/player/next_d.svg);
+}
+#pause {
+    height: 40px;
+    width: 40px;
+    margin-top: 15px;
+    background-image: url(../images/player/pause_na.svg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+#pause:hover {
+    background-image: url(../images/player/pause_d.svg);
+}
+
+#play {
+    margin-top: 15px;
+    background-image: url(../images/player/play_na.svg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 40px;
+    width: 40px;
+
+}
+
+#play:hover {
+    background-image: url(../images/player/play_d.svg);
+}
+
 
 .grid_list_cell:after {
     display: block;

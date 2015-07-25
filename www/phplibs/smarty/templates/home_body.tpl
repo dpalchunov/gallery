@@ -39,14 +39,21 @@
                         <div id="player_controls" class="">
 
 
-                            <div id="player_mini_button" class="">
+                            <div id="player_buttons">
+                                <div id="prev"></div>
+                                <div id="player_mini_button" class="playing">
+                                </div>
+                                <div id="next"></div>
                             </div>
 
+
+
                             <div id="player_outline_mini" class="">
+                                <div id="progress_time_time"></div>
                                 <div id="mini_inline">
                                     <div id="mini_progress"></div>
                                 </div>
-
+                                <div id="track_count_count"></div>
                             </div>
                         </div>
                     </div>
