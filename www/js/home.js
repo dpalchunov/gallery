@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-    alert("jkl");
 
     destructor = destructor;
 
@@ -14,8 +13,33 @@ $(document).ready(function () {
     setSongsHandlers();
     setPlayButtonHandler();
     setRefsToSongs();
+    setControlStates();
 
 });
+
+function setControlStates() {
+    window.mini_progress = $("#mini_progress");
+    window.mini_inline = $("#mini_inline");
+    window.player_mini_button = $("#player_mini_button");
+    if (window.my_jPlayer.data().jPlayer.status.paused) {
+        setMiniPlayerButtonPaused();
+        setCurrentPassive();
+    } else {
+        setMiniPlayerButtonPlaying();
+        setCurrentActive();
+    }
+    updateTimeAndCount();
+}
+
+function updateTimeAndCount() {
+    var cur_time = window.my_jPlayer.data().jPlayer.status.currentTime;
+    $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
+    var v = parseFloat(window.my_jPlayer.data().jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
+    window.progress.width(v);
+    window.mini_progress.width(v);
+    $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
+}
+
 
 function setPlayButtonHandler() {
     $("#player_mini_button").bind("click",function() {

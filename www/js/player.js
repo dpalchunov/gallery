@@ -132,6 +132,8 @@ $(document).ready(function(){
 
 });
 
+
+
 function next() {
     setCurrentPassive();
     window.currentTrack++;

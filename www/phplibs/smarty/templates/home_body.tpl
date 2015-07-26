@@ -39,11 +39,13 @@
                         <div id="player_controls" class="">
 
 
-                            <div id="player_buttons">
+                            <div id="player_buttons" class="container">
                                 <div id="prev"></div>
                                 <div id="player_mini_button" class="playing">
                                 </div>
                                 <div id="next"></div>
+                                <div id="song_title">bla_bla_bla</div>
+
                             </div>
 
 
