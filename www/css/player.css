@@ -45,6 +45,7 @@
     width: 82%;
     height: 60%;
     margin-left:9%;
+    text-align: left;
 }
 
 #player_outline_mini {
@@ -230,6 +231,7 @@
     #player_icon {
         width: 105px;
     }
+
 }
 
 #player_controls{
@@ -308,10 +310,11 @@
 #song_title {
     display: inline-block;
     position: relative;
-    width: 30%;
-    text-align: center;
+    width: 70%;
+    text-align: left;
     vertical-align: middle;
     font-family: 'Frijole',cursive;
+    white-space: pre-wrap;
 }
 #pause {
     height: 40px;

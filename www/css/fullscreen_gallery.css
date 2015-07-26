@@ -1,0 +1,62 @@
+
+/*Full screen gallery*/
+
+#fullScreenGallery {
+    position: absolute;
+    top:0px;
+    left:0px;
+    height: 100%;
+    width: 100%;
+    z-index: 30;
+    background-image: url(../images/fullScreen/bg.png);
+    display: none;
+}
+
+#fullScreenGalleryLeftSide {
+    background-image: url(../images/fullScreen/back.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 50%;
+    height: 100%;
+    z-index: 29;
+    float: left;
+    opacity: 0.2;
+}
+
+#fullScreenGalleryRightSide {
+    background-image: url(../images/fullScreen/close.png);
+    background-repeat: no-repeat;
+    background-position: 100% 200px;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    float: left;
+    z-index: 29;
+    opacity: 0.2;
+}
+
+#fullScreenPic {
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 10000;
+    display: none;
+    cursor: pointer;
+}
+
+#fullScreenPicContainer {
+    z-index: 9000;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+#big_image {
+    width:100%;
+    height: 100%;
+    display: none;
+}
+
+#resampled_image {
+    width:100%;
+    height: 100%;
+}

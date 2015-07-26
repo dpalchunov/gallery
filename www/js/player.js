@@ -222,19 +222,33 @@ function check_is_tablet() {
     }
 }
 
+function isEmpty(value){
+    return (value == null || value == undefined  || value.length === 0);
+}
+
 function setCurrentActive() {
-    window.playList[getCurrentInd()].songRef.addClass("active");
+    if (!isEmpty(window.playList[getCurrentInd()].songRef)) {
+        window.playList[getCurrentInd()].songRef.addClass("active");
+    }
+
 }
 function setMiniPlayerButtonPlaying(){
-    window.player_mini_button.addClass("paused");
-    window.player_mini_button.removeClass("playing");
+    if (!isEmpty(window.player_mini_button)) {
+        window.player_mini_button.addClass("paused");
+        window.player_mini_button.removeClass("playing");
+    }
+
 }
 
 function setMiniPlayerButtonPaused(){
-    window.player_mini_button.addClass("playing");
-    window.player_mini_button.removeClass("paused");
+    if (!isEmpty(window.player_mini_button)) {
+         window.player_mini_button.addClass("playing");
+        window.player_mini_button.removeClass("paused");
+    }
 }
 
 function setCurrentPassive() {
-    window.playList[getCurrentInd()].songRef.removeClass("active");
+    if (!isEmpty(window.playList[getCurrentInd()])) {
+        window.playList[getCurrentInd()].songRef.removeClass("active");
+    }
 }

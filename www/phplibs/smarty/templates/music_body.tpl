@@ -10,7 +10,6 @@
                     SONGS
                 </div>
                 <div class="band_title_r r container">
-                    ALL MUSIC
                 </div>
             </div>
             <div class="band_body">

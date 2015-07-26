@@ -8,7 +8,7 @@ class  PhotoPageViewer extends Page
         global $js_scripts,$styles;
         $emp = $this ->emp;
         $js_scripts = array($emp."jquery.cycle2.min.js",'photo.js');
-        $styles = array('photo.css');
+        $styles = array('photo.css','fullscreen_gallery.css');
     }
 
     public function getHeadContent() {
