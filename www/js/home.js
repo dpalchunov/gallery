@@ -29,6 +29,13 @@ function setControlStates() {
         setCurrentActive();
     }
     updateTimeAndCount();
+    setTitle();
+}
+
+function setTitle() {
+    window.my_jPlayer.jPlayer( "option", "cssSelector", {title: "#song_title"} );
+    $("#song_title").text(window.playList[getCurrentInd()].title);
+
 }
 
 function updateTimeAndCount() {

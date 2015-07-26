@@ -8,7 +8,7 @@ class  HomePageViewer extends Page
         global $js_scripts,$styles;
         $emp = $this ->emp;
         $js_scripts = array($emp."jquery.cycle2.min.js",'home.js');
-        $styles = array('home.css');
+        $styles = array('home.css','player.css');
     }
 
     public function getHeadContent() {

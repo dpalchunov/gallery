@@ -8,7 +8,7 @@ class  MusicPageViewer extends Page
         global $js_scripts,$styles;
         $emp = $this ->emp;
         $js_scripts = array($emp."jquery.cycle2.min.js",'music.js');
-        $styles = array('music.css');
+        $styles = array('player.css','music.css');
     }
 
     public function getHeadContent() {
@@ -34,7 +34,10 @@ class  MusicPageViewer extends Page
         $localizator = new Localizator();
 
         $template_engine->assign('lang', $lang);
-
+        $songsHelper = new SongsObjManager();
+        $songs = $songsHelper -> selectAllSongs();
+        $template_engine->assign('songs', $songs);
+        $template_engine->assign('count', sizeof($songs));
         return $template_engine->fetch('music_body.tpl');
     }
 

@@ -44,7 +44,8 @@
                                 <div id="player_mini_button" class="playing">
                                 </div>
                                 <div id="next"></div>
-                                <div id="song_title">bla_bla_bla</div>
+
+                                <div id="song_title" class="jp-title"></div>
 
                             </div>
 
@@ -69,7 +70,7 @@
                                     <div class="song_ico"
                                          style="background-image: url('./images/gallary/20150425101131.jpeg')"></div>
                                     <div class="song_name container ">
-                                        Stadium[R] - {{{$songs[$i] -> getDescription($lang)}}}
+                                        {{{$songs[$i] -> getDescription($lang)}}}
                                     </div>
                                 </div>
                             </li>
