@@ -154,7 +154,9 @@ function locateFullScreenGallaryControls() {
 function centerFullScreenPic() {
     var winRatio = $(window).height()*0.95/($(window).width()*0.80);
     var bi = $( '#big_image' )[0];
+    console.log("getting ratio ");
     var ratio = bi.naturalHeight/bi.naturalWidth;
+    console.log("got ratio " + ratio);
     var imgRatio = (ratio);
     if (imgRatio > winRatio) {
 
@@ -257,12 +259,16 @@ function previousPicture() {
 }
 
 function replaceCurPictureByNext(picPath) {
+    $("#big_image").unbind("load")
+    $("#big_image").load(function() {
+        console.log("loaded " + picPath);
+        centerFullScreenPic();
+        $('#resampled_image').hide();
+        resize_image( $( '#big_image' )[0],$("#fullScreenPicContainer").width(),$("#fullScreenPicContainer").height(), $( '#resampled_image' )[0] );
+    });
     $("#big_image").attr("src",picPath);
-    centerFullScreenPic();
-    $('#resampled_image').hide();
+    console.log("src changed to " + picPath);
 
-
-    resize_image( $( '#big_image' )[0],$("#fullScreenPicContainer").width(),$("#fullScreenPicContainer").height(), $( '#resampled_image' )[0] );
 }
 
 
