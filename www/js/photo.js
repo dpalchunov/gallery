@@ -3,44 +3,12 @@ var getNextPInWork = 0;
 var allPicturesLoaded = false;
 var returnedPageData = '';
 var detailsShow;
-var rateShow;
 var fullScreenPics = [];
 var picIterator = 0;
 var nextPictureInWork = 0;
 var needShowPicAfterLoad = false;
 
 
-
-function setImagesMousehandler() {
-    $('.picture').unbind('mouseover');
-    $('.picture').bind('mouseover', smallImageMouseOverHandler);
-}
-
-function smallImageMouseOverHandler() {
-    var all_td_space = $(this);
-    var details = all_td_space.find('[class=details]');
-    window.clearTimeout(detailsShow);
-    if ((details.css('display') == 'none' || details.height() == 0) && details.find("p").html() != '' ) {
-        pic_width = $(this).width();
-        all_td_space_width = $(all_td_space).width();
-        details.width(pic_width);
-        details.css('height', '25%');
-        details.slideDown(400);
-
-    }
-
-
-    var rate = all_td_space.find('[class=rate]');
-    window.clearTimeout(rateShow);
-    if (rate.css('display') == 'none' || rate.height() == 0) {
-        pic_width = $(this).width();
-        all_td_space_width = $(all_td_space).width();
-        rate.width(pic_width);
-        rate.css('height', '17px');
-        rate.slideDown(400);
-
-    }
-}
 
 function showFirstPage() {
     if (getNextPInWork == 0) {
@@ -82,6 +50,7 @@ function trim(str) {
 
 $(document).ready(function () {
     mainInit();
+
     destructor = destructor;
 });
 
@@ -342,12 +311,14 @@ function makePictureGetterParametersStringForPageGet(pageNum,action) {
 
 
 function setImagesClickhandler() {
+
     $('.picture').unbind('click');
     $('.picture').bind('click', smallImageClickHandler);
 }
 
 
 function smallImageClickHandler() {
+    hideDetails($(this));
     centerLoading();
     $('#loader').show();
     changeFullScreenPic(this);
@@ -412,6 +383,39 @@ function resize_image( src, dst_w,dst_h,dst, type, quality ) {
         tmp.src = dst.src;
     }
 
+}
+
+
+function setImagesMousehandler() {
+    var p = $('.picture');
+    var details = p.find('[class=details]');
+    p.unbind('mouseenter');
+    p.bind('mouseenter', smallImageMouseOverHandler);
+
+    p.unbind('mouseleave');
+    p.bind('mouseleave', mleave);
+
+}
+
+function smallImageMouseOverHandler(event) {
+    if (event.target.className == "grid_list_cell picture") {
+        var pic = $(this);
+        var details = pic.find('[class=details]');
+        details.css('height', $(pic).height());
+        details.fadeIn("fast",function() {
+        });
+    }
+
+
+}
+
+function mleave() {
+    hideDetails($(this));
+};
+
+function hideDetails(p) {
+    var details = p.find('[class=details]');
+    details.hide();
 }
 
 function destructor() {

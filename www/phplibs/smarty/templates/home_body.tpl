@@ -93,8 +93,10 @@
                 </div>
             </div>
             <div class="band_body">
-                {{{for $i = 0 to $count-1 }}}
-                <div class="grid_list_cell" style="background-image: url('{{{$photos[$i]}}}')"></div>
+                {{{for $i = 0 to $pic_count-1 }}}
+                <div class="grid_list_cell picture" style="background-image: url('{{{$photos[$i] -> getSketchPath()}}}')" picpath="{{{$photos[$i]-> getPicPath()}}}" >
+                    <div class="details"> </div>
+                </div>
                 {{{/for}}}
 
             </div>

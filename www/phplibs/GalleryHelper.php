@@ -106,7 +106,7 @@ class  GalleryHelper
             $file_base = basename($sketchPath, '.' . $info['extension']);
 
         }
-        return $picPaths;
+        return $pics;
     }
 
     public function getClsHTMLCode($cls, $cl_path, $file_base)

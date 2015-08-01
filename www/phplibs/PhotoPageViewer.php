@@ -30,10 +30,10 @@ class  PhotoPageViewer extends Page
 
     public function getBody($params) {
         global $template_engine;
-        $galleryHelper = new GalleryHelper();
-        $picPaths = $galleryHelper -> getPhotosArray();
-        $template_engine->assign('photos', $picPaths);
-        $template_engine->assign('count', sizeof($picPaths));
+        $pic_man = new PictureObjManager();
+        $pics = $pic_man->selectAllPics();
+        $template_engine->assign('photos', $pics);
+        $template_engine->assign('count', sizeof($pics));
         return $template_engine->fetch('photo_body.tpl');
 
     }

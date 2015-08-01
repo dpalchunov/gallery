@@ -34,10 +34,10 @@ class  HomePageViewer extends Page
 
         $template_engine->assign('lang', $lang);
 
-        $galleryHelper = new GalleryHelper();
-        $picPaths = $galleryHelper -> getPhotosArray();
-        $template_engine->assign('photos', $picPaths);
-        $template_engine->assign('count', sizeof($picPaths));
+        $pic_man = new PictureObjManager();
+        $pics = $pic_man->selectAllPics();
+        $template_engine->assign('photos', $pics);
+        $template_engine->assign('pic_count', sizeof($pics));
 
 
         $songsHelper = new SongsObjManager();

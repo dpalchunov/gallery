@@ -1,16 +1,3 @@
-
-
-
-
-#band1 {
-    height: 500px;
-}
-
-#band2 {
-    height: 500px;
-    background-color: #212121;
-}
-
 #band3 {
     padding-top: 15px;
 }
@@ -424,4 +411,32 @@
 #f2 {
     width: 100%;
     height: 50%;
+}
+
+.details {
+    position: relative;
+    float: left;
+    display: none;
+    width: 100%;
+    opacity: 0.9;
+    background: rgba(174, 2, 18, 0.50); /* фон с полупрозрачностью */
+    filter: alpha(Opacity=50); /* Прозрачность в IE */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000)"; /* все тот же фон с полупрозрачностью, но фильтр для ИЕ8 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000); /* все тот же фон с полупрозрачностью, но фильтр для ИЕ7 и ИЕ6 */
+    z-index: 999999999999999;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.details p {
+    color: #EEE;
+
+}
+
+.details_inner {
+    padding: 7px;
+
 }
