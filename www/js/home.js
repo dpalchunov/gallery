@@ -10,17 +10,36 @@ $(document).ready(function () {
     $window.scroll(function() {
         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
     });
-    setSongsHandlers();
-    setPlayButtonHandler();
-    setRefsToSongs();
-    setControlStates();
+
+    if (window.my_jPlayer.data().jPlayer == undefined) {
+        initPlayer();
+    }
+
+    initPlayerFunctions();
 
 });
 
-function setControlStates() {
+function initPlayerFunctions() {
+    setSongsHandlers();
+    setPlayButtonHandler();
+    setRefsToSongs();
+    mapVarsToControls();
+    setControlStates();
+    initPlayerControls();
+}
+
+function mapVarsToControls() {
     window.mini_progress = $("#mini_progress");
     window.mini_inline = $("#mini_inline");
     window.player_mini_button = $("#player_mini_button");
+    window.track_count_count = $("#track_count_count");
+    window.progress_time_time = $("#progress_time_time");
+    window.next_ctrl = $("#next");
+    window.prev = $("#prev");
+}
+
+function setControlStates() {
+
     if (window.my_jPlayer.data().jPlayer.status.paused) {
         setMiniPlayerButtonPaused();
         setCurrentPassive();
@@ -30,6 +49,25 @@ function setControlStates() {
     }
     updateTimeAndCount();
     setTitle();
+
+
+}
+
+function initPlayerControls() {
+    window.mini_inline.bind("click",function(event) {
+        progress_click_handler(window.mini_inline,event);
+    });
+
+    window.next_ctrl.bind("click",next);
+
+    window.prev.bind("click",function(e) {
+        if (window.my_jPlayer.data().jPlayer.status.currentTime < 2) {
+            setCurrentPassive();
+            window.currentTrack--;
+            setCounterText();
+        }
+        changeToCurrent();
+    });
 }
 
 function setTitle() {

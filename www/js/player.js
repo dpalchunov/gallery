@@ -3,30 +3,19 @@ $(document).ready(function(){
     window.songDuration = 0;
     window.currentTrack = 0;
 
-
-
-    $("#music_ask_yes").click(function() {
-        $("#dialog").hide();
-        $("#player").jPlayer("play");
-    });
-
-
-    $("#music_ask_no").click(function() {
-        $("#dialog").hide();
-    });
-
-
 	// Local copy of jQuery selectors, for performance.
-	window.my_jPlayer = $("#player"),
+    window.my_jPlayer = $("#player"),
     window.progress = $("#progress");
-    window.mini_progress = $("#mini_progress");
     window.inline = $("#inline");
-    window.mini_inline = $("#mini_inline");
-    window.player_mini_button = $("#player_mini_button");
-	// Initialize the play state text
-	// Instance jPlayer
-	window.my_jPlayer.jPlayer({
-		ready: function () {
+
+
+});
+
+function initPlayer() {
+    // Initialize the play state text
+    // Instance jPlayer
+    window.my_jPlayer.jPlayer({
+        ready: function () {
             var track_number = 0;
             if (check_audio_cookies()) {
                 try {
@@ -58,23 +47,22 @@ $(document).ready(function(){
             }
 
             $.cookie("track_number", getCurrentInd(), {expires:365});
-            $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
+            window.track_count_count.text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
             check_is_tablet();
-		},
+        },
         loadeddata: function(event){ // calls after setting the song duration
             window.songDuration = event.jPlayer.status.duration;
         },
-		timeupdate: function(event) {
+        timeupdate: function(event) {
             var cur_time = event.jPlayer.status.currentTime;
             $.cookie("track_time", cur_time, {expires:365});
-            $("#progress_time_time").text($.jPlayer.convertTime(cur_time));
+            window.progress_time_time.text($.jPlayer.convertTime(cur_time));
             var v = parseFloat(event.jPlayer.status.currentPercentAbsolute).toPrecision(3) + "%";
             window.progress.width(v);
             window.mini_progress.width(v);
 
-		},
+        },
         pause: function() {
-            console.log("pause_event");
             setCurrentPassive();
             setMiniPlayerButtonPaused();
             $.cookie("paused", "true", {expires:365});
@@ -85,7 +73,6 @@ $(document).ready(function(){
             window.my_jPlayer.jPlayer("play");
         },
         play: function() {
-            console.log("play_event");
             window.start_playing = false;
             $.cookie("paused", "false",{expires:365});
             setCurrentActive();
@@ -94,43 +81,23 @@ $(document).ready(function(){
 
 
         },
-		swfPath: "./player/swf",
-		cssSelectorAncestor: "#player_controls",
-		supplied: "mp3",
-		wmode: "window",
+        swfPath: "./player/swf",
+        cssSelectorAncestor: "#player_controls",
+        supplied: "mp3",
+        wmode: "window",
         smoothPlayBar:true
-	});
+    });
 
 
     $("#header,#inline").bind("click",function(event) {
-        var left_border = $("#inline").offset().left;
-        var right_border = left_border + $("#inline").width();
+        var left_border = window.inline.offset().left;
+        var right_border = left_border + window.inline.width();
         var t = event.target.id;
         if ((t == "header"  || t == "nav_menu" || t == "player_controls" || t == "inline"  || t == "progress") && event.clientX > left_border && event.clientX < right_border) {
             progress_click_handler(window.inline,event);
         };
     });
-
-    $("#mini_inline").bind("click",function(event) {
-        progress_click_handler(window.mini_inline,event);
-    });
-
-
-    $("#next").bind("click",next);
-
-
-    $("#prev").bind("click",function(e) {
-        if (window.my_jPlayer.data().jPlayer.status.currentTime < 2) {
-            setCurrentPassive();
-            window.currentTrack--;
-            setCounterText();
-        }
-        changeToCurrent();
-    });
-
-
-
-});
+}
 
 
 
@@ -148,13 +115,13 @@ function check_audio_cookies() {
         ($.cookie('paused') != null);
 }
 
-$("#inline").bind("click",progress_click_handler);
 
 function progress_click_handler(obj,event) {
     var x = $(obj).offset().left;
     var delta = event.clientX - x;
     var w = $(obj).width();
     var pos = delta/w;
+
     var new_time = pos*window.songDuration;
     if (window.my_jPlayer.data().jPlayer.status.paused) {
         window.my_jPlayer.jPlayer("pause",new_time);
@@ -181,7 +148,7 @@ function loadPlayList() {
 
 
 function setCounterText() {
-    $("#track_count_count").text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
+    window.track_count_count.text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
 }
 
 function changeToCurrent() {
@@ -216,9 +183,6 @@ function check_is_tablet() {
         navigator.userAgent.match(/Windows Phone/i) ||
         navigator.userAgent.match(/ZuneWP7/i)
         ) {
-
-        $("#dialog").css('display','table');
-        $("#dialog").show();
     }
 }
 

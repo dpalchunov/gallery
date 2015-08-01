@@ -2,12 +2,49 @@
 $(document).ready(function () {
 
     destructor = destructor;
+    if (window.my_jPlayer.data().jPlayer == undefined) {
+        initPlayer();
+    }
+
+    initPlayerFunctions();
+
+});
+
+function initPlayerFunctions() {
     setSongsHandlers();
     setPlayButtonHandler();
     setRefsToSongs();
+    mapVarsToControls();
     setControlStates();
+    initPlayerControls();
+}
 
-});
+function initPlayerControls() {
+    window.mini_inline.bind("click",function(event) {
+        progress_click_handler(window.mini_inline,event);
+    });
+
+    window.next_ctrl.bind("click",next);
+
+    window.prev.bind("click",function(e) {
+        if (window.my_jPlayer.data().jPlayer.status.currentTime < 2) {
+            setCurrentPassive();
+            window.currentTrack--;
+            setCounterText();
+        }
+        changeToCurrent();
+    });
+}
+
+function mapVarsToControls() {
+    window.mini_progress = $("#mini_progress");
+    window.mini_inline = $("#mini_inline");
+    window.player_mini_button = $("#player_mini_button");
+    window.track_count_count = $("#track_count_count");
+    window.progress_time_time = $("#progress_time_time");
+    window.next_ctrl = $("#next");
+    window.prev = $("#prev");
+}
 
 function setControlStates() {
     window.mini_progress = $("#mini_progress");
