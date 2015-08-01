@@ -29,11 +29,12 @@ class  PhotoPageViewer extends Page
     }
 
     public function getBody($params) {
-        global $template_engine;
+        global $template_engine, $resourceService;;
         $pic_man = new PictureObjManager();
         $pics = $pic_man->selectAllPics();
         $template_engine->assign('photos', $pics);
         $template_engine->assign('count', sizeof($pics));
+        $template_engine->assign('lang', $resourceService -> getLang());
         return $template_engine->fetch('photo_body.tpl');
 
     }

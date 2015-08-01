@@ -7,8 +7,8 @@ class  HomePageViewer extends Page
         parent::Page();
         global $js_scripts,$styles;
         $emp = $this ->emp;
-        $js_scripts = array($emp."jquery.cycle2.min.js",'home.js');
-        $styles = array('home.css','player.css');
+        $js_scripts = array($emp."jquery.cycle2.min.js",'home.js','photo.js');
+        $styles = array('home.css','player.css','fullscreen_gallery.css');
     }
 
     public function getHeadContent() {
