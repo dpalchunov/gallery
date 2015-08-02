@@ -7,13 +7,14 @@ abstract class  Page
     public $ep = './external/';
     public function Page()
     {
-        global $template_engine, $resourceService,$js_common_scripts,$common_styles;
+        global $template_engine, $resourceService,$js_common_scripts,$common_styles,$admin_styles;
         $resourceService = new ResourceService();
         $template_engine = $resourceService->getTemplateEngine();
         $emp = $this ->emp;
         $ep = $this ->ep;
         $js_common_scripts = array($emp.'jquery.min.js',$emp.'jquery.ajax-retry.min.js',$emp.'jquery-ui.min.js',$ep.'jquery.cookie.js','header.js',$emp.'jquery.jplayer.min.js','player.js');
         $common_styles = array('header.css','jquery-ui.css','general.css','footer.css');
+        $admin_styles = array('admin_menu.css','admin_general.css');
     }
 
     abstract function getHeadContent();
@@ -35,8 +36,16 @@ abstract class  Page
         $common_css = $this ->getCommonStyles();
         $scripts =  $this -> getAllScripts();
         $content = $this -> getHeadContent();
-        $template_engine->assign('styles', $css);
+        $template_engine->assign('page_styles', $css);
         $template_engine->assign('common_styles', $common_css);
+
+        if (isset($_SESSION['state']) && $_SESSION['state'] == 'ok') {
+            $admin_css = $this ->getAdminStyles();
+            $template_engine->assign('admin_styles', $admin_css);
+        } else {
+            $template_engine->assign('admin_styles', '');
+        }
+
         $template_engine->assign('scripts', $scripts);
         $template_engine->assign('content', $content);
         return $template_engine->fetch('head.tpl');
@@ -113,6 +122,15 @@ abstract class  Page
         $template_engine->assign('styles', $common_styles);
         $template_engine->assign('count', sizeof($common_styles));
         $template_engine->assign('class', 'common_style');
+        $res =  $template_engine->fetch('styles.tpl');
+        return $res;
+    }
+
+    public function getAdminStyles() {
+        global $template_engine,$admin_styles;
+        $template_engine->assign('styles', $admin_styles);
+        $template_engine->assign('count', sizeof($admin_styles));
+        $template_engine->assign('class', 'admin_style');
         $res =  $template_engine->fetch('styles.tpl');
         return $res;
     }

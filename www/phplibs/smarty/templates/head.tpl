@@ -1,5 +1,6 @@
 {{{$content}}}
+{{{$admin_styles}}}
 {{{$common_styles}}}
-{{{$styles}}}
+{{{$page_styles}}}
 {{{$scripts}}}
 

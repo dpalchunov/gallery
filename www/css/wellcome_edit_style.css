@@ -1,8 +1,3 @@
-#main_content {
-    background-color: black;
-    position: relative;
-    display: inline-block;
-}
 
 /*Main content*/
 
@@ -193,19 +188,6 @@
 .empty {
 
     height: 8pt;
-}
-
-.container {
-    margin-top: 10px;
-    height: 64px;
-    width: 64px;
-    overflow: hidden;
-    display: block;
-}
-
-.container:hover img {
-
-    margin-top: -64px;
 }
 
 .remove {

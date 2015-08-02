@@ -194,18 +194,6 @@
     height: 8pt;
 }
 
-.container {
-    margin-top: 10px;
-    height: 64px;
-    width: 64px;
-    overflow: hidden;
-    display: block;
-}
-
-.container:hover img {
-
-    margin-top: -64px;
-}
 
 .remove_pic {
     display: inline-block;
