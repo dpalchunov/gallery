@@ -8,7 +8,7 @@ class  VideoPageViewer extends Page
         global $js_scripts,$styles;
         $emp = $this ->emp;
         $js_scripts = array($emp."jquery.cycle2.min.js",'video.js');
-        $styles = array('video.css');
+        $styles = array('video.css','player_black.css');
     }
 
     public function getHeadContent() {
