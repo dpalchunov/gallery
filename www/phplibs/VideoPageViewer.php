@@ -7,8 +7,8 @@ class  VideoPageViewer extends Page
         parent::Page();
         global $js_scripts,$styles;
         $emp = $this ->emp;
-        $js_scripts = array($emp."jquery.cycle2.min.js",'video.js');
-        $styles = array('video.css','player_black.css');
+        $js_scripts = array($emp."jquery.cycle2.min.js",'jplayer.cleanskin.js','video.js');
+        $styles = array('video.css','clear_player.css');
     }
 
     public function getHeadContent() {

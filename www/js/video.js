@@ -11,9 +11,36 @@ $(document).ready(function () {
     $window.scroll(function() {
         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
     });
-    initVideoPlayer();
+    initVideoPlayer1();
 
 });
+
+
+
+
+function initVideoPlayer1() {
+    $('.webPlayer').videoPlayer({
+        name: 'now or never',
+        media: {
+            m4v: 'video/Now or never.m4v',
+            poster: 'images/gallary/20150425101034.jpeg'
+        },
+        backgroundColor: "#000",
+        size: {
+            width: '100%',
+            height: 'auto'
+        },
+
+        // These go directly to jPlayer object, allowing you to rewrite any player setting
+        loadstart: function() {
+            //alert('Video loading started!');
+        }
+
+    });
+
+}
+
+
 
 function initVideoPlayer() {
     $("#uniqueContainer-2").jPlayer({
