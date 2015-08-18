@@ -1,9 +1,8 @@
 <?php
 class  Video
 {
-    var $videosFolder = './videos/gallary/';
-    var $sketchesFolder = './videos/gallary/sketches/';
-    var $thumbFolder = './videos/gallary/mini/';
+    var $videosFolder = './videos/';
+    var $thumbFolder = './videos/thumbs/';
     var $path;
     var $thumbnail;
     var $position;
@@ -70,18 +69,14 @@ class  Video
         return $res;
     }
 
-    private function generateThumbPath()
+    public function generateThumbPath()
     {
         $res = $this->thumbFolder . $this->fileName;
         return $res;
     }
 
-    public function setPicPath($path)
-    {
-        $this->picPath = $path;
-    }
 
-    public function setPathPath($path)
+    public function setPath($path)
     {
         $this->path = $path;
     }

@@ -7,7 +7,6 @@ class  FileLoader {
 
             if(!is_array($files["name"])) //single file
             {
-                $fileName = $_FILES["myfile"]["name"];
                 move_uploaded_file($files["tmp_name"],$output_url.$files["persist_name"]);
                 $ret[]= $output_url.$files["persist_name"];
             }

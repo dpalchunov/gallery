@@ -132,19 +132,21 @@ $(document).ready(function () {
     $("#fileuploader").uploadFile({
         url: "./video_edit.php",
         method: "POST",
-        formData: { action: "edit_upload_vid"},
+        formData: {action: "edit_upload_vid"},
         fileName: "myfile",
         onSuccess: function (files, json_data, xhr) {
-            //console.log(json_data);
+            console.log(json_data);
             beforeUpload();
             var data = $.parseJSON(json_data);
             var img_w = data[1];
             var img_h = data[2];
-            changeSrc(data[0],data[3]);
+            changeSrc(data[0]);
+            currentVidSrc = "./" + data[3];
+            vidExtension = data[4];
+
             img_tag_height = calc_img_size(img_w, img_h);
             afterUpload(img_tag_height);
             resizeDragAndDrop(img_tag_height);
-
         },
         uploadButtonClass: "green ajax-file-upload",
         showDone: false,
@@ -425,9 +427,8 @@ function beforeUpload() {
     $("#slider").hide();
 }
 
-function changeSrc(thmbPath,vidPath) {
+function changeSrc(thmbPath) {
     var d = new Date();
-    currentVidSrc = "./" + vidPath
     currentSrc = "./" + thmbPath
     var src = currentSrc + "?" + d.getTime();
     var $image = $(".cropper_img");
@@ -468,7 +469,7 @@ function saveCropHandler() {
         type: "POST",
         shouldRetry: 3,
         url: "video_edit.php",
-        data: {action:"edit_save_vid", vid_src: currentVidSrc,thmbSrc_src: currentSrc, vid_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
+        data: {action:"edit_save_vid", vid_ext:vidExtension,vid_src: currentVidSrc,thmb_src: currentSrc, thmb_data: JSON.stringify($image.cropper("getData")), w: $('#cropper-preview').width(), h: $('#cropper-preview').height()}
     })
         .done(function (msg) {
             hideUploadControls();

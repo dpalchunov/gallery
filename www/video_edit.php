@@ -28,24 +28,25 @@ function edit_upload_vid_handler() {
         $output_dir = "uploads/vid_tmp/";
         $thumb_tmp_name = 'vid_thumb.jpg';
         $vid_thmb_path = $output_dir . $thumb_tmp_name;
+        $vid_name = "tmp";
+        $vid_path = $output_dir . $vid_name;
         $fileLoader = new FileLoader();
         $files =  $_FILES["myfile"];
-        $files["persist_name"] = "tmp";
-        $ret = $fileLoader -> uploadFiles($files,$output_dir);
+        $files["persist_name"] = $vid_name;
+        $fileLoader -> uploadFiles($files,$output_dir);
         $ret = array();
         $ret[] = $vid_thmb_path;
 
-        error_log(realpath($ret[0]));
-        error_log("start createMovieThumb",0);
-
-
-        createMovieThumb(realpath($ret[0]), $vid_thmb_path);
+        createMovieThumb(realpath($vid_path), $vid_thmb_path);
         $size = getimagesize($vid_thmb_path);
 
         $w = $size[0];
         $height = $size[1];
         $ret[1] = $w;
         $ret[2] = $height;
+        $ret[3] = $vid_path;
+        $info = new SplFileInfo($_FILES["myfile"]["name"]);
+        $ret[4] = $fileName = $info->getExtension();
         echo json_encode($ret);
 
     }
@@ -91,34 +92,32 @@ function edit_update_vid_handler() {
     echo $res;
 }
 function edit_del_vid_handler() {
-    $vid = new Picture($_POST['file_name']);
-    $vid_man = new PictureObjManager();
-    $res = $vid_man -> removePicture($vid);
+    $vid = new Video($_POST['file_name']);
+    $vid_man = new VideoObjManager();
+    $res = $vid_man -> removeVideo($vid);
     echo $res;
 }
 function edit_save_vid_handler() {
     if (isset($_POST['w']) && isset($_POST['h']) && $_POST['h'] > 0 && $_POST['w'] > 0) {
 
-        $crop = new GalleryPicCropper($_POST['vid_src'], $_POST['vid_data'], $_POST['w'], $_POST['h']);
+        $crop = new VideoPicCropper($_POST['thmb_src'], $_POST['thmb_data'], $_POST['w'], $_POST['h']);
         $response = array(
             'state' => 200,
             'message' => $crop->getMsg(),
             'result' => $crop->getResult()
         );
+
+        $info = new SplFileInfo($fileName);
+        $baseName = $info->getBasename();
+
         $fileName = $crop->getFileName();
+        rename($_POST['vid_src'],'videos/' . $baseName. '.' .$_POST['vid_ext']);
+
         //  copy($_POST['vid_src'], 'images/gallary/' . $crop->getFileName());
-        $vid = new Picture($fileName);
+        $vid = new Video($fileName);
         //ImageHelper::addBgAndShadow($vid->getSketchPath());
         $vid_man = new VideoObjManager();
-        $vid_id = $vid_man->savePicture($vid);
-        if ($vid_id != null) {
-            $exp -> setPicId($vid_id);
-
-            $exp -> setRatio($_POST['h']/$_POST['w']);
-            $exp -> setWidth(30);
-            $res = $man -> save($exp);
-
-        }
+        $res = $vid_man -> saveVideo($vid);
     } else {
         $res = 'wrong input parameters';
     }
@@ -207,7 +206,6 @@ function createMovieThumb($srcFile, $destFile = "test.jpg")
     else
         $cmd = str_replace('\\', DIRECTORY_SEPARATOR, $cmd);
 
-    error_log($cmd);
     exec($cmd, $output, $retval);
 
     if ($retval)
