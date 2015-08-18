@@ -12,7 +12,6 @@
     </div>
 
     <div id="band3" class="band white">
-
         <div class="band_cnt  white">
             <div class="band_body">
                 {{{for $i = 0 to $count-1 }}}

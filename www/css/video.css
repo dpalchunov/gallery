@@ -1,0 +1,54 @@
+#band3 {
+}
+#band1 {
+    padding-bottom: 50px;
+}
+
+.grid_list_cell:after {
+    display: block;
+    content: '';
+    padding-bottom: 75%;
+
+}
+
+
+.grid_list_cell {
+    float: left;
+    display: inline-block;
+    width: 18%;
+    margin: 0 0 1% 1%;
+    background-origin: content-box;
+    background: no-repeat 50% 50%;
+    background-size: cover;
+}
+
+
+.details {
+    position: relative;
+    float: left;
+    display: none;
+    width: 100%;
+    opacity: 0.9;
+    background: rgba(174, 2, 18, 0.50); /* фон с полупрозрачностью */
+    filter: alpha(Opacity=50); /* Прозрачность в IE */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000)"; /* все тот же фон с полупрозрачностью, но фильтр для ИЕ8 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000); /* все тот же фон с полупрозрачностью, но фильтр для ИЕ7 и ИЕ6 */
+    z-index: 999999999999999;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.details p {
+    color: #EEE;
+
+}
+
+.details_inner {
+    padding: 7px;
+
+}
+
+

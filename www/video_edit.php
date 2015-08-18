@@ -5,10 +5,10 @@ require_once './helpers.php';
 actionHeader();
 
 $actions = array(
-    "edit_upload_pic" => array ("type" => "super_role"),
-    "edit_update_pic" => array ("type" => "super_role"),
-    "edit_del_pic" => array ("type" => "super_role"),
-    "edit_save_pic" => array ("type" => "super_role"),
+    "edit_upload_vid" => array ("type" => "super_role"),
+    "edit_update_vid" => array ("type" => "super_role"),
+    "edit_del_vid" => array ("type" => "super_role"),
+    "edit_save_vid" => array ("type" => "super_role"),
     "expo_save" => array ("type" => "super_role"),
     "edit_get_gallery" => array ("type" => "everyone"),
     "edit_get_page_count" => array ("type" => "everyone"),
@@ -16,21 +16,32 @@ $actions = array(
 );
 
 function common_action_handler() {
-    $viewer = new GalleryEditPageViewer();
+    $viewer = new VideoEditPageViewer();
     $viewer -> show($_POST);
 }
 
 
-function edit_upload_pic_handler() {
+function edit_upload_vid_handler() {
     if(isset($_FILES["myfile"]))
     {
         require_once 'phplibs/FileLoader.php';
-        $output_dir = "uploads/pic_tmp/";
+        $output_dir = "uploads/vid_tmp/";
+        $thumb_tmp_name = 'vid_thumb.jpg';
+        $vid_thmb_path = $output_dir . $thumb_tmp_name;
         $fileLoader = new FileLoader();
         $files =  $_FILES["myfile"];
         $files["persist_name"] = "tmp";
         $ret = $fileLoader -> uploadFiles($files,$output_dir);
-        $size = getimagesize($ret[0]);
+        $ret = array();
+        $ret[] = $vid_thmb_path;
+
+        error_log(realpath($ret[0]));
+        error_log("start createMovieThumb",0);
+
+
+        createMovieThumb(realpath($ret[0]), $vid_thmb_path);
+        $size = getimagesize($vid_thmb_path);
+
         $w = $size[0];
         $height = $size[1];
         $ret[1] = $w;
@@ -39,21 +50,21 @@ function edit_upload_pic_handler() {
 
     }
 }
-function edit_update_pic_handler() {
-    $pic_man = new PictureObjManager();
+function edit_update_vid_handler() {
+    $vid_man = new PictureObjManager();
 
-    $pic = $pic_man->selectPicByID($_POST["id"]);
-    if ($pic != null) {
-        $pic->setRate($_POST["rate"]);
-        $pic->setPosition($_POST["position"]);
+    $vid = $vid_man->selectPicByID($_POST["id"]);
+    if ($vid != null) {
+        $vid->setRate($_POST["rate"]);
+        $vid->setPosition($_POST["position"]);
 
-        $pic->setRusDescription($_POST["rus_desc"]);
-        $pic->setEngDescription($_POST["eng_desc"]);
+        $vid->setRusDescription($_POST["rus_desc"]);
+        $vid->setEngDescription($_POST["eng_desc"]);
 
 
         //update classification
         $gui_tmp = (array)json_decode($_POST["classification"]);
-        $old_rels = $pic->getClassification();
+        $old_rels = $vid->getClassification();
         $new_rels = array();
 
         $gui_rels = array();
@@ -70,40 +81,38 @@ function edit_update_pic_handler() {
             }
             array_push($new_rels, $cl_rel);
         }
-        $pic->setClassification($new_rels);
+        $vid->setClassification($new_rels);
 
-        $res = $pic_man->updatePicture($pic);
+        $res = $vid_man->updatePicture($vid);
 
     } else {
-        $res = 'No pic with submitted id';
+        $res = 'No vid with submitted id';
     }
     echo $res;
 }
-function edit_del_pic_handler() {
-    $pic = new Picture($_POST['file_name']);
-    $pic_man = new PictureObjManager();
-    $res = $pic_man -> removePicture($pic);
+function edit_del_vid_handler() {
+    $vid = new Picture($_POST['file_name']);
+    $vid_man = new PictureObjManager();
+    $res = $vid_man -> removePicture($vid);
     echo $res;
 }
-function edit_save_pic_handler() {
+function edit_save_vid_handler() {
     if (isset($_POST['w']) && isset($_POST['h']) && $_POST['h'] > 0 && $_POST['w'] > 0) {
 
-        $crop = new GalleryPicCropper($_POST['pic_src'], $_POST['pic_data'], $_POST['w'], $_POST['h']);
+        $crop = new GalleryPicCropper($_POST['vid_src'], $_POST['vid_data'], $_POST['w'], $_POST['h']);
         $response = array(
             'state' => 200,
             'message' => $crop->getMsg(),
             'result' => $crop->getResult()
         );
         $fileName = $crop->getFileName();
-        //  copy($_POST['pic_src'], 'images/gallary/' . $crop->getFileName());
-        $pic = new Picture($fileName);
-        //ImageHelper::addBgAndShadow($pic->getSketchPath());
-        $pic_man = new PictureObjManager();
-        $pic_id = $pic_man->savePicture($pic);
-        if ($pic_id != null) {
-            $man = new ExpositionManager();
-            $exp = new Exposition();
-            $exp -> setPicId($pic_id);
+        //  copy($_POST['vid_src'], 'images/gallary/' . $crop->getFileName());
+        $vid = new Picture($fileName);
+        //ImageHelper::addBgAndShadow($vid->getSketchPath());
+        $vid_man = new VideoObjManager();
+        $vid_id = $vid_man->savePicture($vid);
+        if ($vid_id != null) {
+            $exp -> setPicId($vid_id);
 
             $exp -> setRatio($_POST['h']/$_POST['w']);
             $exp -> setWidth(30);
@@ -119,14 +128,14 @@ function edit_save_pic_handler() {
 function expo_save_handler() {
 
     $man = new ExpositionManager();
-    $res = 'pic_id and song_id not setted up';
+    $res = 'vid_id and song_id not setted up';
 
-    if (isset($_POST["pic_id"]) or isset($_POST["song_id"]) )  {
-        if (isset($_POST["pic_id"])) {
-            $exp = $man->selectExpositionByPicID($_POST["pic_id"]);
+    if (isset($_POST["vid_id"]) or isset($_POST["song_id"]) )  {
+        if (isset($_POST["vid_id"])) {
+            $exp = $man->selectExpositionByPicID($_POST["vid_id"]);
             if ($exp == null) {
                 $exp = new Exposition();
-                $exp -> setPicId($_POST["pic_id"]);
+                $exp -> setPicId($_POST["vid_id"]);
                 $man -> save($exp);
             }
         }  else {
@@ -158,22 +167,22 @@ function expo_save_handler() {
     echo $res;
 }
 function edit_get_gallery_handler() {
-    $galleryEditHtmlGetter = new GalleryHelper();
+    $htmlGetter = new VideoHelper();
     if (isset($_POST['active_page'])) {
         $page = $_POST['active_page'];
     } else {
         $page = 1;
     }
-    $gallery_html_code = $galleryEditHtmlGetter->getGalleryEditHTMLCode($page);
+    $gallery_html_code = $htmlGetter->getVideoEditHTMLCode($page);
     echo $gallery_html_code;
 }
 function edit_get_page_count_handler() {
-    $galleryEditHtmlGetter = new GalleryHelper();
+    $galleryEditHtmlGetter = new VideoHelper();
     $count = $galleryEditHtmlGetter->getPageCount();
     echo $count;
 }
 function edit_get_pagination_handler() {
-    $galleryEditHtmlGetter = new GalleryHelper();
+    $galleryEditHtmlGetter = new VideoHelper();
     if (isset($_POST['active_page'])) {
         $page = $_POST['active_page'];
     } else {
@@ -181,6 +190,30 @@ function edit_get_pagination_handler() {
     }
     $pagination_html_code = $galleryEditHtmlGetter->getPaginationHtml($page);
     echo $pagination_html_code;
+}
+
+function createMovieThumb($srcFile, $destFile = "test.jpg")
+{
+    // Change the path according to your server.
+    $ffmpeg_path = '/usr/local/bin/';
+
+    $output = array();
+
+    $cmd = sprintf('export DYLD_LIBRARY_PATH=\"\"; %sffmpeg -i %s -an -ss 00:00:05 -r 1 -vframes 1 -y %s',
+        $ffmpeg_path, $srcFile, $destFile);
+
+    if (strtoupper(substr(PHP_OS, 0, 3) == 'WIN'))
+        $cmd = str_replace('/', DIRECTORY_SEPARATOR, $cmd);
+    else
+        $cmd = str_replace('\\', DIRECTORY_SEPARATOR, $cmd);
+
+    error_log($cmd);
+    exec($cmd, $output, $retval);
+
+    if ($retval)
+        return false;
+
+    return $destFile;
 }
 
 require_once './router.php';

@@ -99,8 +99,6 @@ function initPlayer() {
     });
 }
 
-
-
 function next() {
     setCurrentPassive();
     window.currentTrack++;
@@ -114,7 +112,6 @@ function check_audio_cookies() {
         ($.cookie('track_time') != null) &&
         ($.cookie('paused') != null);
 }
-
 
 function progress_click_handler(obj,event) {
     var x = $(obj).offset().left;
@@ -145,7 +142,6 @@ function loadPlayList() {
             }
         });
 }
-
 
 function setCounterText() {
     window.track_count_count.text("[" + (getCurrentInd()+1) + "/" + window.playList.length + "]");
