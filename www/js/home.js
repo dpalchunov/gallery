@@ -14,7 +14,20 @@ function mainInit() {
     initPlayerFunctions();
     initBodyHandlers();
     initVideoPlayer();
+    initSlideShow();
 }
+
+function initSlideShow() {
+    $(".slideshow_element").cycle(
+        {
+            fx:"scrollHorz",
+            speed:900,
+            timeout:8000
+        }
+
+    );
+}
+
 
 function initBodyHandlers() {
     if (window.script_arrays_loaded && window.styles_arrays_loaded) {

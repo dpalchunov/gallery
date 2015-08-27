@@ -1,7 +1,15 @@
 @import url('reset.css');
 @import url(http://fonts.googleapis.com/css?family=Frijole);
 
+#slideshow img {
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
 
+#band0 {
+    position: relative;
+}
 
 #band2 {
     height: 500px;
@@ -92,4 +100,18 @@
 .details p {
     color: #EEE;
 
+}
+
+.slides_gradient_black {
+    z-index: 200;
+    text-indent: -9999px;
+    height: 220px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    background: url("http://cdn.u2.com/non_secure/images/bootstrap/gradient_black.png") repeat-x 0 0 transparent;
+}
+
+#video_band_title_l {
+    color: white;
 }

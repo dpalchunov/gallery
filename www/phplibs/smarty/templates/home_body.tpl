@@ -7,23 +7,26 @@
     <div id="fullScreenGalleryRightSide" class="fullScreenGalleryNaviButton"></div>
 </div>
 <div id="main_content" class="mc_el">
-    <div id="slideshow" class="band white">
-        {{{$persisted_intros}}}
+    <div id="band0" class="band white">
+        <div id="slideshow" class="slideshow_element">
+                {{{$persisted_intros}}}
+        </div>
+        <div class="slides_gradient_black"></div>
     </div>
 
 
     {{{if $video_count gt 0}}}
-        <div id="band1" class="band white">
-            <div class="band_cnt  white">
+        <div id="band1" class="band black1">
+            <div class="band_cnt  black1">
                 <div class="band_title">
-                    <div class="band_title_l container l">
+                    <div id="video_band_title_l" class="band_title_l container l">
                         VIDEO
                     </div>
                     <div class="band_title_r container r body_href" dst="video_href">
                         SEE ALL VIDEOS
                     </div>
                 </div>
-                <div class="band_body  white">
+                <div class="band_body  black1">
                     <div id="bigbox" thumb_url="{{{$videos[1] -> getThumbnail()}}}"  video_path="{{{$videos[1]-> getPath()}}}">
                         <div id="uniquePlayer-1" class="webPlayer light">
                             <div id="uniqueContainer-1" class="videoPlayer"></div>

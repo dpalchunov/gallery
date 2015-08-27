@@ -49,7 +49,9 @@ class  HomePageViewer extends Page
         $videos = $vid_man->selectAllVideos();
         $template_engine->assign('videos', $videos);
         $template_engine->assign('video_count', sizeof($videos));
-
+        $persistedIntrosGetter = new PersistedIntrosGetter();
+        $introsHTML = $persistedIntrosGetter->generatePicsHtmlForView();
+        $template_engine->assign('persisted_intros', $introsHTML);
 
         return $template_engine->fetch('home_body.tpl');
     }
