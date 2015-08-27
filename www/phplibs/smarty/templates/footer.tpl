@@ -1,4 +1,4 @@
-<div id="footer" class="mc_el">
+<div id="footer" class="mc_el1">
     <div id="band4" class="band black">
         <div class="band_cnt">
             <div id="footer_top" class="black">
@@ -24,12 +24,13 @@
                 <div id="footer_menu" class="container">
                     <div id="footer_menu_buttons" class="">
                         <ul>
-                            <li>BAND</li>
-                            <li>MUSIC</li>
-                            <li>VIDEO</li>
-                            <li>PHOTO</li>
-                            <li>LYRICS</li>
-                            <li>CONTACT</li>
+                            <li class="menu_href" id="home_href" dst="home_href">HOME</li>
+                            <li class="menu_href" id="band_href" dst="band_href">BAND</li>
+                            <li class="menu_href" id="music_href" dst="music_href">MUSIC</li>
+                            <li class="menu_href" id="video_href" dst="video_href">VIDEO</li>
+                            <li class="menu_href" id="photo_href" dst="photo_href">PHOTO</li>
+                            <li class="menu_href" id="lyrics_href" dst="lyrics_href">LYRICS</li>
+                            <li class="menu_href" id="contact_href" dst="contact_href">CONTACT</li>
                         </ul>
                     </div>
                 </div>

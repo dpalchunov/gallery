@@ -32,7 +32,10 @@ class  VideoPageViewer extends Page
         global $template_engine, $resourceService;
         $lang = $resourceService->getLang();
         $localizator = new Localizator();
-
+        $vid_man = new VideoObjManager();
+        $videos = $vid_man->selectAllVideos();
+        $template_engine->assign('videos', $videos);
+        $template_engine->assign('count', sizeof($videos));
         $template_engine->assign('lang', $lang);
 
         return $template_engine->fetch('video_body.tpl');

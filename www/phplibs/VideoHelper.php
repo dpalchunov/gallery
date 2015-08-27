@@ -13,6 +13,8 @@ class  VideoHelper
         foreach ($vids as $vidObj) {
             $id = $vidObj->getID();
             $thumb = $vidObj-> generateThumbPath();
+            $video_name = $vidObj-> getFileName();
+
 
             $position = $vidObj->getPosition();
             $rusDesc = $vidObj->getDescription('rus');
@@ -22,6 +24,7 @@ class  VideoHelper
             $file_name = basename($thumb);
 
             $file_base = basename($thumb, '.' . $info['extension']);
+
             $vidsHtml = $vidsHtml .
                 "<div id=\"area_{$file_base}\" class=\"one_element\">
                     <div class=\"pic\"\">
@@ -29,7 +32,7 @@ class  VideoHelper
                     </div>
                      <div class=\"controls\">
                         <div class=\"control remove_pic red\" area=\"area_{$file_base}\">
-                            <a class=\"remove_href\" area=\"area_{$file_base}\" file_name=\"{$file_name}\" href=\"javascript: void(0)\" > remove</a>
+                            <a class=\"remove_href\" area=\"area_{$file_base}\" file_name=\"{$file_name}\" video_name=\"{$video_name}\" href=\"javascript: void(0)\" > remove</a>
                         </div>
                         <div class=\"control save_pic green\" area=\"area_{$file_base}\">
                             <a class=\"save_href\" pic_id =\"{$id}\" area=\"area_{$file_base}\" file_name=\"{$file_name}\" href=\"javascript: void(0)\" form_id=\"form_{$file_base}\" > save</a>
@@ -38,7 +41,7 @@ class  VideoHelper
                     <div class=\"field_editor_div\">
                         <form id=\"form_{$file_base}\" class=\"field_editor_form\" action=\"gallery_edit.php\">
                             <input name=\"id\" type=\"hidden\" value=\"{$id}\">
-                            <input name=\"action\" type=\"hidden\" value=\"edit_update_pic\">
+                            <input name=\"action\" type=\"hidden\" value=\"edit_update_vid\">
                             <div class=\"rus_desc_div\">
                                 <label class=\"field_editor_label\">Desc in russian </label>
                                 <textarea name=\"rus_desc\" class=\"rus_desc_input field_editor_input\" hash_holder=\"area_{$file_base}\" >$rusDesc</textarea>

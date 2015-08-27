@@ -16,29 +16,33 @@ $(document).ready(function () {
 });
 
 function initVideoPlayer() {
-    $('.webPlayer').videoPlayer({
-        name: 'now or never',
-        media: {
-            m4v: 'video/Now or never.m4v',
-            poster: 'images/gallary/20150425101034.jpeg'
-        },
-        backgroundColor: "#000",
-        size: {
-            width: '100%',
-            height: 'auto'
-        },
+    var first_video = $('.grid_list_cell.video');
+    if  (first_video != null) {
+        $('.webPlayer').videoPlayer({
+            name: 'now or never',
+            media: {
+                m4v: $(first_video).attr('video_path') ,
+                poster: $(first_video).attr('thumb_url')
+            },
+            backgroundColor: "#000",
+            size: {
+                width: '100%',
+                height: 'auto'
+            },
 
-        // These go directly to jPlayer object, allowing you to rewrite any player setting
-        loadstart: function() {
-            //alert('Video loading started!');
-        }
+            // These go directly to jPlayer object, allowing you to rewrite any player setting
+            loadstart: function() {
+                //alert('Video loading started!');
+            }
 
-    });
+        });
+    }
+
 
 }
 
 function setImagesMousehandler() {
-    var p = $('.picture');
+    var p = $('.video');
     var details = p.find('[class=details]');
     p.unbind('mouseenter');
     p.bind('mouseenter', smallImageMouseOverHandler);
@@ -49,7 +53,7 @@ function setImagesMousehandler() {
 }
 
 function smallImageMouseOverHandler(event) {
-    if (event.target.className == "grid_list_cell picture") {
+    if (event.target.className == "grid_list_cell video") {
         var pic = $(this);
         var details = pic.find('[class=details]');
         details.css('height', $(pic).height());
@@ -75,14 +79,15 @@ function destructor() {
 
 function setImagesClickhandler() {
 
-    $('.picture').unbind('click');
-    $('.picture').bind('click', smallImageClickHandler);
+    $('.video').unbind('click');
+    $('.video').bind('click', smallImageClickHandler);
 }
 
 
 function smallImageClickHandler() {
     var p = $("#uniqueContainer-1").jPlayer("setMedia",{
-        m4v: $(this).attr("video_path")
+        m4v: $(this).attr("video_path"),
+        poster: $(this).attr("thumb_url")
     });
 }
 

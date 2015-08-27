@@ -17,6 +17,7 @@ var routes = {
     buy_href: {href:"contacts.php",page_name:'contacts.php'},
     edit_exposition_href: {href:"gallery_expo_edit.php",page_name:'gallery_expo_edit.php'},
     edit_gallery_href: {href:"gallery_edit.php",page_name:'gallery_edit.php'},
+    edit_video_href: {href:"video_edit.php",page_name:'video_edit.php'},
     edit_songs_href: {href:"songs_edit.php",page_name:'songs_edit.php'},
     edit_about_href: {href:"about_edit.php",page_name:'about_edit.php'},
     edit_welcome_href: {href:"wellcome_edit.php",page_name:'wellcome_edit.php'}
@@ -156,13 +157,13 @@ function reload(hrefObj) {
     //console.log('start_reload');
     centerLoading();
     $("#loader").show();
-    var id = hrefObj.attr("id");
+    var dst = hrefObj.attr("dst");
     window.loaded_body = "";
     window.body_loaded = false;
     window.styles_loaded = false;
 
     try {
-        history.pushState({},'',routes[id].page_name);
+        history.pushState({},'',routes[dst].page_name);
     } catch(e) {
         //console.log(e.message);
     }
@@ -172,12 +173,12 @@ function reload(hrefObj) {
     //unload current style
     $('link[class="page_style"]').remove();
 
-    load_body(id);
-    var styles = routes[id].styles;
+    load_body(dst);
+    var styles = routes[dst].styles;
     var len = styles.length;
     if (len == 0) {
         window.styles_loaded = true;
-        replace_body_load_scripts(id);
+        replace_body_load_scripts(dst);
     }  else {
         var loaded_cnt = 0;
         $.each(styles, function (i, e) {
@@ -193,7 +194,7 @@ function reload(hrefObj) {
                 loaded_cnt ++;
                 if (loaded_cnt == len) {
                     window.styles_loaded = true;
-                    replace_body_load_scripts(id);
+                    replace_body_load_scripts(dst);
                 }
             });
         });
@@ -288,12 +289,12 @@ function load_scripts_array(route,len) {
 
 function load_body(id) {
     //console.log('start_load_body');
-    var part = "body_and_footer";
+    var part = "body";
     $.ajax({
         type: "POST",
         shouldRetry: 3,
         url: routes[id].href,
-        data: {part: "body_and_footer"},
+        data: {part: "body"},
         async: true
     }).done(function (body,y,jqXHR) {
             if (part != jqXHR.getResponseHeader('part')) {
@@ -325,7 +326,7 @@ function load_scripts(id) {
 function replace_body_load_scripts(id) {
     if (window.body_loaded && window.styles_loaded)  {
         $(".mc_el").remove();
-        $("body").append(window.loaded_body);
+        $("#footer").before(window.loaded_body);
         $("#loader").hide();
         load_scripts(id);
         window.body_loaded = null;

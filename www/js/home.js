@@ -1,8 +1,4 @@
-
-$(document).ready(function () {
-
-    destructor = destructor;
-
+function mainInit() {
     var $window = $(window),
         $stickyEl = $('#outline'),
         elTop = $stickyEl.offset().top;
@@ -16,8 +12,26 @@ $(document).ready(function () {
     }
 
     initPlayerFunctions();
+    initBodyHandlers();
+}
 
+function initBodyHandlers() {
+    if (window.script_arrays_loaded && window.styles_arrays_loaded) {
+        $('.body_href').each(function (i, e) {
+            $(e).bind('click', reloadHandler);
+        });
+    } else {
+        setTimeout(initBodyHandlers,500);
+    }
+
+}
+
+$(document).ready(function () {
+    mainInit();
+    destructor = destructor;
 });
+
+
 
 function initPlayerFunctions() {
     setSongsHandlers();

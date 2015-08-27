@@ -52,39 +52,14 @@ function edit_upload_vid_handler() {
     }
 }
 function edit_update_vid_handler() {
-    $vid_man = new PictureObjManager();
+    $vid_man = new VideoObjManager();
 
-    $vid = $vid_man->selectPicByID($_POST["id"]);
+    $vid = $vid_man->selectVidByID($_POST["id"]);
     if ($vid != null) {
-        $vid->setRate($_POST["rate"]);
-        $vid->setPosition($_POST["position"]);
-
         $vid->setRusDescription($_POST["rus_desc"]);
         $vid->setEngDescription($_POST["eng_desc"]);
 
-
-        //update classification
-        $gui_tmp = (array)json_decode($_POST["classification"]);
-        $old_rels = $vid->getClassification();
-        $new_rels = array();
-
-        $gui_rels = array();
-        foreach ($gui_tmp as $k => $v) {
-            $gui_rels[(int)$k] = (int)$v;
-        }
-
-        foreach ($old_rels as $cl_rel) {
-            $cl_id = $cl_rel->getClId();
-            $cl_vid = $gui_rels[$cl_id];
-            $cl_rel->setClvlID((int)$cl_vid);
-            if ($cl_vid == 'to_remove') {
-                $cl_rel->SetRemoveOnPersist(true);
-            }
-            array_push($new_rels, $cl_rel);
-        }
-        $vid->setClassification($new_rels);
-
-        $res = $vid_man->updatePicture($vid);
+        $res = $vid_man->updateVideo($vid);
 
     } else {
         $res = 'No vid with submitted id';
@@ -107,14 +82,13 @@ function edit_save_vid_handler() {
             'result' => $crop->getResult()
         );
 
-        $info = new SplFileInfo($fileName);
-        $baseName = $info->getBasename();
-
         $fileName = $crop->getFileName();
-        rename($_POST['vid_src'],'videos/' . $baseName. '.' .$_POST['vid_ext']);
-
-        //  copy($_POST['vid_src'], 'images/gallary/' . $crop->getFileName());
-        $vid = new Video($fileName);
+        $info = new SplFileInfo($fileName);
+        $thumb_ext = $info->getExtension();
+        $baseName = $info->getBasename($thumb_ext);
+        $videoName = $baseName . $_POST['vid_ext'];
+        rename($_POST['vid_src'],'videos/' . $videoName);
+        $vid = new Video($videoName,$fileName);
         //ImageHelper::addBgAndShadow($vid->getSketchPath());
         $vid_man = new VideoObjManager();
         $res = $vid_man -> saveVideo($vid);

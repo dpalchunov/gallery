@@ -97,6 +97,12 @@
     white-space: nowrap;
 }
 
+#footer_menu_buttons li:hover {
+    color: white;
+    cursor: pointer;
+
+}
+
 #footer_social ul {
     margin: 0px;
     padding: 0px;

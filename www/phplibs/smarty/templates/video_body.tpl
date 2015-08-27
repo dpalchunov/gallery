@@ -31,16 +31,15 @@
                 </div>
             </div>
             <div class="band_body">
-                <div class="grid_list_cell picture" style="background-image: url('./images/gallary/sketches/20150425101034.jpeg')" video_path="video/Now or never.m4v">
-                    <div class="details" style="height: 225px; display: none;">
-                        <p>Now or never Single</p>
+                {{{for $i = 0 to $count-1 }}}
+                <div class="grid_list_cell video" thumb_url="{{{$videos[$i] -> getThumbnail()}}}" style="background-image: url('{{{$videos[$i] -> getThumbnail()}}}')" video_path="{{{$videos[$i]-> getPath()}}}" >
+                    <div class="details">
+                        <p>{{{$videos[$i] -> getDescription($lang)}}}</p>
                     </div>
                 </div>
-                <div class="grid_list_cell picture" style="background-image: url('./images/gallary/sketches/20150425101131.jpeg')" video_path="video/1 - INTRODUCTION.m4v">
-                    <div class="details" style="height: 225px; display: none;">
-                        <p>Enough Single</p>
-                    </div>
-                </div>
+                {{{/for}}}
+
+
             </div>
         </div>
 

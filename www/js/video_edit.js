@@ -36,8 +36,6 @@ function slideHandler() {
     setPreviewSize();
 }
 
-
-
 function cropperChangeHandler() {
     cropperHandlerIsActive = false;
     setPreviewSize();
@@ -105,8 +103,6 @@ function unCropperHandler() {
     $image.on("render.cropper", function () {
     })
 }
-
-
 
 $(document).ready(function () {
     destructor =  destructor;
@@ -247,7 +243,6 @@ function getClValues() {
         });
     return data;
 }
-
 
 function saveValuesRelations(hashHolderID, formID) {
     var newClValues = new Object();
@@ -445,7 +440,6 @@ function afterUpload(img_tag_height) {
     $("#upload_label").text("+ upload another");
 }
 
-
 function calc_img_size(img_w, img_h) {
     return  img_h * 600 / img_w;
 }
@@ -495,7 +489,6 @@ function hideUploadControls() {
     $("#upload_label").text("+ upload");
 }
 
-
 function reloadGallery(active_page,done_func) {
     if(arguments.length==1) {
         reloadGallery1(active_page);
@@ -505,7 +498,6 @@ function reloadGallery(active_page,done_func) {
     }
 
 }
-
 
 function reloadGallery1(active_page) {
     reloadGallery(active_page,function() {});
@@ -529,9 +521,6 @@ function reloadGallery2(active_page,done_func) {
             done_func();
         });
 };
-
-
-
 
 function loadLastPage() {
     $.ajax({
@@ -568,7 +557,6 @@ function reloadCurrentPage() {
             });
         });
 }
-
 
 function reloadPagination(active_page,done_func) {
     if(arguments.length==1) {
@@ -610,7 +598,6 @@ function removeHandler(src) {
         });
 }
 
-
 function saveHandler(formID, hashHolderID) {
     saveValuesRelations(hashHolderID, formID);
     $("#" + formID).submit();
@@ -619,13 +606,12 @@ function saveHandler(formID, hashHolderID) {
     refreshHashByID(hashHolderID);
 }
 
-
 function addControlsClickHandlers() {
     var $removeButtons = $(".remove_href");
 
     $removeButtons.each(function () {
         $(this).click(function () {
-            removeHandler($(this).attr("file_name"))
+            removeHandler($(this).attr("video_name"))
         });
 
         $(this).hover(function () {
@@ -653,7 +639,6 @@ function addControlsClickHandlers() {
 
 }
 
-
 function addFieldsHandlers() {
     var inputs = $(".field_editor_input");
     addFieldsChangeHandlers(inputs);
@@ -677,7 +662,6 @@ function checkPicHash(input) {
         $(".save_pic[area='" + $hashHolderID + "']").hide();
     }
 }
-
 
 function addSubmitHandlers() {
     var $forms = $(".field_editor_form");
@@ -706,7 +690,6 @@ function setCurrentHashes() {
         $(this).attr('hash', $hash);
     });
 }
-
 
 function refreshHashByID(ID) {
     refreshHash($('#' + ID));

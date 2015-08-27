@@ -212,3 +212,7 @@ body {
     background: url(../images/social/y_on) no-repeat scroll 0 0 transparent;
     background-size: cover;
 }
+
+.body_href{
+    cursor: pointer;
+}

@@ -3,6 +3,7 @@ class  Video
 {
     var $videosFolder = './videos/';
     var $thumbFolder = './videos/thumbs/';
+    var $thumbExt = 'jpeg';
     var $path;
     var $thumbnail;
     var $position;
@@ -50,6 +51,19 @@ class  Video
         $this->setMultilangDescription($multilangDescription);
     }
 
+    public function __construct2($fileName,$thumbName)
+    {
+        $position = 0;
+        $multilangDescription = array('rus' => '', 'eng' => '');
+        $this->setfileName($fileName);
+        $picPath = $this->generatePath();
+        $thumbPath = $this->generateThumbPath();
+        $this->setPath($picPath);
+        $this->setThumbnail($thumbPath);
+        $this->setPosition($position);
+        $this->setMultilangDescription($multilangDescription);
+    }
+
 
     public function __construct6($fileName, $position,
                                  $multilangDescription,
@@ -71,7 +85,10 @@ class  Video
 
     public function generateThumbPath()
     {
-        $res = $this->thumbFolder . $this->fileName;
+        $info = new SplFileInfo($this->fileName);
+        $baseName = $info->getBasename($info->getExtension());
+
+        $res = $this->thumbFolder . $baseName .$this->thumbExt;
         return $res;
     }
 

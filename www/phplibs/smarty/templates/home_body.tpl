@@ -17,8 +17,7 @@
                 <div class="band_title_l container l">
                     VIDEO
                 </div>
-                <div class="band_title_r container r">
-
+                <div class="band_title_r container r body_href" dst="video_href">
                     SEE ALL VIDEOS
                 </div>
             </div>
@@ -33,7 +32,7 @@
                 <div id="songs_band_title_l" class="band_title_l l container">
                     SONGS
                 </div>
-                <div class="band_title_r r container">
+                <div class="band_title_r r container body_href" dst="music_href">
                     ALL MUSIC
                 </div>
             </div>
@@ -96,7 +95,7 @@
                 <div class="band_title_l l container">
                     PHOTO
                 </div>
-                <div class="band_title_r r container">
+                <div class="band_title_r r container body_href" dst="photo_href">
                     SHOW ALL
                 </div>
             </div>
