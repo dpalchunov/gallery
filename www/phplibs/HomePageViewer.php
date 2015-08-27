@@ -7,8 +7,8 @@ class  HomePageViewer extends Page
         parent::Page();
         global $js_scripts,$styles;
         $emp = $this ->emp;
-        $js_scripts = array($emp."jquery.cycle2.min.js",'home.js','photo.js');
-        $styles = array('home.css','player.css','fullscreen_gallery.css');
+        $js_scripts = array($emp."jquery.cycle2.min.js",'jplayer.cleanskin.js','photo.js','home.js');
+        $styles = array('home.css','player.css','fullscreen_gallery.css','clear_player.css');
     }
 
     public function getHeadContent() {
@@ -44,6 +44,13 @@ class  HomePageViewer extends Page
         $songs = $songsHelper -> selectAllSongs();
         $template_engine->assign('songs', $songs);
         $template_engine->assign('count', sizeof($songs));
+
+        $vid_man = new VideoObjManager();
+        $videos = $vid_man->selectAllVideos();
+        $template_engine->assign('videos', $videos);
+        $template_engine->assign('video_count', sizeof($videos));
+
+
         return $template_engine->fetch('home_body.tpl');
     }
 

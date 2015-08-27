@@ -37,8 +37,6 @@ function initVideoPlayer() {
 
         });
     }
-
-
 }
 
 function setImagesMousehandler() {

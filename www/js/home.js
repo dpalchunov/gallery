@@ -13,6 +13,7 @@ function mainInit() {
 
     initPlayerFunctions();
     initBodyHandlers();
+    initVideoPlayer();
 }
 
 function initBodyHandlers() {
@@ -145,7 +146,31 @@ function setRefsToSongs() {
     });
 }
 
+function initVideoPlayer() {
+    var first_video = $('#bigbox');
+    console.log("bigbox");
+    console.log(first_video);
+    if  (first_video != null) {
+        $('.webPlayer').videoPlayer({
+            name: 'now or never',
+            media: {
+                m4v: $(first_video).attr('video_path') ,
+                poster: $(first_video).attr('thumb_url')
+            },
+            backgroundColor: "#000",
+            size: {
+                width: '100%',
+                height: 'auto'
+            },
 
+            // These go directly to jPlayer object, allowing you to rewrite any player setting
+            loadstart: function() {
+                //alert('Video loading started!');
+            }
+
+        });
+    }
+}
 
 function destructor() {
     $(".mc_el").remove();

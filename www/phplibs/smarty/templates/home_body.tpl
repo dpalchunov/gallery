@@ -11,20 +11,29 @@
         {{{$persisted_intros}}}
     </div>
 
-    <div id="band1" class="band white">
-        <div class="band_cnt  white">
-            <div class="band_title">
-                <div class="band_title_l container l">
-                    VIDEO
+
+    {{{if $video_count gt 0}}}
+        <div id="band1" class="band white">
+            <div class="band_cnt  white">
+                <div class="band_title">
+                    <div class="band_title_l container l">
+                        VIDEO
+                    </div>
+                    <div class="band_title_r container r body_href" dst="video_href">
+                        SEE ALL VIDEOS
+                    </div>
                 </div>
-                <div class="band_title_r container r body_href" dst="video_href">
-                    SEE ALL VIDEOS
+                <div class="band_body  white">
+                    <div id="bigbox" thumb_url="{{{$videos[1] -> getThumbnail()}}}"  video_path="{{{$videos[1]-> getPath()}}}">
+                        <div id="uniquePlayer-1" class="webPlayer light">
+                            <div id="uniqueContainer-1" class="videoPlayer"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="band_body  black">
             </div>
         </div>
-    </div>
+    {{{/if}}}
+
 
     <div id="band2" class="band ">
         <div class="band_cnt">

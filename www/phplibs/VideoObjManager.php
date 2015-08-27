@@ -25,6 +25,11 @@ class VideoObjManager
         return "SELECT * FROM strunkovadb.tvideos ORDER BY position";
     }
 
+    private function prepareSelectFirstPattern()
+    {
+        return "SELECT * FROM strunkovadb.tvideos LIMIT 1 ORDER BY position";
+    }
+
     private function prepareSelectPagePattern($active_page)
     {
         $vid_per_page = 5;
@@ -37,6 +42,22 @@ class VideoObjManager
     {
         global $db;
         $pattern = $this->prepareSelectAllPattern();
+        try {
+            if ($videos = $db->query($pattern, NULL, 'assoc') ) {
+                return $this->toVidObjects($videos);
+            } else {
+                return array();
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    public function selectFirstVideo()
+    {
+        global $db;
+        $pattern = $this->prepareSelectFirstPattern();
         try {
             if ($videos = $db->query($pattern, NULL, 'assoc') ) {
                 return $this->toVidObjects($videos);
