@@ -1,7 +1,7 @@
 
 
         <div id="nav_contacts" class="menu_button">
-            <a id="buy_href" class="menu_href" href="javascript:void 0">{{{$contacts}}}</a>
+            <a id="contact_href" class="menu_href" href="javascript:void 0">{{{$contacts}}}</a>
         </div>
         <div id="nav_lyrics" class="menu_button">
             <a id="lyrics_href" class="menu_href" href="javascript:void 0">{{{$lyrics}}}</a>

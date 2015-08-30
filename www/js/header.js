@@ -9,6 +9,7 @@ var routes = {
     band_href: {href:"band.php",page_name:'band.php'},
     music_href: {href:"music.php",page_name:'music.php'},
     lyrics_href: {href:"lyrics.php",page_name:'lyrics.php'},
+    contact_href: {href:"contact.php",page_name:'contact.php'},
     photo_href: {href:"photo.php",page_name:'photo.php'},
 
     home_href: {href:"home.php",page_name:'home.php'},
