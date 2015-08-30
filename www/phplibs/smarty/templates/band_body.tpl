@@ -12,13 +12,27 @@
 
             </div>
             <div class="band_body">
-                <div id="anton" class="teammate">
-                    <div id="anton_photo" class="column">
-                        <img id="anton_pic" src="../images/band/anton.jpeg"/>
-                    </div>
-                    <div id="anton_info" class="column">
+
+                <div id="denis" class="teammate">
+                    <div id="denis_info" class=" info column">
                         <p align="left">
-                            Духовный наставник, идейный лидер коллектива <b>Антон Мирошкин</b>.
+                            <b>Голос Дениса Пальчунова</b> являсь неотемлемой частью композиций группы предоставляет возможность идеям коллектива
+                            обрести свободу в привычном человеку языке и добраться
+                            до сознания слушателей, вместе с музыкой его вокал единым порывом выталкивает человека из привычного состояния,
+                            раскачивает и заставляет двигаться в такт каждого слова. Денис уверен: простые, понятные стихи, пронизительный сфокусированный вокал, то
+                            без чего не может прожить ни куплета ни одна музыкальная композиция.
+                        </p>
+                    </div>
+                    <div id="denis_photo" class="column">
+                        <img id="denis_pic" src="../images/band/denis.jpeg"/>
+                    </div>
+
+                </div>
+
+                <div id="anton" class="teammate">
+                    <div id="anton_info" class="info column">
+                        <p align="left">
+                            Идейный лидер коллектива <b>Антон Мирошкин</b>.
                             Самая простая мелодия в его руках раскрывается в полную красок
                             живую историю.
                             <b>Электрогитара</b> для Антона не просто музыкальный инструмент,а тонкая нить
@@ -26,9 +40,13 @@
                             Драйв, вот чем по его мнению должна быть наполнена хорошая музыка.
                         </p>
                     </div>
+                    <div id="anton_photo" class="column">
+                        <img id="anton_pic" src="../images/band/anton.jpeg"/>
+                    </div>
+
                 </div>
                 <div id="ruslan" class="teammate">
-                    <div id="ruslan_info" class="column">
+                    <div id="ruslan_info" class="info column">
                         <p align="left">
                             <b>Басгитара</b> <b>Руслана Резниченко</b> будто двигатель реактивного самолета,
                             переполнена энергией, как и сам Руслан. Неудержимой страстью наполнена

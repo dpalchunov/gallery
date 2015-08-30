@@ -1,10 +1,11 @@
-body {
-    font-size: 32px;
+.info {
+    font-size: 24px;
+    font-family: Anonymous Pro;
 }
 
 .column {
     display: block;
-    margin: 5%;
+    margin: 2%;
 }
 
 
@@ -13,19 +14,46 @@ body {
     display: inline-block;
 }
 
+#denis_photo {
+    width: 100%;
+
+}
+
+#denis_pic {
+    width:50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+#denis_info {
+    display:block;
+    width:100%;
+}
 #anton_photo {
     float:left;
+    width: 100%;
 }
 #anton_pic {
-    float:left;
+    width:30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #ruslan_photo{
-    float:right;
+    width:100%;
 }
 
 #ruslan_info{
     float:left;
+}
+
+#ruslan_pic {
+    width:50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media screen and (max-width: 1000px) {
