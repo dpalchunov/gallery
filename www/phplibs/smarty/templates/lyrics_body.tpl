@@ -13,23 +13,110 @@
                 <div id="list" class="">
                     <ul>
                         <li>
-                            <div class="song white" song_path="./player/mp3/2015.05.01.153853.mp3">
+                            <div class="song white" song_lyrics="
+                    <h1>Dreams</h1>
+                    <br>
+                    <pre>
+
+            [Verse 1]
+            Forget about the sorrow,
+            Forgot about the pain,
+            Forgot about the future,
+            You in the sky again.
+
+            [Chorus]
+            All of your dreams about the sky, [3x]
+            And you fly. [2x]
+
+            [Verse 2]
+            Believe in love forever,
+            Believe in love and now,
+            You start to live forever,
+            Despite you don't no how.
+
+            [Chorus]
+
+            [Verse 3]
+            Last twenty years was broken,
+            You'll never suffer more,
+            And good surprises (are) knocking,
+            In tightly closed door.
+
+            [Chorus]
+                    </pre>">
                                 <div class="song_name container ">
-                                    draft - Enough
+                                    Dreams
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <div class="song white" song_path="./player/mp3/2015.05.08.103744.mp3">
+                            <div class="song white" song_lyrics="
+                    <h1>Now or never</h1>
+                    <br>
+                    <pre>
+
+        [Verse 1]
+        For all your life you wanted something better,
+        For all your life you wanted something new.
+        And every time you wanna make and get it,
+        But all your dreams - never coming true.
+
+        [Chorus]
+        Thinking of now like it’s the last momentum,
+        Thinking about more important things.
+        Thinking of now like it’s your last autumn,
+        Imagine that world will never see new spring.
+
+        [Verse 2]
+        You do not give up, you search for truth and real,
+        And years are flying like pendulum swing.
+        Please don’t forget about your past and preset,
+        The friends you loved, the things you v seen.
+
+        [Chorus]
+    </pre>">
                                 <div class="song_name container ">
-                                    [StadiumR] - Lost
+                                    Now or never
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <div class="song white" song_path="./player/mp3/2015.05.08.103749.mp3">
+                            <div class="song white" song_lyrics="
+                    <h1>Lost</h1>
+                    <br>
+                    <pre>
+            [Verse 1]
+            Something in this world is wrong,
+            Someone in this world has gone.
+            Someone who you've ever told,
+            Don't blame yourself it's not your fault.
+
+            [Chorus]
+            How do you feel?
+            You can't forget!
+            How do you sleep?
+            With no one left.
+            How do you feel?
+            You can't deny,
+            With no one left,
+            With no one near by.
+
+            [Bridge]
+            Living every day, through an awful dreams,
+            Every step you made, there is no means.
+            Living every day, and that's all,
+            You upon your knees with a broken soul.
+
+            [Chorus]
+
+            [Verse 2]
+            Even when you could not stay,
+            I plead to god to hear my pray.
+            That was the time when hope has gone,
+            And now just beeps in telephone.
+                    </pre>">
                                 <div class="song_name container ">
-                                    [StadiumR] - Dreams
+                                    Lost
                                 </div>
                             </div>
                         </li>
@@ -37,34 +124,8 @@
                 </div>
                 <div id="song_lyrics">
                     <h1>song nmae</h1>
+                    <br>
                     <pre>
-                    уплет1:
-                    Забудь про сожаления
-                    Забудь тупую боль
-                    Здесь места нет сомнениям
-                    Мы в небесах с тобой
-
-                    припев:
-                    Мечты твои о небесах
-                    Мечты твои о небесах
-                    Все мысли вновь про небеса
-                    Лишь небеса в прерасных снах
-
-                    куплет2:
-                    Поверь в любовь навечно
-                    Поверь в любовь лишь так
-                    Жизнь станет безмятженой
-                    Пусть ты не знаешь как
-
-                    припев
-
-                    куплет3:
-                    зря пролетели годы
-                    больше не будет слез
-                    и в жизнь твою ворвется
-                    миг полный ярких грез
-
-                    припев
                     </pre>
                 </div>
             </div>

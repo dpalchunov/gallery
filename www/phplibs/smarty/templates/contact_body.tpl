@@ -7,7 +7,6 @@
         <div class="band_cnt  white">
             <div class="band_title">
                 <div class="band_title_l container l">
-                    CONTACTS
                 </div>
                 <div class="band_title_r container r">
                 </div>
