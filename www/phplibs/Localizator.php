@@ -35,10 +35,14 @@ class  Localizator
             'buy_portret' => 'Также вы можете заказать портрет, пейзаж выполненный как маслом на холсте, так и углём на бумаге:',
             'buy_portret_price' => 'условия обговариваются.',
             'no_results' => 'К сожалению по заданным условиям фильтра не найдено ни одной работы, попробуйте изменить условия.',
-            'about_label' => 'О нас',
-            'contacts_label' => 'Контакты',
-            'gallery_label' => 'Музыка',
-            'order_label' => 'На заказ'
+            'home_label' => 'DOM',
+            'band_label' => 'GRUPPA',
+            'contact_label' => 'KONTAKT',
+            'music_label' => 'MUZYKA',
+            'photo_label' => 'FOTO',
+            'lyrics_label' => 'STIHI',
+            'video_label' => 'VIDEO'
+
         );
         $eng = array(
             'about_main_text' =>
@@ -67,12 +71,13 @@ class  Localizator
             'buy_portret' => 'Furthermore, you can order portret, landscape maked in oil on canvas or in charcoal on paper:',
             'buy_portret_price' => 'contractual conditions.',
             'no_results' => 'There is no results. Change filter options.',
-            'about_label' => 'BAND',
-            'contacts_label' => 'CONTACTS',
+            'home_label' => 'HOME',
+            'band_label' => 'BAND',
+            'contact_label' => 'CONTACT',
             'music_label' => 'MUSIC',
             'photo_label' => 'PHOTO',
             'lyrics_label' => 'LYRICS',
-            'order_label' => 'Buy'
+            'video_label' => 'VIDEO'
 
         );
     }

@@ -25,35 +25,13 @@
           $template_engine = $resourceService->getTemplateEngine();
           $localizator = new Localizator();
 
-
-
-          $template_engine->assign('about', $localizator->getText($lang, 'about_label'));
-          $template_engine->assign('music',$localizator->getText($lang, 'music_label'));
-          $template_engine->assign('photo',$localizator->getText($lang, 'photo_label'));
-          $template_engine->assign('lyrics',$localizator->getText($lang, 'lyrics_label'));
-          $template_engine->assign('contacts',$localizator->getText($lang, 'contacts_label'));
-          $template_engine->assign('buy',$localizator->getText($lang, 'order_label'));
-
-          if ($active_button == 'about') {
-              $template_engine->assign('about_active','active');
-          } else {
-              $template_engine->assign('about_active','');
-          }
-          if ($active_button == 'gallery') {
-              $template_engine->assign('gallery_active','active');
-          } else {
-              $template_engine->assign('gallery_active','');
-          }
-          if ($active_button == 'contacts') {
-              $template_engine->assign('contacts_active','active');
-          } else {
-              $template_engine->assign('contacts_active','');
-          }
-          if ($active_button == 'buy') {
-              $template_engine->assign('buy_active','active');
-          } else {
-              $template_engine->assign('buy_active','');
-          }
+          $template_engine->assign('home', $localizator->getText($lang, 'home_label'));
+          $template_engine->assign('band', $localizator->getText($lang, 'band_label'));
+          $template_engine->assign('music', $localizator->getText($lang, 'music_label'));
+          $template_engine->assign('video', $localizator->getText($lang, 'video_label'));
+          $template_engine->assign('photo', $localizator->getText($lang, 'photo_label'));
+          $template_engine->assign('lyrics', $localizator->getText($lang, 'lyrics_label'));
+          $template_engine->assign('contact', $localizator->getText($lang, 'contact_label'));
 
           $html = $template_engine-> fetch('nav_menu.tpl');
           return  $html;

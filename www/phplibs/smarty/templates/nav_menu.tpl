@@ -1,21 +1,7 @@
-
-
-        <div id="nav_contacts" class="menu_button">
-            <a id="contact_href" class="menu_href" href="javascript:void 0">{{{$contacts}}}</a>
-        </div>
-        <div id="nav_lyrics" class="menu_button">
-            <a id="lyrics_href" class="menu_href" href="javascript:void 0">{{{$lyrics}}}</a>
-        </div>
-        <div id="nav_photo" class="menu_button">
-            <a id="photo_href" class="menu_href" href="javascript:void 0">{{{$photo}}}</a>
-        </div>
-        <div id="nav_music" class="menu_button">
-            <a id="music_href" class="menu_href" href="javascript:void 0">{{{$music}}}</a>
-        </div>
-        <div id="nav_about" class="menu_button">
-            <a id="about_href" class="menu_href" href="javascript:void 0">{{{$about}}}</a>
-        </div>
-
-        <div id="nav_greeting"  style="display:none">
-            <a id="greeting_href" style="display:none"></a>
-        </div>
+<li class="menu_href" id="home_href" dst="home_href">{{{$home}}}</li>
+<li class="menu_href" id="band_href" dst="band_href">{{{$band}}}</li>
+<li class="menu_href" id="music_href" dst="music_href">{{{$music}}}</li>
+<li class="menu_href" id="video_href" dst="video_href">{{{$video}}}</li>
+<li class="menu_href" id="photo_href" dst="photo_href">{{{$photo}}}</li>
+<li class="menu_href" id="lyrics_href" dst="lyrics_href">{{{$lyrics}}}</li>
+<li class="menu_href" id="contact_href" dst="contact_href">{{{$contact}}}</li>

@@ -120,6 +120,42 @@
                                 </div>
                             </div>
                         </li>
+                        <li>
+                            <div class="song white" song_lyrics="
+                    <h1>Glee</h1>
+                    <br>
+                    <pre>
+            [Verse 1]
+            Live all all your problems out there,
+            All of your thoughts I don't care.
+            Leave all your sickness alone,
+            All of misfortune has gone
+
+            [Chorus]
+            Heart beating pulse is high,
+            All together through the night!
+            It s amazing, you are right,
+            And glee is going on.
+
+            [Verse 2]
+            Everyone knows that bit,
+            Throw away all your shit.
+            Feel energy of your friends,
+            We going through all night dance.
+
+            Waving your hands in the air,
+            Screams of enjoy everywhere,
+            Pationate end of weekend,
+
+
+
+            Waving you hangs and feeling this stuff, that is not enough
+                    </pre>">
+                                <div class="song_name container ">
+                                    Glee
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div id="song_lyrics">

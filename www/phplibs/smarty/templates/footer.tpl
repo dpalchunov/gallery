@@ -24,13 +24,7 @@
                 <div id="footer_menu" class="container">
                     <div id="footer_menu_buttons" class="">
                         <ul>
-                            <li class="menu_href" id="home_href" dst="home_href">HOME</li>
-                            <li class="menu_href" id="band_href" dst="band_href">BAND</li>
-                            <li class="menu_href" id="music_href" dst="music_href">MUSIC</li>
-                            <li class="menu_href" id="video_href" dst="video_href">VIDEO</li>
-                            <li class="menu_href" id="photo_href" dst="photo_href">PHOTO</li>
-                            <li class="menu_href" id="lyrics_href" dst="lyrics_href">LYRICS</li>
-                            <li class="menu_href" id="contact_href" dst="contact_href">CONTACT</li>
+                            {{{$nav_menu}}}
                         </ul>
                     </div>
                 </div>
