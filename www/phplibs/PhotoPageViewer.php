@@ -40,8 +40,8 @@ class  PhotoPageViewer extends Page
     }
 
     public function getLabelsArray($lang) {
-        $localizator = new Localizator();
-        return  array('main_text_pre' => $localizator->getText($lang, 'about_main_text'));
+        $pg = new PicturesGetter($lang);
+        return $pg -> getLabelsArray($lang);
     }
 }
 

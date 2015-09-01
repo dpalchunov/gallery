@@ -15,9 +15,9 @@
         <div class="band_cnt  white">
             <div class="band_body">
                 {{{for $i = 0 to $count-1 }}}
-                <div class="grid_list_cell picture" style="background-image: url('{{{$photos[$i] -> getSketchPath()}}}')" picpath="{{{$photos[$i]-> getPicPath()}}}" >
-                    <div class="details">
-                        <p>{{{$photos[$i] -> getDescription($lang)}}}</p>
+                <div class="grid_list_cell picture" style="background-image: url('{{{$photos[$i] -> getSketchPath()}}}')"  picpath="{{{$photos[$i]-> getPicPath()}}}" >
+                    <div class="details" >
+                        <p label="photo_{{{$photos[$i] -> getID()}}}">{{{$photos[$i] -> getDescription($lang)}}}</p>
                     </div>
                 </div>
                 {{{/for}}}

@@ -422,7 +422,7 @@ class  PicturesGetter
         foreach ($pictures as $picture) {
             $id = $picture->getID();
             $picDescription = $picture->getDescription($lang);
-            $all_labels[$id.'_desc'] = $picDescription;
+            $all_labels["photo_".$id] = $picDescription;
         }
 
         return $all_labels;
