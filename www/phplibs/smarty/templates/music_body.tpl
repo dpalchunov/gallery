@@ -6,8 +6,8 @@
     <div id="player_band" class="band ">
         <div class="band_cnt">
             <div class="band_title">
-                <div id="songs_band_title_l" class="band_title_l l container">
-                    SONGS
+                <div id="songs_band_title_l" label="songs_band_title_l" class="band_title_l l container">
+                    {{{$songs_band_title_l}}}
                 </div>
                 <div class="band_title_r r container">
                 </div>
@@ -52,7 +52,7 @@
                                 <div class="song white" song_path="{{{$songs[$i] -> getPath()}}}">
                                     <div class="song_ico"
                                          style="background-image: url('./images/gallary/20150425101131.jpeg')"></div>
-                                    <div class="song_name container ">
+                                    <div label="song_{{{$songs[$i] -> getID()}}}" class="song_name container ">
                                         {{{$songs[$i] -> getDescription($lang)}}}
                                     </div>
                                 </div>

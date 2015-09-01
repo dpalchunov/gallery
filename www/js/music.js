@@ -2,6 +2,7 @@
 $(document).ready(function () {
 
     destructor = destructor;
+    after_change_labels = after_change_labels;
     if (window.my_jPlayer.data().jPlayer == undefined) {
         initPlayer();
     }
@@ -121,6 +122,12 @@ function setRefsToSongs() {
 
 function destructor() {
     $(".mc_el").remove();
+}
+
+function after_change_labels() {
+    loadPlayList();
+    setRefsToSongs();
+    changeTitleOnlyToCurrent();
 }
 
 

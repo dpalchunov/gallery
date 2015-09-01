@@ -106,7 +106,7 @@ class  SongsGetter
         foreach ($objs as $obj) {
             $id = $obj->getID();
             $desc = $obj->getDescription($lang);
-            $all_labels[$id.'_desc'] = $desc;
+            $all_labels['song_'.$id] = $desc;
         }
 
         return $all_labels;

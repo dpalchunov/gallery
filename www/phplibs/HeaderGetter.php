@@ -33,15 +33,57 @@
           $template_engine->assign('lyrics', $localizator->getText($lang, 'lyrics_label'));
           $template_engine->assign('contact', $localizator->getText($lang, 'contact_label'));
 
+
+          if ($active_button == 'home') {
+              $template_engine->assign('home_active','active');
+          } else {
+              $template_engine->assign('home_active','');
+          }
+          if ($active_button == 'band') {
+              $template_engine->assign('band_active','active');
+          } else {
+              $template_engine->assign('band_active','');
+          }
+          if ($active_button == 'music') {
+              $template_engine->assign('music_active','active');
+          } else {
+              $template_engine->assign('music_active','');
+          }
+          if ($active_button == 'video') {
+              $template_engine->assign('video_active','active');
+          } else {
+              $template_engine->assign('video_active','');
+          }
+          if ($active_button == 'photo') {
+              $template_engine->assign('photo_active','active');
+          } else {
+              $template_engine->assign('photo_active','');
+          }
+          if ($active_button == 'lyrics') {
+              $template_engine->assign('lyrics_active','active');
+          } else {
+              $template_engine->assign('lyrics_active','');
+          }
+          if ($active_button == 'contact') {
+              $template_engine->assign('contact_active','active');
+          } else {
+              $template_engine->assign('contact_active','');
+          }
+
+
           $html = $template_engine-> fetch('nav_menu.tpl');
           return  $html;
       }
 
       public static function getLabelsArray($lang) {
           $localizator = new Localizator();
-          return  array('about_href' => $localizator->getText($lang, 'about_label'),
-                       'gallery_href' => $localizator->getText($lang, 'gallery_label'),
-                       'buy_href' => $localizator->getText($lang, 'contacts_label'),
+          return  array('home_href' => $localizator->getText($lang, 'home_label'),
+                       'band_href' => $localizator->getText($lang, 'band_label'),
+                       'music_href' => $localizator->getText($lang, 'music_label'),
+                       'video_href' => $localizator->getText($lang, 'video_label'),
+                       'photo_href' => $localizator->getText($lang, 'photo_label'),
+                       'lyrics_href' => $localizator->getText($lang, 'lyrics_label'),
+                       'contact_href' => $localizator->getText($lang, 'contact_label'),
                        'lang_changer_href' => $localizator->getText($lang, 'change_lang_label'));
       }
 

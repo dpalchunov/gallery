@@ -38,12 +38,17 @@ class  MusicPageViewer extends Page
         $songs = $songsHelper -> selectAllSongs();
         $template_engine->assign('songs', $songs);
         $template_engine->assign('count', sizeof($songs));
+        $template_engine->assign('songs_band_title_l', $localizator->getText($lang, 'songs_band_title_l'));
         return $template_engine->fetch('music_body.tpl');
     }
 
     public function getLabelsArray($lang) {
+        $sg = new SongsGetter($lang);
         $localizator = new Localizator();
-        return  array('main_text_pre' => $localizator->getText($lang, 'about_main_text'));
+        return array_merge($sg -> getLabelsArray($lang),array('songs_band_title_l' => $localizator->getText($lang, 'songs_band_title_l')));
+
+
+
     }
 }
 

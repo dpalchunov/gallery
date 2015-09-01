@@ -162,6 +162,11 @@ function changeToCurrent() {
 
 }
 
+function changeTitleOnlyToCurrent() {
+    var cur = getCurrentInd();
+    $("#song_title").html(window.playList[cur].title);
+}
+
 function getCurrentInd() {
     var l = window.playList.length;
     var offset = Math.floor(window.currentTrack/l)*l;

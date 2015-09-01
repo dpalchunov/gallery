@@ -19,11 +19,11 @@
         <div id="band1" class="band black1">
             <div class="band_cnt  black1">
                 <div class="band_title">
-                    <div id="video_band_title_l" class="band_title_l container l">
-                        VIDEO
+                    <div id="video_band_title_l" label="video_band_title_l" class="band_title_l container l">
+                        {{{$video_band_title_l}}}
                     </div>
-                    <div class="band_title_r container r body_href" dst="video_href">
-                        SEE ALL VIDEOS
+                    <div id="see_all_video_part_label" label="see_all_video_part_label" class="band_title_r container r body_href" dst="video_href">
+                        {{{$see_all_video_part_label}}}
                     </div>
                 </div>
                 <div class="band_body  black1">
@@ -41,11 +41,11 @@
     <div id="band2" class="band ">
         <div class="band_cnt">
             <div class="band_title">
-                <div id="songs_band_title_l" class="band_title_l l container">
-                    SONGS
+                <div id="songs_band_title_l" label="songs_band_title_l" class="band_title_l l container">
+                    {{{$songs_band_title_l}}}
                 </div>
-                <div class="band_title_r r container body_href" dst="music_href">
-                    ALL MUSIC
+                <div id="see_all_songs_part_label" label="see_all_songs_part_label" class="band_title_r r container body_href" dst="music_href">
+                    {{{$see_all_songs_part_label}}}
                 </div>
             </div>
             <div class="band_body">
@@ -104,11 +104,11 @@
 
         <div class="band_cnt  white">
             <div class="band_title">
-                <div class="band_title_l l container">
-                    PHOTO
+                <div id="photo_band_title_l"  label="photo_band_title_l" class="band_title_l l container">
+                    {{{$photo_band_title_l}}}
                 </div>
-                <div class="band_title_r r container body_href" dst="photo_href">
-                    SHOW ALL
+                <div id="see_all_photos_part_label"  label="see_all_photos_part_label" class="band_title_r r container body_href" dst="photo_href">
+                    {{{$see_all_photos_part_label}}}
                 </div>
             </div>
             <div class="band_body">

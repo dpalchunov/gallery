@@ -92,6 +92,12 @@
     text-align: center;
 }
 
+#lang_text_wrap a {
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+}
+
 #header_center {
     float: left;
     width: 60%

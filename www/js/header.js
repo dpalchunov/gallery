@@ -1,6 +1,10 @@
 var destructor = function() {
 
-} ;
+};
+
+var after_change_labels = function() {
+
+};
 
 var routes = {
     greeting_href: {href:"greeting.php",page_name:'greeting.php'},
@@ -122,10 +126,11 @@ function change_lang() {
         cache:false
     });
     change_labels();
+
 }
 
 function change_labels() {
-    var href =routes[$('.menu_button.active').children().first().attr('id')].href;
+    var href =routes[$('.menu_href.active').first().attr('id')].href;
     var part = "header_labels";
     $.ajax({
         type: "POST",
@@ -140,12 +145,14 @@ function change_labels() {
             }
             try {
                 var labels = $.parseJSON(data);
+                console.log(labels);
             } catch(e) {
-                //console.error(href + ":" + header_labels + " " + e.message);
+                console.error(href + ":" + header_labels + " " + e.message);
             }
             $.each(labels,function (k,v) {
-                $('#' + k).html(v);
+                $('[label="' + k + '"]').html(v);
             })
+            after_change_labels();
         });
 }
 
