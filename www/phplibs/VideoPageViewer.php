@@ -37,14 +37,19 @@ class  VideoPageViewer extends Page
         $template_engine->assign('videos', $videos);
         $template_engine->assign('count', sizeof($videos));
         $template_engine->assign('lang', $lang);
+        $template_engine->assign('video_band_title_l', $localizator->getText($lang, 'video_band_title_l'));
 
         return $template_engine->fetch('video_body.tpl');
     }
 
     public function getLabelsArray($lang) {
         $localizator = new Localizator();
-        return  array('main_text_pre' => $localizator->getText($lang, 'about_main_text'));
+        $vh = new VideoHelper($lang);
+        return  array_merge(array(
+                'video_band_title_l' => $localizator->getText($lang, 'video_band_title_l')),
+            $vh -> getLabelsArray($lang));
     }
+
 }
 
 ?>

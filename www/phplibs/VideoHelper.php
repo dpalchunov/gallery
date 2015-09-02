@@ -107,6 +107,34 @@ class  VideoHelper
         }
         return $pages_cnt;
     }
+
+    public function getLabelsArray($lang)
+    {
+        $vm = new VideoObjManager();
+        $vidArray = $vm -> selectAllVideos();
+        if ($vidArray != null) {
+            $res = $this->getVideosLabels($vidArray, $lang);
+        } else {
+            $res = array();
+        }
+        return $res;
+    }
+
+    private function getVideosLabels($videos, $lang)
+    {
+        if (!(sizeof($videos) > 0)) {
+            return '';
+        };
+
+        $all_labels = array();
+        foreach ($videos as $video) {
+            $id = $video->getID();
+            $desc = $video->getDescription($lang);
+            $all_labels["video_".$id] = $desc;
+        }
+
+        return $all_labels;
+    }
 }
 
 ?>

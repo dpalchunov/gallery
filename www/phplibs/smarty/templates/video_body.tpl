@@ -2,8 +2,8 @@
     <div id="band1" class="band white">
         <div class="band_cnt  white">
             <div class="band_title">
-                <div class="band_title_l container l">
-                    VIDEO
+                <div class="band_title_l container l" label="video_band_title_l">
+                    {{{$video_band_title_l}}}
                 </div>
                 <div class="band_title_r container r">
 
@@ -33,8 +33,8 @@
             <div class="band_body">
                 {{{for $i = 0 to $count-1 }}}
                 <div class="grid_list_cell video" thumb_url="{{{$videos[$i] -> getThumbnail()}}}" style="background-image: url('{{{$videos[$i] -> getThumbnail()}}}')" video_path="{{{$videos[$i]-> getPath()}}}" >
-                    <div class="details">
-                        <p>{{{$videos[$i] -> getDescription($lang)}}}</p>
+                    <div class="details" >
+                        <p label="video_{{{$videos[$i] -> getID()}}}">{{{$videos[$i] -> getDescription($lang)}}}</p>
                     </div>
                 </div>
                 {{{/for}}}

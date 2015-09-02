@@ -69,13 +69,15 @@ class  HomePageViewer extends Page
 
     public function getLabelsArray($lang) {
         $localizator = new Localizator();
-        return  array('main_text_pre' => $localizator->getText($lang, 'about_main_text'),
-                      'video_band_title_l' => $localizator->getText($lang, 'video_band_title_l'),
-                      'songs_band_title_l' => $localizator->getText($lang, 'songs_band_title_l'),
-                      'see_all_songs_part_label' => $localizator->getText($lang, 'see_all_songs_part_label'),
-                      'photo_band_title_l' => $localizator->getText($lang, 'photo_band_title_l'),
-                      'see_all_photos_part_label' => $localizator->getText($lang, 'see_all_photos_part_label'),
-                      'see_all_video_part_label' => $localizator->getText($lang, 'see_all_video_part_label'));
+        $pg = new PicturesGetter($lang);
+        return  array_merge(array('main_text_pre' => $localizator->getText($lang, 'about_main_text'),
+                                  'video_band_title_l' => $localizator->getText($lang, 'video_band_title_l'),
+                                  'songs_band_title_l' => $localizator->getText($lang, 'songs_band_title_l'),
+                                  'see_all_songs_part_label' => $localizator->getText($lang, 'see_all_songs_part_label'),
+                                  'photo_band_title_l' => $localizator->getText($lang, 'photo_band_title_l'),
+                                  'see_all_photos_part_label' => $localizator->getText($lang, 'see_all_photos_part_label'),
+                                  'see_all_video_part_label' => $localizator->getText($lang, 'see_all_video_part_label')),
+                                    $pg -> getLabelsArray($lang));
     }
 }
 
