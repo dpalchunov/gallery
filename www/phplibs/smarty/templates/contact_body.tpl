@@ -11,13 +11,8 @@
                 <div class="band_title_r container r">
                 </div>
             </div>
-            <div class="band_body">
-                <pre >
-По вопросам сотрудничества, организации концертов, иным вопросам и предложениям обращайтесь:
-e-mail:          <a href="mailto: stadium-r@gmail.com">stadium-r@gmail.com</a>
-Антон Мирошкин:   <a href="tel: +7(916)163-18-67">+7(916)163-18-67</a>
-Пальчунов Денис: <a href="tel: +7(926)739-75-31">+7(926)739-75-31</a>
-                </pre>
+            <div class="band_body" label="contact_text">
+                {{{$contact_text}}}
             </div>
         </div>
     </div>

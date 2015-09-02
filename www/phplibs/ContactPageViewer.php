@@ -34,13 +34,14 @@ class  ContactPageViewer extends Page
         $localizator = new Localizator();
 
         $template_engine->assign('lang', $lang);
+        $template_engine->assign('contact_text', $localizator->getText($lang, 'contact_text'));
 
         return $template_engine->fetch('contact_body.tpl');
     }
 
     public function getLabelsArray($lang) {
         $localizator = new Localizator();
-        return  array('main_text_pre' => $localizator->getText($lang, 'about_main_text'));
+        return  array('contact_text' => $localizator->getText($lang, 'contact_text'));
     }
 }
 

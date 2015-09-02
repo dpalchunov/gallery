@@ -47,7 +47,30 @@ class  Localizator
             'songs_band_title_l' => 'ПЕСНИ',
             'see_all_songs_part_label' => 'СЛУШАТЬ ВСЕ',
             'photo_band_title_l' => 'ФОТО',
-            'see_all_photos_part_label' => 'СМОТРЕТЬ ВСЕ'
+            'see_all_photos_part_label' => 'СМОТРЕТЬ ВСЕ',
+            'contact_text' => '
+                 <pre >
+                    По вопросам сотрудничества, организации концертов, иным вопросам и предложениям обращайтесь:
+                    e-mail:          <a href="mailto: stadium-r@gmail.com">stadium-r@gmail.com</a>
+                    Антон Мирошкин:   <a href="tel: +7(916)163-18-67">+7(916)163-18-67</a>
+                    Пальчунов Денис: <a href="tel: +7(926)739-75-31">+7(926)739-75-31</a>
+                </pre>
+            ',
+            'band_about_denis' => '
+                                        <b>Голос Дениса Пальчунова</b> являсь неотемлемой частью композиций группы предоставляет возможность идеям коллектива
+                            обрести свободу в привычном человеку языке и добраться
+                            до сознания слушателей, вместе с музыкой его вокал единым порывом выталкивает человека из привычного состояния,
+                            раскачивает и заставляет двигаться в такт каждого слова. Денис уверен: простые, понятные стихи, пронизительный сфокусированный вокал, то
+                            без чего не может прожить ни куплета ни одна музыкальная композиция.
+            ',
+            'band_about_anton' => '
+                            Идейный лидер коллектива <b>Антон Мирошкин</b>.
+                            Самая простая мелодия в его руках раскрывается в полную красок
+                            живую историю.
+                            <b>Электрогитара</b> для Антона не просто музыкальный инструмент,а тонкая нить
+                            к человеческим чувствм и эмоциям.
+                            Драйв, вот чем по его мнению должна быть наполнена хорошая музыка.
+            '
 
 
         );
@@ -79,7 +102,28 @@ class  Localizator
             'songs_band_title_l' => 'SONGS',
             'see_all_songs_part_label' => 'ALL MUSIC',
             'photo_band_title_l' => 'PHOTO',
-            'see_all_photos_part_label' => 'SHOW ALL'
+            'see_all_photos_part_label' => 'SHOW ALL',
+            'contact_text' => '
+                 <pre >
+                    For communication, gigs organization, another requests please contact:
+                    e-mail:            <a href="mailto: stadium-r@gmail.com">stadium-r@gmail.com</a>
+                    Anton Miroshkin:   <a href="tel: +7(916)163-18-67">+7(916)163-18-67</a>
+                    Denis Palchunov:   <a href="tel: +7(926)739-75-31">+7(926)739-75-31</a>
+                </pre>
+            ',
+            'band_about_denis' => '
+                            <b>Denis Palchunov vocal</b> is important part of Stadium songs. It gives an opportunity for band music ideas to break free
+                            and get to people minds, together with a music his vocal in a single wave pulls you out from an ordinary state, rocks
+                            and makes you move rhythmically along the song. Denis sure that no one song can live without simple, clear lyrics and shrill focused vocal.
+            ',
+            'band_about_anton' => '
+                            Thought Leader of the band, <b>Anton Miroshkin</b>.
+                            An simplest melody will blossom in his hands like a flower in a bright, full of colors lively tail.
+                            <b>Lead guitar</b> is not only a musical instrument for Anton, but a thin thread to the human feelings and emotions.
+                            As far as he concerned, drive is that thing than every good song must contain.
+            '
+
+
 
         );
     }

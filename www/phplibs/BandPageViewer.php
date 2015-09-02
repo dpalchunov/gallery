@@ -34,13 +34,15 @@ class  BandPageViewer extends Page
         $localizator = new Localizator();
 
         $template_engine->assign('lang', $lang);
-
+        $template_engine->assign('band_about_denis', $localizator->getText($lang, 'band_about_denis'));
+        $template_engine->assign('band_about_anton', $localizator->getText($lang, 'band_about_anton'));
         return $template_engine->fetch('band_body.tpl');
     }
 
     public function getLabelsArray($lang) {
         $localizator = new Localizator();
-        return  array('main_text_pre' => $localizator->getText($lang, 'about_main_text'));
+        return  array('band_about_denis' => $localizator->getText($lang, 'band_about_denis'),
+                      'band_about_anton' => $localizator->getText($lang, 'band_about_anton'));
     }
 }
 
