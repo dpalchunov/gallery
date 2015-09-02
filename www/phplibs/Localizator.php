@@ -70,8 +70,15 @@ class  Localizator
                             <b>Электрогитара</b> для Антона не просто музыкальный инструмент,а тонкая нить
                             к человеческим чувствм и эмоциям.
                             Драйв, вот чем по его мнению должна быть наполнена хорошая музыка.
+            ',
+            'band_about_ruslan' => '
+                                        <b>Басгитара</b> <b>Руслана Резниченко</b> будто двигатель реактивного самолета,
+                            переполнена энергией, как и сам Руслан. Неудержимой страстью наполнена
+                            каждая нота его рычащего инструмента. Сложно понять, как столько жизненнго топлива
+                            вмещает в себя этот человек. Только творчество дает ему возможность поделиться
+                            с миром переполняющим его чувством... безответственности, безнравственности, безрассудности.
+                            Секс, наркотики и рок-н-ролл - три заповеди, которых неустанно придерживается музыкант на своем пути.
             '
-
 
         );
         $eng = array(
@@ -121,6 +128,13 @@ class  Localizator
                             An simplest melody will blossom in his hands like a flower in a bright, full of colors lively tail.
                             <b>Lead guitar</b> is not only a musical instrument for Anton, but a thin thread to the human feelings and emotions.
                             As far as he concerned, drive is that thing than every good song must contain.
+            ',
+            'band_about_ruslan' => '
+                            <b>Base guitar of</b> <b>Ruslan Reznichenko</b> like a jet engine and like Ruslan himself,
+                            overfilled by energy. Every note of his rattling guitar overfilled by irresistible passion.
+                            It is hard to understand, how this man contains so much fuel of life.
+                            Only creation gives him a chance to share his overwelming feelings with the world... feellings of irresponsibility, immorality, folly.
+                            There are only three commandments that Ruslan sticks on his track: sex, drugs, and rock-n-roll.
             '
 
 
