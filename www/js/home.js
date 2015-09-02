@@ -1,4 +1,5 @@
-function mainInit() {
+function homeMainInit() {
+    console.log("init");
     var $window = $(window),
         $stickyEl = $('#outline'),
         elTop = $stickyEl.offset().top;
@@ -41,7 +42,7 @@ function initBodyHandlers() {
 }
 
 $(document).ready(function () {
-    mainInit();
+    homeMainInit();
     destructor = destructor;
 });
 
@@ -161,8 +162,8 @@ function setRefsToSongs() {
 
 function initVideoPlayer() {
     var first_video = $('#bigbox');
-    console.log("bigbox");
-    console.log(first_video);
+    //console.log("bigbox");
+    //console.log(first_video);
     if  (first_video != null) {
         $('.webPlayer').videoPlayer({
             name: 'now or never',

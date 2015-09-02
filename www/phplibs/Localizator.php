@@ -60,7 +60,7 @@ class  Localizator
                                         <b>Голос Дениса Пальчунова</b> являсь неотемлемой частью композиций группы предоставляет возможность идеям коллектива
                             обрести свободу в привычном человеку языке и добраться
                             до сознания слушателей, вместе с музыкой его вокал единым порывом выталкивает человека из привычного состояния,
-                            раскачивает и заставляет двигаться в такт каждого слова. Денис уверен: простые, понятные стихи, пронизительный сфокусированный вокал, то
+                            раскачивает и заставляет двигаться в такт каждого слова. Денис уверен: простые, понятные стихи, пронизительный сфокусированный голос, то
                             без чего не может прожить ни куплета ни одна музыкальная композиция.
             ',
             'band_about_anton' => '
@@ -121,7 +121,7 @@ class  Localizator
             'band_about_denis' => '
                             <b>Denis Palchunov vocal</b> is important part of Stadium songs. It gives an opportunity for band music ideas to break free
                             and get to people minds, together with a music his vocal in a single wave pulls you out from an ordinary state, rocks
-                            and makes you move rhythmically along the song. Denis sure that no one song can live without simple, clear lyrics and shrill focused vocal.
+                            and makes you move rhythmically along the song. Denis sure that there are no song, that can live without simple, clear lyrics and shrill focused voice.
             ',
             'band_about_anton' => '
                             Thought Leader of the band, <b>Anton Miroshkin</b>.

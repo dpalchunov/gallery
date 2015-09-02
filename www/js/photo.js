@@ -49,12 +49,12 @@ function trim(str) {
 
 
 $(document).ready(function () {
-    mainInit();
+    photoMainInit();
 
     destructor = destructor;
 });
 
-function mainInit() {
+function photoMainInit() {
     refreshPictures();
     binds();
 }

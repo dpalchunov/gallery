@@ -162,7 +162,7 @@ function reloadHandler() {
 }
 
 function reload(hrefObj) {
-    //console.log('start_reload');
+    console.log('start_reload');
     centerLoading();
     $("#loader").show();
     var dst = hrefObj.attr("dst");
@@ -176,8 +176,8 @@ function reload(hrefObj) {
         //console.log(e.message);
     }
 
-    $('.menu_button.active').removeClass('active');
-    hrefObj.parent().addClass('active');
+    $('.menu_href.active').removeClass('active');
+    hrefObj.addClass('active');
     //unload current style
     $('link[class="page_style"]').remove();
 
