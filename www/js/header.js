@@ -7,25 +7,25 @@ var after_change_labels = function() {
 };
 
 var routes = {
-    greeting_href: {href:"greeting.php",page_name:'greeting.php'},
-    video_href: {href:"video.php",page_name:'video.php'},
+    greeting_href: {href:"greeting.php",page_name:'greeting.php',title: 'Greeting'},
+    video_href: {href:"video.php",page_name:'video.php',title: 'Video'},
 
-    band_href: {href:"band.php",page_name:'band.php'},
-    music_href: {href:"music.php",page_name:'music.php'},
-    lyrics_href: {href:"lyrics.php",page_name:'lyrics.php'},
-    contact_href: {href:"contact.php",page_name:'contact.php'},
-    photo_href: {href:"photo.php",page_name:'photo.php'},
+    band_href: {href:"band.php",page_name:'band.php',title: 'Band'},
+    music_href: {href:"music.php",page_name:'music.php',title: 'Music'},
+    lyrics_href: {href:"lyrics.php",page_name:'lyrics.php',title: 'Lyrics'},
+    contact_href: {href:"contact.php",page_name:'contact.php',title: 'Contact'},
+    photo_href: {href:"photo.php",page_name:'photo.php',title: 'Photo'},
 
-    home_href: {href:"home.php",page_name:'home.php'},
-    about_href: {href:"about.php",page_name:'about.php'},
-    gallery_href: {href:"gallery.php",page_name:'gallery.php'},
-    buy_href: {href:"contacts.php",page_name:'contacts.php'},
-    edit_exposition_href: {href:"gallery_expo_edit.php",page_name:'gallery_expo_edit.php'},
-    edit_gallery_href: {href:"gallery_edit.php",page_name:'gallery_edit.php'},
-    edit_video_href: {href:"video_edit.php",page_name:'video_edit.php'},
-    edit_songs_href: {href:"songs_edit.php",page_name:'songs_edit.php'},
-    edit_about_href: {href:"about_edit.php",page_name:'about_edit.php'},
-    edit_welcome_href: {href:"wellcome_edit.php",page_name:'wellcome_edit.php'}
+    home_href: {href:"home.php",page_name:'home.php',title: 'Home'},
+    about_href: {href:"about.php",page_name:'about.php',title: 'About'},
+    gallery_href: {href:"gallery.php",page_name:'gallery.php',title: 'Gallery'},
+    buy_href: {href:"contacts.php",page_name:'contacts.php',title: 'Contacts'},
+    edit_exposition_href: {href:"gallery_expo_edit.php",page_name:'gallery_expo_edit.php',title: 'Gallery_expo_edit'},
+    edit_gallery_href: {href:"gallery_edit.php",page_name:'gallery_edit.php',title: 'Gallery_edit'},
+    edit_video_href: {href:"video_edit.php",page_name:'video_edit.php',title: 'Video_edit'},
+    edit_songs_href: {href:"songs_edit.php",page_name:'songs_edit.php',title: 'Songs_edit'},
+    edit_about_href: {href:"about_edit.php",page_name:'about_edit.php',title: 'About_edit'},
+    edit_welcome_href: {href:"wellcome_edit.php",page_name:'wellcome_edit.php',title: 'Wellcome_edit'}
 };
 
 
@@ -75,8 +75,8 @@ function initMenuHandlers() {
 }
 
 function progressInit() {
-    var h = 12;
-    var l = 6;
+    var h = 5;
+    var l = 1;
 
     $("#header").bind("mouseenter",function(e) {
         $("#inline").height(h);
@@ -176,8 +176,9 @@ function reload(hrefObj) {
         //console.log(e.message);
     }
 
-    $('.menu_href.active').removeClass('active');
+    $('.active').removeClass('active');
     hrefObj.addClass('active');
+    document.title = routes[dst].title;
     //unload current style
     $('link[class="page_style"]').remove();
 

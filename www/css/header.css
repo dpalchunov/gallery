@@ -34,9 +34,9 @@
 }
 
 #header {
-    height: 120px;
+    height: 50px;
     padding-top: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
 }
 
 
@@ -139,7 +139,7 @@
 }
 
 #outline {
-    height: 18px;
+    height: 1px;
     width: 100%;
     opacity: 1;
     z-index: 900;
@@ -158,7 +158,7 @@
 
 #inline {
     position: relative;
-    height: 10px;
+    height: 1px;
     width: 100%;
     background-color: #692609;
     z-index:11;
@@ -170,7 +170,7 @@
 #progress {
     position: relative;
     float:left;
-    height: 6px;
+    height: 1px;
     width: 0%;
     background-color: #4f1c07;
     overflow: hidden;

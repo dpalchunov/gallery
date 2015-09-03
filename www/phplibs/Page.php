@@ -13,7 +13,7 @@ abstract class  Page
         $emp = $this ->emp;
         $ep = $this ->ep;
         $js_common_scripts = array($emp.'jquery.min.js',$emp.'jquery.ajax-retry.min.js',$emp.'jquery-ui.min.js',$ep.'jquery.cookie.js','header.js',$emp.'jquery.jplayer.min.js','player.js');
-        $common_styles = array('header.css','jquery-ui.css','general.css','footer.css');
+        $common_styles = array('reset.css','header.css','jquery-ui.css','general.css','footer.css');
         $admin_styles = array('admin_menu.css','admin_general.css');
     }
 

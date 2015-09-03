@@ -119,7 +119,7 @@ class  Localizator
                 </pre>
             ',
             'band_about_denis' => '
-                            <b>Denis Palchunov vocal</b> is important part of Stadium songs. It gives an opportunity for band music ideas to break free
+                            <b>Denis Palchunov vocal</b> is important part of Stadium songs. He gives an opportunity for band music ideas to break free
                             and get to people minds, together with a music his vocal in a single wave pulls you out from an ordinary state, rocks
                             and makes you move rhythmically along the song. Denis sure that there are no song, that can live without simple, clear lyrics and shrill focused voice.
             ',
