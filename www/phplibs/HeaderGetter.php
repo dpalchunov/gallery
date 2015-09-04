@@ -84,7 +84,7 @@
                        'photo_href' => $localizator->getText($lang, 'photo_label'),
                        'lyrics_href' => $localizator->getText($lang, 'lyrics_label'),
                        'contact_href' => $localizator->getText($lang, 'contact_label'),
-                       'lang_changer_href' => $localizator->getText($lang, 'change_lang_label'));
+                       'change_lang' => $localizator->getText($lang, 'change_lang_label'));
       }
 
       public static function getMeta() {

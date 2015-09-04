@@ -16,7 +16,17 @@ function homeMainInit() {
     initBodyHandlers();
     initVideoPlayer();
     initSlideShow();
+    initSlideShowClickHandler();
 }
+
+function initSlideShowClickHandler() {
+    $(".slides_gradient_black").bind("click",function(e) {
+        $('.slideshow_element').cycle('next');
+    });
+
+}
+
+
 
 function initSlideShow() {
     $(".slideshow_element").cycle(

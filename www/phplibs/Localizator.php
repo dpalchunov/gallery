@@ -22,7 +22,7 @@ class  Localizator
             </br>
             </br>
             ',
-            'change_lang_label' => 'RUS/ENG',
+            'change_lang_label' => 'ENG',
             'contacts_call_comment' => 'Звоните на мой мобильный телефон в Москве.',
             'contacts_mail_comment' => 'Пишите на электронную почту.',
             'contacts_skype_comment' => 'Звоните в скайп.',
@@ -96,7 +96,7 @@ class  Localizator
             </br>
             </br>
             ',
-            'change_lang_label' => 'RUS/ENG',
+            'change_lang_label' => 'РУС',
             'home_label' => 'HOME',
             'band_label' => 'BAND',
             'contact_label' => 'CONTACT',

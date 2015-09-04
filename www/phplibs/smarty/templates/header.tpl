@@ -1,6 +1,7 @@
 <div id="header" class="band black">
     <div class="band_cnt  black">
         <div id="header_left" class="container l">
+            <img src="../images/logo/2.jpg"/>
 
         </div>
         <div id="header_center" class="container">
@@ -13,7 +14,7 @@
         <div id="header_right" class="container r">
             <div id="lang_button" class="container white">
                 <div id="lang_text_wrap">
-                    <a id="lang_changer_href" href="javascript:void 0">RUS/ENG</a>
+                    <a id="lang_changer_href" label="change_lang" href="javascript:void 0">{{{$change_lang}}}</a>
                 </div>
             </div>
         </div>

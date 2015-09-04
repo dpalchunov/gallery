@@ -112,6 +112,10 @@
     background: url("http://cdn.u2.com/non_secure/images/bootstrap/gradient_black.png") repeat-x 0 0 transparent;
 }
 
+.slides_gradient_black:hover {
+    cursor: pointer;
+}
+
 #video_band_title_l {
     color: white;
 }
