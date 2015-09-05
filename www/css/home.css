@@ -103,13 +103,16 @@
 }
 
 .slides_gradient_black {
+    top: 0;
+    left: 0;
     z-index: 200;
     text-indent: -9999px;
-    height: 220px;
+    height: 100%;
     position: absolute;
     width: 100%;
     bottom: 0px;
     background: url("http://cdn.u2.com/non_secure/images/bootstrap/gradient_black.png") repeat-x 0 0 transparent;
+    background-size:contain;
 }
 
 .slides_gradient_black:hover {

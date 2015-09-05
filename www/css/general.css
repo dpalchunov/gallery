@@ -183,10 +183,22 @@ body {
 
 
 
-.home_social_links {
-    padding-top: 20px;
-    text-align: center;
+@media screen and (max-width: 3400px) {
+    .home_social_links {
+        text-align: center;
+        padding-top: 20px;
+
+    }
 }
+@media screen and (max-width: 800px) {
+    .home_social_links {
+        text-align: right;
+        padding-top: 4px;
+        padding-right: 5%;
+    }
+}
+
+
 
 .home_social_links_list {
     display: inline-table;

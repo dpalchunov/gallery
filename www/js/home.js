@@ -17,13 +17,20 @@ function homeMainInit() {
     initVideoPlayer();
     initSlideShow();
     initSlideShowClickHandler();
+    initLogoClickHandler();
 }
+
+function initLogoClickHandler() {
+    $("#logo_img").bind("click",function(e) {
+        reload($('#home_href'));
+    });
+}
+
 
 function initSlideShowClickHandler() {
     $(".slides_gradient_black").bind("click",function(e) {
         $('.slideshow_element').cycle('next');
     });
-
 }
 
 
