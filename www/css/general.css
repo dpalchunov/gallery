@@ -260,3 +260,23 @@ body {
 .body_href{
     cursor: pointer;
 }
+
+
+.home_social {
+    padding-bottom: 10px;
+}
+
+#logo_img {
+    content:url("../images/logo/2.jpg");
+}
+
+@media screen and (max-width: 800px) {
+    #logo_img {
+        content:url("../images/logo/3.jpg");
+    }
+    .home_social {
+        padding-bottom: 1px;
+    }
+}
+
+

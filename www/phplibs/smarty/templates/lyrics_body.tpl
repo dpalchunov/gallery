@@ -5,11 +5,7 @@
 
     <div id="band1" class="band white">
         <div class="band_cnt  white">
-            <div class="band_title">
-                <div class="band_title_l container l">
-                </div>
-            </div>
-            <div class="band_body">
+            <div id="lyrics_band_body" class="band_body">
                 <div id="list" class="">
                     <ul>
                         <li>

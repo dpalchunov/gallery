@@ -1,7 +1,7 @@
 <div id="header" class="band black">
     <div class="band_cnt  black">
         <div id="header_left" class="container l">
-            <img id="logo_img" src="../images/logo/3.jpg"/>
+            <img id="logo_img"/>
 
         </div>
         <div id="header_center" class="container">
@@ -10,6 +10,8 @@
                     {{{$nav_menu}}}
                 </ul>
             </div>
+
+
         </div>
         <div id="header_right" class="container r">
             <div id="lang_button" class="container white">
@@ -28,7 +30,7 @@
     </div>
 </div>
 <div class="band home_social">
-    <div class="container">
+    <div class="">
         <div class="home_social_links">
             <ul class="home_social_links_list">
                 <li><a href="https://www.facebook.com/u2" target="_Blank" class="home_social_icon social_facebook"></a></li>
@@ -38,6 +40,5 @@
 
             </ul>
         </div>
-        </br>
     </div>
 </div>

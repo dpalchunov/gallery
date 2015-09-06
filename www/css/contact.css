@@ -13,3 +13,15 @@ pre {
     color: black;
     font-weight: bold;
 }
+
+#contact_band_body {
+    margin-top: 20px;
+    width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    #contact_band_body {
+        font-size: 11px;
+    }
+}
+
