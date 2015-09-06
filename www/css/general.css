@@ -187,14 +187,14 @@ body {
     .home_social_links {
         text-align: center;
         padding-top: 20px;
-
+        width: 95%;
     }
 }
 @media screen and (max-width: 800px) {
     .home_social_links {
         text-align: right;
         padding-top: 4px;
-        padding-right: 5%;
+        width: 95%;
     }
 }
 
@@ -264,6 +264,7 @@ body {
 
 .home_social {
     padding-bottom: 10px;
+    text-align: center;
 }
 
 #logo_img {

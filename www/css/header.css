@@ -8,15 +8,40 @@
     vertical-align: middle;
 }
 
-#menu {
-    font-size: 20px;
+
+
+@media screen and (max-width: 4000px) {
+    #menu {
+        font-size: 20px;
+    }
 }
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 1001px) {
     #menu {
         font-size: 14px;
     }
 }
+
+@media screen and (max-width: 800px) {
+    #menu {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #menu {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #menu {
+        font-size: 8px;
+    }
+}
+
+
 
 
 
@@ -259,6 +284,10 @@
 
 #logo_img{
     cursor: pointer;
+}
+
+#social_band_cnt {
+    padding-top: 10px;
 }
 
 

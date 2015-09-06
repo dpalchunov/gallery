@@ -30,15 +30,12 @@
     </div>
 </div>
 <div class="band home_social">
-    <div class="">
         <div class="home_social_links">
             <ul class="home_social_links_list">
                 <li><a href="https://www.facebook.com/u2" target="_Blank" class="home_social_icon social_facebook"></a></li>
                 <li><a href="https://twitter.com/u2" target="_Blank" class="home_social_icon social_twitter"></a></li>
                 <li><a href="http://instagram.com/u2" target="_Blank" class="home_social_icon social_instagram"></a></li>
                 <li><a href="http://www.youtube.com/u2" target="_Blank" class="home_social_icon social_youtube"></a></li>
-
             </ul>
         </div>
-    </div>
 </div>
