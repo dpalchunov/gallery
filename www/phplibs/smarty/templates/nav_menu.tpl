@@ -5,3 +5,6 @@
 <li class="menu_href {{{$photo_active}}}" label="photo_href" id="photo_href" dst="photo_href">{{{$photo}}}</li>
 <li class="menu_href {{{$lyrics_active}}}" label="lyrics_href" id="lyrics_href" dst="lyrics_href">{{{$lyrics}}}</li>
 <li class="menu_href {{{$contact_active}}}" label="contact_href" id="contact_href" dst="contact_href">{{{$contact}}}</li>
+<li class="" id="lang_text_wrap">
+    <a id="lang_changer_href" label="change_lang" href="javascript:void 0">ENG</a>
+</li>
