@@ -111,7 +111,7 @@
     position: absolute;
     width: 100%;
     bottom: 0px;
-    background: url("http://cdn.u2.com/non_secure/images/bootstrap/gradient_black.png") repeat-x 0 0 transparent;
+    background: url("../images/slider/gradient_black.png") repeat-x 0 0 transparent;
     background-size:contain;
 }
 

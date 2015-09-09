@@ -67,7 +67,7 @@ function initMenuHandlers() {
         $('.menu_href,.a_href').each(function (i, e) {
             $(e).bind('click', reloadHandler);
         });
-        $('#lang_changer_href').bind('click', change_lang);
+        $('.lang_changer_href').bind('click', change_lang);
     } else {
         setTimeout(initMenuHandlers,500);
     }

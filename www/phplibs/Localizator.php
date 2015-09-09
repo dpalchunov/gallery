@@ -127,7 +127,7 @@ class  Localizator
                             Thought Leader of the band, <b>Anton Miroshkin</b>.
                             An simplest melody will blossom in his hands like a flower in a bright, full of colors lively tail.
                             <b>Lead guitar</b> is not only a musical instrument for Anton, but a thin thread to the human feelings and emotions.
-                            As far as he concerned, drive is that thing than every good song must contain.
+                            As far as he concerned, drive is that thing than every good song should include.
             ',
             'band_about_ruslan' => '
                             <b>Base guitar of</b> <b>Ruslan Reznichenko</b> like a jet engine and like Ruslan himself,

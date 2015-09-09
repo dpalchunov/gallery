@@ -4,9 +4,9 @@
     if (true) {
         session_start();
         $_SESSION['state'] = 'ok';
-        header('location:about.php');
+        header('location:home.php');
         die();
-        $page = new AboutPageViewer();
+        $page = new HomePageViewer();
     } else {
         $page = new LoginPageViewer();
     }

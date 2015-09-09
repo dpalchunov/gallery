@@ -91,7 +91,7 @@
 
 #footer_menu_buttons li {
     display: inline-block;
-    float: right;
+    float: left;
     margin: 0px;
     padding: 5px;
     white-space: nowrap;
@@ -169,7 +169,7 @@
 
 @media screen and (max-width: 500px) {
     #footer_menu_buttons {
-        font-size: 13px;
+        font-size: 11px;
     }
 }
 
