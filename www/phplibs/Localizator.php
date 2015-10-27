@@ -49,6 +49,9 @@ class  Localizator
             2012 Персональная выставка, Областная картинная галерея, Тамбов.(каталог)<br/>
             <br/>
             2010 «Гастингс глазами русских художников» BAKER MAMONOVA GALLERY, Гастингс, Англия. <br/>
+            <br/>
+            2015  Проект "FATALITY", OMELCHENKO GALLERY, Москва.<br/>
+
                          <br/>
                          <br/>
             Работы художницы находятся в частных коллекциях России и за рубежом.   <br/>
@@ -120,9 +123,13 @@ class  Localizator
             <br/>
             2010 «Hastings as seen by the Russian artists», Baker Mamonova Gallery, Hastings, England.<br/>
             <br/>
+            2015  Project "FATALITY", Omelchenko Gallery, Moscow.<br/>
+            <br/>
             <br/>
             <br/>
             Kristina’s pictures are in private collections in Russia and in Europe.<br/>
+
+
 
             ',
             'change_lang_label' => 'рус',
