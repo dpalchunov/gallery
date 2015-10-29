@@ -32,6 +32,8 @@ class  Localizator
             при Министерстве культуры Российской Федерации, посольстве КНР в РФ и Российской академии художеств <br/>
             в честь семидесятилетия победы в ВОВ и войне сопротивления японским захватчикам в Китае, ЦДХ, Москва.<br/>
             <br/>
+            2015  Проект "FATALITY", OMELCHENKO GALLERY, Москва.<br/>
+            <br/>
             2015 Молодежная выставка МСХ, Москва.<br/>
             <br/>
             2014 Проект «Параллели» EAST MEETS WEST GALLERY, Artplay, Москва (каталог).  <br/>
@@ -49,8 +51,6 @@ class  Localizator
             2012 Персональная выставка, Областная картинная галерея, Тамбов.(каталог)<br/>
             <br/>
             2010 «Гастингс глазами русских художников» BAKER MAMONOVA GALLERY, Гастингс, Англия. <br/>
-            <br/>
-            2015  Проект "FATALITY", OMELCHENKO GALLERY, Москва.<br/>
 
                          <br/>
                          <br/>
@@ -105,6 +105,8 @@ class  Localizator
             the Russian Academy of Arts in honor of the seventieth anniversary of the victory in the Great Patriotic War and<br/>
             the War of Resistance Against Japanese Aggression in China, the Central House of Artists, Moscow.<br/>
             <br/>
+            2015  Project "FATALITY", Omelchenko Gallery, Moscow.<br/>
+            <br/>
             2015 The Young Artists exhibition, Moscow Union of Artists, Moscow.<br/>
             <br/>
             2014 Project «Parallels» EAST MEETS WEST GALLERY, ARTPLAY, Moscow (catalog).<br/>
@@ -122,8 +124,6 @@ class  Localizator
             2012 Personal Exhibition, Regional picture gallery, Tambov.(catalog)<br/>
             <br/>
             2010 «Hastings as seen by the Russian artists», Baker Mamonova Gallery, Hastings, England.<br/>
-            <br/>
-            2015  Project "FATALITY", Omelchenko Gallery, Moscow.<br/>
             <br/>
             <br/>
             <br/>
