@@ -22,15 +22,20 @@ class  Localizator
             <br/>
             В 2014 году награждена золотой медалью Российской Академии Художеств.  <br/>
             <br/>
-            С 2015 года является членом творческого союза художников России.
-                                                                             <br/>
-                                                                             <br/>
-                                                                             <br/>
-                                                                             <br/>
+            С 2015 года является членом творческого союза художников России.   <br/>
             <br>
             2015 награждена дипломом российско-китайского выставочного проекта "ПОБЕДЕ ПОСВЯЩАЕМ"</br>
             при Министерстве культуры Российской Федерации, посольстве КНР в РФ и Российской академии художеств <br/>
             в честь семидесятилетия победы в ВОВ и войне сопротивления японским захватчикам в Китае, ЦДХ, Москва.<br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <hr>
+            <br/>
+            <br/>
+            2015  Проект EGOCENTRIA, Винзавод - центр современного искусства, Москва (каталог).<br/>
             <br/>
             2015  Проект "FATALITY", OMELCHENKO GALLERY, Москва.<br/>
             <br/>
@@ -71,6 +76,7 @@ class  Localizator
             'no_results' => 'К сожалению по заданным условиям фильтра не найдено ни одной работы, попробуйте изменить условия.',
             'about_label' => 'О ней',
             'contacts_label' => 'Контакты',
+            'events_label' => 'События',
             'gallery_label' => 'Галерея',
             'order_label' => 'На заказ'
         );
@@ -91,19 +97,21 @@ class  Localizator
             <br/>
             2014- awarded by the gold medal of the Russian Academy of Fine Arts.<br/>
             <br/>
-            A member of International Federation of Artists as of 2015.<br/>
+            2015- A member of International Federation of Artists.<br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
-
-
-
-            2015 Awarded a diploma of the Russian-Chinese exhibition project "of Victory"
+            2015 Awarded a diploma of the Russian-Chinese exhibition project "of Victory"   <br/>
             by the Ministry of Culture of the Russian Federation, <br/>
             Embassy of China in the Russian Federation and<br/>
             the Russian Academy of Arts in honor of the seventieth anniversary of the victory in the Great Patriotic War and<br/>
             the War of Resistance Against Japanese Aggression in China, the Central House of Artists, Moscow.<br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <hr>
+            <br/>
+            <br/>
+            2015  Project EGOCENTRIA, WINZAVOD- center of contemporary art, Moscow (catalog).<br/>
             <br/>
             2015  Project "FATALITY", Omelchenko Gallery, Moscow.<br/>
             <br/>
@@ -146,6 +154,7 @@ class  Localizator
             'no_results' => 'There is no results. Change filter options.',
             'about_label' => 'About',
             'contacts_label' => 'Contacts',
+            'events_label' => 'Events',
             'gallery_label' => 'Gallery',
             'order_label' => 'Buy'
 
