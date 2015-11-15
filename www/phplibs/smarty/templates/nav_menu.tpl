@@ -1,6 +1,8 @@
 <div id="lang_changer"><a id="lang_changer_href" href="javascript:void 0">{{{$change_lang}}}</a></div>
     <div id="nav_menu">
-
+        <div id="nav_events" class="menu_button {{{$events_active}}}">
+            <a id="events_href" class="menu_href" href="javascript:void 0">{{{$events}}}</a>
+        </div>
         <div id="nav_contacts" class="menu_button {{{$contacts_active}}}">
             <a id="buy_href" class="menu_href" href="javascript:void 0">{{{$contacts}}}</a>
         </div>

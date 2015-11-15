@@ -29,6 +29,7 @@
           $template_engine->assign('about', $localizator->getText($lang, 'about_label'));
           $template_engine->assign('gallery',$localizator->getText($lang, 'gallery_label'));
           $template_engine->assign('contacts',$localizator->getText($lang, 'contacts_label'));
+          $template_engine->assign('events',$localizator->getText($lang, 'events_label'));
           $template_engine->assign('buy',$localizator->getText($lang, 'order_label'));
 
           if ($active_button == 'about') {
@@ -51,6 +52,11 @@
           } else {
               $template_engine->assign('buy_active','');
           }
+          if ($active_button == 'events') {
+              $template_engine->assign('events_active','active');
+          } else {
+              $template_engine->assign('events_active','');
+          }
 
           $html = $template_engine-> fetch('nav_menu.tpl');
           return  $html;
@@ -61,6 +67,7 @@
           return  array('about_href' => $localizator->getText($lang, 'about_label'),
                        'gallery_href' => $localizator->getText($lang, 'gallery_label'),
                        'buy_href' => $localizator->getText($lang, 'contacts_label'),
+                       'events_href' => $localizator->getText($lang, 'events_label'),
                        'lang_changer_href' => $localizator->getText($lang, 'change_lang_label'));
       }
 

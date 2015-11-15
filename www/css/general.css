@@ -54,8 +54,10 @@ body {
 }
 
 p {
+
+    color: black;
+    FONT-FAMILY: MainText;
     font-size: 18px;
-    color: #b9b9b9;
 }
 
 a {
