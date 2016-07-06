@@ -17,8 +17,8 @@ class  Localizator
             В 2005 году поступила в Московское государственное академическое художественное училище памяти 1905 года.  <br/>
             <br/>
 
-            С 2010 года по настоящее время является студенткой МГАХИ им. Сурикова   <br/>
-             (мастерской народного художника, академика РАХ, профессора Татьяны Назаренко) <br/>
+            В 2010 году поступила в МГАХИ им. Сурикова   <br/>
+             (мастерская народного художника, академика РАХ, профессора Татьяны Назаренко) <br/>
             <br/>
             В 2014 году награждена золотой медалью Российской Академии Художеств.  <br/>
             <br/>
@@ -28,12 +28,18 @@ class  Localizator
             при Министерстве культуры Российской Федерации, посольстве КНР в РФ и Российской академии художеств <br/>
             в честь семидесятилетия победы в ВОВ и войне сопротивления японским захватчикам в Китае, ЦДХ, Москва.<br/>
             <br/>
+            В 2016 году с отличием окончила МГАХИ им. Сурикова, мастерская Салаховой А.Т.  <br/>
+            <br/>
             <br/>
             <br/>
             <br/>
             <br/>
             <hr>
             <br/>
+            <br/>
+            2016 Международная выставка "Июнь 22", Братислава.
+            <br/>
+            2016 Всероссийская выставка "Молодость России", ЦДХ, Москва.
             <br/>
             2015  Проект EGOCENTRIA, Винзавод - центр современного искусства, Москва (каталог).<br/>
             <br/>
@@ -89,7 +95,7 @@ class  Localizator
             <br/>
             2005-entered Moscow Art School by memory of 1905.<br/>
             <br/>
-            2010- present-student at the Surikov State Institute of Fine Arts<br/>
+            2010- entered Surikov State Institute of Fine Arts<br/>
             <br/>
             (Studio under the guidance of  People’s Artist, Member of the Russian Academy of Arts, Professor Tatyana Nazarenko)<br/>
             <br/>
@@ -105,11 +111,18 @@ class  Localizator
             the Russian Academy of Arts in honor of the seventieth anniversary of the victory in the Great Patriotic War and<br/>
             the War of Resistance Against Japanese Aggression in China, the Central House of Artists, Moscow.<br/>
             <br/>
+            2016- graduated with honors from the Surikov State Institute of Fine Arts, studio of Aidan Salakhova <br/>
+
+            <br/>
             <br/>
             <br/>
             <br/>
             <hr>
             <br/>
+            <br/>
+            2016 International exhibition "June 22", Bratislava.  <br/>
+            <br/>
+            2016 All-Russian exhibition "Russian youth", Central House of Artists, Moscow.  <br/>
             <br/>
             2015  Project EGOCENTRIA, WINZAVOD- center of contemporary art, Moscow (catalog).<br/>
             <br/>
